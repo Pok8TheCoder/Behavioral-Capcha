@@ -1,6 +1,11 @@
 """
-High-Speed Privacy-First Input Telemetry Recorder (v3.2 Resolution & Multi-Monitor Edition)
+High-Speed Privacy-First Input Telemetry Recorder (v3.3 Multi-Monitor & Organized Datasets)
 ---------------------------------------------------------------------------------------------
+Dataset Storage:
+- Automatically saves human recordings to datasets/human/
+- Periodic RAM snapshots saved to temp/
+- Scratch/throwaway benchmark datasets saved to temp/scratch_datasets/
+
 Multi-Monitor & Resolution Independence Features:
 - Virtual Desktop Bounding: Detects multi-monitor arrangements (including negative X/Y monitors).
 - Quantized Normalized Screen Mapping: Maps virtual screen space to 16-bit uint16 (0..65535).
@@ -277,11 +282,9 @@ def unpack_bin_to_csv(bin_filepath: str, csv_filepath: str, base_epoch: float = 
             
             rel_ms = dt_us / 1000.0
             
-            # Reconstruct Normalized Ratios (0.0000 .. 1.0000)
             x_norm = quant_x / 65535.0
             y_norm = quant_y / 65535.0
 
-            # Reconstruct Screen Pixel Coordinates
             x_px = round(SCREEN_X_MIN + (x_norm * SCREEN_WIDTH), 1)
             y_px = round(SCREEN_Y_MIN + (y_norm * SCREEN_HEIGHT), 1)
 
@@ -300,10 +303,18 @@ def unpack_bin_to_csv(bin_filepath: str, csv_filepath: str, base_epoch: float = 
     print(f"[Converter] Successfully converted {total_records:,} records -> [file:///{csv_filepath.replace(os.sep, '/')}]")
 
 def recover_autosaves():
-    temp_dir = os.path.join(os.path.dirname(__file__), "temp")
-    datasets_dir = os.path.join(os.path.dirname(__file__), "datasets")
+    search_paths = [
+        os.path.join(os.path.dirname(__file__), "temp"),
+        os.path.join(os.path.dirname(__file__), "temp", "scratch_datasets"),
+        os.path.join(os.path.dirname(__file__), "datasets"),
+        os.path.join(os.path.dirname(__file__), "datasets", "human"),
+        os.path.join(os.path.dirname(__file__), "datasets", "bot")
+    ]
     
-    bin_files = glob.glob(os.path.join(temp_dir, "*.bin")) + glob.glob(os.path.join(datasets_dir, "*.bin"))
+    bin_files = []
+    for sp in search_paths:
+        bin_files.extend(glob.glob(os.path.join(sp, "*.bin")))
+
     if not bin_files:
         print("[Recovery] No leftover .bin files found to recover.")
         return
@@ -340,7 +351,8 @@ def flush_ram_to_csv():
     session_avg_hz = (event_count / duration) if duration > 0 else 0.0
     active_motion_hz = calculate_polling_stats(buffer_copy)
 
-    output_dir = os.path.join(os.path.dirname(__file__), "datasets")
+    # Human recordings default to datasets/human/
+    output_dir = os.path.join(os.path.dirname(__file__), "datasets", "human")
     os.makedirs(output_dir, exist_ok=True)
 
     filename_base = f"input_log_{start_dt}_to_{end_dt}"
@@ -348,7 +360,8 @@ def flush_ram_to_csv():
     bin_path = os.path.join(output_dir, f"{filename_base}.bin")
 
     print(f"\n" + "=" * 65)
-    print(f"[Recorder Engine v3.2] Flushing RAM binary buffer...")
+    print(f"[Recorder Engine v3.3] Flushing RAM binary buffer...")
+    print(f" -> Storage Destination:     datasets/human/")
     print(f" -> Display Resolution:       {SCREEN_WIDTH}x{SCREEN_HEIGHT} (Virtual Desktop Offset: {SCREEN_X_MIN},{SCREEN_Y_MIN})")
     print(f" -> Total Events Recorded:     {event_count:,}")
     print(f" -> Compact RAM Buffer Size:   {len(buffer_copy) / 1024:.2f} KB (20 bytes/event)")
@@ -380,8 +393,9 @@ if __name__ == "__main__":
         sys.exit(0)
 
     print("=" * 65)
-    print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.2 (MULTI-MONITOR READY)")
+    print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.3 (ORGANIZED DATASETS)")
     print("=" * 65)
+    print(f" Output Location: datasets/human/")
     print(f" Detected Display Bounds: {SCREEN_WIDTH}x{SCREEN_HEIGHT} (Virtual Desktop Offset: {SCREEN_X_MIN},{SCREEN_Y_MIN})")
     print(" PRIVACY PROMISE: ZERO logging of text, letters, digits, or passwords.")
     print(" - Max Polling Speed: 1ms Win32 Timer (timeBeginPeriod)")

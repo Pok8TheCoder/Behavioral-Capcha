@@ -1,17 +1,15 @@
 """
-Behavioral Bot Generator & Benchmark Suite
--------------------------------------------
+Behavioral Bot Generator & Benchmark Suite (v3.3 Organized Edition)
+---------------------------------------------------------------------
 Generates and benchmarks 4 tiers of bot interaction datasets:
 - Tier 1: Naive Script Bot (Instant DOM clicks)
 - Tier 2: Linear Vector Bot (Direct lerp interpolation)
 - Tier 3: Bezier Curve Bot (Cubic Bezier splines)
 - Tier 4: Humanoid Fitts Bot (Biophysical minimum jerk, Fitts's law, sub-movements, 8-12Hz tremor)
 
-Outputs:
-- datasets/bot_tier1_naive.csv
-- datasets/bot_tier2_linear.csv
-- datasets/bot_tier3_bezier.csv
-- datasets/bot_tier4_humanoid.csv
+Storage Destinations:
+- Primary Bot Datasets: datasets/bot/
+- Throwaway / Scratch Runs: temp/scratch_datasets/ (pass --scratch flag)
 """
 
 import os
@@ -29,7 +27,7 @@ from bots.tier4_humanoid import HumanoidFittsBot
 from backend.feature_extractor import extract_features
 from backend.model import BehavioralClassifier
 
-def run_bot_simulation(bot_instance, n_runs: int = 15) -> str:
+def run_bot_simulation(bot_instance, n_runs: int = 15, is_scratch: bool = False) -> str:
     print(f"\n" + "=" * 65)
     print(f"[Bot Suite] Executing {bot_instance.name} ({n_runs} target sessions)...")
     print("=" * 65)
@@ -49,7 +47,11 @@ def run_bot_simulation(bot_instance, n_runs: int = 15) -> str:
         bot_instance.move_to(start_x, start_y, target_x, target_y)
         bot_instance.click_target(target_x, target_y, button="mouse_left")
 
-    output_dir = os.path.join(os.path.dirname(__file__), "datasets")
+    if is_scratch:
+        output_dir = os.path.join(os.path.dirname(__file__), "temp", "scratch_datasets")
+    else:
+        output_dir = os.path.join(os.path.dirname(__file__), "datasets", "bot")
+    
     os.makedirs(output_dir, exist_ok=True)
 
     bot_slug = bot_instance.name.split(" - ")[1].lower().replace(" ", "_")
@@ -67,6 +69,7 @@ def run_bot_simulation(bot_instance, n_runs: int = 15) -> str:
             f_csv.write(f"{evt['t']:.3f},{evt['x']:.1f},{evt['y']:.1f},{evt['scroll_x']:.1f},{evt['scroll_y']:.1f},{evt['scroll_dx']},{evt['scroll_dy']},{evt['event_type']},none\n")
 
     print(f"[Saver] Generated {len(bot_instance.events):,} raw events.")
+    print(f"[Saver] Destination: [file:///{output_dir.replace(os.sep, '/')}]")
     print(f"[Saver] Binary dataset: [file:///{bin_path.replace(os.sep, '/')}]")
     print(f"[Saver] CSV dataset:    [file:///{csv_path.replace(os.sep, '/')}]")
 
@@ -88,9 +91,15 @@ def evaluate_bot_dataset(classifier: BehavioralClassifier, bot_instance):
         print(f" -> Flags: {evaluation['flags']}")
 
 def main():
+    is_scratch = "--scratch" in sys.argv or "--temp" in sys.argv
+
     print("=" * 65)
     print(" BEHAVIORAL BOT GENERATOR & BENCHMARK SUITE")
     print("=" * 65)
+    if is_scratch:
+        print(" Output Destination: temp/scratch_datasets/ (Throwaway Mode)")
+    else:
+        print(" Output Destination: datasets/bot/ (Production Bot Datasets)")
 
     classifier = BehavioralClassifier()
 
@@ -102,7 +111,7 @@ def main():
     ]
 
     for bot in bots:
-        run_bot_simulation(bot, n_runs=10)
+        run_bot_simulation(bot, n_runs=10, is_scratch=is_scratch)
         evaluate_bot_dataset(classifier, bot)
 
 if __name__ == "__main__":
