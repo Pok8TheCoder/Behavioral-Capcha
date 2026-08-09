@@ -1,20 +1,16 @@
 """
-High-Speed Privacy-First Input Telemetry Recorder (v3.1)
---------------------------------------------------------
+High-Speed Privacy-First Input Telemetry Recorder (v3.2 Resolution & Multi-Monitor Edition)
+---------------------------------------------------------------------------------------------
+Multi-Monitor & Resolution Independence Features:
+- Virtual Desktop Bounding: Detects multi-monitor arrangements (including negative X/Y monitors).
+- Quantized Normalized Screen Mapping: Maps virtual screen space to 16-bit uint16 (0..65535).
+  Sub-pixel accuracy across 1080p, 1440p, 4K, 8K, and multi-monitor setups.
+- Dual CSV Export: Outputs both raw screen pixel coordinates (x_px, y_px) AND normalized 
+  resolution-independent ratios (x_norm, y_norm in 0.0000..1.0000).
+
 Privacy Guarantee:
 - ZERO logging of text, passwords, letters (A-Z), digits (0-9), or symbols/punctuation.
-- ONLY records non-sensitive functionality/modifier/navigation keys:
-  Ctrl, Alt, Win/Cmd, Shift, Tab, CapsLock, Esc, Enter, Backspace, Delete,
-  Insert, Home, End, PageUp, PageDown, Arrow Keys (Up/Down/Left/Right),
-  Function Keys (F1-F12), PrintScreen, ScrollLock, Pause, NumLock.
-
-Features:
-- Combined Mouse Dynamics + Non-Sensitive Keystroke Biometrics.
-- High-Speed 1ms Win32 Timer (winmm.timeBeginPeriod(1)).
-- Sub-Millisecond 64-bit uint64 Microsecond Timestamps (time.perf_counter_ns()).
-- Ultra-Compact Binary RAM Storage (20 Bytes per event).
-- 300s Periodic Autosave & Emergency Recovery Engine (--recover).
-- Dual Reporting: Active Motion Hardware Rate (Hz) + Overall Session Average.
+- ONLY records non-sensitive functionality/modifier/navigation keys.
 """
 
 import os
@@ -29,7 +25,7 @@ import numpy as np
 from datetime import datetime
 from pynput import mouse, keyboard
 
-# Win32 High-Precision Timer Resolution setup
+# Win32 High-Precision Timer & Virtual Screen Metrics setup
 IS_WINDOWS = sys.platform.startswith("win")
 if IS_WINDOWS:
     import ctypes
@@ -38,7 +34,18 @@ if IS_WINDOWS:
     except Exception as e:
         print(f"[Warning] Failed setting winmm timeBeginPeriod(1): {e}")
 
-# Strict Allowlist of Non-Sensitive Special Keys (All alphanumeric keys are REJECTED)
+    u32 = ctypes.windll.user32
+    SCREEN_X_MIN = u32.GetSystemMetrics(76)  # SM_XVIRTUALSCREEN
+    SCREEN_Y_MIN = u32.GetSystemMetrics(77)  # SM_YVIRTUALSCREEN
+    SCREEN_WIDTH = max(1, u32.GetSystemMetrics(78))  # SM_CXVIRTUALSCREEN
+    SCREEN_HEIGHT = max(1, u32.GetSystemMetrics(79)) # SM_CYVIRTUALSCREEN
+else:
+    SCREEN_X_MIN = 0
+    SCREEN_Y_MIN = 0
+    SCREEN_WIDTH = 1920
+    SCREEN_HEIGHT = 1080
+
+# Strict Allowlist of Non-Sensitive Special Keys
 ALLOWED_SPECIAL_KEYS = {
     # Modifiers
     'ctrl', 'ctrl_l', 'ctrl_r',
@@ -61,14 +68,14 @@ ALLOWED_SPECIAL_KEYS = {
 
 # Binary Struct Format (20 Bytes per record):
 # <Q  : uint64 (microsecond delta dt_us since recording start)
-# H   : uint16 (x coordinate: 0..65535)
-# H   : uint16 (y coordinate: 0..65535)
+# H   : uint16 (quantized x coordinate: 0..65535 mapping normalized Virtual Desktop X)
+# H   : uint16 (quantized y coordinate: 0..65535 mapping normalized Virtual Desktop Y)
 # b   : int8   (dx scroll step: -128..127)
 # b   : int8   (dy scroll step: -128..127)
 # B   : uint8  (event_type: 0=move, 1=click_down, 2=click_up, 3=scroll, 4=key_down, 5=key_up)
 # H   : uint16 (target_id: mapped mouse button ID or special key ID)
 STRUCT_FMT = "<QHHbbBH"
-RECORD_SIZE = struct.calcsize(STRUCT_FMT)  # Exactly 20 bytes
+RECORD_SIZE = struct.calcsize(STRUCT_FMT)  # 20 bytes
 
 # In-Memory Binary Buffer & Lock
 ram_binary_buffer = bytearray()
@@ -82,7 +89,6 @@ is_flushed = False
 autosave_seq = 0
 AUTOSAVE_INTERVAL_SEC = 300
 
-# Track current mouse position for key events
 last_mouse_x = 0
 last_mouse_y = 0
 
@@ -122,7 +128,7 @@ def get_allowed_key_name(key) -> str:
             return f"key_{kname}"
     return None
 
-def record_event(x: int, y: int, dx: int, dy: int, event_type: int, target_name: str = "none"):
+def record_event(x: float, y: float, dx: int, dy: int, event_type: int, target_name: str = "none"):
     global ram_binary_buffer, start_perf_ns, start_time_epoch, end_time_epoch, event_count, last_mouse_x, last_mouse_y
 
     now_ns = time.perf_counter_ns()
@@ -133,13 +139,19 @@ def record_event(x: int, y: int, dx: int, dy: int, event_type: int, target_name:
         start_time_epoch = now_epoch
     end_time_epoch = now_epoch
 
-    last_mouse_x = int(x)
-    last_mouse_y = int(y)
+    last_mouse_x = float(x)
+    last_mouse_y = float(y)
 
     dt_us = int((now_ns - start_perf_ns) // 1000)
-    
-    clamp_x = max(0, min(65535, int(x)))
-    clamp_y = max(0, min(65535, int(y)))
+
+    # Normalize coordinate relative to Virtual Screen Bounding Box -> [0.0, 1.0]
+    norm_x = (float(x) - SCREEN_X_MIN) / float(SCREEN_WIDTH)
+    norm_y = (float(y) - SCREEN_Y_MIN) / float(SCREEN_HEIGHT)
+
+    # Quantize normalized ratio [0.0, 1.0] to 16-bit uint16 integer [0..65535]
+    quant_x = max(0, min(65535, int(round(norm_x * 65535.0))))
+    quant_y = max(0, min(65535, int(round(norm_y * 65535.0))))
+
     clamp_dx = max(-128, min(127, int(dx)))
     clamp_dy = max(-128, min(127, int(dy)))
     t_id = get_target_id(target_name)
@@ -147,8 +159,8 @@ def record_event(x: int, y: int, dx: int, dy: int, event_type: int, target_name:
     packed = struct.pack(
         STRUCT_FMT,
         dt_us,
-        clamp_x,
-        clamp_y,
+        quant_x,
+        quant_y,
         clamp_dx,
         clamp_dy,
         event_type,
@@ -187,7 +199,6 @@ def on_key_release(key):
         record_event(last_mouse_x, last_mouse_y, 0, 0, event_type=5, target_name=key_name)
 
 def periodic_autosave_worker():
-    """Background thread that snapshots binary RAM buffer to temp folder every 300s."""
     global autosave_seq
     while not is_flushed:
         time.sleep(AUTOSAVE_INTERVAL_SEC)
@@ -212,9 +223,8 @@ def periodic_autosave_worker():
             print(f"\n[Autosave Warning] Periodic snapshot failed: {e}")
 
 def calculate_polling_stats(buffer_copy: bytes):
-    """Calculates both Active Motion Polling Rate and Session Average."""
     if len(buffer_copy) < RECORD_SIZE * 2:
-        return 0.0, 0.0
+        return 0.0
 
     dts = []
     offsets = range(0, len(buffer_copy) - RECORD_SIZE + 1, RECORD_SIZE)
@@ -224,7 +234,7 @@ def calculate_polling_stats(buffer_copy: bytes):
         dt_us = struct.unpack_from("<Q", buffer_copy, offset)[0]
         if prev_us is not None:
             diff_ms = (dt_us - prev_us) / 1000.0
-            if 0.1 <= diff_ms <= 20.0:  # Active movement window (< 20ms between events)
+            if 0.1 <= diff_ms <= 20.0:  # Active movement window (< 20ms)
                 dts.append(diff_ms)
         prev_us = dt_us
 
@@ -232,7 +242,7 @@ def calculate_polling_stats(buffer_copy: bytes):
     return active_hz
 
 def unpack_bin_to_csv(bin_filepath: str, csv_filepath: str, base_epoch: float = None):
-    """Unpacks a 20-byte .bin dataset file into formatted .csv."""
+    """Unpacks binary dataset into CSV with both raw pixel coords and normalized 0..1 ratios."""
     event_type_names = {
         0: "mouse_move",
         1: "mouse_click_down",
@@ -254,15 +264,27 @@ def unpack_bin_to_csv(bin_filepath: str, csv_filepath: str, base_epoch: float = 
     cumulative_sc_y = 0.0
 
     with open(csv_filepath, "w", encoding="utf-8") as f_csv:
+        # Include Display Metadata Header
+        f_csv.write(f"# Display Metrics: VirtualBounds=({SCREEN_X_MIN},{SCREEN_Y_MIN}), Size=({SCREEN_WIDTH}x{SCREEN_HEIGHT})\n")
+        
         if base_epoch is not None:
-            f_csv.write("timestamp_epoch,rel_time_ms,x,y,scroll_x,scroll_y,scroll_dx,scroll_dy,event_type,target_item\n")
+            f_csv.write("timestamp_epoch,rel_time_ms,x_px,y_px,x_norm,y_norm,scroll_x,scroll_y,scroll_dx,scroll_dy,event_type,target_item\n")
         else:
-            f_csv.write("rel_time_ms,x,y,scroll_x,scroll_y,scroll_dx,scroll_dy,event_type,target_item\n")
+            f_csv.write("rel_time_ms,x_px,y_px,x_norm,y_norm,scroll_x,scroll_y,scroll_dx,scroll_dy,event_type,target_item\n")
 
         for offset in range(0, len(data) - RECORD_SIZE + 1, RECORD_SIZE):
-            dt_us, x, y, dx, dy, evt_type, t_id = struct.unpack_from(STRUCT_FMT, data, offset)
+            dt_us, quant_x, quant_y, dx, dy, evt_type, t_id = struct.unpack_from(STRUCT_FMT, data, offset)
             
             rel_ms = dt_us / 1000.0
+            
+            # Reconstruct Normalized Ratios (0.0000 .. 1.0000)
+            x_norm = quant_x / 65535.0
+            y_norm = quant_y / 65535.0
+
+            # Reconstruct Screen Pixel Coordinates
+            x_px = round(SCREEN_X_MIN + (x_norm * SCREEN_WIDTH), 1)
+            y_px = round(SCREEN_Y_MIN + (y_norm * SCREEN_HEIGHT), 1)
+
             cumulative_sc_x += dx
             cumulative_sc_y += dy
 
@@ -271,14 +293,13 @@ def unpack_bin_to_csv(bin_filepath: str, csv_filepath: str, base_epoch: float = 
 
             if base_epoch is not None:
                 abs_epoch = base_epoch + (rel_ms / 1000.0)
-                f_csv.write(f"{abs_epoch:.6f},{rel_ms:.3f},{x},{y},{cumulative_sc_x:.1f},{cumulative_sc_y:.1f},{dx},{dy},{evt_str},{target_str}\n")
+                f_csv.write(f"{abs_epoch:.6f},{rel_ms:.3f},{x_px},{y_px},{x_norm:.5f},{y_norm:.5f},{cumulative_sc_x:.1f},{cumulative_sc_y:.1f},{dx},{dy},{evt_str},{target_str}\n")
             else:
-                f_csv.write(f"{rel_ms:.3f},{x},{y},{cumulative_sc_x:.1f},{cumulative_sc_y:.1f},{dx},{dy},{evt_str},{target_str}\n")
+                f_csv.write(f"{rel_ms:.3f},{x_px},{y_px},{x_norm:.5f},{y_norm:.5f},{cumulative_sc_x:.1f},{cumulative_sc_y:.1f},{dx},{dy},{evt_str},{target_str}\n")
 
     print(f"[Converter] Successfully converted {total_records:,} records -> [file:///{csv_filepath.replace(os.sep, '/')}]")
 
 def recover_autosaves():
-    """Scans temp/ and datasets/ for un-converted .bin files and exports them to .csv."""
     temp_dir = os.path.join(os.path.dirname(__file__), "temp")
     datasets_dir = os.path.join(os.path.dirname(__file__), "datasets")
     
@@ -327,7 +348,8 @@ def flush_ram_to_csv():
     bin_path = os.path.join(output_dir, f"{filename_base}.bin")
 
     print(f"\n" + "=" * 65)
-    print(f"[Recorder Engine v3.1] Flushing RAM binary buffer...")
+    print(f"[Recorder Engine v3.2] Flushing RAM binary buffer...")
+    print(f" -> Display Resolution:       {SCREEN_WIDTH}x{SCREEN_HEIGHT} (Virtual Desktop Offset: {SCREEN_X_MIN},{SCREEN_Y_MIN})")
     print(f" -> Total Events Recorded:     {event_count:,}")
     print(f" -> Compact RAM Buffer Size:   {len(buffer_copy) / 1024:.2f} KB (20 bytes/event)")
     print(f" -> Total Session Duration:    {duration:.2f} seconds")
@@ -358,17 +380,14 @@ if __name__ == "__main__":
         sys.exit(0)
 
     print("=" * 65)
-    print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.1 (RAM BINARY BUFFER)")
+    print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.2 (MULTI-MONITOR READY)")
     print("=" * 65)
+    print(f" Detected Display Bounds: {SCREEN_WIDTH}x{SCREEN_HEIGHT} (Virtual Desktop Offset: {SCREEN_X_MIN},{SCREEN_Y_MIN})")
     print(" PRIVACY PROMISE: ZERO logging of text, letters, digits, or passwords.")
-    print(" ALLOWED KEYS: Ctrl, Alt, Win, Shift, Tab, Caps, Esc, Enter, Backspace,")
-    print("               Delete, Arrows, F1-F12, PageUp/Down, Home, End, System keys.")
     print(" - Max Polling Speed: 1ms Win32 Timer (timeBeginPeriod)")
     print(" - Precision Timestamp: 64-bit uint64 Microseconds (0.001ms precision)")
-    print(" - Compact RAM Buffer: 20 Bytes/Event")
-    print(" - Periodic Autosave: Dumps to temp/ every 300s")
-    print(" - Controls: Press Ctrl+C at any time to export to CSV")
-    print(" - Recovery: Run 'python mouse_recorder.py --recover' to convert temp files\n")
+    print(" - Normalized Mapping: x_norm & y_norm (0.0000..1.0000 ratio)")
+    print(" - Controls: Press Ctrl+C at any time to export to CSV\n")
 
     # Start periodic autosave background thread
     autosave_thread = threading.Thread(target=periodic_autosave_worker, daemon=True)

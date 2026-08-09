@@ -1,0 +1,5 @@
+# Display Metrics: VirtualBounds=(0,0), Size=(1920x1080)
+timestamp_epoch,rel_time_ms,x_px,y_px,x_norm,y_norm,scroll_x,scroll_y,scroll_dx,scroll_dy,event_type,target_item
+1786288812.890170,0.000,0.0,0.0,0.00000,0.00000,0.0,0.0,0,0,mouse_move,none
+1786288812.890185,0.015,960.0,540.0,0.50001,0.50001,0.0,0.0,0,0,mouse_move,none
+1786288812.890189,0.019,1920.0,1080.0,1.00000,1.00000,0.0,0.0,0,0,mouse_move,none
