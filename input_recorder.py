@@ -1,5 +1,5 @@
 """
-High-Speed Privacy-First Input Telemetry Recorder (v3.0)
+High-Speed Privacy-First Input Telemetry Recorder (v3.1)
 --------------------------------------------------------
 Privacy Guarantee:
 - ZERO logging of text, passwords, letters (A-Z), digits (0-9), or symbols/punctuation.
@@ -14,6 +14,7 @@ Features:
 - Sub-Millisecond 64-bit uint64 Microsecond Timestamps (time.perf_counter_ns()).
 - Ultra-Compact Binary RAM Storage (20 Bytes per event).
 - 300s Periodic Autosave & Emergency Recovery Engine (--recover).
+- Dual Reporting: Active Motion Hardware Rate (Hz) + Overall Session Average.
 """
 
 import os
@@ -24,6 +25,7 @@ import atexit
 import signal
 import threading
 import glob
+import numpy as np
 from datetime import datetime
 from pynput import mouse, keyboard
 
@@ -118,7 +120,6 @@ def get_allowed_key_name(key) -> str:
         base_name = kname.split('_')[0]
         if base_name in ALLOWED_SPECIAL_KEYS:
             return f"key_{kname}"
-    # All character keys (A-Z, 0-9, symbols, passwords) are explicitly ignored!
     return None
 
 def record_event(x: int, y: int, dx: int, dy: int, event_type: int, target_name: str = "none"):
@@ -210,6 +211,26 @@ def periodic_autosave_worker():
         except Exception as e:
             print(f"\n[Autosave Warning] Periodic snapshot failed: {e}")
 
+def calculate_polling_stats(buffer_copy: bytes):
+    """Calculates both Active Motion Polling Rate and Session Average."""
+    if len(buffer_copy) < RECORD_SIZE * 2:
+        return 0.0, 0.0
+
+    dts = []
+    offsets = range(0, len(buffer_copy) - RECORD_SIZE + 1, RECORD_SIZE)
+    prev_us = None
+
+    for offset in offsets:
+        dt_us = struct.unpack_from("<Q", buffer_copy, offset)[0]
+        if prev_us is not None:
+            diff_ms = (dt_us - prev_us) / 1000.0
+            if 0.1 <= diff_ms <= 20.0:  # Active movement window (< 20ms between events)
+                dts.append(diff_ms)
+        prev_us = dt_us
+
+    active_hz = (1000.0 / float(np.median(dts))) if dts else 0.0
+    return active_hz
+
 def unpack_bin_to_csv(bin_filepath: str, csv_filepath: str, base_epoch: float = None):
     """Unpacks a 20-byte .bin dataset file into formatted .csv."""
     event_type_names = {
@@ -295,7 +316,8 @@ def flush_ram_to_csv():
     end_dt = datetime.fromtimestamp(end_t).strftime("%Y%m%d_%H%M%S")
 
     duration = end_t - start_t
-    avg_hz = (event_count / duration) if duration > 0 else 0.0
+    session_avg_hz = (event_count / duration) if duration > 0 else 0.0
+    active_motion_hz = calculate_polling_stats(buffer_copy)
 
     output_dir = os.path.join(os.path.dirname(__file__), "datasets")
     os.makedirs(output_dir, exist_ok=True)
@@ -305,11 +327,12 @@ def flush_ram_to_csv():
     bin_path = os.path.join(output_dir, f"{filename_base}.bin")
 
     print(f"\n" + "=" * 65)
-    print(f"[Recorder Engine v3.0] Flushing RAM binary buffer...")
-    print(f" -> Total Events Recorded: {event_count:,}")
-    print(f" -> Compact RAM Buffer:   {len(buffer_copy) / 1024:.2f} KB (20 bytes/event)")
-    print(f" -> Recording Duration:   {duration:.2f} seconds")
-    print(f" -> Average Polling Rate: {avg_hz:.1f} Hz")
+    print(f"[Recorder Engine v3.1] Flushing RAM binary buffer...")
+    print(f" -> Total Events Recorded:     {event_count:,}")
+    print(f" -> Compact RAM Buffer Size:   {len(buffer_copy) / 1024:.2f} KB (20 bytes/event)")
+    print(f" -> Total Session Duration:    {duration:.2f} seconds")
+    print(f" -> Active Motion Hardware Rate: {active_motion_hz:.1f} Hz (True Sensor Frequency)")
+    print(f" -> Session Overall Average:   {session_avg_hz:.1f} Hz (Includes Pauses/Idle)")
     print("=" * 65)
 
     # 1. Save binary backup
@@ -335,7 +358,7 @@ if __name__ == "__main__":
         sys.exit(0)
 
     print("=" * 65)
-    print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.0 (RAM BINARY BUFFER)")
+    print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.1 (RAM BINARY BUFFER)")
     print("=" * 65)
     print(" PRIVACY PROMISE: ZERO logging of text, letters, digits, or passwords.")
     print(" ALLOWED KEYS: Ctrl, Alt, Win, Shift, Tab, Caps, Esc, Enter, Backspace,")
