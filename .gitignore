@@ -1,0 +1,23 @@
+# Python & Virtual Environments
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.joblib
+
+# Node & Frontend
+node_modules/
+dist/
+build/
+.ds_store
+
+# Temporary & Autosave datasets
+temp/
+*.log
+
+# Workspace & IDE
+.vscode/
+.idea/
+.cursor/

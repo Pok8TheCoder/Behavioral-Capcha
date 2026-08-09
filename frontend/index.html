@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavioral CAPTCHA & Biometric Bot Detection Engine</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Header Bar -->
+        <header class="app-header">
+            <div class="brand">
+                <div class="shield-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 8v4"/>
+                        <path d="M12 16h.01"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>Behavioral CAPTCHA Core</h1>
+                    <p class="subtitle">Passive Biometric Mouse Dynamics & Bot Detection Engine</p>
+                </div>
+            </div>
+            <div class="status-pill" id="backend-status">
+                <span class="status-dot pulsing"></span>
+                <span class="status-text">Backend Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Main Layout Grid -->
+        <main class="dashboard-grid">
+            
+            <!-- Left Column: Interactive CAPTCHA Challenge & Bot Simulator -->
+            <section class="panel challenge-panel">
+                <div class="panel-header">
+                    <h2>1. Interactive Biometric Challenge</h2>
+                    <span class="badge">Passive Collector</span>
+                </div>
+                <p class="panel-desc">Move your cursor to the challenge box below and interact naturally. Telemetry is recorded in real time.</p>
+
+                <!-- CAPTCHA Box Widget -->
+                <div class="captcha-box-card" id="captcha-card">
+                    <div class="captcha-checkbox-wrapper">
+                        <button type="button" class="captcha-checkbox" id="captcha-checkbox" aria-label="Verify Human Status">
+                            <span class="checkmark-icon" id="checkmark">✓</span>
+                            <span class="spinner" id="spinner"></span>
+                        </button>
+                        <span class="captcha-label">I'm not a robot (Behavioral Biometrics)</span>
+                    </div>
+                    <div class="captcha-logo">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="M12 7v5l3 3"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Bot Simulator Tools -->
+                <div class="bot-simulator-card">
+                    <h3>2. Bot Attack Simulation</h3>
+                    <p class="card-desc">Test the detection model against simulated automated scripts:</p>
+                    <div class="bot-button-grid">
+                        <button class="btn btn-bot" id="btn-bot-linear">
+                            <span class="bot-icon">⚡</span>
+                            <span>Linear Bot</span>
+                            <small>Straight line, $S=1.0$</small>
+                        </button>
+                        <button class="btn btn-bot" id="btn-bot-bezier">
+                            <span class="bot-icon">🔄</span>
+                            <span>Bezier Bot</span>
+                            <small>Smooth math curve</small>
+                        </button>
+                        <button class="btn btn-bot" id="btn-bot-jitter">
+                            <span class="bot-icon">🎲</span>
+                            <span>Jitter Bot</span>
+                            <small>Artificial noise</small>
+                        </button>
+                        <button class="btn btn-bot" id="btn-bot-teleport">
+                            <span class="bot-icon">🚀</span>
+                            <span>Teleport Bot</span>
+                            <small>Instant spatial jump</small>
+                        </button>
+                    </div>
+                    <button class="btn btn-secondary btn-full" id="btn-reset-telemetry">
+                        Reset Telemetry Canvas
+                    </button>
+                </div>
+            </section>
+
+            <!-- Middle Column: Real-Time Mouse Path Canvas -->
+            <section class="panel visualizer-panel">
+                <div class="panel-header">
+                    <h2>Mouse Trajectory Heatmap</h2>
+                    <div class="legend">
+                        <span class="legend-item"><span class="color-dot fast"></span> Fast</span>
+                        <span class="legend-item"><span class="color-dot slow"></span> Slow/Pause</span>
+                        <span class="legend-item"><span class="color-dot bot"></span> Bot Path</span>
+                    </div>
+                </div>
+
+                <div class="canvas-container">
+                    <canvas id="trajectory-canvas"></canvas>
+                    <div class="canvas-overlay-stats" id="canvas-overlay">
+                        <span>Points Recorded: <strong id="overlay-points">0</strong></span>
+                        <span>Duration: <strong id="overlay-duration">0 ms</strong></span>
+                    </div>
+                    <div class="simulated-cursor" id="simulated-cursor"></div>
+                </div>
+            </section>
+
+            <!-- Right Column: Verification & Biometrics Dashboard -->
+            <section class="panel metrics-panel">
+                <div class="panel-header">
+                    <h2>3. Risk Evaluation & Features</h2>
+                </div>
+
+                <!-- Risk Score Card -->
+                <div class="risk-card" id="risk-card">
+                    <div class="risk-meter-wrapper">
+                        <div class="risk-score-value" id="risk-score-display">--</div>
+                        <div class="risk-score-label">Bot Risk Score</div>
+                    </div>
+                    <div class="decision-badge badge-neutral" id="decision-badge">READY</div>
+                </div>
+
+                <!-- Metric Cards Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-title">Straightness Index</div>
+                        <div class="metric-value" id="val-straightness">--</div>
+                        <div class="metric-sub">Linearity ratio $S_{\text{ratio}}$</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-title">Velocity Mean</div>
+                        <div class="metric-value" id="val-velocity">--</div>
+                        <div class="metric-sub">px / ms</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-title">Velocity Std ($\sigma_v$)</div>
+                        <div class="metric-value" id="val-vel-std">--</div>
+                        <div class="metric-sub">Variance of movement</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-title">Jitter Ratio</div>
+                        <div class="metric-value" id="val-jitter">--</div>
+                        <div class="metric-sub">Micro-tremor frequency</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-title">Click Dwell Time</div>
+                        <div class="metric-value" id="val-click">--</div>
+                        <div class="metric-sub">Press-to-release (ms)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-title">Idle Ratio</div>
+                        <div class="metric-value" id="val-idle">--</div>
+                        <div class="metric-sub">Pause fraction</div>
+                    </div>
+                </div>
+
+                <!-- Anomaly Flags Section -->
+                <div class="flags-card">
+                    <h3>Detected Behavioral Anomalies</h3>
+                    <ul class="flags-list" id="flags-list">
+                        <li class="no-flags">No telemetry analyzed yet. Perform a check above.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="telemetry.js"></script>
+</body>
+</html>

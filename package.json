@@ -1,0 +1,20 @@
+{
+  "name": "behavioral-captcha",
+  "version": "1.0.0",
+  "description": "Behavioral Biometrics CAPTCHA and Bot Detection System",
+  "main": "frontend/index.html",
+  "scripts": {
+    "start": "python -m backend.main",
+    "dev:backend": "python -m uvicorn backend.main:app --reload --port 8000",
+    "dev:frontend": "python -m http.server 3000 --directory frontend"
+  },
+  "keywords": [
+    "captcha",
+    "behavioral-biometrics",
+    "bot-detection",
+    "machine-learning",
+    "security"
+  ],
+  "author": "",
+  "license": "MIT"
+}
