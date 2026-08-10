@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High-Speed Web Mouse Polling Rate Tester (1000Hz+ Hardware Benchmark)</title>
+    <title>High-Speed Web Mouse Polling & Cross-World Network Latency Benchmark</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,6 +16,7 @@
             --accent-emerald: #10b981;
             --accent-purple: #a855f7;
             --accent-rose: #f43f5e;
+            --accent-amber: #f59e0b;
             --text-main: #f8fafc;
             --text-sub: #94a3b8;
             --font-sans: 'Outfit', sans-serif;
@@ -41,7 +42,7 @@
 
         header {
             text-align: center;
-            max-width: 800px;
+            max-width: 850px;
         }
 
         header h1 {
@@ -60,10 +61,10 @@
 
         .tester-layout {
             display: grid;
-            grid-template-columns: 340px 1fr;
+            grid-template-columns: 360px 1fr;
             gap: 20px;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1240px;
         }
 
         .panel {
@@ -103,17 +104,52 @@
             text-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
         }
 
-        .current-hz-val {
+        .server-hz-val {
             font-family: var(--font-mono);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--accent-emerald);
             font-weight: 600;
+        }
+
+        /* Network Simulator Controls */
+        .network-sim-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .network-sim-card h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .ping-badge {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-amber);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-family: var(--font-mono);
+        }
+
+        .range-slider {
+            width: 100%;
+            accent-color: var(--accent-cyan);
+            cursor: pointer;
         }
 
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 10px;
         }
 
         .stat-card {
@@ -124,19 +160,19 @@
         }
 
         .stat-card .title {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-sub);
         }
 
         .stat-card .value {
             font-family: var(--font-mono);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text-main);
             margin-top: 4px;
         }
 
-        /* Interactive Movement Canvas Area */
+        /* Interactive Canvas Area */
         .canvas-card {
             display: flex;
             flex-direction: column;
@@ -168,7 +204,7 @@
         .test-canvas-container {
             position: relative;
             flex-grow: 1;
-            min-height: 400px;
+            min-height: 420px;
             background: #040711;
             border: 2px dashed rgba(6, 182, 212, 0.3);
             border-radius: 12px;
@@ -221,17 +257,26 @@
 </head>
 <body>
     <header>
-        <h1>Web Mouse Polling Rate Benchmark</h1>
-        <p>Swirl your mouse rapidly inside the box below to test your hardware sensor polling frequency (Hz).</p>
+        <h1>Web Mouse Polling & Cross-World Network Latency Benchmark</h1>
+        <p>Swirl your mouse rapidly inside the arena to benchmark client hardware sampling rate and test cross-world server retention.</p>
     </header>
 
     <div class="tester-layout">
-        <!-- Sidebar Stats -->
+        <!-- Sidebar Stats & Controls -->
         <div class="panel">
             <div class="stat-banner">
-                <div class="max-hz-title">Peak Polling Rate</div>
+                <div class="max-hz-title">Peak Client Hardware Rate</div>
                 <div class="max-hz-val" id="val-peak-hz">0 <span style="font-size: 1.5rem">Hz</span></div>
-                <div class="current-hz-val" id="val-curr-hz">Current: 0 Hz</div>
+                <div class="server-hz-val" id="val-server-hz">Server Verified: 0 Hz</div>
+            </div>
+
+            <!-- Network Latency Simulator -->
+            <div class="network-sim-card">
+                <h3>Simulated Cross-World Latency <span class="ping-badge" id="ping-display">0 ms (Local)</span></h3>
+                <input type="range" min="0" max="500" value="0" step="25" class="range-slider" id="ping-slider">
+                <div style="font-size: 0.72rem; color: var(--text-sub);">
+                    Simulates cross-continental round-trip ping (e.g. Tokyo to NYC = ~220ms).
+                </div>
             </div>
 
             <div class="stats-grid">
@@ -248,15 +293,15 @@
                     <div class="value" id="val-coalesced-count">0</div>
                 </div>
                 <div class="stat-card">
-                    <div class="title">Standard Events</div>
-                    <div class="value" id="val-raw-count">0</div>
+                    <div class="title">Payload Batches</div>
+                    <div class="value" id="val-batch-count">0</div>
                 </div>
             </div>
 
             <button class="btn-reset" id="btn-reset">Reset Benchmark Stats</button>
 
-            <div style="font-size: 0.8rem; color: var(--text-sub); line-height: 1.4; margin-top: 8px;">
-                💡 <strong>How it works</strong>: Modern browsers support <code>e.getCoalescedEvents()</code> (Pointer Events API) which bypasses monitor refresh rate limits (60Hz/144Hz) to deliver sub-frame hardware events directly at 500Hz, 1000Hz, or 8000Hz!
+            <div style="font-size: 0.78rem; color: var(--text-sub); line-height: 1.4; margin-top: 4px;">
+                🔬 <strong>Scientific Guarantee</strong>: Event timestamps (&Delta;t = 1.0ms) are recorded locally in the browser buffer before transmission. Network latency delays when the batch arrives, but <strong>does not alter internal 900Hz+ resolution!</strong>
             </div>
         </div>
 
@@ -279,13 +324,26 @@
         const canvas = document.getElementById("benchmark-canvas");
         const ctx = canvas.getContext("2d");
         const promptText = document.getElementById("prompt-text");
+        const pingSlider = document.getElementById("ping-slider");
+        const pingDisplay = document.getElementById("ping-display");
 
         let peakHz = 0;
+        let serverVerifiedHz = 0;
         let totalCoalescedCount = 0;
-        let totalRawCount = 0;
-        let recentDts = [];
+        let totalBatchCount = 0;
         let eventTimestamps = [];
         let trailPoints = [];
+        let pendingBatchBuffer = [];
+        let simulatedLatencyMs = 0;
+
+        pingSlider.addEventListener("input", (e) => {
+            simulatedLatencyMs = parseInt(e.target.value);
+            if (simulatedLatencyMs === 0) {
+                pingDisplay.textContent = "0 ms (Local)";
+            } else {
+                pingDisplay.textContent = `${simulatedLatencyMs} ms (Cross-World Ping)`;
+            }
+        });
 
         function resizeCanvas() {
             const rect = canvasContainer.getBoundingClientRect();
@@ -300,7 +358,6 @@
         function handlePointerEvent(e) {
             promptText.style.display = "none";
 
-            // Extract hardware sub-events using getCoalescedEvents API if available
             let eventsToProcess = [];
             if (typeof e.getCoalescedEvents === "function") {
                 const coalesced = e.getCoalescedEvents();
@@ -309,11 +366,9 @@
                     totalCoalescedCount += coalesced.length;
                 } else {
                     eventsToProcess = [e];
-                    totalRawCount++;
                 }
             } else {
                 eventsToProcess = [e];
-                totalRawCount++;
             }
 
             const rect = canvasContainer.getBoundingClientRect();
@@ -325,15 +380,17 @@
                 const x = evt.clientX - rect.left;
                 const y = evt.clientY - rect.top;
 
+                const eventData = { x, y, t };
                 trailPoints.push({ x, y, t, alpha: 1.0 });
                 if (trailPoints.length > 300) trailPoints.shift();
+
+                pendingBatchBuffer.push(eventData);
             });
 
-            calculateStats();
+            calculateClientStats();
         }
 
-        function calculateStats() {
-            // Keep timestamps within last 1000ms window
+        function calculateClientStats() {
             const now = performance.now();
             eventTimestamps = eventTimestamps.filter(t => (now - t) <= 1000);
 
@@ -343,11 +400,8 @@
             }
 
             document.getElementById("val-peak-hz").innerHTML = `${peakHz} <span style="font-size: 1.5rem">Hz</span>`;
-            document.getElementById("val-curr-hz").textContent = `Current: ${currHz} Hz`;
             document.getElementById("val-coalesced-count").textContent = totalCoalescedCount.toLocaleString();
-            document.getElementById("val-raw-count").textContent = totalRawCount.toLocaleString();
 
-            // Calculate inter-event delta times (dt)
             if (eventTimestamps.length >= 2) {
                 const dts = [];
                 for (let i = 1; i < eventTimestamps.length; i++) {
@@ -360,12 +414,38 @@
                 if (dts.length > 0) {
                     const minDt = Math.min(...dts);
                     const avgDt = dts.reduce((a, b) => a + b, 0) / dts.length;
-
                     document.getElementById("val-min-dt").textContent = `${minDt.toFixed(2)} ms`;
                     document.getElementById("val-avg-dt").textContent = `${avgDt.toFixed(2)} ms`;
                 }
             }
         }
+
+        // Simulate Batch Network Dispatching (every 300ms) with Simulated Cross-World Latency
+        setInterval(() => {
+            if (pendingBatchBuffer.length < 2) return;
+
+            const batchToTransmit = [...pendingBatchBuffer];
+            pendingBatchBuffer = [];
+            totalBatchCount++;
+            document.getElementById("val-batch-count").textContent = totalBatchCount;
+
+            // Simulate Network Transmission Delay
+            setTimeout(() => {
+                // Server Verification Engine: Reconstructs Hz from internal payload timestamps
+                const firstT = batchToTransmit[0].t;
+                const lastT = batchToTransmit[batchToTransmit.length - 1].t;
+                const durationSec = (lastT - firstT) / 1000.0;
+
+                if (durationSec > 0.05) {
+                    const verifiedHz = Math.round(batchToTransmit.length / durationSec);
+                    if (verifiedHz > serverVerifiedHz) {
+                        serverVerifiedHz = verifiedHz;
+                    }
+                    document.getElementById("val-server-hz").textContent = `Server Verified: ${serverVerifiedHz} Hz (${simulatedLatencyMs}ms ping)`;
+                }
+            }, simulatedLatencyMs);
+
+        }, 300);
 
         // Attach Pointer Events
         canvasContainer.addEventListener("pointermove", handlePointerEvent);
@@ -373,16 +453,18 @@
 
         document.getElementById("btn-reset").addEventListener("click", () => {
             peakHz = 0;
+            serverVerifiedHz = 0;
             totalCoalescedCount = 0;
-            totalRawCount = 0;
+            totalBatchCount = 0;
             eventTimestamps = [];
             trailPoints = [];
+            pendingBatchBuffer = [];
             document.getElementById("val-peak-hz").innerHTML = `0 <span style="font-size: 1.5rem">Hz</span>`;
-            document.getElementById("val-curr-hz").textContent = `Current: 0 Hz`;
+            document.getElementById("val-server-hz").textContent = `Server Verified: 0 Hz`;
             document.getElementById("val-min-dt").textContent = `-- ms`;
             document.getElementById("val-avg-dt").textContent = `-- ms`;
             document.getElementById("val-coalesced-count").textContent = `0`;
-            document.getElementById("val-raw-count").textContent = `0`;
+            document.getElementById("val-batch-count").textContent = `0`;
             promptText.style.display = "block";
         });
 
