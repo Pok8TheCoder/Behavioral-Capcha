@@ -1,21 +1,15 @@
 """
-High-Speed Privacy-First Input Telemetry Recorder (v3.3 Multi-Monitor & Organized Datasets)
----------------------------------------------------------------------------------------------
+High-Speed Privacy-First Input Telemetry Recorder (v3.4 Smart Recovery Edition)
+---------------------------------------------------------------------------------
 Dataset Storage:
 - Automatically saves human recordings to datasets/human/
 - Periodic RAM snapshots saved to temp/
 - Scratch/throwaway benchmark datasets saved to temp/scratch_datasets/
 
-Multi-Monitor & Resolution Independence Features:
-- Virtual Desktop Bounding: Detects multi-monitor arrangements (including negative X/Y monitors).
-- Quantized Normalized Screen Mapping: Maps virtual screen space to 16-bit uint16 (0..65535).
-  Sub-pixel accuracy across 1080p, 1440p, 4K, 8K, and multi-monitor setups.
-- Dual CSV Export: Outputs both raw screen pixel coordinates (x_px, y_px) AND normalized 
-  resolution-independent ratios (x_norm, y_norm in 0.0000..1.0000).
-
-Privacy Guarantee:
-- ZERO logging of text, passwords, letters (A-Z), digits (0-9), or symbols/punctuation.
-- ONLY records non-sensitive functionality/modifier/navigation keys.
+Recovery Engine:
+- Run 'python input_recorder.py --recover' to convert un-exported .bin files into datasets/human/
+- Automatically groups intermediate 5-minute autosave snapshots to recover the latest complete checkpoint per session.
+- Run 'python input_recorder.py --clean-temp' to clean old temporary autosave files in temp/
 """
 
 import os
@@ -91,6 +85,7 @@ start_time_epoch = None
 end_time_epoch = None
 event_count = 0
 is_flushed = False
+is_recovery_mode = False
 autosave_seq = 0
 AUTOSAVE_INTERVAL_SEC = 300
 
@@ -239,7 +234,7 @@ def calculate_polling_stats(buffer_copy: bytes):
         dt_us = struct.unpack_from("<Q", buffer_copy, offset)[0]
         if prev_us is not None:
             diff_ms = (dt_us - prev_us) / 1000.0
-            if 0.1 <= diff_ms <= 20.0:  # Active movement window (< 20ms)
+            if 0.1 <= diff_ms <= 20.0:
                 dts.append(diff_ms)
         prev_us = dt_us
 
@@ -269,7 +264,6 @@ def unpack_bin_to_csv(bin_filepath: str, csv_filepath: str, base_epoch: float = 
     cumulative_sc_y = 0.0
 
     with open(csv_filepath, "w", encoding="utf-8") as f_csv:
-        # Include Display Metadata Header
         f_csv.write(f"# Display Metrics: VirtualBounds=({SCREEN_X_MIN},{SCREEN_Y_MIN}), Size=({SCREEN_WIDTH}x{SCREEN_HEIGHT})\n")
         
         if base_epoch is not None:
@@ -303,30 +297,73 @@ def unpack_bin_to_csv(bin_filepath: str, csv_filepath: str, base_epoch: float = 
     print(f"[Converter] Successfully converted {total_records:,} records -> [file:///{csv_filepath.replace(os.sep, '/')}]")
 
 def recover_autosaves():
-    search_paths = [
-        os.path.join(os.path.dirname(__file__), "temp"),
-        os.path.join(os.path.dirname(__file__), "temp", "scratch_datasets"),
-        os.path.join(os.path.dirname(__file__), "datasets"),
-        os.path.join(os.path.dirname(__file__), "datasets", "human"),
-        os.path.join(os.path.dirname(__file__), "datasets", "bot")
-    ]
+    global is_recovery_mode
+    is_recovery_mode = True
+
+    temp_dir = os.path.join(os.path.dirname(__file__), "temp")
+    datasets_human = os.path.join(os.path.dirname(__file__), "datasets", "human")
+    datasets_bot = os.path.join(os.path.dirname(__file__), "datasets", "bot")
     
-    bin_files = []
-    for sp in search_paths:
-        bin_files.extend(glob.glob(os.path.join(sp, "*.bin")))
+    bin_files = glob.glob(os.path.join(temp_dir, "*.bin")) + \
+                glob.glob(os.path.join(datasets_human, "*.bin")) + \
+                glob.glob(os.path.join(datasets_bot, "*.bin"))
 
     if not bin_files:
         print("[Recovery] No leftover .bin files found to recover.")
         return
 
-    print(f"[Recovery Engine] Found {len(bin_files)} binary dataset files. Converting...")
+    # Smart Session Grouping: Group intermediate 5-minute autosave parts by session prefix
+    session_groups = {}
+    standalone_files = []
+
     for bin_file in bin_files:
+        filename = os.path.basename(bin_file)
+        if filename.startswith("autosave_") and "_part" in filename:
+            prefix = filename.split("_part")[0]
+            try:
+                part_num = int(filename.split("_part")[1].replace(".bin", ""))
+            except ValueError:
+                part_num = 0
+            
+            if prefix not in session_groups or part_num > session_groups[prefix][0]:
+                session_groups[prefix] = (part_num, bin_file)
+        else:
+            standalone_files.append(bin_file)
+
+    files_to_recover = [path for _, path in session_groups.values()] + standalone_files
+    print(f"[Recovery Engine] Found {len(files_to_recover)} unique session binary dataset files. Converting...")
+
+    for bin_file in files_to_recover:
         csv_file = bin_file[:-4] + ".csv"
+        # Export recovered temp autosaves directly into datasets/human/
+        if "temp" in bin_file:
+            fname = os.path.basename(csv_file).replace("autosave_", "recovered_input_log_")
+            csv_file = os.path.join(datasets_human, fname)
+            
         unpack_bin_to_csv(bin_file, csv_file)
+
+def clean_temp_autosaves():
+    temp_dir = os.path.join(os.path.dirname(__file__), "temp")
+    if not os.path.exists(temp_dir):
+        print("[Cleaner] Temp directory is empty.")
+        return
+
+    files = glob.glob(os.path.join(temp_dir, "*.bin")) + glob.glob(os.path.join(temp_dir, "*.csv"))
+    if not files:
+        print("[Cleaner] No temporary files found to clean.")
+        return
+
+    for f in files:
+        try:
+            os.remove(f)
+        except Exception as e:
+            print(f"[Cleaner] Warning: Could not remove {f}: {e}")
+
+    print(f"[Cleaner] Cleaned {len(files)} temporary autosave files from temp/.")
 
 def flush_ram_to_csv():
     global is_flushed
-    if is_flushed:
+    if is_flushed or is_recovery_mode:
         return
     is_flushed = True
 
@@ -351,7 +388,6 @@ def flush_ram_to_csv():
     session_avg_hz = (event_count / duration) if duration > 0 else 0.0
     active_motion_hz = calculate_polling_stats(buffer_copy)
 
-    # Human recordings default to datasets/human/
     output_dir = os.path.join(os.path.dirname(__file__), "datasets", "human")
     os.makedirs(output_dir, exist_ok=True)
 
@@ -360,7 +396,7 @@ def flush_ram_to_csv():
     bin_path = os.path.join(output_dir, f"{filename_base}.bin")
 
     print(f"\n" + "=" * 65)
-    print(f"[Recorder Engine v3.3] Flushing RAM binary buffer...")
+    print(f"[Recorder Engine v3.4] Flushing RAM binary buffer...")
     print(f" -> Storage Destination:     datasets/human/")
     print(f" -> Display Resolution:       {SCREEN_WIDTH}x{SCREEN_HEIGHT} (Virtual Desktop Offset: {SCREEN_X_MIN},{SCREEN_Y_MIN})")
     print(f" -> Total Events Recorded:     {event_count:,}")
@@ -388,12 +424,16 @@ signal.signal(signal.SIGINT, handle_signal)
 signal.signal(signal.SIGTERM, handle_signal)
 
 if __name__ == "__main__":
+    if "--clean-temp" in sys.argv:
+        clean_temp_autosaves()
+        sys.exit(0)
+
     if "--recover" in sys.argv:
         recover_autosaves()
         sys.exit(0)
 
     print("=" * 65)
-    print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.3 (ORGANIZED DATASETS)")
+    print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.4 (SMART RECOVERY)")
     print("=" * 65)
     print(f" Output Location: datasets/human/")
     print(f" Detected Display Bounds: {SCREEN_WIDTH}x{SCREEN_HEIGHT} (Virtual Desktop Offset: {SCREEN_X_MIN},{SCREEN_Y_MIN})")
@@ -401,7 +441,9 @@ if __name__ == "__main__":
     print(" - Max Polling Speed: 1ms Win32 Timer (timeBeginPeriod)")
     print(" - Precision Timestamp: 64-bit uint64 Microseconds (0.001ms precision)")
     print(" - Normalized Mapping: x_norm & y_norm (0.0000..1.0000 ratio)")
-    print(" - Controls: Press Ctrl+C at any time to export to CSV\n")
+    print(" - Controls: Press Ctrl+C at any time to export to CSV")
+    print(" - Recovery: Run 'python input_recorder.py --recover' to convert temp files")
+    print(" - Cleanup:  Run 'python input_recorder.py --clean-temp' to clean temp/\n")
 
     # Start periodic autosave background thread
     autosave_thread = threading.Thread(target=periodic_autosave_worker, daemon=True)
