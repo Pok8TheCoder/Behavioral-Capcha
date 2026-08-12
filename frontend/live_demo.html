@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Human Confidence & Behavioral Biometrics Canvas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="live_demo.css">
+</head>
+<body>
+    <!-- Full-Screen Interactive Canvas Arena -->
+    <canvas id="full-canvas"></canvas>
+
+    <!-- Floating Top Header Bar -->
+    <div class="top-nav">
+        <div class="brand">
+            <div class="shield-badge">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </div>
+            <div>
+                <h1>Behavioral Biometrics Arena</h1>
+                <p>Move mouse anywhere on screen for real-time AI human confidence evaluation</p>
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="btn btn-bot" id="btn-bot-linear">⚡ Linear Bot</button>
+            <button class="btn btn-bot" id="btn-bot-bezier">🔄 Bezier Bot</button>
+            <button class="btn btn-bot" id="btn-bot-humanoid">🧠 Humanoid Bot</button>
+            <button class="btn btn-bot" id="btn-bot-teleport">🚀 Teleport Bot</button>
+            <button class="btn btn-reset" id="btn-reset">Reset Canvas</button>
+        </div>
+    </div>
+
+    <!-- Floating HUD Gauge & Telemetry Dashboard -->
+    <div class="hud-dashboard">
+        <!-- Main Confidence Meter -->
+        <div class="confidence-card" id="confidence-card">
+            <div class="confidence-ring-container">
+                <svg class="progress-ring" width="130" height="130">
+                    <circle class="progress-ring-bg" cx="65" cy="65" r="54"/>
+                    <circle class="progress-ring-fill" id="confidence-ring" cx="65" cy="65" r="54"/>
+                </svg>
+                <div class="ring-text">
+                    <span class="ring-val" id="confidence-pct">--%</span>
+                    <span class="ring-label">HUMAN CONFIDENCE</span>
+                </div>
+            </div>
+
+            <div class="decision-badge badge-neutral" id="status-badge">SWIRL MOUSE</div>
+        </div>
+
+        <!-- Biometric Metrics Grid -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <span class="metric-label">Straightness Index</span>
+                <span class="metric-val" id="val-straightness">--</span>
+                <span class="metric-sub">S_ratio (1.0 = Linear Bot)</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Velocity Mean</span>
+                <span class="metric-val" id="val-velocity">--</span>
+                <span class="metric-sub">px / ms</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Acceleration Std (&sigma;<sub>a</sub>)</span>
+                <span class="metric-val" id="val-acc-std">--</span>
+                <span class="metric-sub">Limb motor variance</span>
+            </div>
+            <div class="metric-card">
+                <span class="metric-label">Jitter Ratio</span>
+                <span class="metric-val" id="val-jitter">--</span>
+                <span class="metric-sub">8-12Hz Micro-tremor</span>
+            </div>
+        </div>
+
+        <!-- Detected Flags List -->
+        <div class="flags-card">
+            <div class="flags-header">AI Risk Assessment</div>
+            <ul class="flags-list" id="flags-list">
+                <li class="flag-item idle">Move cursor across canvas to stream telemetry...</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Simulated Bot Cursor Overlay -->
+    <div class="bot-cursor" id="bot-cursor"></div>
+
+    <script src="live_demo.js"></script>
+</body>
+</html>
