@@ -18,7 +18,6 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Enable CORS for web clients
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -51,10 +50,6 @@ def health_check():
 
 @app.post("/api/verify")
 def verify_telemetry(payload: TelemetryPayload):
-    """
-    Receives user interaction telemetry events, computes biometric features,
-    and returns human/bot risk evaluation.
-    """
     if not payload.events:
         raise HTTPException(status_code=400, detail="Empty telemetry events payload")
 
@@ -70,10 +65,6 @@ def verify_telemetry(payload: TelemetryPayload):
 
 @app.post("/api/simulate-bot")
 def simulate_bot(payload: BotSimPayload):
-    """
-    Generates synthetic bot telemetry data (Linear, Bezier, Humanoid, Jitter, Teleport)
-    for model testing and client-side simulation.
-    """
     bot_type = payload.bot_type.lower()
     x0, y0 = payload.start_x, payload.start_y
     x1, y1 = payload.end_x, payload.end_y
@@ -91,10 +82,10 @@ def simulate_bot(payload: BotSimPayload):
             events.append({"x": round(cx, 2), "y": round(cy, 2), "t": round(t0 + i * dt_step, 2), "type": "mousemove"})
 
     elif bot_type == "bezier":
-        ctrl_x1 = x0 + (x1 - x0) * 0.25 + 80.0
-        ctrl_y1 = y0 + (y1 - y0) * 0.25 - 60.0
-        ctrl_x2 = x0 + (x1 - x0) * 0.75 - 50.0
-        ctrl_y2 = y0 + (y1 - y0) * 0.75 + 70.0
+        ctrl_x1 = x0 + (x1 - x0) * 0.25 + random.uniform(60.0, 120.0)
+        ctrl_y1 = y0 + (y1 - y0) * 0.25 - random.uniform(40.0, 100.0)
+        ctrl_x2 = x0 + (x1 - x0) * 0.75 - random.uniform(40.0, 90.0)
+        ctrl_y2 = y0 + (y1 - y0) * 0.75 + random.uniform(50.0, 110.0)
         dt_step = 14.0
         for i in range(n):
             u = i / (n - 1)
@@ -103,17 +94,43 @@ def simulate_bot(payload: BotSimPayload):
             events.append({"x": round(cx, 2), "y": round(cy, 2), "t": round(t0 + i * dt_step, 2), "type": "mousemove"})
 
     elif bot_type == "humanoid":
-        # Minimum Jerk 5th degree polynomial + 8Hz tremor
+        # Minimum Jerk 5th degree polynomial + Organic Joint Curvature Arc/S-Curve + 8Hz Tremor
         dt_step = 15.0
         f1 = 8.5
+        dist = math.hypot(x1 - x0, y1 - y0)
+        perp_x = -(y1 - y0) / (dist + 1e-6)
+        perp_y = (x1 - x0) / (dist + 1e-6)
+
+        curve_sign = random.choice([-1.0, 1.0])
+        curve_amp = 0.16 * dist * curve_sign
+        curve_style = random.choice(["arc", "s_curve", "elbow_swing"])
+
         for i in range(n):
             tau = i / (n - 1)
+            # Minimum Jerk Polynomial
             poly = 10 * (tau**3) - 15 * (tau**4) + 6 * (tau**5)
             base_x = x0 + (x1 - x0) * poly
             base_y = y0 + (y1 - y0) * poly
+
+            if curve_style == "arc":
+                curve_offset = math.sin(math.pi * tau) * curve_amp
+            elif curve_style == "s_curve":
+                curve_offset = math.sin(2 * math.pi * tau) * curve_amp * 0.65
+            else:
+                curve_offset = 4 * tau * (1.0 - tau) * curve_amp
+
+            curved_x = base_x + perp_x * curve_offset
+            curved_y = base_y + perp_y * curve_offset
+
             tremor_x = 0.8 * math.sin(2 * math.pi * f1 * (i * 0.015))
             tremor_y = 0.8 * math.cos(2 * math.pi * f1 * (i * 0.015))
-            events.append({"x": round(base_x + tremor_x, 2), "y": round(base_y + tremor_y, 2), "t": round(t0 + i * dt_step, 2), "type": "mousemove"})
+
+            events.append({
+                "x": round(curved_x + tremor_x, 2),
+                "y": round(curved_y + tremor_y, 2),
+                "t": round(t0 + i * dt_step, 2),
+                "type": "mousemove"
+            })
 
     elif bot_type == "jitter":
         dt_step = 10.0
@@ -138,7 +155,6 @@ def simulate_bot(payload: BotSimPayload):
 
     return {"bot_type": bot_type, "event_count": len(events), "events": events}
 
-# Mount Frontend static files
 frontend_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
 if os.path.exists(frontend_path):
     app.mount("/static", StaticFiles(directory=frontend_path), name="static")
