@@ -1,23 +1,16 @@
 """
-Behavioral CAPTCHA Classification Model Trainer (v1.0)
-------------------------------------------------------
+Behavioral CAPTCHA Classification Model Trainer (v1.1 Balanced Movement & Click Edition)
+-----------------------------------------------------------------------------------------
 Pipeline:
 1. Human Telemetry Sanitizer & Feature Extractor:
-   - Scans datasets/human/ for continuous .csv logs.
-   - Splits AFK gaps (>3s) into active interaction episodes.
-   - Extracts 15s sliding windows (stride 5s) and computes 12 biometric feature vectors.
+   - Extracts both Pure Mouse Movement windows and Movement + Click windows.
+   - Sets avg_click_dwell_ms = -1.0 for pure movement windows.
    - Class Label: 0 (Human)
 
 2. Bot Telemetry Suite & Feature Extractor:
-   - Scans datasets/bot/ (and executes 4-tier bot suite: Naive, Linear, Bezier, Humanoid Fitts).
-   - Extracts biometric feature vectors across all 4 bot tiers.
+   - Generates both Pure Movement bot paths and Movement + Click bot paths.
+   - Across all 4 Bot Tiers: Naive, Linear, Bezier, Humanoid Fitts.
    - Class Label: 1 (Bot)
-
-3. Machine Learning Training & Benchmark:
-   - Trains Random Forest Classifier and HistGradientBoosting Classifier.
-   - Performs Train/Test split (80/20) and 5-Fold Stratified Cross-Validation.
-   - Computes Accuracy, Precision, Recall, F1-Score, ROC-AUC, and Feature Importances.
-   - Saves production model to backend/behavioral_rf_model.joblib.
 """
 
 import os
@@ -28,11 +21,10 @@ import numpy as np
 import pandas as pd
 from typing import List, Tuple, Dict, Any
 
-from sklearn.model_selection import train_test_split, StratifiedKFold, cross_val_score
-from sklearn.ensemble import RandomForestClassifier, HistGradientBoostingClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, accuracy_score
 
-# Ensure workspace in path
 sys.path.insert(0, os.path.dirname(__file__))
 
 from backend.feature_extractor import extract_features, feature_dict_to_vector
@@ -59,7 +51,6 @@ def sanitize_and_extract_human_features(human_csv_files: List[str]) -> List[List
 
             total_raw_events += len(df)
 
-            # Determine column names (compat with both x_px/rel_time_ms and x/t)
             time_col = 'rel_time_ms' if 'rel_time_ms' in df.columns else ('t' if 't' in df.columns else None)
             x_col = 'x_px' if 'x_px' in df.columns else ('x' if 'x' in df.columns else None)
             y_col = 'y_px' if 'y_px' in df.columns else ('y' if 'y' in df.columns else None)
@@ -80,7 +71,7 @@ def sanitize_and_extract_human_features(human_csv_files: List[str]) -> List[List
                 dx = ep[x_col].diff().dropna()
                 dy = ep[y_col].diff().dropna()
                 dist = np.sum(np.sqrt(dx**2 + dy**2))
-                if dist < 50.0:  # Reject stationary noise
+                if dist < 50.0:
                     continue
 
                 t_start = ep[time_col].iloc[0]
@@ -113,12 +104,12 @@ def sanitize_and_extract_human_features(human_csv_files: List[str]) -> List[List
     print(f"[Sanitizer] Extracted {total_active_windows:,} clean active human training windows.")
     return human_vectors
 
-def generate_and_extract_bot_features(n_runs_per_bot: int = 150) -> List[List[float]]:
-    """Generates bot datasets across all 4 bot tiers and computes feature vectors."""
+def generate_and_extract_bot_features(n_runs_per_bot: int = 180) -> List[List[float]]:
+    """Generates balanced bot datasets (50% Pure Movement, 50% Movement + Click) across all 4 bot tiers."""
     bot_vectors = []
 
     print("\n" + "=" * 65)
-    print(f"[Bot Suite] Generating & Extracting Features across 4 Bot Tiers...")
+    print(f"[Bot Suite] Generating Balanced Bot Datasets (Pure Move + Clicks) across 4 Tiers...")
     print("=" * 65)
 
     bots = [
@@ -137,31 +128,38 @@ def generate_and_extract_bot_features(n_runs_per_bot: int = 150) -> List[List[fl
     ]
 
     for bot in bots:
+        # 1. Pure Movement Runs (No Clicks)
         bot.reset()
-        for idx in range(n_runs_per_bot):
+        for idx in range(n_runs_per_bot // 2):
             sx, sy, tx, ty = targets[idx % len(targets)]
             bot.move_to(sx, sy, tx, ty)
-            bot.click_target(tx, ty, button="mouse_left")
-
-            # Extract window every 5 targets or at end
-            if (idx + 1) % 3 == 0 or idx == n_runs_per_bot - 1:
+            if (idx + 1) % 3 == 0 or idx == (n_runs_per_bot // 2) - 1:
                 feats = extract_features(bot.events)
                 bot_vectors.append(feature_dict_to_vector(feats))
                 bot.reset()
 
-    print(f"[Bot Suite] Extracted {len(bot_vectors):,} bot feature vectors.")
+        # 2. Movement + Click Runs
+        bot.reset()
+        for idx in range(n_runs_per_bot // 2):
+            sx, sy, tx, ty = targets[idx % len(targets)]
+            bot.move_to(sx, sy, tx, ty)
+            bot.click_target(tx, ty, button="mouse_left")
+            if (idx + 1) % 3 == 0 or idx == (n_runs_per_bot // 2) - 1:
+                feats = extract_features(bot.events)
+                bot_vectors.append(feature_dict_to_vector(feats))
+                bot.reset()
+
+    print(f"[Bot Suite] Extracted {len(bot_vectors):,} balanced bot feature vectors.")
     return bot_vectors
 
 def main():
     print("=" * 65)
-    print(" BEHAVIORAL CAPTCHA MODEL TRAINER (HUMAN VS BOT CLASSIFIER)")
+    print(" BEHAVIORAL CAPTCHA MODEL TRAINER (V1.1 BALANCED MOVEMENT & CLICK)")
     print("=" * 65)
 
-    # 1. Load & Sanitize Human Datasets
     human_dir = os.path.join(os.path.dirname(__file__), "datasets", "human")
     human_csvs = glob.glob(os.path.join(human_dir, "*.csv"))
     if not human_csvs:
-        # Fallback to datasets/ root
         human_csvs = glob.glob(os.path.join(os.path.dirname(__file__), "datasets", "*.csv"))
 
     human_X = sanitize_and_extract_human_features(human_csvs)
@@ -169,16 +167,13 @@ def main():
         print("[Error] No valid human feature vectors extracted!")
         return
 
-    # Subsample human windows if super large for fast training balance
-    if len(human_X) > 1500:
+    if len(human_X) > 1600:
         np.random.seed(42)
-        indices = np.random.choice(len(human_X), 1500, replace=False)
+        indices = np.random.choice(len(human_X), 1600, replace=False)
         human_X = [human_X[i] for i in indices]
 
-    # 2. Generate Bot Datasets
-    bot_X = generate_and_extract_bot_features(n_runs_per_bot=180)
+    bot_X = generate_and_extract_bot_features(n_runs_per_bot=200)
 
-    # Combine X and y
     X = np.array(human_X + bot_X)
     y = np.array([0] * len(human_X) + [1] * len(bot_X))
 
@@ -186,15 +181,12 @@ def main():
     print(f"[Dataset Summary] Total Samples: {len(X):,} | Human (0): {len(human_X):,} | Bot (1): {len(bot_X):,}")
     print("=" * 65)
 
-    # Train / Test Split (80 / 20)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42, stratify=y)
 
-    # 3. Train Random Forest Classifier
     print("\n[Model Training] Fitting Random Forest Classifier (150 Estimators, max_depth=10)...")
     rf_clf = RandomForestClassifier(n_estimators=150, max_depth=10, random_state=42)
     rf_clf.fit(X_train, y_train)
 
-    # Evaluate on Test Set
     y_pred = rf_clf.predict(X_test)
     y_proba = rf_clf.predict_proba(X_test)[:, 1]
 
@@ -213,7 +205,6 @@ def main():
     print(f" True Human (Passed):   {cm[0][0]:<4} | False Bot (Blocked): {cm[0][1]:<4}")
     print(f" False Human (Passed):  {cm[1][0]:<4} | True Bot (Blocked):  {cm[1][1]:<4}")
 
-    # Feature Importance Ranking
     feature_names = [
         "Straightness Index", "Velocity Mean", "Velocity Std", "Velocity Max",
         "Acceleration Mean", "Acceleration Std", "Jerk Mean", "Angle Change Mean",
@@ -227,7 +218,6 @@ def main():
         idx = indices[rank]
         print(f" {rank+1:2d}. {feature_names[idx]:<22}: {importances[idx] * 100:.2f}%")
 
-    # 4. Save Trained Model to backend/behavioral_rf_model.joblib
     model_path = os.path.join(os.path.dirname(__file__), "backend", "behavioral_rf_model.joblib")
     joblib.dump(rf_clf, model_path)
     print(f"\n[Saver] Production trained model exported to: [file:///{model_path.replace(os.sep, '/')}]")

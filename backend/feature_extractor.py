@@ -1,162 +1,218 @@
 import math
 import numpy as np
+from typing import List, Dict, Any
 
-def extract_features(events: list) -> dict:
+def extract_features(events: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
-    Extracts biometric feature vector from raw interaction telemetry events.
-    Each event in `events` should be a dict: {'x': float, 'y': float, 't': float, 'type': str}
+    Extracts 12 biometric movement & timing features from raw telemetry events.
+    Robustly handles all event string representations ('mouse_move', 'mousemove', 'mousedown', etc.)
+    and separates pure movement windows (no clicks) from click windows.
     """
     if not events or len(events) < 2:
-        return _get_empty_features()
+        return {
+            "event_count": len(events) if events else 0,
+            "duration_ms": 0.0,
+            "total_distance_px": 0.0,
+            "euclidean_distance_px": 0.0,
+            "straightness_index": 1.0,
+            "velocity_mean": 0.0,
+            "velocity_std": 0.0,
+            "velocity_max": 0.0,
+            "acceleration_mean": 0.0,
+            "acceleration_std": 0.0,
+            "acceleration_max": 0.0,
+            "jerk_mean": 0.0,
+            "angle_change_mean": 0.0,
+            "angle_change_std": 0.0,
+            "jitter_ratio": 0.0,
+            "idle_ratio": 0.0,
+            "avg_click_dwell_ms": -1.0
+        }
 
-    # Filter mouse movements
-    mouse_events = [e for e in events if e.get('type') in ['mousemove', 'move', 'drag']]
-    click_events = [e for e in events if e.get('type') in ['mousedown', 'mouseup', 'click']]
-    key_events = [e for e in events if e.get('type') in ['keydown', 'keyup']]
+    # Sort events by timestamp t
+    events = sorted(events, key=lambda e: e['t'])
 
-    # If minimal mouse points, extract basic fallback features
-    if len(mouse_events) < 2:
-        # Check if events overall have x/y coordinates (in case type wasn't explicitly mousemove)
-        coords = [(e['x'], e['y'], e['t']) for e in events if 'x' in e and 'y' in e]
-        if len(coords) >= 2:
-            mouse_events = [{'x': c[0], 'y': c[1], 't': c[2], 'type': 'mousemove'} for c in coords]
-        else:
-            return _get_empty_features()
+    t_start = events[0]['t']
+    t_end = events[-1]['t']
+    duration_ms = max(1.0, t_end - t_start)
 
-    # Sort events by timestamp
-    mouse_events.sort(key=lambda e: e['t'])
-
-    x = np.array([float(e['x']) for e in mouse_events])
-    y = np.array([float(e['y']) for e in mouse_events])
-    t = np.array([float(e['t']) for e in mouse_events])
-
-    # Calculate time deltas (in milliseconds)
-    dt = np.diff(t)
-    # Prevent zero division by replacing 0 with 0.1ms
-    dt = np.where(dt <= 0, 0.1, dt)
-
-    # Calculate spatial deltas
-    dx = np.diff(x)
-    dy = np.diff(y)
-    distances = np.sqrt(dx**2 + dy**2)
-
-    total_path_length = float(np.sum(distances))
-    start_end_dist = float(math.sqrt((x[-1] - x[0])**2 + (y[-1] - y[0])**2))
-    
-    # Straightness Index (1.0 = perfect straight line bot)
-    straightness = start_end_dist / (total_path_length + 1e-6)
-    straightness = min(1.0, max(0.0, straightness))
-
-    # Velocity (px/ms)
-    velocities = distances / dt
-    mean_vel = float(np.mean(velocities))
-    std_vel = float(np.std(velocities))
-    max_vel = float(np.max(velocities))
-
-    # Acceleration (px/ms^2)
-    if len(velocities) > 1:
-        accelerations = np.diff(velocities) / dt[:-1]
-        mean_acc = float(np.mean(np.abs(accelerations)))
-        std_acc = float(np.std(accelerations))
-        max_acc = float(np.max(np.abs(accelerations)))
-    else:
-        mean_acc, std_acc, max_acc = 0.0, 0.0, 0.0
-
-    # Jerk (px/ms^3) - 3rd derivative
-    if len(velocities) > 2:
-        jerks = np.diff(np.diff(velocities) / dt[:-1]) / dt[:-2]
-        mean_jerk = float(np.mean(np.abs(jerks)))
-    else:
-        mean_jerk = 0.0
-
-    # Angular analysis (direction changes)
-    angles = np.arctan2(dy, dx)
-    if len(angles) > 1:
-        angle_diffs = np.diff(angles)
-        # Normalize angle diffs to [-pi, pi]
-        angle_diffs = (angle_diffs + np.pi) % (2 * np.pi) - np.pi
-        mean_angle_change = float(np.mean(np.abs(angle_diffs)))
-        std_angle_change = float(np.std(angle_diffs))
-        
-        # Micro-jitter ratio: high angle change (>45 deg) with small displacement (< 15px)
-        jitter_mask = (np.abs(angle_diffs) > (np.pi / 4)) & (distances[1:] < 15)
-        jitter_ratio = float(np.sum(jitter_mask) / (len(angle_diffs) + 1e-6))
-    else:
-        mean_angle_change, std_angle_change, jitter_ratio = 0.0, 0.0, 0.0
-
-    # Idle time ratio (velocity < 0.02 px/ms)
-    idle_time = float(np.sum(dt[velocities < 0.02]))
-    total_duration = float(t[-1] - t[0]) if len(t) > 1 else 1.0
-    idle_ratio = idle_time / (total_duration + 1e-6)
-
-    # Click dwell time extraction
+    coords = []
+    click_downs = {}
     click_dwell_times = []
-    downs = {}
-    for c in click_events:
-        c_type = c.get('type')
-        c_time = c.get('t', 0)
-        if c_type == 'mousedown':
-            downs['mouse'] = c_time
-        elif c_type == 'mouseup' and 'mouse' in downs:
-            click_dwell_times.append(c_time - downs['mouse'])
-            del downs['mouse']
 
-    avg_click_dwell = float(np.mean(click_dwell_times)) if click_dwell_times else 0.0
+    for e in events:
+        raw_type = str(e.get('type', 'mousemove')).lower().replace('_', '')
+        x, y, t = float(e['x']), float(e['y']), float(e['t'])
+
+        if raw_type in ('mousemove', '0'):
+            coords.append((x, y, t))
+        elif raw_type in ('mousedown', 'mouseclickdown', '1'):
+            coords.append((x, y, t))
+            btn = e.get('button', 'left')
+            click_downs[btn] = t
+        elif raw_type in ('mouseup', 'mouseclickup', '2'):
+            coords.append((x, y, t))
+            btn = e.get('button', 'left')
+            if btn in click_downs:
+                dwell = max(0.0, t - click_downs[btn])
+                click_dwell_times.append(dwell)
+                del click_downs[btn]
+
+    if len(coords) < 2:
+        return {
+            "event_count": len(events),
+            "duration_ms": duration_ms,
+            "total_distance_px": 0.0,
+            "euclidean_distance_px": 0.0,
+            "straightness_index": 1.0,
+            "velocity_mean": 0.0,
+            "velocity_std": 0.0,
+            "velocity_max": 0.0,
+            "acceleration_mean": 0.0,
+            "acceleration_std": 0.0,
+            "acceleration_max": 0.0,
+            "jerk_mean": 0.0,
+            "angle_change_mean": 0.0,
+            "angle_change_std": 0.0,
+            "jitter_ratio": 0.0,
+            "idle_ratio": 0.0,
+            "avg_click_dwell_ms": float(np.mean(click_dwell_times)) if click_dwell_times else -1.0
+        }
+
+    # Trajectory Distances
+    x_coords = np.array([c[0] for c in coords])
+    y_coords = np.array([c[1] for c in coords])
+    t_coords = np.array([c[2] for c in coords])
+
+    dx = np.diff(x_coords)
+    dy = np.diff(y_coords)
+    dt = np.diff(t_coords)
+
+    # Filter out 0-dt duplicates
+    valid_mask = dt > 0.001
+    if not np.any(valid_mask):
+        return {
+            "event_count": len(events),
+            "duration_ms": duration_ms,
+            "total_distance_px": 0.0,
+            "euclidean_distance_px": 0.0,
+            "straightness_index": 1.0,
+            "velocity_mean": 0.0,
+            "velocity_std": 0.0,
+            "velocity_max": 0.0,
+            "acceleration_mean": 0.0,
+            "acceleration_std": 0.0,
+            "acceleration_max": 0.0,
+            "jerk_mean": 0.0,
+            "angle_change_mean": 0.0,
+            "angle_change_std": 0.0,
+            "jitter_ratio": 0.0,
+            "idle_ratio": 0.0,
+            "avg_click_dwell_ms": float(np.mean(click_dwell_times)) if click_dwell_times else -1.0
+        }
+
+    dx = dx[valid_mask]
+    dy = dy[valid_mask]
+    dt = dt[valid_mask]
+
+    step_distances = np.sqrt(dx**2 + dy**2)
+    total_distance_px = float(np.sum(step_distances))
+
+    euclidean_distance_px = float(np.sqrt((x_coords[-1] - x_coords[0])**2 + (y_coords[-1] - y_coords[0])**2))
+
+    if total_distance_px > 0.01:
+        straightness_index = float(np.clip(euclidean_distance_px / total_distance_px, 0.0, 1.0))
+    else:
+        straightness_index = 1.0
+
+    # Velocities (px / ms)
+    velocities = step_distances / dt
+    velocity_mean = float(np.mean(velocities))
+    velocity_std = float(np.std(velocities)) if len(velocities) > 1 else 0.0
+    velocity_max = float(np.max(velocities))
+
+    # Accelerations (px / ms^2)
+    if len(velocities) > 1:
+        dv = np.diff(velocities)
+        dt_acc = dt[1:]
+        valid_acc = dt_acc > 0.001
+        if np.any(valid_acc):
+            accelerations = np.abs(dv[valid_acc] / dt_acc[valid_acc])
+            acc_mean = float(np.mean(accelerations))
+            acc_std = float(np.std(accelerations)) if len(accelerations) > 1 else 0.0
+            acc_max = float(np.max(accelerations))
+        else:
+            acc_mean, acc_std, acc_max = 0.0, 0.0, 0.0
+    else:
+        acc_mean, acc_std, acc_max = 0.0, 0.0, 0.0
+
+    # Jerk (px / ms^3)
+    if len(velocities) > 2 and 'accelerations' in locals() and len(accelerations) > 1:
+        da = np.diff(accelerations)
+        dt_jerk = dt[2:]
+        valid_jerk = dt_jerk > 0.001
+        if np.any(valid_jerk):
+            jerks = np.abs(da[valid_jerk] / dt_jerk[valid_jerk])
+            jerk_mean = float(np.mean(jerks))
+        else:
+            jerk_mean = 0.0
+    else:
+        jerk_mean = 0.0
+
+    # Angles & Curvature
+    if len(dx) > 1:
+        angles = np.arctan2(dy, dx)
+        angle_diffs = np.abs(np.diff(angles))
+        angle_diffs = np.where(angle_diffs > np.pi, 2 * np.pi - angle_diffs, angle_diffs)
+        angle_mean = float(np.mean(angle_diffs))
+        angle_std = float(np.std(angle_diffs)) if len(angle_diffs) > 1 else 0.0
+
+        # Jitter Ratio (high frequency direction flips > 45 deg)
+        jitter_count = np.sum(angle_diffs > (np.pi / 4.0))
+        jitter_ratio = float(jitter_count / len(angle_diffs))
+    else:
+        angle_mean, angle_std, jitter_ratio = 0.0, 0.0, 0.0
+
+    # Idle Ratio (pauses > 100ms)
+    idle_time_ms = float(np.sum(dt[dt > 100.0]))
+    idle_ratio = float(np.clip(idle_time_ms / duration_ms, 0.0, 1.0))
+
+    # Click Dwell Time: -1.0 means no click in this window
+    avg_click_dwell = float(np.mean(click_dwell_times)) if click_dwell_times else -1.0
 
     return {
-        "event_count": len(mouse_events),
-        "duration_ms": round(total_duration, 2),
-        "total_distance_px": round(total_path_length, 2),
-        "euclidean_distance_px": round(start_end_dist, 2),
-        "straightness_index": round(straightness, 4),
-        "velocity_mean": round(mean_vel, 4),
-        "velocity_std": round(std_vel, 4),
-        "velocity_max": round(max_vel, 4),
-        "acceleration_mean": round(mean_acc, 6),
-        "acceleration_std": round(std_acc, 6),
-        "acceleration_max": round(max_acc, 6),
-        "jerk_mean": round(mean_jerk, 8),
-        "angle_change_mean": round(mean_angle_change, 4),
-        "angle_change_std": round(std_angle_change, 4),
+        "event_count": len(events),
+        "duration_ms": round(duration_ms, 2),
+        "total_distance_px": round(total_distance_px, 2),
+        "euclidean_distance_px": round(euclidean_distance_px, 2),
+        "straightness_index": round(straightness_index, 4),
+        "velocity_mean": round(velocity_mean, 4),
+        "velocity_std": round(velocity_std, 4),
+        "velocity_max": round(velocity_max, 4),
+        "acceleration_mean": round(acc_mean, 6),
+        "acceleration_std": round(acc_std, 6),
+        "acceleration_max": round(acc_max, 6),
+        "jerk_mean": round(jerk_mean, 8),
+        "angle_change_mean": round(angle_mean, 4),
+        "angle_change_std": round(angle_std, 4),
         "jitter_ratio": round(jitter_ratio, 4),
         "idle_ratio": round(idle_ratio, 4),
         "avg_click_dwell_ms": round(avg_click_dwell, 2)
     }
 
-def feature_dict_to_vector(feat: dict) -> list:
-    """Converts feature dict into an ordered numerical list for ML model input."""
+def feature_dict_to_vector(f: Dict[str, Any]) -> List[float]:
+    """Converts feature dictionary into ordered 12-element vector for ML models."""
     return [
-        feat.get("straightness_index", 0.0),
-        feat.get("velocity_mean", 0.0),
-        feat.get("velocity_std", 0.0),
-        feat.get("velocity_max", 0.0),
-        feat.get("acceleration_mean", 0.0),
-        feat.get("acceleration_std", 0.0),
-        feat.get("jerk_mean", 0.0),
-        feat.get("angle_change_mean", 0.0),
-        feat.get("angle_change_std", 0.0),
-        feat.get("jitter_ratio", 0.0),
-        feat.get("idle_ratio", 0.0),
-        feat.get("avg_click_dwell_ms", 0.0)
+        float(f.get("straightness_index", 1.0)),
+        float(f.get("velocity_mean", 0.0)),
+        float(f.get("velocity_std", 0.0)),
+        float(f.get("velocity_max", 0.0)),
+        float(f.get("acceleration_mean", 0.0)),
+        float(f.get("acceleration_std", 0.0)),
+        float(f.get("jerk_mean", 0.0)),
+        float(f.get("angle_change_mean", 0.0)),
+        float(f.get("angle_change_std", 0.0)),
+        float(f.get("jitter_ratio", 0.0)),
+        float(f.get("idle_ratio", 0.0)),
+        float(f.get("avg_click_dwell_ms", -1.0))
     ]
-
-def _get_empty_features() -> dict:
-    return {
-        "event_count": 0,
-        "duration_ms": 0.0,
-        "total_distance_px": 0.0,
-        "euclidean_distance_px": 0.0,
-        "straightness_index": 0.0,
-        "velocity_mean": 0.0,
-        "velocity_std": 0.0,
-        "velocity_max": 0.0,
-        "acceleration_mean": 0.0,
-        "acceleration_std": 0.0,
-        "acceleration_max": 0.0,
-        "jerk_mean": 0.0,
-        "angle_change_mean": 0.0,
-        "angle_change_std": 0.0,
-        "jitter_ratio": 0.0,
-        "idle_ratio": 0.0,
-        "avg_click_dwell_ms": 0.0
-    }

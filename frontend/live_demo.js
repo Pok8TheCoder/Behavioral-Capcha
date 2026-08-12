@@ -44,6 +44,8 @@ function initEventListeners() {
             eventsToProcess = [e];
         }
 
+        const now = performance.now();
+
         eventsToProcess.forEach(evt => {
             const x = Math.round(evt.clientX);
             const y = Math.round(evt.clientY);
@@ -100,9 +102,13 @@ function resetCanvas() {
 
 function startTelemetryStreamLoop() {
     setInterval(() => {
-        if (telemetryEvents.length < 5) return;
+        if (telemetryEvents.length < 8) return;
 
-        const windowEvents = telemetryEvents.slice(-300);
+        // Extract active movement window (last 3.5 seconds)
+        const nowT = telemetryEvents[telemetryEvents.length - 1].t;
+        const windowEvents = telemetryEvents.filter(e => (nowT - e.t) <= 3500);
+
+        if (windowEvents.length < 5) return;
 
         fetch(`${API_BASE}/api/verify`, {
             method: "POST",
