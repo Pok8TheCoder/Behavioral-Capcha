@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavioral CAPTCHA Interactive Challenge Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="challenges.css">
+</head>
+<body>
+    <!-- Top Header Bar -->
+    <header class="top-bar">
+        <div class="brand">
+            <div class="shield-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </div>
+            <div>
+                <h1>Behavioral CAPTCHA Challenge Suite</h1>
+                <p>Complete interactive challenges while AI evaluates human vs bot biometrics in real-time</p>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <!-- Active Model Selector -->
+            <div class="model-badge-selector">
+                <span class="model-label">AI ENGINE:</span>
+                <select id="model-select" class="select-input">
+                    <option value="random_forest_humanlike">Supervised RF (Human-Like Balanced)</option>
+                    <option value="isolation_forest">Unsupervised Isolation Forest (1-Class)</option>
+                    <option value="random_forest">Legacy Random Forest</option>
+                </select>
+            </div>
+            <a href="/" class="nav-link">← Live Canvas Demo</a>
+        </div>
+    </header>
+
+    <!-- Main Challenge Layout -->
+    <main class="challenge-container">
+        <!-- Challenge Navigation Tabs -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" data-tab="sequential">
+                <span class="tab-icon">🎯</span> 1. Sequential Buttons
+            </button>
+            <button class="tab-btn" data-tab="maze">
+                <span class="tab-icon">🌀</span> 2. Precision Mouse Maze
+            </button>
+            <button class="tab-btn" data-tab="form">
+                <span class="tab-icon">📝</span> 3. Form Data Entry
+            </button>
+        </div>
+
+        <div class="workspace-grid">
+            <!-- Left Interactive Play Area -->
+            <div class="play-card">
+                <div class="play-card-header">
+                    <div class="challenge-title-group">
+                        <h2 id="challenge-title">Sequential Button Precision Test</h2>
+                        <p id="challenge-desc">Click the numbered targets in sequence from 1 to 4.</p>
+                    </div>
+
+                    <!-- Bot Auto-Play Controls -->
+                    <div class="bot-autoplay-controls">
+                        <span class="bot-control-label">BOT AUTO-PLAY:</span>
+                        <button class="btn btn-bot-sm" id="btn-bot-linear">⚡ Linear Bot</button>
+                        <button class="btn btn-bot-sm" id="btn-bot-bezier">🔄 Bezier Bot</button>
+                        <button class="btn btn-bot-sm" id="btn-bot-humanoid">🧠 Humanoid Bot</button>
+                    </div>
+                </div>
+
+                <!-- Interactive Stage Container -->
+                <div class="interactive-stage" id="interactive-stage">
+                    <!-- Tab 1: Sequential Buttons Arena -->
+                    <div class="tab-content active" id="stage-sequential">
+                        <div class="seq-target-badge" id="target-1" style="top: 25%; left: 18%;">1</div>
+                        <div class="seq-target-badge disabled" id="target-2" style="top: 65%; left: 38%;">2</div>
+                        <div class="seq-target-badge disabled" id="target-3" style="top: 28%; left: 72%;">3</div>
+                        <div class="seq-target-badge disabled" id="target-4" style="top: 72%; left: 82%;">4</div>
+                        <div class="stage-hint" id="seq-hint">Click Button [1] to begin</div>
+                    </div>
+
+                    <!-- Tab 2: Precision Maze Canvas -->
+                    <div class="tab-content" id="stage-maze">
+                        <canvas id="maze-canvas"></canvas>
+                        <div class="maze-overlay-hint" id="maze-hint">Move cursor to START to begin maze challenge</div>
+                    </div>
+
+                    <!-- Tab 3: Form Data Entry Area -->
+                    <div class="tab-content" id="stage-form">
+                        <form id="captcha-form" class="form-grid" onsubmit="return false;">
+                            <div class="form-group">
+                                <label for="form-name">Full Name</label>
+                                <input type="text" id="form-name" placeholder="e.g. Alex Mercer" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email">Email Address</label>
+                                <input type="email" id="form-email" placeholder="alex.mercer@example.com" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-code">Verification Code</label>
+                                <input type="text" id="form-code" placeholder="Enter 6-digit PIN (849201)" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <label for="form-role">Primary Security Role</label>
+                                <select id="form-role">
+                                    <option value="user">Standard User</option>
+                                    <option value="admin">System Administrator</option>
+                                    <option value="developer">Security Engineer</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn btn-reset-form" id="btn-reset-form">Clear Fields</button>
+                                <button type="submit" class="btn btn-submit" id="btn-submit-form">Submit Verification</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Simulated Bot Cursor Visualizer -->
+                    <div class="sim-bot-cursor" id="sim-bot-cursor"></div>
+                </div>
+            </div>
+
+            <!-- Right Telemetry & AI Evaluation Panel -->
+            <div class="telemetry-panel">
+                <!-- AI Confidence Meter -->
+                <div class="ai-hud-card">
+                    <div class="hud-header">LIVE AI CONFIDENCE MONITOR</div>
+                    
+                    <div class="gauge-wrapper">
+                        <svg class="hud-ring" width="140" height="140">
+                            <circle class="ring-bg" cx="70" cy="70" r="58"/>
+                            <circle class="ring-fill" id="hud-ring-fill" cx="70" cy="70" r="58"/>
+                        </svg>
+                        <div class="ring-center">
+                            <span class="pct-val" id="hud-pct">--%</span>
+                            <span class="pct-sub">HUMAN PROBABILITY</span>
+                        </div>
+                    </div>
+
+                    <div class="status-pill status-neutral" id="status-pill">WAITING FOR INPUT</div>
+                </div>
+
+                <!-- Biometric Live Stats -->
+                <div class="stats-card">
+                    <div class="card-title">Real-Time Biometrics</div>
+                    <div class="stats-list">
+                        <div class="stat-row">
+                            <span class="stat-label">Straightness ($S_{\text{ratio}}$)</span>
+                            <span class="stat-value" id="stat-straightness">--</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Mean Velocity</span>
+                            <span class="stat-value" id="stat-velocity">-- px/ms</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Acceleration Std ($\sigma_a$)</span>
+                            <span class="stat-value" id="stat-acc-std">--</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Jitter Ratio</span>
+                            <span class="stat-value" id="stat-jitter">--</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Click Dwell Duration</span>
+                            <span class="stat-value" id="stat-dwell">-- ms</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Risk Flags Card -->
+                <div class="flags-card">
+                    <div class="card-title">Risk Flags & Diagnostics</div>
+                    <ul class="flags-ul" id="flags-ul">
+                        <li class="flag-placeholder">Complete challenge tasks to generate live biometric analysis...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Challenge Completion Modal -->
+    <div class="modal-backdrop" id="completion-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-icon" id="modal-icon">🏆</div>
+                <h3 id="modal-title">Challenge Completed!</h3>
+                <p id="modal-subtitle">AI Behavioral Biometrics Analysis Summary</p>
+            </div>
+
+            <div class="modal-body">
+                <div class="verdict-banner" id="modal-verdict-banner">
+                    <span class="verdict-label">FINAL VERDICT</span>
+                    <span class="verdict-text" id="modal-verdict-text">VERIFIED HUMAN (99.4%)</span>
+                </div>
+
+                <div class="summary-grid">
+                    <div class="sum-item">
+                        <span class="sum-label">Time Taken</span>
+                        <span class="sum-val" id="modal-time">3.42s</span>
+                    </div>
+                    <div class="sum-item">
+                        <span class="sum-label">Active Model</span>
+                        <span class="sum-val" id="modal-model">RF (Human-Like)</span>
+                    </div>
+                    <div class="sum-item">
+                        <span class="sum-label">Avg Velocity</span>
+                        <span class="sum-val" id="modal-vel">1.24 px/ms</span>
+                    </div>
+                    <div class="sum-item">
+                        <span class="sum-label">Jitter Tremor</span>
+                        <span class="sum-val" id="modal-jitter">0.084</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="btn-modal-close">Continue / Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="challenges.js"></script>
+</body>
+</html>

@@ -40,57 +40,76 @@ class BotSimPayload(BaseModel):
     end_y: float = 400.0
     steps: int = 35
 
-class ModelActivationPayload(BaseModel):
-    model_name: str = Field(..., description="random_forest_humanlike, isolation_forest, or random_forest")
+class ModelActivatePayload(BaseModel):
+    model_name: str
 
 @app.get("/api/health")
 def health_check():
     return {
         "status": "healthy",
         "engine": "Behavioral CAPTCHA Core",
-        "model_trained": classifier.is_trained,
         "active_model": classifier.model_type,
         "available_models": classifier.available_models(),
+        "model_trained": classifier.is_trained
     }
 
 @app.get("/api/models")
-def list_models():
+def get_models():
     return {
         "active_model": classifier.model_type,
-        "available_models": classifier.available_models(),
+        "available_models": classifier.available_models()
     }
 
 @app.post("/api/models/activate")
-def activate_model(payload: ModelActivationPayload):
-    if not classifier.load_model(payload.model_name):
-        raise HTTPException(
-            status_code=400,
-            detail={
-                "message": f"Unable to activate model '{payload.model_name}'.",
-                "available_models": classifier.available_models(),
-            },
-        )
-
-    return {
-        "status": "activated",
-        "active_model": classifier.model_type,
-        "available_models": classifier.available_models(),
-    }
+def activate_model(payload: ModelActivatePayload):
+    try:
+        active_name = classifier.set_active_model(payload.model_name)
+        return {
+            "status": "success",
+            "active_model": active_name,
+            "available_models": classifier.available_models()
+        }
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 @app.post("/api/verify")
 def verify_telemetry(payload: TelemetryPayload):
     if not payload.events:
         raise HTTPException(status_code=400, detail="Empty telemetry events payload")
 
-    features = extract_features(payload.events)
-    evaluation = classifier.evaluate(features)
+    try:
+        features = extract_features(payload.events)
+        evaluation = classifier.evaluate(features)
 
-    return {
-        "timestamp": time.time(),
-        "challenge_id": payload.challenge_id,
-        "features": features,
-        "evaluation": evaluation
-    }
+        return {
+            "timestamp": time.time(),
+            "challenge_id": payload.challenge_id,
+            "features": features,
+            "evaluation": evaluation
+        }
+    except Exception as e:
+        print(f"[API Warning] Verify Exception Handled: {e}")
+        fallback_features = extract_features([])
+        return {
+            "timestamp": time.time(),
+            "challenge_id": payload.challenge_id,
+            "features": fallback_features,
+            "evaluation": {
+                "decision": "BLOCKED",
+                "is_bot": True,
+                "risk_score": 1.0,
+                "bot_probability": 1.0,
+                "model_type": classifier.model_type,
+                "flags": [f"Evaluation exception: {str(e)}"],
+                "biometric_summary": {
+                    "straightness": 1.0,
+                    "velocity_mean": 0.0,
+                    "velocity_variance": 0.0,
+                    "jitter_ratio": 0.0,
+                    "click_dwell_ms": -1.0
+                }
+            }
+        }
 
 @app.post("/api/simulate-bot")
 def simulate_bot(payload: BotSimPayload):
@@ -123,7 +142,6 @@ def simulate_bot(payload: BotSimPayload):
             events.append({"x": round(cx, 2), "y": round(cy, 2), "t": round(t0 + i * dt_step, 2), "type": "mousemove"})
 
     elif bot_type == "humanoid":
-        # Minimum Jerk 5th degree polynomial + Organic Joint Curvature Arc/S-Curve + 8Hz Tremor
         dt_step = 15.0
         f1 = 8.5
         dist = math.hypot(x1 - x0, y1 - y0)
@@ -136,7 +154,6 @@ def simulate_bot(payload: BotSimPayload):
 
         for i in range(n):
             tau = i / (n - 1)
-            # Minimum Jerk Polynomial
             poly = 10 * (tau**3) - 15 * (tau**4) + 6 * (tau**5)
             base_x = x0 + (x1 - x0) * poly
             base_y = y0 + (y1 - y0) * poly
@@ -195,6 +212,13 @@ if os.path.exists(frontend_path):
             return FileResponse(live_demo_path)
         return FileResponse(os.path.join(frontend_path, "index.html"))
 
+    @app.get("/challenges")
+    def read_challenges():
+        challenges_path = os.path.join(frontend_path, "challenges.html")
+        if os.path.exists(challenges_path):
+            return FileResponse(challenges_path)
+        raise HTTPException(status_code=404, detail="Challenges page not found")
+
     @app.get("/{file_name}")
     def read_frontend_file(file_name: str):
         target = os.path.join(frontend_path, file_name)
@@ -204,7 +228,4 @@ if os.path.exists(frontend_path):
 
 if __name__ == "__main__":
     import uvicorn
-
-    host = os.getenv("BEHAVIORAL_HOST", "127.0.0.1")
-    port = int(os.getenv("BEHAVIORAL_PORT", "8010"))
-    uvicorn.run("backend.main:app", host=host, port=port, reload=True)
+    uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)
