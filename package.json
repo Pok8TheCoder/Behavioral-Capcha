@@ -5,7 +5,7 @@
   "main": "frontend/index.html",
   "scripts": {
     "start": "python -m backend.main",
-    "dev:backend": "python -m uvicorn backend.main:app --reload --port 8000",
+    "dev:backend": "python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8010",
     "dev:frontend": "python -m http.server 3000 --directory frontend"
   },
   "keywords": [

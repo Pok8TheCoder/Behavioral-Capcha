@@ -13,6 +13,11 @@ dist/
 build/
 .ds_store
 
+# Large Datasets (>50MB)
+datasets/human/*.csv
+datasets/human/*.bin
+datasets/bot_humanlike/
+
 # Temporary & Autosave datasets
 temp/
 *.log

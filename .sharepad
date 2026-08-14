@@ -1,0 +1,121 @@
+# Behavioral CAPTCHA Isolation Forest Training Notes
+
+## 2026-08-12
+
+- Started a separate human-likeness training path instead of modifying the existing Random Forest trainer.
+- Chose Isolation Forest because the current strongest real dataset is human telemetry; bot examples are useful for evaluation, but should not define the whole boundary.
+- Planned AFK cleanup as non-destructive preprocessing: raw CSV files stay untouched, and the trainer ignores inactive spans.
+- AFK rule selected from request: if meaningful mouse movement is absent for more than 5 seconds, close the active episode and do not include the inactive gap in training.
+- Windowing rule selected from request: active episodes are converted into 3 second windows.
+- First training attempt timed out after 120 seconds before completion; likely bottleneck was row-by-row scanning of very large CSV files.
+- Adjusting the trainer to vectorize movement-row filtering inside each chunk before episode/window extraction.
+- Added `train_isolation_forest.py`.
+- Trainer behavior:
+  - Reads human CSVs from `datasets/human`.
+  - Keeps raw datasets untouched.
+  - Removes AFK spans during preprocessing by splitting active episodes when meaningful movement is absent for more than 5000 ms.
+  - Uses 3000 ms windows with 1500 ms stride.
+  - Requires at least 12 events and 20 px of path distance per window.
+  - Trains a `StandardScaler` + `IsolationForest` pipeline on human windows only.
+  - Splits held-out human evaluation by recording/session when possible.
+  - Uses existing `datasets/bot/*.csv` files only for evaluation.
+- First optimized training run completed successfully.
+- Human active windows extracted:
+  - `input_log_20260809_194956_to_20260809_195028.csv`: 0 windows, 0 AFK splits.
+  - `input_log_20260809_205012_to_20260809_205012.csv`: 0 windows, 0 AFK splits.
+  - `input_log_20260809_210236_to_20260809_230205.csv`: 2103 windows, 70 AFK splits.
+  - `input_log_20260811_132855_to_20260811_235556.csv`: 6000 windows, 395 AFK splits, capped at per-file maximum.
+  - `input_log_20260812_171705_to_20260812_171721.csv`: 9 windows, 0 AFK splits.
+  - `recovered_input_log_20260809_210236_part023.csv`: 1958 windows, 66 AFK splits.
+  - `recovered_input_log_20260810_202546_part038.csv`: 1259 windows, 125 AFK splits.
+- Training result:
+  - Human train windows: 5329.
+  - Held-out human windows: 6000.
+  - Isolation Forest contamination: 0.0100.
+  - Held-out human pass rate: 98.80%.
+  - Bot evaluation windows: 5.
+  - Bot recall on the tiny current bot eval set: 4/5 detected.
+  - ROC-AUC on held-out human plus current bot CSV windows: 0.9957.
+- Saved model artifact to `backend/behavioral_iforest_model.joblib`.
+- Saved training metadata to `backend/behavioral_iforest_metadata.json`.
+- Note: current bot CSVs produce only 5 windows at the 3 second setting, so bot-side metrics are too small to treat as final security evidence.
+- Updated backend serving path:
+  - `backend/model.py` now prefers `backend/behavioral_iforest_model.joblib`.
+  - The existing Random Forest model is kept only as a fallback if the Isolation Forest artifact is missing or cannot load.
+  - `/api/verify` keeps the same request shape, but `evaluation` now includes Isolation Forest fields such as `model_type`, `anomaly_score`, and `isolation_forest_score`.
+  - `/api/health` now reports `model_type` so the live server can be checked easily.
+- First server attempt on port 8000 failed with Windows socket permission error `[WinError 10013]`.
+- Started the backend successfully on `http://127.0.0.1:8010`.
+- Smoke test showed the Isolation Forest alone was lenient on a very short linear bot path, while heuristic flags were strong.
+- Updated score fusion so high-confidence heuristic warnings are not averaged away by a lenient anomaly score.
+- Starting balanced bot dataset generation for future Random Forest training.
+- Goal: create roughly the same number of valid 3 second bot windows as the cleaned human dataset, using the same AFK/window assumptions.
+- Constraint: bots should be as human-like as possible without replaying human recordings.
+- Approach selected: fast offline CSV generation instead of using current bot classes directly, because current bot classes use `time.sleep` and would take too long for thousands of sessions.
+- Planned bot behavior mix:
+  - minimum-jerk motion timing,
+  - Fitts-law duration scaling,
+  - curved arc/S-curve paths,
+  - submovement correction phases,
+  - overshoot and settle behavior,
+  - bounded physiological-style tremor,
+  - occasional hesitation pauses,
+  - realistic click dwell times,
+  - variable sampling rates and timestamp jitter.
+- Added `generate_humanlike_bot_dataset.py`.
+- Generated human-like bot dataset in `datasets/bot_humanlike`.
+- Output:
+  - `humanlike_bot_01.csv`: 1889 episodes, 659053 rows.
+  - `humanlike_bot_02.csv`: 1889 episodes, 651783 rows.
+  - `humanlike_bot_03.csv`: 1889 episodes, 654329 rows.
+  - `humanlike_bot_04.csv`: 1889 episodes, 658166 rows.
+  - `humanlike_bot_05.csv`: 1889 episodes, 659697 rows.
+  - `humanlike_bot_06.csv`: 1884 episodes, 656433 rows.
+  - Total: 11329 bot episodes and 3939461 rows.
+- Validated generated bot data with the same active-window extractor used for Isolation Forest:
+  - Total valid 3 second bot windows: 11329.
+  - This matches the previous cleaned human total of 11329 windows.
+- Added `train_random_forest_balanced.py` for the next supervised training pass.
+- Trained balanced Random Forest using cleaned human windows and generated human-like bot windows.
+- Random Forest details:
+  - `n_estimators=500`.
+  - `max_depth=14`.
+  - `min_samples_leaf=3`.
+  - `class_weight=balanced`.
+  - `n_jobs=-1`.
+  - `random_state=42`.
+- Training data:
+  - Human windows loaded: 13102.
+  - Bot windows loaded: 11329.
+  - Balanced training/eval pool after subsampling: 22658 windows.
+  - Train windows: 17181.
+  - Test windows: 5477.
+- Random Forest evaluation:
+  - Confusion matrix: `[[1704, 0], [2, 3771]]`.
+  - ROC-AUC: 1.0000.
+  - Important caveat: this is synthetic bot evaluation, so perfect-looking metrics should not be treated as real-world security proof.
+- Saved balanced Random Forest model to `backend/behavioral_rf_humanlike_model.joblib`.
+- Saved balanced Random Forest metadata to `backend/behavioral_rf_humanlike_metadata.json`.
+- Began web-server integration for the balanced Random Forest model.
+- Added a backend model registry with selectable artifacts: `random_forest_humanlike`, `isolation_forest`, and legacy `random_forest`.
+- Default server model is now `random_forest_humanlike`; set `BEHAVIORAL_MODEL` before server start to choose a different available model.
+- Added live model switching API:
+  - `GET /api/models` lists the active model and artifact availability.
+  - `POST /api/models/activate` with JSON `{"model_name":"isolation_forest"}` switches the in-memory active model.
+  - `GET /api/health` now includes the active model and the model registry.
+- Added an active-model selector to `frontend/live_demo.html`; it loads available artifacts from the API and resets the current visual stream after a successful switch.
+- Restarted the local FastAPI server at `http://127.0.0.1:8010` with `random_forest_humanlike` active.
+- Verification completed:
+  - Switched to `isolation_forest` through `POST /api/models/activate` successfully.
+  - Switched back to `random_forest_humanlike` successfully.
+  - `/api/health` confirmed the Random Forest is active and all three artifacts are available.
+  - A simulated linear bot was blocked by the active Random Forest with bot probability `0.6238` and risk score `1.0000` after deterministic trajectory checks.
+- Moved the live-demo model selector from the crowded top navigation into its own always-visible dashboard panel after the user reported that model options were not visible.
+- Fixed an empty model selector reported in the live demo. The browser now renders the known model choices immediately, then probes the current origin and `http://127.0.0.1:8010` for the live model API and uses the successful server for model switching and telemetry verification.
+- Began web-server integration for the balanced Random Forest model.
+- Added a backend model registry with selectable artifacts: `random_forest_humanlike`, `isolation_forest`, and legacy `random_forest`.
+- Default server model is now `random_forest_humanlike`; set `BEHAVIORAL_MODEL` before server start to choose a different available model.
+- Added live model switching API:
+  - `GET /api/models` lists the active model and artifact availability.
+  - `POST /api/models/activate` with JSON `{"model_name":"isolation_forest"}` switches the in-memory active model.
+  - `GET /api/health` now includes the active model and the model registry.

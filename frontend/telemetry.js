@@ -1,6 +1,7 @@
 // Behavioral CAPTCHA Telemetry & Visualization Engine
 
-const API_BASE = "http://127.0.0.1:8000";
+let API_BASE = window.location.origin.startsWith("http") ? window.location.origin : "http://127.0.0.1:8010";
+const API_CANDIDATES = [...new Set([API_BASE, "http://127.0.0.1:8010", "http://127.0.0.1:8000"])];
 
 let telemetryEvents = [];
 let isCapturing = true;
@@ -10,26 +11,38 @@ let simCursor;
 document.addEventListener("DOMContentLoaded", () => {
     initCanvas();
     initEventListeners();
-    checkBackendHealth();
+    connectBackend();
 });
 
-function checkBackendHealth() {
+function connectBackend() {
     const statusDot = document.querySelector(".status-dot");
     const statusText = document.querySelector(".status-text");
 
-    fetch(`${API_BASE}/api/health`)
-        .then(res => res.json())
-        .then(data => {
-            if (data.status === "healthy") {
+    const tryCandidate = (index) => {
+        if (index >= API_CANDIDATES.length) {
+            statusText.textContent = "Backend Offline (python -m backend.main)";
+            console.warn("Backend connection check failed on all configured local servers.");
+            return;
+        }
+
+        const candidate = API_CANDIDATES[index];
+        fetch(`${candidate}/api/health`)
+            .then(res => {
+                if (!res.ok) throw new Error(`Health check returned ${res.status}`);
+                return res.json();
+            })
+            .then(data => {
+                if (data.status !== "healthy") throw new Error("Backend reported unhealthy status");
+                API_BASE = candidate;
                 statusDot.classList.remove("pulsing");
                 statusDot.classList.add("connected");
-                statusText.textContent = "Backend Connected (FastAPI + ML Engine)";
-            }
-        })
-        .catch(err => {
-            statusText.textContent = "Backend Offline (Run uvicorn)";
-            console.warn("Backend connection check failed:", err);
-        });
+                const modelLabel = data.active_model ? data.active_model.replaceAll("_", " ") : "ML Engine";
+                statusText.textContent = `Backend Connected (${modelLabel})`;
+            })
+            .catch(() => tryCandidate(index + 1));
+    };
+
+    tryCandidate(0);
 }
 
 function initCanvas() {

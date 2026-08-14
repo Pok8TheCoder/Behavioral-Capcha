@@ -99,6 +99,78 @@ html, body {
     gap: 10px;
 }
 
+.model-control {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.model-control-label {
+    color: var(--text-secondary);
+}
+
+.model-panel {
+    min-height: 52px;
+    padding: 9px 12px;
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    background: var(--panel-bg);
+    backdrop-filter: blur(12px);
+}
+
+.model-select-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.model-select-wrap::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid var(--text-secondary);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.model-control select {
+    width: 100%;
+    min-width: 0;
+    height: 36px;
+    padding: 0 34px 0 12px;
+    border: 1px solid var(--panel-border);
+    border-radius: 6px;
+    background-color: #1e293b;
+    color: #f8fafc;
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 36px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    color-scheme: dark;
+}
+
+.model-control select option {
+    background-color: #1e293b;
+    color: #f8fafc;
+}
+
+.model-control select:disabled {
+    cursor: wait;
+    opacity: 0.6;
+}
+
 .btn {
     border: none;
     outline: none;

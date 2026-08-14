@@ -40,12 +40,41 @@ class BotSimPayload(BaseModel):
     end_y: float = 400.0
     steps: int = 35
 
+class ModelActivationPayload(BaseModel):
+    model_name: str = Field(..., description="random_forest_humanlike, isolation_forest, or random_forest")
+
 @app.get("/api/health")
 def health_check():
     return {
         "status": "healthy",
         "engine": "Behavioral CAPTCHA Core",
-        "model_trained": classifier.is_trained
+        "model_trained": classifier.is_trained,
+        "active_model": classifier.model_type,
+        "available_models": classifier.available_models(),
+    }
+
+@app.get("/api/models")
+def list_models():
+    return {
+        "active_model": classifier.model_type,
+        "available_models": classifier.available_models(),
+    }
+
+@app.post("/api/models/activate")
+def activate_model(payload: ModelActivationPayload):
+    if not classifier.load_model(payload.model_name):
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "message": f"Unable to activate model '{payload.model_name}'.",
+                "available_models": classifier.available_models(),
+            },
+        )
+
+    return {
+        "status": "activated",
+        "active_model": classifier.model_type,
+        "available_models": classifier.available_models(),
     }
 
 @app.post("/api/verify")
@@ -175,4 +204,7 @@ if os.path.exists(frontend_path):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=True)
+
+    host = os.getenv("BEHAVIORAL_HOST", "127.0.0.1")
+    port = int(os.getenv("BEHAVIORAL_PORT", "8010"))
+    uvicorn.run("backend.main:app", host=host, port=port, reload=True)

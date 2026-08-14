@@ -4,22 +4,91 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from backend.feature_extractor import feature_dict_to_vector
 
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_rf_model.joblib")
+IFOREST_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_iforest_model.joblib")
+RF_HUMANLIKE_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_rf_humanlike_model.joblib")
+RF_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_rf_model.joblib")
+
+MODEL_REGISTRY = {
+    "random_forest_humanlike": RF_HUMANLIKE_MODEL_PATH,
+    "isolation_forest": IFOREST_MODEL_PATH,
+    "random_forest": RF_MODEL_PATH,
+}
 
 class BehavioralClassifier:
     def __init__(self):
         self.model = None
+        self.model_type = "unloaded"
+        self.feature_names = []
+        self.metadata = {}
         self.is_trained = False
-        self._load_or_train_model()
+        requested_model = os.getenv("BEHAVIORAL_MODEL", "random_forest_humanlike")
+        if not self.load_model(requested_model):
+            print(f"[Model] Could not load requested model '{requested_model}'; trying available artifacts.")
+            for model_name in ("random_forest_humanlike", "isolation_forest", "random_forest"):
+                if self.load_model(model_name):
+                    return
+            self.train_synthetic_model()
+
+    def available_models(self) -> dict:
+        """Returns the selectable model artifacts and whether each is present on disk."""
+        return {
+            model_name: {
+                "available": os.path.exists(model_path),
+                "path": model_path,
+            }
+            for model_name, model_path in MODEL_REGISTRY.items()
+        }
+
+    def load_model(self, model_name: str) -> bool:
+        """Loads one registered artifact without changing the API contract."""
+        normalized_name = model_name.strip().lower()
+        model_path = MODEL_REGISTRY.get(normalized_name)
+        if not model_path:
+            print(f"[Model] Unknown model requested: {model_name}")
+            return False
+        if not os.path.exists(model_path):
+            print(f"[Model] Model artifact is missing: {model_path}")
+            return False
+
+        try:
+            package = joblib.load(model_path)
+            self.model = package["model"] if isinstance(package, dict) and "model" in package else package
+            self.feature_names = package.get("feature_names", []) if isinstance(package, dict) else []
+            self.metadata = package.get("metadata", {}) if isinstance(package, dict) else {}
+            self.model_type = normalized_name
+            self.is_trained = True
+            print(f"[Model] Loaded {normalized_name} from {model_path}")
+            return True
+        except Exception as e:
+            print(f"[Model] Error loading {normalized_name}: {e}")
+            return False
 
     def _load_or_train_model(self):
-        if os.path.exists(MODEL_PATH):
+        """Backward-compatible artifact loading entry point."""
+        if os.path.exists(IFOREST_MODEL_PATH):
             try:
-                self.model = joblib.load(MODEL_PATH)
+                package = joblib.load(IFOREST_MODEL_PATH)
+                if isinstance(package, dict) and "model" in package:
+                    self.model = package["model"]
+                    self.feature_names = package.get("feature_names", [])
+                    self.metadata = package.get("metadata", {})
+                else:
+                    self.model = package
+                self.model_type = "isolation_forest"
+                self.is_trained = True
+                print(f"[Model] Loaded Isolation Forest model from {IFOREST_MODEL_PATH}")
+                return
+            except Exception as e:
+                print(f"[Model] Error loading Isolation Forest model: {e}")
+
+        if os.path.exists(RF_MODEL_PATH):
+            try:
+                self.model = joblib.load(RF_MODEL_PATH)
+                self.model_type = "random_forest"
                 self.is_trained = True
                 return
             except Exception as e:
-                print(f"[Model] Error loading pre-existing model: {e}")
+                print(f"[Model] Error loading Random Forest fallback model: {e}")
 
         # Train baseline model on synthetic dataset
         self.train_synthetic_model()
@@ -121,16 +190,54 @@ class BehavioralClassifier:
         clf = RandomForestClassifier(n_estimators=100, max_depth=8, random_state=42)
         clf.fit(X, y)
         self.model = clf
+        self.model_type = "random_forest_synthetic_fallback"
         self.is_trained = True
 
         try:
-            joblib.dump(clf, MODEL_PATH)
+            joblib.dump(clf, RF_MODEL_PATH)
         except Exception as e:
             print(f"[Model] Warning: Failed saving trained model: {e}")
 
+    def _evaluate_isolation_forest(self, features: dict, flags: list, heuristic_bot_score: float) -> dict:
+        vec = [feature_dict_to_vector(features)]
+        prediction = int(self.model.predict(vec)[0])
+        decision_score = float(self.model.decision_function(vec)[0])
+        anomaly_score = -decision_score
+
+        if prediction == -1:
+            ml_bot_prob = min(1.0, 0.55 + max(0.0, anomaly_score) * 6.0)
+        else:
+            ml_bot_prob = max(0.0, 0.45 - max(0.0, decision_score) * 6.0)
+
+        combined_score = min(1.0, max(min(1.0, heuristic_bot_score), ml_bot_prob))
+        is_bot = combined_score >= 0.5
+        decision = "BLOCKED" if is_bot else "PASSED"
+
+        if prediction == -1:
+            flags.append(f"Isolation Forest marked telemetry as anomalous (score: {decision_score:.4f})")
+
+        return {
+            "decision": decision,
+            "is_bot": is_bot,
+            "risk_score": round(combined_score, 4),
+            "bot_probability": round(ml_bot_prob, 4),
+            "anomaly_score": round(anomaly_score, 6),
+            "isolation_forest_score": round(decision_score, 6),
+            "heuristic_score": round(min(1.0, heuristic_bot_score), 4),
+            "model_type": self.model_type,
+            "flags": flags,
+            "biometric_summary": {
+                "straightness": features.get("straightness_index", 0.0),
+                "velocity_mean": features.get("velocity_mean", 0.0),
+                "velocity_variance": features.get("velocity_std", 0.0),
+                "jitter_ratio": features.get("jitter_ratio", 0.0),
+                "click_dwell_ms": features.get("avg_click_dwell_ms", -1.0)
+            }
+        }
+
     def evaluate(self, features: dict) -> dict:
         """
-        Evaluates biometric features using heuristic rule-based checks combined with Random Forest ML score.
+        Evaluates biometric features using heuristic checks plus the loaded ML model.
         Returns risk assessment dictionary.
         """
         flags = []
@@ -175,6 +282,14 @@ class BehavioralClassifier:
             flags.append("Complete absence of organic micro-tremor / sub-movements")
             heuristic_bot_score += 0.25
 
+        # 7. Very fast completion over a meaningful distance
+        if duration < 1000.0 and features.get("total_distance_px", 0) > 250:
+            flags.append(f"Very fast movement sequence ({duration:.0f}ms over {features.get('total_distance_px', 0):.0f}px)")
+            heuristic_bot_score += 0.25
+
+        if self.is_trained and self.model_type == "isolation_forest":
+            return self._evaluate_isolation_forest(features, flags, heuristic_bot_score)
+
         # ML Model Prediction
         vec = [feature_dict_to_vector(features)]
         if self.is_trained and self.model:
@@ -183,7 +298,7 @@ class BehavioralClassifier:
             ml_bot_prob = 0.5
 
         # Combine Heuristic score and ML probability
-        combined_score = min(1.0, (0.4 * min(1.0, heuristic_bot_score)) + (0.6 * ml_bot_prob))
+        combined_score = min(1.0, max(min(1.0, heuristic_bot_score), ml_bot_prob))
 
         is_bot = combined_score >= 0.5
         decision = "BLOCKED" if is_bot else "PASSED"
@@ -194,6 +309,7 @@ class BehavioralClassifier:
             "risk_score": round(combined_score, 4),
             "bot_probability": round(ml_bot_prob, 4),
             "heuristic_score": round(min(1.0, heuristic_bot_score), 4),
+            "model_type": self.model_type,
             "flags": flags,
             "biometric_summary": {
                 "straightness": straightness,

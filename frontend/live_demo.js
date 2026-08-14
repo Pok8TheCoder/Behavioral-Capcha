@@ -1,5 +1,6 @@
 // Dynamic API Base URL matching origin port
-const API_BASE = window.location.origin.includes("http") ? window.location.origin : "http://127.0.0.1:8050";
+let API_BASE = window.location.origin.startsWith("http") ? window.location.origin : "http://127.0.0.1:8010";
+const MODEL_API_CANDIDATES = [...new Set([API_BASE, "http://127.0.0.1:8010", "http://127.0.0.1:8000"])];
 
 let canvas, ctx;
 let telemetryEvents = [];
@@ -7,9 +8,20 @@ let trailPoints = [];
 let botCursor;
 let isBotSimulating = false;
 
+const MODEL_LABELS = {
+    random_forest_humanlike: "Random Forest (Human-like)",
+    isolation_forest: "Isolation Forest",
+    random_forest: "Random Forest (Legacy)",
+};
+
+function formatModelLabel(modelName) {
+    return MODEL_LABELS[modelName] || modelName.replaceAll("_", " ");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     initCanvas();
     initEventListeners();
+    loadModelSelector();
     startTelemetryStreamLoop();
 });
 
@@ -83,6 +95,93 @@ function initEventListeners() {
     document.getElementById("btn-bot-bezier").addEventListener("click", () => triggerBotSimulation("bezier"));
     document.getElementById("btn-bot-humanoid").addEventListener("click", () => triggerBotSimulation("humanoid"));
     document.getElementById("btn-bot-teleport").addEventListener("click", () => triggerBotSimulation("teleport"));
+    document.getElementById("active-model").addEventListener("change", activateSelectedModel);
+}
+
+function loadModelSelector() {
+    updateModelSelector({
+        active_model: "random_forest_humanlike",
+        available_models: {
+            random_forest_humanlike: { available: true },
+            isolation_forest: { available: true },
+            random_forest: { available: true }
+        }
+    });
+
+    const tryCandidate = (index) => {
+        if (index >= MODEL_API_CANDIDATES.length) {
+            console.warn("Model API is unavailable on all configured local servers.");
+            return;
+        }
+
+        const candidate = MODEL_API_CANDIDATES[index];
+        fetch(`${candidate}/api/models`)
+            .then(res => {
+                if (!res.ok) throw new Error(`Model API returned ${res.status}`);
+                return res.json();
+            })
+            .then(data => {
+                API_BASE = candidate;
+                updateModelSelector(data);
+            })
+            .catch(() => tryCandidate(index + 1));
+    };
+
+    tryCandidate(0);
+}
+
+function updateModelSelector(data) {
+    const selector = document.getElementById("active-model");
+    const options = [];
+
+    Object.entries(data.available_models || {}).forEach(([modelName, details]) => {
+        if (!details.available) return;
+        const option = document.createElement("option");
+        option.value = modelName;
+        option.textContent = formatModelLabel(modelName);
+        option.selected = modelName === data.active_model;
+        options.push(option);
+    });
+
+    if (options.length === 0) {
+        selector.innerHTML = "";
+        const fallback = document.createElement("option");
+        fallback.value = "";
+        fallback.disabled = true;
+        fallback.selected = true;
+        fallback.textContent = "No models available";
+        selector.appendChild(fallback);
+        return;
+    }
+
+    selector.innerHTML = "";
+    options.forEach(option => selector.appendChild(option));
+}
+
+function activateSelectedModel(event) {
+    const selector = event.target;
+    selector.disabled = true;
+
+    fetch(`${API_BASE}/api/models/activate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ model_name: selector.value })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("Model activation failed");
+        return res.json();
+    })
+    .then(data => {
+        updateModelSelector(data);
+        resetCanvas();
+    })
+    .catch(err => {
+        console.warn("Model activation error:", err);
+        loadModelSelector();
+    })
+    .finally(() => {
+        selector.disabled = false;
+    });
 }
 
 function resetCanvas() {

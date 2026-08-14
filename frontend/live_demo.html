@@ -39,6 +39,14 @@
 
     <!-- Floating HUD Gauge & Telemetry Dashboard -->
     <div class="hud-dashboard">
+        <div class="model-control model-panel">
+            <span class="model-control-label">Active Model</span>
+            <div class="model-select-wrap">
+                <select id="active-model" aria-label="Active detection model">
+                    <option value="" disabled selected>Loading models...</option>
+                </select>
+            </div>
+        </div>
         <!-- Main Confidence Meter -->
         <div class="confidence-card" id="confidence-card">
             <div class="confidence-ring-container">

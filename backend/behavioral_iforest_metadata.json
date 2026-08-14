@@ -1,0 +1,92 @@
+{
+  "human_train_windows": 5329,
+  "human_test_windows": 6000,
+  "bot_eval_windows": 5,
+  "contamination": 0.01,
+  "feature_names": [
+    "straightness_index",
+    "velocity_mean",
+    "velocity_std",
+    "velocity_max",
+    "acceleration_mean",
+    "acceleration_std",
+    "jerk_mean",
+    "angle_change_mean",
+    "angle_change_std",
+    "jitter_ratio",
+    "idle_ratio",
+    "avg_click_dwell_ms"
+  ],
+  "preprocessing": {
+    "afk_gap_ms": 5000.0,
+    "window_ms": 3000.0,
+    "stride_ms": 1500.0,
+    "min_events_per_window": 12,
+    "min_window_distance_px": 20.0,
+    "movement_epsilon_px": 0.5
+  },
+  "human_files": [
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260809_194956_to_20260809_195028.csv",
+      "raw_rows": 5422,
+      "windows": 0,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260809_205012_to_20260809_205012.csv",
+      "raw_rows": 3,
+      "windows": 0,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260809_210236_to_20260809_230205.csv",
+      "raw_rows": 972335,
+      "windows": 2103,
+      "afk_splits": 70,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260811_132855_to_20260811_235556.csv",
+      "raw_rows": 3200000,
+      "windows": 6000,
+      "afk_splits": 395,
+      "truncated": true
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260812_171705_to_20260812_171721.csv",
+      "raw_rows": 3470,
+      "windows": 9,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\recovered_input_log_20260809_210236_part023.csv",
+      "raw_rows": 914367,
+      "windows": 1958,
+      "afk_splits": 66,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\recovered_input_log_20260810_202546_part038.csv",
+      "raw_rows": 577177,
+      "windows": 1259,
+      "afk_splits": 125,
+      "truncated": false
+    }
+  ],
+  "heldout_human_pass_rate": 0.988,
+  "bot_eval_confusion_matrix": [
+    [
+      5928,
+      72
+    ],
+    [
+      1,
+      4
+    ]
+  ],
+  "bot_eval_roc_auc": 0.9957333333333334,
+  "bot_eval_report": "              precision    recall  f1-score   support\n\n       Human       1.00      0.99      0.99      6000\n         Bot       0.05      0.80      0.10         5\n\n    accuracy                           0.99      6005\n   macro avg       0.53      0.89      0.55      6005\nweighted avg       1.00      0.99      0.99      6005\n"
+}
