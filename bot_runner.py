@@ -26,6 +26,7 @@ from bots.tier4_humanoid import HumanoidFittsBot
 
 from backend.feature_extractor import extract_features
 from backend.model import BehavioralClassifier
+from bots.event_utils import normalize_bot_events
 
 def run_bot_simulation(bot_instance, n_runs: int = 15, is_scratch: bool = False) -> str:
     print(f"\n" + "=" * 65)
@@ -76,7 +77,7 @@ def run_bot_simulation(bot_instance, n_runs: int = 15, is_scratch: bool = False)
     return csv_path
 
 def evaluate_bot_dataset(classifier: BehavioralClassifier, bot_instance):
-    features = extract_features(bot_instance.events)
+    features = extract_features(normalize_bot_events(bot_instance.events))
     evaluation = classifier.evaluate(features)
 
     print(f"\n--- CAPTCHA Engine Evaluation for {bot_instance.name} ---")

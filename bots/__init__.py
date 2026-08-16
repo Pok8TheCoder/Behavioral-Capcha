@@ -12,3 +12,5 @@ from bots.tier1_naive import NaiveBot
 from bots.tier2_linear import LinearBot
 from bots.tier3_bezier import BezierBot
 from bots.tier4_humanoid import HumanoidFittsBot
+from bots.challenge_solver import solve_challenge
+from bots.event_utils import normalize_bot_events

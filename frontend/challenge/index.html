@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavioral Challenge Lab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="challenge.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div>
+            <h1>Behavioral Challenge Lab</h1>
+            <p class="subtitle">Randomized mouse tasks · AI human/bot monitoring</p>
+        </div>
+        <div class="top-actions">
+            <span class="status-pill" id="backend-status">Connecting...</span>
+            <button class="btn" id="btn-new-challenge" type="button">New Random Challenge</button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="challenge-panel">
+            <div class="challenge-header">
+                <h2 id="challenge-title">Loading challenge...</h2>
+                <p id="challenge-instructions"></p>
+            </div>
+            <div class="arena-wrap">
+                <canvas id="challenge-canvas"></canvas>
+                <div id="challenge-overlay" class="challenge-overlay hidden">
+                    <div class="overlay-card" id="overlay-card">
+                        <h3 id="overlay-title">Result</h3>
+                        <p id="overlay-message"></p>
+                        <div class="result-grid" id="result-grid"></div>
+                        <button class="btn btn-primary" id="btn-next" type="button">Try Another</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="card">
+                <h3>Session</h3>
+                <dl class="meta-list">
+                    <div><dt>Type</dt><dd id="meta-type">—</dd></div>
+                    <div><dt>Seed</dt><dd id="meta-seed">—</dd></div>
+                    <div><dt>Events</dt><dd id="meta-events">0</dd></div>
+                </dl>
+            </div>
+            <div class="card confidence-card">
+                <h3>AI Assessment</h3>
+                <div class="confidence-value" id="human-confidence">—%</div>
+                <div class="decision-badge badge-neutral" id="decision-badge">AWAITING</div>
+                <p class="model-line" id="model-line">Detection API pending</p>
+            </div>
+            <div class="card">
+                <h3>Task Result</h3>
+                <p id="task-result" class="task-result">Complete the challenge to score.</p>
+            </div>
+            <div class="card">
+                <h3>Flags</h3>
+                <ul class="flags-list" id="flags-list">
+                    <li class="flag idle">No evaluation yet.</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <script src="challenge.js"></script>
+</body>
+</html>
