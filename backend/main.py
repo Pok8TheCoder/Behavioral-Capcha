@@ -11,6 +11,12 @@ from typing import List, Dict, Any, Optional
 
 from backend.feature_extractor import extract_features
 from backend.model import BehavioralClassifier
+from bots.challenge_solver import solve_challenge
+from bots.event_utils import normalize_bot_events
+from bots.tier2_linear import LinearBot
+from bots.tier3_bezier import BezierBot
+from bots.tier4_humanoid import HumanoidFittsBot
+from challenge_server.generator import CHALLENGE_TYPES, generate_challenge, validate_completion
 
 app = FastAPI(
     title="Behavioral CAPTCHA & Biometric Bot Detection Engine",
@@ -27,6 +33,7 @@ app.add_middleware(
 )
 
 classifier = BehavioralClassifier()
+_challenge_sessions: Dict[str, Dict[str, Any]] = {}
 
 class TelemetryPayload(BaseModel):
     events: List[Dict[str, Any]]
@@ -43,14 +50,37 @@ class BotSimPayload(BaseModel):
 class ModelActivationPayload(BaseModel):
     model_name: str = Field(..., description="random_forest_humanlike, isolation_forest, or random_forest")
 
+
+class NewChallengePayload(BaseModel):
+    seed: Optional[int] = None
+    challenge_type: Optional[str] = None
+
+
+class ChallengeVerifyPayload(BaseModel):
+    session_id: str
+    events: List[Dict[str, Any]]
+    participant: str = "human"
+
+
+class RunChallengeBotPayload(BaseModel):
+    session_id: str
+    bot: str = Field("linear", description="linear, bezier, or humanoid")
+
+
+def _normalize_events(events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    return normalize_bot_events(events)
+
+
 @app.get("/api/health")
 def health_check():
     return {
         "status": "healthy",
-        "engine": "Behavioral CAPTCHA Core",
+        "engine": "Behavioral CAPTCHA Dashboard",
         "model_trained": classifier.is_trained,
         "active_model": classifier.model_type,
         "available_models": classifier.available_models(),
+        "challenge_types": list(CHALLENGE_TYPES),
+        "active_challenge_sessions": len(_challenge_sessions),
     }
 
 @app.get("/api/models")
@@ -184,19 +214,116 @@ def simulate_bot(payload: BotSimPayload):
 
     return {"bot_type": bot_type, "event_count": len(events), "events": events}
 
+
+@app.get("/api/challenge/types")
+def list_challenge_types():
+    return {"challenge_types": list(CHALLENGE_TYPES)}
+
+
+@app.post("/api/challenge/new")
+def create_challenge(payload: NewChallengePayload):
+    challenge = generate_challenge(seed=payload.seed, challenge_type=payload.challenge_type)
+    _challenge_sessions[challenge["session_id"]] = challenge
+    return challenge
+
+
+@app.post("/api/challenge/verify")
+def verify_challenge(payload: ChallengeVerifyPayload):
+    challenge = _challenge_sessions.get(payload.session_id)
+    if not challenge:
+        raise HTTPException(status_code=404, detail="Challenge session not found.")
+
+    if not payload.events:
+        raise HTTPException(status_code=400, detail="Empty telemetry events payload.")
+
+    events = _normalize_events(payload.events)
+    features = extract_features(events)
+    evaluation = classifier.evaluate(features)
+    task_result = validate_completion(challenge, events)
+    bot_prob = evaluation.get("bot_probability")
+
+    return {
+        "timestamp": time.time(),
+        "session_id": payload.session_id,
+        "participant": payload.participant,
+        "challenge_type": challenge["challenge_type"],
+        "task_result": task_result,
+        "features": features,
+        "evaluation": evaluation,
+        "human_confidence": round(1.0 - float(bot_prob), 4) if bot_prob is not None else None,
+    }
+
+
+@app.post("/api/challenge/run-bot")
+def run_bot_on_challenge(payload: RunChallengeBotPayload):
+    challenge = _challenge_sessions.get(payload.session_id)
+    if not challenge:
+        raise HTTPException(status_code=404, detail="Challenge session not found.")
+
+    bot_name = payload.bot.lower()
+    if bot_name == "linear":
+        bot = LinearBot(steps=30, step_delay_sec=0.0)
+        style = "linear"
+    elif bot_name == "bezier":
+        bot = BezierBot(steps=40, step_delay_sec=0.0)
+        style = "linear"
+    elif bot_name == "humanoid":
+        bot = HumanoidFittsBot(target_width=40.0)
+        style = "humanoid"
+    else:
+        raise HTTPException(status_code=400, detail=f"Unknown bot: {payload.bot}")
+
+    solve_challenge(bot, challenge, style=style, fast=True)
+    events = _normalize_events(bot.events)
+    features = extract_features(events)
+    evaluation = classifier.evaluate(features)
+    task_result = validate_completion(challenge, events)
+    bot_prob = evaluation.get("bot_probability")
+
+    return {
+        "timestamp": time.time(),
+        "session_id": payload.session_id,
+        "participant": f"bot_{bot_name}",
+        "bot": bot_name,
+        "challenge_type": challenge["challenge_type"],
+        "event_count": len(events),
+        "events": events,
+        "task_result": task_result,
+        "features": features,
+        "evaluation": evaluation,
+        "human_confidence": round(1.0 - float(bot_prob), 4) if bot_prob is not None else None,
+    }
+
+
 frontend_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
+dashboard_path = os.path.join(frontend_path, "dashboard")
 if os.path.exists(frontend_path):
     app.mount("/static", StaticFiles(directory=frontend_path), name="static")
 
     @app.get("/")
     def read_root():
+        dashboard_index = os.path.join(dashboard_path, "index.html")
+        if os.path.exists(dashboard_index):
+            return FileResponse(dashboard_index)
         live_demo_path = os.path.join(frontend_path, "live_demo.html")
         if os.path.exists(live_demo_path):
             return FileResponse(live_demo_path)
         return FileResponse(os.path.join(frontend_path, "index.html"))
 
+    @app.get("/dashboard/{asset_name}")
+    def read_dashboard_asset(asset_name: str):
+        target = os.path.join(dashboard_path, asset_name)
+        if os.path.exists(target) and os.path.isfile(target):
+            return FileResponse(target)
+        raise HTTPException(status_code=404, detail="File not found")
+
     @app.get("/{file_name}")
     def read_frontend_file(file_name: str):
+        if file_name.startswith("api"):
+            raise HTTPException(status_code=404, detail="File not found")
+        dash_target = os.path.join(dashboard_path, file_name)
+        if os.path.exists(dash_target) and os.path.isfile(dash_target):
+            return FileResponse(dash_target)
         target = os.path.join(frontend_path, file_name)
         if os.path.exists(target) and os.path.isfile(target):
             return FileResponse(target)

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behavioral CAPTCHA Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/dashboard/dashboard.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div>
+            <h1>Behavioral CAPTCHA Dashboard</h1>
+            <p class="subtitle">Random challenges · human attempts · bot tests · live AI scoring</p>
+        </div>
+        <div class="top-actions">
+            <span class="status-pill" id="backend-status">Connecting...</span>
+            <div class="model-select-wrap">
+                <select id="active-model" aria-label="Active detection model"></select>
+            </div>
+            <button class="btn btn-primary" id="btn-new-challenge" type="button">New Challenge</button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="challenge-panel">
+            <div class="challenge-header">
+                <h2 id="challenge-title">Loading...</h2>
+                <p id="challenge-instructions"></p>
+            </div>
+
+            <div class="bot-bar">
+                <span class="bot-bar-label">Run bot on this challenge:</span>
+                <button class="btn btn-bot" type="button" data-bot="linear">Linear</button>
+                <button class="btn btn-bot" type="button" data-bot="bezier">Bezier</button>
+                <button class="btn btn-bot" type="button" data-bot="humanoid">Humanoid</button>
+                <button class="btn" id="btn-submit" type="button">Submit Human Attempt</button>
+            </div>
+
+            <div class="arena-wrap">
+                <canvas id="challenge-canvas"></canvas>
+                <div id="bot-cursor" class="bot-cursor"></div>
+                <div id="challenge-overlay" class="challenge-overlay hidden">
+                    <div class="overlay-card">
+                        <h3 id="overlay-title">Result</h3>
+                        <p id="overlay-message"></p>
+                        <div class="result-grid" id="result-grid"></div>
+                        <button class="btn btn-primary" id="btn-next" type="button">Next Challenge</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="card confidence-card">
+                <h3>Human Confidence</h3>
+                <div class="confidence-value" id="human-confidence">—%</div>
+                <div class="decision-badge badge-neutral" id="decision-badge">READY</div>
+                <p class="model-line" id="model-line">Select a model and start a challenge</p>
+            </div>
+            <div class="card">
+                <h3>Session</h3>
+                <dl class="meta-list">
+                    <div><dt>Type</dt><dd id="meta-type">—</dd></div>
+                    <div><dt>Seed</dt><dd id="meta-seed">—</dd></div>
+                    <div><dt>Events</dt><dd id="meta-events">0</dd></div>
+                    <div><dt>Participant</dt><dd id="meta-participant">—</dd></div>
+                </dl>
+            </div>
+            <div class="card">
+                <h3>Task Result</h3>
+                <p id="task-result" class="task-result">Complete a challenge or run a bot.</p>
+            </div>
+            <div class="card">
+                <h3>Risk Flags</h3>
+                <ul class="flags-list" id="flags-list">
+                    <li class="flag idle">No evaluation yet.</li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+
+    <script src="/dashboard/dashboard.js"></script>
+</body>
+</html>

@@ -6,7 +6,6 @@
   "scripts": {
     "start": "python -m backend.main",
     "dev:backend": "python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8010",
-    "dev:challenge": "python -m challenge_server.main",
     "dev:frontend": "python -m http.server 3000 --directory frontend",
     "benchmark:challenges": "python challenge_bot_runner.py --runs 1"
   },

@@ -1,8 +1,7 @@
 """
-Behavioral challenge test server.
+Legacy standalone challenge server (deprecated).
 
-Hosts randomized human verification tasks and proxies ML scoring to the
-detection backend (default http://127.0.0.1:8010).
+Use the unified dashboard instead: python -m backend.main → http://127.0.0.1:8010/
 """
 
 from __future__ import annotations

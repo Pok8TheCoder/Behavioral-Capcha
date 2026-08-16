@@ -42,9 +42,10 @@ def evaluate_bot_on_challenge(
     challenge: dict,
     style: str,
     classifier: BehavioralClassifier | None = None,
+    fast: bool = True,
 ) -> dict:
     bot.reset()
-    solve_challenge(bot, challenge, style=style)
+    solve_challenge(bot, challenge, style=style, fast=fast)
     events = normalize_bot_events(bot.events)
     task_result = validate_completion(challenge, events)
 
@@ -89,7 +90,7 @@ def run_benchmark(runs_per_type: int, seed: int | None, use_api: bool) -> list[d
 
             for style_name, bot in bots:
                 solve_style = "humanoid" if style_name == "humanoid" else "linear"
-                result = evaluate_bot_on_challenge(style_name, bot, challenge, solve_style, classifier)
+                result = evaluate_bot_on_challenge(style_name, bot, challenge, solve_style, classifier, fast=True)
                 results.append(result)
                 print(
                     f"[{challenge_type}] {style_name:8} task={'PASS' if result['task_passed'] else 'FAIL'} "
