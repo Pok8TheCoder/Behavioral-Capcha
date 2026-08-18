@@ -9,6 +9,7 @@ const DRAG_STROKE_TYPES = new Set([
     "spiral_trace",
     "connect_dots",
     "hazard_run",
+    "path_gates",
 ]);
 
 const MODEL_LABELS = {
@@ -63,6 +64,13 @@ function usesDragStroke() {
     return challenge && DRAG_STROKE_TYPES.has(challenge.challenge_type);
 }
 
+function nearPathGatesStart(p) {
+    if (!challenge || challenge.challenge_type !== "path_gates") return true;
+    const start = challenge.spec.start;
+    const tol = challenge.spec.start_tolerance_px || 32;
+    return Math.hypot(p.x - start[0], p.y - start[1]) <= tol;
+}
+
 function resizeCanvas() {
     const wrap = canvas.parentElement;
     const rect = wrap.getBoundingClientRect();
@@ -94,7 +102,7 @@ function onPointerDown(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
     canvas.setPointerCapture(evt.pointerId);
     const p = canvasPoint(evt);
-    isDrawing = usesDragStroke();
+    isDrawing = usesDragStroke() && nearPathGatesStart(p);
     recordEvent(p.x, p.y, performance.now(), "mousedown");
     drawChallenge();
 }
@@ -121,6 +129,11 @@ function onPointerUp(evt) {
         isDrawing = false;
         drawChallenge();
         submitAttempt("human");
+        return;
+    }
+    if (usesDragStroke()) {
+        isDrawing = false;
+        drawChallenge();
         return;
     }
     handleClick(p.x, p.y);
@@ -180,14 +193,6 @@ function maybeAutoComplete() {
     if (type === "button_sequence" && sequenceProgress >= spec.sequence.length) submitAttempt("human");
     if (type === "pin_entry" && pinProgress >= spec.code.length) submitAttempt("human");
     if (type === "target_hunt" && targetHits >= spec.targets.length) submitAttempt("human");
-
-    const last = events[events.length - 1];
-    if (!last) return;
-
-    if (type === "path_gates") {
-        const end = spec.end;
-        if (Math.hypot(last.x - end[0], last.y - end[1]) <= spec.finish_tolerance_px) submitAttempt("human");
-    }
 }
 
 function checkHealth() {
@@ -631,9 +636,9 @@ function drawPathGates(spec) {
         ctx.fillRect(x - t / 2, gy + half, t, challenge.area.y + challenge.area.height - (gy + half));
     });
     ctx.fillStyle = "#10b981";
-    ctx.beginPath(); ctx.arc(spec.start[0], spec.start[1], 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(spec.start[0], spec.start[1], 12, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = "#f43f5e";
-    ctx.beginPath(); ctx.arc(spec.end[0], spec.end[1], 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(spec.end[0], spec.end[1], 12, 0, Math.PI * 2); ctx.fill();
 }
 
 function showResults(data) {

@@ -14,6 +14,7 @@ let sequenceProgress = 0;
 let pinProgress = 0;
 let trail = [];
 let clientInteractionStartMs = 0;
+let strokeArmed = false;
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("challenge-canvas");
@@ -102,6 +103,13 @@ function onPointerDown(evt) {
     canvas.setPointerCapture(evt.pointerId);
     const p = canvasPoint(evt);
     const meta = { pid: evt.pointerId, pt: evt.pointerType || "mouse", src: "canvas" };
+    if (challenge.challenge_type === "path_gates") {
+        const start = challenge.spec.start;
+        const tol = challenge.spec.start_tolerance_px || 32;
+        strokeArmed = Math.hypot(p.x - start[0], p.y - start[1]) <= tol;
+    } else {
+        strokeArmed = DRAG_STROKE_TYPES.has(challenge.challenge_type);
+    }
     recordEvent(p.x, p.y, performance.now(), "mousedown", meta);
     drawChallenge();
 }
@@ -132,6 +140,7 @@ function onPointerUp(evt) {
     recordEvent(p.x, p.y, evt.timeStamp || performance.now(), "mouseup", { pid: evt.pointerId, pt: evt.pointerType || "mouse", src: "canvas" });
     if (DRAG_STROKE_TYPES.has(challenge.challenge_type)) {
         drawChallenge();
+        if (challenge.challenge_type === "path_gates" && !strokeArmed) return;
         if (events.length >= 4) submitAttempt();
         return;
     }
@@ -184,20 +193,6 @@ function maybeAutoComplete() {
     if (type === "pin_entry" && pinProgress >= spec.code.length) {
         submitAttempt();
     }
-    if (type === "maze_navigate") {
-        const end = spec.end;
-        const last = events[events.length - 1];
-        if (last && Math.hypot(last.x - end[0], last.y - end[1]) <= spec.finish_tolerance_px) {
-            submitAttempt();
-        }
-    }
-    if (type === "path_gates") {
-        const end = spec.end;
-        const last = events[events.length - 1];
-        if (last && Math.hypot(last.x - end[0], last.y - end[1]) <= spec.finish_tolerance_px) {
-            submitAttempt();
-        }
-    }
 }
 
 function checkHealth() {
@@ -221,6 +216,7 @@ function startNewChallenge() {
     trail = [];
     sequenceProgress = 0;
     pinProgress = 0;
+    strokeArmed = false;
     hideOverlay();
 
     fetch(`${API_BASE}/api/challenge/new`, {
@@ -395,9 +391,9 @@ function drawPathGates(spec) {
     });
 
     ctx.fillStyle = "#10b981";
-    ctx.beginPath(); ctx.arc(spec.start[0], spec.start[1], 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(spec.start[0], spec.start[1], 12, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = "#f43f5e";
-    ctx.beginPath(); ctx.arc(spec.end[0], spec.end[1], 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(spec.end[0], spec.end[1], 12, 0, Math.PI * 2); ctx.fill();
 }
 
 let submitting = false;

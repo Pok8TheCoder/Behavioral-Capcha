@@ -7,6 +7,8 @@ Dataset Storage:
 - Scratch/throwaway benchmark datasets saved to temp/scratch_datasets/
 
 Recovery Engine:
+- Run 'python input_recorder.py' to record at 60 Hz (default)
+- Run 'python input_recorder.py --max' for native max mouse polling
 - Run 'python input_recorder.py --recover' to convert un-exported .bin files into datasets/human/
 - Automatically groups intermediate 5-minute autosave snapshots to recover the latest complete checkpoint per session.
 - Run 'python input_recorder.py --clean-temp' to clean old temporary autosave files in temp/
@@ -88,6 +90,9 @@ is_flushed = False
 is_recovery_mode = False
 autosave_seq = 0
 AUTOSAVE_INTERVAL_SEC = 300
+DEFAULT_RECORD_HZ = 60.0
+max_polling_mode = False
+last_move_ns = None
 
 last_mouse_x = 0
 last_mouse_y = 0
@@ -173,6 +178,15 @@ def record_event(x: float, y: float, dx: int, dy: int, event_type: int, target_n
 
 # Mouse Event Handlers
 def on_mouse_move(x, y):
+    global last_mouse_x, last_mouse_y, last_move_ns
+    last_mouse_x = float(x)
+    last_mouse_y = float(y)
+    if not max_polling_mode:
+        now_ns = time.perf_counter_ns()
+        min_ns = int(1_000_000_000 / DEFAULT_RECORD_HZ * 0.92)
+        if last_move_ns is not None and (now_ns - last_move_ns) < min_ns:
+            return
+        last_move_ns = now_ns
     record_event(x, y, 0, 0, event_type=0, target_name="none")
 
 def on_mouse_click(x, y, button, pressed):
@@ -392,12 +406,15 @@ def flush_ram_to_csv():
     os.makedirs(output_dir, exist_ok=True)
 
     filename_base = f"input_log_{start_dt}_to_{end_dt}"
+    if not max_polling_mode:
+        filename_base = f"{filename_base}_60hz"
     csv_path = os.path.join(output_dir, f"{filename_base}.csv")
     bin_path = os.path.join(output_dir, f"{filename_base}.bin")
 
     print(f"\n" + "=" * 65)
     print(f"[Recorder Engine v3.4] Flushing RAM binary buffer...")
     print(f" -> Storage Destination:     datasets/human/")
+    print(f" -> Capture Rate:            {'native max polling' if max_polling_mode else '60 Hz (moves throttled; clicks/keys kept)'}")
     print(f" -> Display Resolution:       {SCREEN_WIDTH}x{SCREEN_HEIGHT} (Virtual Desktop Offset: {SCREEN_X_MIN},{SCREEN_Y_MIN})")
     print(f" -> Total Events Recorded:     {event_count:,}")
     print(f" -> Compact RAM Buffer Size:   {len(buffer_copy) / 1024:.2f} KB (20 bytes/event)")
@@ -432,13 +449,21 @@ if __name__ == "__main__":
         recover_autosaves()
         sys.exit(0)
 
+    max_polling_mode = "--max" in sys.argv
+
     print("=" * 65)
     print(" PRIVACY-FIRST INPUT TELEMETRY RECORDER v3.4 (SMART RECOVERY)")
     print("=" * 65)
     print(f" Output Location: datasets/human/")
     print(f" Detected Display Bounds: {SCREEN_WIDTH}x{SCREEN_HEIGHT} (Virtual Desktop Offset: {SCREEN_X_MIN},{SCREEN_Y_MIN})")
     print(" PRIVACY PROMISE: ZERO logging of text, letters, digits, or passwords.")
-    print(" - Max Polling Speed: 1ms Win32 Timer (timeBeginPeriod)")
+    if max_polling_mode:
+        print(" - Capture Rate: Native max polling (--max)")
+        print(" - Max Polling Speed: 1ms Win32 Timer (timeBeginPeriod)")
+    else:
+        print(" - Capture Rate: 60 Hz default (mouse moves throttled; clicks, scroll, keys kept)")
+        print(" - Native max: python input_recorder.py --max")
+        print(" - Timer: 1ms Win32 Timer (timeBeginPeriod)")
     print(" - Precision Timestamp: 64-bit uint64 Microseconds (0.001ms precision)")
     print(" - Normalized Mapping: x_norm & y_norm (0.0000..1.0000 ratio)")
     print(" - Controls: Press Ctrl+C at any time to export to CSV")

@@ -9,6 +9,8 @@ import re
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
+from backend.hz60 import downsample_events_to_hz
+
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HUMAN_DIR = os.path.join(ROOT_DIR, "datasets", "human")
 CHALLENGE_HUMAN_DIR = os.path.join(HUMAN_DIR, "challenges")
@@ -94,6 +96,7 @@ def write_human_capture(
     spec: Optional[Dict[str, Any]] = None,
     challenge_features: Optional[Dict[str, Any]] = None,
     client_ip: Optional[str] = None,
+    target_hz: Optional[float] = None,
 ) -> Dict[str, Any]:
     ctype = sanitize_challenge_type(challenge_type)
     ip = sanitize_ip(client_ip or "unknown")
@@ -101,9 +104,16 @@ def write_human_capture(
     out_dir = os.path.join(CHALLENGE_HUMAN_DIR, origin, ctype)
     os.makedirs(out_dir, exist_ok=True)
 
+    hz_tag = ""
+    hz_value: Optional[float] = None
+    if target_hz is not None and float(target_hz) > 0:
+        hz_value = float(target_hz)
+        events = downsample_events_to_hz(events, hz_value)
+        hz_tag = f"_{int(round(hz_value))}hz"
+
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     safe_session = "".join(ch for ch in session_id if ch.isalnum() or ch in ("-", "_"))[:24]
-    base = f"{ctype}_{stamp}_{safe_session or 'session'}"
+    base = f"{ctype}_{stamp}_{safe_session or 'session'}{hz_tag}"
     csv_path = os.path.join(out_dir, f"{base}.csv")
     meta_path = os.path.join(out_dir, f"{base}.json")
     saved_at = datetime.now(timezone.utc).isoformat()
@@ -131,7 +141,8 @@ def write_human_capture(
         handle.write(f"# Display Metrics: VirtualBounds=(0,0), Size=({int(CANVAS_W)}x{int(CANVAS_H)})\n")
         handle.write(
             f"# source=dashboard origin={origin} client_ip={ip} session_id={session_id} "
-            f"challenge_type={ctype} seed={seed} task_passed={task_passed}\n"
+            f"challenge_type={ctype} seed={seed} task_passed={task_passed}"
+            f"{f' target_hz={hz_value:g}' if hz_value else ''}\n"
         )
         writer = csv.DictWriter(
             handle,
@@ -165,6 +176,7 @@ def write_human_capture(
         "challenge_type": ctype,
         "seed": seed,
         "task_passed": task_passed,
+        "target_hz": hz_value,
         "event_count": len(events),
         "features": _jsonable(features or {}),
         "challenge_features": _jsonable(challenge_features or {}),

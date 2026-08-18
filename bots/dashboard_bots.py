@@ -68,7 +68,7 @@ def _motion_plan(challenge: Dict[str, Any]) -> Tuple[str, List[Point]]:
         for gate in spec["gates"]:
             pts.append((float(gate["x"]), float(gate["gap_y"])))
         pts.append((float(spec["end"][0]), float(spec["end"][1])))
-        return "fly", pts
+        return "drag", pts
     if ctype == "button_sequence":
         buttons = {b["id"]: b for b in spec["buttons"]}
         return "click", [(float(buttons[i]["x"]), float(buttons[i]["y"])) for i in spec["sequence"]]

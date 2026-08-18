@@ -274,7 +274,22 @@ def _connect_dots_features(spec: Dict[str, Any], events: List[Dict[str, Any]]) -
 def _path_gates_features(spec: Dict[str, Any], events: List[Dict[str, Any]]) -> Dict[str, Any]:
     gates = spec.get("gates") or []
     tol = float(spec.get("gate_tolerance_px", 16))
-    moves = [e for e in events if _etype(e) == "move"]
+    start = spec.get("start") or [0, 0]
+    start_tol = float(spec.get("start_tolerance_px", 32))
+    origin = None
+    in_stroke = False
+    for event in events:
+        kind = _etype(event)
+        if kind == "down":
+            origin = event
+            in_stroke = True
+        elif kind == "up" and in_stroke:
+            break
+    started_on_green = bool(
+        origin and _dist(float(origin["x"]), float(origin["y"]), float(start[0]), float(start[1])) <= start_tol
+    )
+    stroke = _stroke_moves(events)
+    moves = stroke if stroke else [e for e in events if _etype(e) == "move"]
     per_gate = []
     for gate in gates:
         gx = float(gate["x"])
@@ -292,11 +307,18 @@ def _path_gates_features(spec: Dict[str, Any], events: List[Dict[str, Any]]) -> 
             "gap_half_px": gap_half,
         })
     errors = [g["min_gap_error_px"] for g in per_gate if g["min_gap_error_px"] is not None]
+    finish_tol = float(spec.get("finish_tolerance_px", 36))
+    end = spec.get("end") or [0, 0]
+    finish = min((_dist(*_xy(m), float(end[0]), float(end[1])) for m in stroke), default=None)
     return {
         "gates_total": len(gates),
         "gates_passed": sum(1 for g in per_gate if g["passed"]),
         "mean_gap_error_px": _mean(errors),
         "gates": per_gate,
+        "started_on_green": started_on_green,
+        "stroke_points": len(stroke),
+        "finish_distance_px": round(finish, 2) if finish is not None else None,
+        "reached_end": finish is not None and finish <= finish_tol,
     }
 
 

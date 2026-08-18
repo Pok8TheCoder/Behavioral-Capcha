@@ -76,6 +76,7 @@ class ChallengeVerifyPayload(BaseModel):
     client_started_ms: Optional[float] = None
     client_submitted_ms: Optional[float] = None
     source: Optional[str] = None
+    record_hz: Optional[float] = None
 
 
 class LiveTelemetryPayload(BaseModel):
@@ -87,6 +88,7 @@ class LiveTelemetryPayload(BaseModel):
 class RunChallengeBotPayload(BaseModel):
     session_id: str
     bot: str = Field("wide_arc", description="wide_arc, minjerk, or simulated")
+    record_hz: Optional[float] = None
 
 
 class SaveHumanCapturePayload(BaseModel):
@@ -96,10 +98,17 @@ class SaveHumanCapturePayload(BaseModel):
     challenge_type: Optional[str] = None
     seed: Optional[int] = None
     spec: Optional[Dict[str, Any]] = None
+    record_hz: Optional[float] = None
 
 
 def _normalize_events(events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return normalize_bot_events(events)
+
+
+def _maybe_record_hz(events: List[Dict[str, Any]], record_hz: Optional[float]) -> List[Dict[str, Any]]:
+    if not record_hz or float(record_hz) <= 0:
+        return events
+    return downsample_events_to_hz(events, float(record_hz))
 
 
 def _events_for_active_model(events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -507,7 +516,7 @@ def verify_challenge(payload: ChallengeVerifyPayload, request: Request):
             },
         )
 
-    events = _normalize_events(events_raw)
+    events = _maybe_record_hz(_normalize_events(events_raw), payload.record_hz)
     evaluation, features, window_count = _evaluate_events_dynamic(events)
     task_result = validate_completion(session, events)
     bot_prob = evaluation.get("bot_probability")
@@ -546,7 +555,7 @@ def run_bot_on_challenge(payload: RunChallengeBotPayload):
         stamped = run_dashboard_bot(challenge, bot_name)
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
-    events = _normalize_events(stamped)
+    events = _maybe_record_hz(_normalize_events(stamped), payload.record_hz)
     evaluation, features, window_count = _evaluate_events_dynamic(events)
     task_result = validate_completion(challenge, events)
     bot_prob = evaluation.get("bot_probability")
@@ -629,6 +638,7 @@ def save_human_capture(payload: SaveHumanCapturePayload, request: Request):
         spec=spec,
         challenge_features=extract_challenge_features(challenge_type, spec, events),
         client_ip=(session.get("client_ip") if session else None) or request_ip,
+        target_hz=payload.record_hz,
     )
     if session is not None:
         session["human_saved_path"] = saved["csv_path"]

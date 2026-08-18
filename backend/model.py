@@ -663,6 +663,26 @@ class BehavioralClassifier:
 
         jerk_mean = features.get("jerk_mean", 0.0)
         acc_mean = features.get("acceleration_mean", 0.0)
+        idle_ratio = features.get("idle_ratio", 0.0)
+        gate_pauses = int(features.get("gate_pause_count", 0) or 0)
+
+        # 10b. Gate runner fly-family (path_gates): clickless corridor + pause hops.
+        # 60 Hz downsample flattens native hop jerk, so issue 002-013 rules miss this.
+        if (
+            self.use_procedural_mimic_heuristic
+            and click_dwell < 0.0
+            and gate_pauses >= 3
+            and 28 <= event_count <= 500
+            and duration > 900.0
+            and 0.38 <= straightness <= 0.82
+            and jerk_mean < 0.02
+            and acc_mean < 0.08
+            and idle_ratio > 0.16
+            and 0.22 < vel_mean < 1.55
+            and vel_max < 8.0
+        ):
+            flags.append("Clickless gate-runner fly automation")
+            heuristic_bot_score += 0.72
 
         # 11. Playwright hop+jiggle inflation (issue 002 — high jitter, low jerk/acceleration)
         if (

@@ -46,8 +46,8 @@ CHALLENGE_CATALOG = {
     },
     "path_gates": {
         "title": "Gate runner",
-        "interaction": "Move cursor",
-        "summary": "Move through each gate opening from left to right.",
+        "interaction": "Click-drag-release",
+        "summary": "Click and hold the green start, drag through each gate, release on red.",
     },
     "zigzag_trace": {
         "title": "Zigzag trace",
@@ -491,12 +491,13 @@ def _path_gates(rng: random.Random, session_id: str) -> Dict[str, Any]:
         "session_id": session_id,
         "challenge_type": "path_gates",
         "title": "Gate runner",
-        "instructions": "Move through each gate opening from left to right without hitting the bars.",
+        "instructions": "Click and hold the green start, drag through each gate opening, then release on the red finish.",
         "area": AREA,
         "spec": {
             "gates": gates,
             "start": start,
             "end": end,
+            "start_tolerance_px": 32,
             "gate_tolerance_px": 26,
             "finish_tolerance_px": 36,
         },
@@ -544,6 +545,22 @@ def _stroke_moves(events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         if in_stroke and et in ("mousemove", "mouse_move", "0"):
             stroke.append(event)
     return stroke
+
+
+def _stroke_origin(events: List[Dict[str, Any]]) -> Dict[str, Any] | None:
+    origin: Dict[str, Any] | None = None
+    in_stroke = False
+    for event in events:
+        et = str(event.get("type", event.get("event_type", ""))).lower()
+        if "down" in et or et == "1":
+            origin = event
+            in_stroke = True
+            continue
+        if "up" in et or et == "2":
+            if in_stroke:
+                return origin
+            in_stroke = False
+    return origin if in_stroke else None
 
 
 def _validate_guide_stroke(events: List[Dict[str, Any]], spec: Dict[str, Any]) -> Dict[str, Any]:
@@ -658,21 +675,38 @@ def validate_completion(challenge: Dict[str, Any], events: List[Dict[str, Any]])
     if ctype == "path_gates":
         gates = spec["gates"]
         tol = spec["gate_tolerance_px"]
-        if len(moves) < 15:
-            return {"passed": False, "reason": "Too few movement samples for gate path."}
+        start = spec["start"]
+        start_tol = spec.get("start_tolerance_px", 32)
+        origin = _stroke_origin(events)
+        stroke_moves = _stroke_moves(events)
+        if origin is None or math.hypot(origin["x"] - start[0], origin["y"] - start[1]) > start_tol:
+            return {"passed": False, "reason": "Click and hold from the green start."}
+        if len(stroke_moves) < 15:
+            return {"passed": False, "reason": "Drag through the gates in one stroke (too few points)."}
         passed_gates = 0
         for gate in gates:
             gx, gap_y, gap_half = gate["x"], gate["gap_y"], gate["gap_half"]
-            for m in moves:
+            for m in stroke_moves:
                 if abs(m["x"] - gx) <= 18 and abs(m["y"] - gap_y) <= gap_half + tol:
                     passed_gates += 1
                     break
         end = spec["end"]
-        reached_end = any(math.hypot(m["x"] - end[0], m["y"] - end[1]) <= spec["finish_tolerance_px"] for m in moves)
+        reached_end = any(
+            math.hypot(m["x"] - end[0], m["y"] - end[1]) <= spec["finish_tolerance_px"]
+            for m in stroke_moves
+        )
         passed = passed_gates >= len(gates) and reached_end
         return {
             "passed": passed,
-            "reason": f"Passed {passed_gates}/{len(gates)} gates",
+            "reason": (
+                f"Passed {passed_gates}/{len(gates)} gates"
+                if passed
+                else (
+                    "Release on the red finish."
+                    if passed_gates >= len(gates)
+                    else f"Passed {passed_gates}/{len(gates)} gates"
+                )
+            ),
             "gates_passed": passed_gates,
         }
 

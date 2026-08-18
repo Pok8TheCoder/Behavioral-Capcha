@@ -26,7 +26,8 @@ def extract_features(events: List[Dict[str, Any]]) -> Dict[str, Any]:
             "angle_change_std": 0.0,
             "jitter_ratio": 0.0,
             "idle_ratio": 0.0,
-            "avg_click_dwell_ms": -1.0
+            "avg_click_dwell_ms": -1.0,
+            "gate_pause_count": 0,
         }
 
     # Sort events by timestamp t
@@ -76,7 +77,8 @@ def extract_features(events: List[Dict[str, Any]]) -> Dict[str, Any]:
             "angle_change_std": 0.0,
             "jitter_ratio": 0.0,
             "idle_ratio": 0.0,
-            "avg_click_dwell_ms": float(np.mean(click_dwell_times)) if click_dwell_times else -1.0
+            "avg_click_dwell_ms": float(np.mean(click_dwell_times)) if click_dwell_times else -1.0,
+            "gate_pause_count": 0,
         }
 
     # Trajectory Distances
@@ -176,6 +178,8 @@ def extract_features(events: List[Dict[str, Any]]) -> Dict[str, Any]:
     # Idle Ratio (pauses > 100ms)
     idle_time_ms = float(np.sum(dt[dt > 100.0]))
     idle_ratio = float(np.clip(idle_time_ms / duration_ms, 0.0, 1.0))
+    # 70–480 ms covers hop/min-jerk gate dwells; 60 Hz motion dt is ~16 ms.
+    gate_pause_count = int(np.sum((dt > 70.0) & (dt < 480.0)))
 
     # Click Dwell Time: -1.0 means no click in this window
     avg_click_dwell = float(np.mean(click_dwell_times)) if click_dwell_times else -1.0
@@ -197,7 +201,8 @@ def extract_features(events: List[Dict[str, Any]]) -> Dict[str, Any]:
         "angle_change_std": round(angle_std, 4),
         "jitter_ratio": round(jitter_ratio, 4),
         "idle_ratio": round(idle_ratio, 4),
-        "avg_click_dwell_ms": round(avg_click_dwell, 2)
+        "avg_click_dwell_ms": round(avg_click_dwell, 2),
+        "gate_pause_count": gate_pause_count,
     }
 
 def feature_dict_to_vector(f: Dict[str, Any]) -> List[float]:

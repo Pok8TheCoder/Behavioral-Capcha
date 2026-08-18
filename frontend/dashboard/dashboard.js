@@ -53,11 +53,54 @@ let isDrawing = false;
 let submitting = false;
 let lastCompletedEvents = [];
 let canvasRedrawQueued = false;
-const TARGET_CAPTURE_HZ = 1000;
-const MIN_MOVE_DT_MS = 1000 / TARGET_CAPTURE_HZ;
+const NATIVE_CAPTURE_HZ = 1000;
+const RECORD_60_HZ = 60;
 let clientInteractionStartMs = 0;
 let lastRawMove = null;
 const rawMoveTimes = [];
+
+function record60HzEnabled() {
+    const box = document.getElementById("record-60hz");
+    return Boolean(box && box.checked);
+}
+
+function captureTargetHz() {
+    return record60HzEnabled() ? RECORD_60_HZ : NATIVE_CAPTURE_HZ;
+}
+
+function captureMinMoveDtMs() {
+    return 1000 / captureTargetHz();
+}
+
+function downsampleEventsToHz(source, hz) {
+    if (!source || !source.length || !hz || hz <= 0) return source.slice();
+    const ordered = source.slice().sort((a, b) => Number(a.t) - Number(b.t));
+    if (ordered.length < 3) return ordered;
+    const period = 1000 / hz;
+    const out = [];
+    let lastKeepT = null;
+    const lastIdx = ordered.length - 1;
+    for (let i = 0; i < ordered.length; i++) {
+        const event = ordered[i];
+        const t = Number(event.t || 0);
+        const key = String(event.type || "mousemove").toLowerCase().replace(/_/g, "");
+        const keepClick = key === "mousedown" || key === "mouseup" || key === "mouseclickdown" || key === "mouseclickup" || key === "1" || key === "2";
+        if (i === 0 || i === lastIdx || keepClick) {
+            out.push(event);
+            lastKeepT = t;
+            continue;
+        }
+        if (lastKeepT == null || (t - lastKeepT) >= period * 0.92) {
+            out.push(event);
+            lastKeepT = t;
+        }
+    }
+    return out;
+}
+
+function eventsForCaptureMode(source) {
+    return record60HzEnabled() ? downsampleEventsToHz(source, RECORD_60_HZ) : source.slice();
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("challenge-canvas");
@@ -80,6 +123,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("dashboard-bot").addEventListener("change", () => {
         localStorage.setItem("dashboardBot", document.getElementById("dashboard-bot").value);
     });
+    const hzBox = document.getElementById("record-60hz");
+    if (hzBox) {
+        hzBox.checked = localStorage.getItem("dashboardRecord60Hz") === "1";
+        hzBox.addEventListener("change", () => {
+            localStorage.setItem("dashboardRecord60Hz", hzBox.checked ? "1" : "0");
+            updateHzReadout();
+        });
+    }
     canvas.style.touchAction = "none";
     canvas.addEventListener("pointerdown", onPointerDown);
     canvas.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -96,6 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function usesDragStroke() {
     return challenge && DRAG_STROKE_TYPES.has(challenge.challenge_type);
+}
+
+function nearPathGatesStart(p) {
+    if (!challenge || challenge.challenge_type !== "path_gates") return true;
+    const start = challenge.spec.start;
+    const tol = challenge.spec.start_tolerance_px || 32;
+    return Math.hypot(p.x - start[0], p.y - start[1]) <= tol;
 }
 
 function resizeCanvas() {
@@ -142,7 +200,7 @@ function updateHzReadout() {
     const hz = currentCursorHz();
     hzEl.textContent = hz > 0 ? `${Math.round(hz)}` : "—";
     if (hz > 0) {
-        streamEl.textContent = `${Math.min(TARGET_CAPTURE_HZ, Math.round(hz))}`;
+        streamEl.textContent = `${Math.min(captureTargetHz(), Math.round(hz))}`;
     } else {
         streamEl.textContent = "—";
     }
@@ -152,7 +210,7 @@ function emitRecorded(evt, interpolated) {
     if (!interpolated && evt.type === "mousemove") {
         for (let i = events.length - 1; i >= 0; i--) {
             if (events[i].type !== "mousemove") continue;
-            if (evt.t - events[i].t < MIN_MOVE_DT_MS) return;
+            if (evt.t - events[i].t < captureMinMoveDtMs()) return;
             break;
         }
         if (events.length) {
@@ -229,6 +287,7 @@ async function sealedVerifyBody(participant) {
         client_submitted_ms: performance.now(),
         source: "dashboard",
         sealed_telemetry: sealed,
+        record_hz: record60HzEnabled() ? RECORD_60_HZ : null,
     };
 }
 
@@ -241,7 +300,7 @@ function onPointerDown(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
     canvas.setPointerCapture(evt.pointerId);
     const p = canvasPoint(evt);
-    isDrawing = usesDragStroke();
+    isDrawing = usesDragStroke() && nearPathGatesStart(p);
     const meta = pointerMetaFrom(evt);
     recordEvent(p.x, p.y, eventTime(evt), "mousedown", meta);
 }
@@ -280,8 +339,10 @@ function onPointerUp(evt) {
     const p = canvasPoint(evt);
     recordEvent(p.x, p.y, eventTime(evt), "mouseup", pointerMetaFrom(evt));
     if (usesDragStroke()) {
+        const strokeStarted = isDrawing;
         isDrawing = false;
         drawChallenge();
+        if (challenge.challenge_type === "path_gates" && !strokeStarted) return;
         if (events.length >= 4) submitAttempt("human");
         return;
     }
@@ -342,14 +403,6 @@ function maybeAutoComplete() {
     if (type === "button_sequence" && sequenceProgress >= spec.sequence.length) submitAttempt("human");
     if (type === "pin_entry" && pinProgress >= spec.code.length) submitAttempt("human");
     if (type === "target_hunt" && targetHits >= spec.targets.length) submitAttempt("human");
-
-    const last = events[events.length - 1];
-    if (!last) return;
-
-    if (type === "path_gates") {
-        const end = spec.end;
-        if (Math.hypot(last.x - end[0], last.y - end[1]) <= spec.finish_tolerance_px) submitAttempt("human");
-    }
 }
 
 function checkHealth() {
@@ -700,12 +753,16 @@ function runBot(botName) {
     fetch(`${API_BASE}/api/challenge/run-bot`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ session_id: challenge.session_id, bot: botName }),
+        body: JSON.stringify({
+            session_id: challenge.session_id,
+            bot: botName,
+            record_hz: record60HzEnabled() ? RECORD_60_HZ : null,
+        }),
     })
         .then(r => r.json())
         .then(data => {
             document.getElementById("meta-participant").textContent = data.participant;
-            animateBotEvents(data.events, () => {
+            animateBotEvents(eventsForCaptureMode(data.events || []), () => {
                 isBotRunning = false;
                 showResults(data);
                 setButtonsDisabled(false);
@@ -952,9 +1009,9 @@ function drawPathGates(spec) {
         ctx.fillRect(x - t / 2, gy + half, t, challenge.area.y + challenge.area.height - (gy + half));
     });
     ctx.fillStyle = "#10b981";
-    ctx.beginPath(); ctx.arc(spec.start[0], spec.start[1], 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(spec.start[0], spec.start[1], 12, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = "#f43f5e";
-    ctx.beginPath(); ctx.arc(spec.end[0], spec.end[1], 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(spec.end[0], spec.end[1], 12, 0, Math.PI * 2); ctx.fill();
 }
 
 function showResults(data) {
@@ -1052,7 +1109,7 @@ function resetSaveHumanButton() {
 
 function saveHumanCapture() {
     if (!challenge) return;
-    const snapshot = (lastCompletedEvents.length ? lastCompletedEvents : events).slice();
+    const snapshot = eventsForCaptureMode(lastCompletedEvents.length ? lastCompletedEvents : events);
     const sessionId = challenge.session_id;
     const verifyToken = challenge.verify_token;
     const challengeType = challenge.challenge_type;
@@ -1071,6 +1128,7 @@ function saveHumanCapture() {
             challenge_type: challengeType,
             seed,
             spec: challenge.spec || {},
+            record_hz: record60HzEnabled() ? RECORD_60_HZ : null,
         }),
     })
         .then(async r => {

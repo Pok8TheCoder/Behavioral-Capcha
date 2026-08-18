@@ -144,12 +144,7 @@ def generate_events(challenge: Dict[str, Any], motor: FittsMotorConfig) -> List[
         for g in spec["gates"]:
             pts.append((g["x"], g["gap_y"]))
         pts.append((spec["end"][0], spec["end"][1]))
-        pos = pts[0]
-        events.append({"x": round(pos[0]), "y": round(pos[1]), "t": round(t, 2), "type": "mousemove"})
-        for target in pts[1:]:
-            t, pos = _drag_segment(events, pos, target, t, motor, dragging=False)
-            t += random.uniform(40, 120)
-            t = wander(events, pos, t, random.uniform(50, 160), motor.wander_strength * 0.5)
+        t, pos = _drag_stroke(events, pts, t, motor)
     elif ctype == "button_sequence":
         buttons = {b["id"]: b for b in spec["buttons"]}
         targets = [(buttons[i]["x"], buttons[i]["y"]) for i in spec["sequence"]]

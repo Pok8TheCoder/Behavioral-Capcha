@@ -90,7 +90,11 @@
                     <div><dt>Capture Hz</dt><dd id="meta-stream-hz">—</dd></div>
                     <div><dt>Participant</dt><dd id="meta-participant">—</dd></div>
                 </dl>
-                <p class="hz-scale-toggle">Capture capped at 1000 Hz (device polling, no interpolation)</p>
+                <label class="hz-scale-toggle">
+                    <input type="checkbox" id="record-60hz">
+                    Record at 60 Hz
+                </label>
+                <p class="hz-scale-note">Otherwise capped at 1000 Hz (device polling, no interpolation). Saved CSVs include <code>60hz</code> in the name.</p>
             </div>
             <div class="card">
                 <h3>Task Result</h3>

@@ -210,13 +210,8 @@ def solve_path_gates(bot: BaseBot, spec: Dict[str, Any], style: str, fast: bool)
     for gate in spec["gates"]:
         points.append((gate["x"], gate["gap_y"]))
     points.append((spec["end"][0], spec["end"][1]))
-    if style == "humanoid" and not fast:
-        for i in range(len(points) - 1):
-            x0, y0 = points[i]
-            x1, y1 = points[i + 1]
-            bot.move_to(x0, y0, x1, y1)
-    else:
-        _move_path(bot, points, 0.006, steps_per_segment=14, fast=fast)
+    end_x, end_y = spec["end"][0], spec["end"][1]
+    _drag_along_waypoints(bot, points, end_x, end_y, style, fast, steps_per_segment=14)
 
 
 def solve_challenge(bot: BaseBot, challenge: Dict[str, Any], style: str = "linear", fast: bool = False) -> None:
