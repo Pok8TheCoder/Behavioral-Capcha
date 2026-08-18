@@ -1,0 +1,17 @@
+{
+  "model": "qmodel_v0.15",
+  "attempts": 37,
+  "elapsed_s": 415.3,
+  "best_model_human": 0.7635000000000001,
+  "best_bot_prob": 0.2365,
+  "best_family": "wobble_mid",
+  "last_model_human": 0.7635000000000001,
+  "last_family": "wobble_mid",
+  "target": 0.7,
+  "family_best": {
+    "slow_arc": 0.0009000000000000119,
+    "wobble_mid": 0.7635000000000001,
+    "dense_slow": 0.00029999999999996696,
+    "mid_str_fast": 0.16979999999999995
+  }
+}

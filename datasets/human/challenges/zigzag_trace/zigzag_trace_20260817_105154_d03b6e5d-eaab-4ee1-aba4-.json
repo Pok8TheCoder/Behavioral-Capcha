@@ -1,0 +1,84 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "d03b6e5d-eaab-4ee1-aba4-7649094aef00",
+  "challenge_type": "zigzag_trace",
+  "seed": 1031040041,
+  "task_passed": true,
+  "event_count": 1002,
+  "features": {
+    "event_count": 1002,
+    "duration_ms": 2294.5,
+    "total_distance_px": 1387.5,
+    "euclidean_distance_px": 732.33,
+    "straightness_index": 0.5278,
+    "velocity_mean": 1.2194,
+    "velocity_std": 0.6522,
+    "velocity_max": 3.6056,
+    "acceleration_mean": 0.445949,
+    "acceleration_std": 0.43,
+    "acceleration_max": 2.609973,
+    "jerk_mean": 0.32781785,
+    "angle_change_mean": 0.6835,
+    "angle_change_std": 0.566,
+    "jitter_ratio": 0.262,
+    "idle_ratio": 0.1265,
+    "avg_click_dwell_ms": 2294.5
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 2294.5,
+    "median_click_dwell_ms": 2294.5,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": null,
+    "stroke_points": 1002,
+    "stroke_length_px": 1387.5,
+    "guide_length_px": 1115.63,
+    "length_ratio": 1.2437,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 41.3602,
+    "max_distance_to_guide_px": 93.16,
+    "stroke_duration_ms": 2294.5,
+    "tolerance_px": 22.57
+  },
+  "spec": {
+    "guide_points": [
+      [
+        130.0,
+        300.4369173324188
+      ],
+      [
+        253.33333333333331,
+        161.2902314505199
+      ],
+      [
+        376.66666666666663,
+        300.4369173324188
+      ],
+      [
+        500.0,
+        161.2902314505199
+      ],
+      [
+        623.3333333333333,
+        300.4369173324188
+      ],
+      [
+        746.6666666666667,
+        161.2902314505199
+      ],
+      [
+        870.0,
+        300.4369173324188
+      ]
+    ],
+    "tolerance_px": 22.572182505690904,
+    "min_coverage_ratio": 0.58,
+    "min_stroke_points": 20
+  },
+  "csv": "zigzag_trace_20260817_105154_d03b6e5d-eaab-4ee1-aba4-.csv",
+  "relative_dir": "challenges/zigzag_trace",
+  "saved_at": "2026-08-17T10:51:54.265183+00:00"
+}

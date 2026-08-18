@@ -1,0 +1,3 @@
+--- qmodel_v0.4 live solver ---
+attempt 01 family=hi_dyn hc=78% decision=PASSED: HUMAN events=141 vel=1.0798 jerk=0.05577494 acc=0.169852 jit=0.4029 str=0.3107 heur=0.0 flags=No risk flags.
+TARGET_REACHED 0.7800 after 1 attempts in 5.0s

@@ -1,0 +1,67 @@
+{
+  "seed": 202,
+  "files": [
+    {
+      "path": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_families\\ymodel_v02_named_hops.csv",
+      "episodes": 800,
+      "rows": 122706
+    },
+    {
+      "path": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_families\\ymodel_v02_grids.csv",
+      "episodes": 312,
+      "rows": 48096
+    },
+    {
+      "path": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_families\\ymodel_v02_legacy_live_families.csv",
+      "episodes": 152,
+      "rows": 30037
+    },
+    {
+      "path": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_families\\ymodel_v02_fitts_all_challenges.csv",
+      "episodes": 530,
+      "rows": 482827
+    }
+  ],
+  "episodes": 1794,
+  "rows": 683666,
+  "challenge_types": [
+    "shape_trace",
+    "button_sequence",
+    "maze_navigate",
+    "pin_entry",
+    "path_gates",
+    "zigzag_trace",
+    "spiral_trace",
+    "connect_dots",
+    "target_hunt",
+    "hazard_run"
+  ],
+  "named_hop_families": [
+    "pause_heavy",
+    "wobble_mid",
+    "idle_correct",
+    "hi_jit",
+    "hi_jit_long",
+    "smooth_low_jit",
+    "high_str_fast",
+    "mid_count",
+    "sparse_irregular",
+    "tight_arc",
+    "micro_tremor",
+    "slow_arc",
+    "dense_slow",
+    "burst_hi_vel",
+    "low_dyn",
+    "wide_arc"
+  ],
+  "fitts_presets": [
+    "fitts_default",
+    "fitts_fast",
+    "fitts_hesitant",
+    "fitts_tremor",
+    "fitts_curved",
+    "fitts_pause_heavy",
+    "fitts_low_wander",
+    "fitts_twitchy"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "295c63f1-178e-4dcb-87b4-cac442656909",
+  "challenge_type": "shape_trace",
+  "seed": 1660802383,
+  "task_passed": true,
+  "event_count": 102,
+  "features": {
+    "event_count": 61,
+    "duration_ms": 1447.2,
+    "total_distance_px": 385.34,
+    "euclidean_distance_px": 4.18,
+    "straightness_index": 0.0109,
+    "velocity_mean": 0.3371,
+    "velocity_std": 0.2502,
+    "velocity_max": 1.1432,
+    "acceleration_mean": 0.005773,
+    "acceleration_std": 0.005902,
+    "acceleration_max": 0.028081,
+    "jerk_mean": 0.00029335,
+    "angle_change_mean": 0.2446,
+    "angle_change_std": 0.4535,
+    "jitter_ratio": 0.0678,
+    "idle_ratio": 0.1827,
+    "avg_click_dwell_ms": 1447.2
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 1447.2,
+    "median_click_dwell_ms": 1447.2,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": "square",
+    "stroke_points": 102,
+    "stroke_length_px": 387.48,
+    "guide_length_px": 337.31,
+    "length_ratio": 1.1487,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 17.1184,
+    "max_distance_to_guide_px": 41.98,
+    "stroke_duration_ms": 1447.2,
+    "tolerance_px": 23.2
+  },
+  "spec": {
+    "shape": "square",
+    "guide_points": [
+      [
+        311.9763319542979,
+        387.5674589396528
+      ],
+      [
+        396.30436758247646,
+        387.5674589396528
+      ],
+      [
+        396.30436758247646,
+        471.89549456783135
+      ],
+      [
+        311.9763319542979,
+        471.89549456783135
+      ],
+      [
+        311.9763319542979,
+        387.5674589396528
+      ]
+    ],
+    "tolerance_px": 23.197795000926273,
+    "min_coverage_ratio": 0.55,
+    "min_stroke_points": 20
+  },
+  "csv": "shape_trace_20260818_054000_295c63f1-178e-4dcb-87b4-.csv",
+  "relative_dir": "challenges/lan/shape_trace",
+  "saved_at": "2026-08-18T05:40:00.354193+00:00"
+}

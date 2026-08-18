@@ -1,0 +1,31 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "15939528-b253-40fa-9dbe-7fe7a331c405",
+  "challenge_type": "zigzag_trace",
+  "seed": 1306929495,
+  "task_passed": true,
+  "event_count": 1534,
+  "features": {
+    "event_count": 1534,
+    "duration_ms": 2368.5,
+    "total_distance_px": 1763.95,
+    "euclidean_distance_px": 732.42,
+    "straightness_index": 0.4152,
+    "velocity_mean": 1.0315,
+    "velocity_std": 0.5914,
+    "velocity_max": 3.3333,
+    "acceleration_mean": 0.540497,
+    "acceleration_std": 0.54657,
+    "acceleration_max": 9.961686,
+    "jerk_mean": 0.4297584,
+    "angle_change_mean": 0.8128,
+    "angle_change_std": 0.5902,
+    "jitter_ratio": 0.3368,
+    "idle_ratio": 0.0516,
+    "avg_click_dwell_ms": 2368.5
+  },
+  "csv": "zigzag_trace_20260817_103428_15939528-b253-40fa-9dbe-.csv",
+  "relative_dir": "challenges/zigzag_trace",
+  "saved_at": "2026-08-17T10:34:28.673854+00:00"
+}

@@ -1,0 +1,77 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "89a52a7b-e879-4e70-946b-efc70435ec06",
+  "challenge_type": "shape_trace",
+  "seed": 1315126198,
+  "task_passed": true,
+  "event_count": 506,
+  "features": {
+    "event_count": 506,
+    "duration_ms": 1360.7,
+    "total_distance_px": 584.62,
+    "euclidean_distance_px": 10.0,
+    "straightness_index": 0.0171,
+    "velocity_mean": 0.8764,
+    "velocity_std": 0.456,
+    "velocity_max": 2.5,
+    "acceleration_mean": 0.304827,
+    "acceleration_std": 0.365624,
+    "acceleration_max": 2.098765,
+    "jerk_mean": 0.2507124,
+    "angle_change_mean": 0.269,
+    "angle_change_std": 0.5011,
+    "jitter_ratio": 0.0952,
+    "idle_ratio": 0.3188,
+    "avg_click_dwell_ms": 1360.7
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 1360.7,
+    "median_click_dwell_ms": 1360.7,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": "square",
+    "stroke_points": 506,
+    "stroke_length_px": 584.62,
+    "guide_length_px": 529.09,
+    "length_ratio": 1.105,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 32.652,
+    "max_distance_to_guide_px": 67.32,
+    "stroke_duration_ms": 1360.7,
+    "tolerance_px": 27.19
+  },
+  "spec": {
+    "shape": "square",
+    "guide_points": [
+      [
+        116.63283814539538,
+        253.85041449500443
+      ],
+      [
+        248.90504128945548,
+        253.85041449500443
+      ],
+      [
+        248.90504128945548,
+        386.1226176390645
+      ],
+      [
+        116.63283814539538,
+        386.1226176390645
+      ],
+      [
+        116.63283814539538,
+        253.85041449500443
+      ]
+    ],
+    "tolerance_px": 27.186733151821684,
+    "min_coverage_ratio": 0.55,
+    "min_stroke_points": 20
+  },
+  "csv": "shape_trace_20260817_105746_89a52a7b-e879-4e70-946b-.csv",
+  "relative_dir": "challenges/shape_trace",
+  "saved_at": "2026-08-17T10:57:46.985229+00:00"
+}

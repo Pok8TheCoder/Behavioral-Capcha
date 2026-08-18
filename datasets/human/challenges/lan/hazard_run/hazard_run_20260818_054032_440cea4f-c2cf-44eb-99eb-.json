@@ -1,0 +1,116 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "440cea4f-c2cf-44eb-99eb-52ee01141d80",
+  "challenge_type": "hazard_run",
+  "seed": 1213445292,
+  "task_passed": true,
+  "event_count": 280,
+  "features": {
+    "event_count": 168,
+    "duration_ms": 3275.1,
+    "total_distance_px": 1026.18,
+    "euclidean_distance_px": 772.56,
+    "straightness_index": 0.7529,
+    "velocity_mean": 0.3196,
+    "velocity_std": 0.1517,
+    "velocity_max": 0.8796,
+    "acceleration_mean": 0.003516,
+    "acceleration_std": 0.002835,
+    "acceleration_max": 0.015096,
+    "jerk_mean": 0.00015028,
+    "angle_change_mean": 0.1963,
+    "angle_change_std": 0.2411,
+    "jitter_ratio": 0.0241,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": 3275.1
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 3275.1,
+    "median_click_dwell_ms": 3275.1,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "stroke_points": 280,
+    "min_clearance_to_hazard_px": 24.33,
+    "hit_hazard": false,
+    "finish_distance_px": 3.44,
+    "reached_end": true,
+    "stroke_length_px": 1033.65
+  },
+  "spec": {
+    "start": [
+      120,
+      360.0
+    ],
+    "end": [
+      880,
+      332.1250814821149
+    ],
+    "hazards": [
+      {
+        "x": 435.9,
+        "y": 308.5,
+        "radius": 43.9
+      },
+      {
+        "x": 734.1,
+        "y": 304.1,
+        "radius": 52.2
+      },
+      {
+        "x": 639.8,
+        "y": 534.5,
+        "radius": 46.5
+      },
+      {
+        "x": 588.7,
+        "y": 428.4,
+        "radius": 55.6
+      }
+    ],
+    "waypoints": [
+      [
+        120,
+        360.0
+      ],
+      [
+        228.57142857142856,
+        252.4609879878454
+      ],
+      [
+        337.1428571428571,
+        282.6987476336201
+      ],
+      [
+        445.7142857142857,
+        431.51616038260147
+      ],
+      [
+        554.2857142857142,
+        272.5604338430128
+      ],
+      [
+        662.8571428571429,
+        369.986926562625
+      ],
+      [
+        771.4285714285714,
+        407.42859024190955
+      ],
+      [
+        880,
+        332.1250814821149
+      ]
+    ],
+    "hazard_margin_px": 12,
+    "finish_tolerance_px": 34,
+    "min_stroke_points": 18
+  },
+  "csv": "hazard_run_20260818_054032_440cea4f-c2cf-44eb-99eb-.csv",
+  "relative_dir": "challenges/lan/hazard_run",
+  "saved_at": "2026-08-18T05:40:32.638936+00:00"
+}

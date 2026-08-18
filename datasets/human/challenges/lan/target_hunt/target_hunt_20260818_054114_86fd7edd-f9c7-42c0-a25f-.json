@@ -1,0 +1,152 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "86fd7edd-f9c7-42c0-a25f-4932508a52a7",
+  "challenge_type": "target_hunt",
+  "seed": 172333558,
+  "task_passed": true,
+  "event_count": 232,
+  "features": {
+    "event_count": 125,
+    "duration_ms": 3160.8,
+    "total_distance_px": 1615.87,
+    "euclidean_distance_px": 486.77,
+    "straightness_index": 0.3012,
+    "velocity_mean": 0.578,
+    "velocity_std": 0.6654,
+    "velocity_max": 3.7204,
+    "acceleration_mean": 0.009732,
+    "acceleration_std": 0.011512,
+    "acceleration_max": 0.05759,
+    "jerk_mean": 0.00063969,
+    "angle_change_mean": 0.4538,
+    "angle_change_std": 0.7835,
+    "jitter_ratio": 0.1626,
+    "idle_ratio": 0.0337,
+    "avg_click_dwell_ms": 81.77
+  },
+  "challenge_features": {
+    "click_count": 7,
+    "avg_click_dwell_ms": 81.7714,
+    "median_click_dwell_ms": 75.3,
+    "inter_click_mean_ms": 422.85,
+    "inter_click_min_ms": 298.1,
+    "inter_click_max_ms": 565.1,
+    "target_count": 7,
+    "hits": 7,
+    "click_offset_mean_px": 13.5257,
+    "click_offset_min_px": 4.77,
+    "click_offset_max_px": 22.06,
+    "mean_offset_over_radius": 0.5545,
+    "clicks": [
+      {
+        "t": 85651.3,
+        "target_id": 3,
+        "offset_px": 15.47,
+        "offset_over_radius": 0.6447,
+        "inside": true
+      },
+      {
+        "t": 86216.4,
+        "target_id": 1,
+        "offset_px": 7.8,
+        "offset_over_radius": 0.2998,
+        "inside": true
+      },
+      {
+        "t": 86620.9,
+        "target_id": 5,
+        "offset_px": 14.89,
+        "offset_over_radius": 0.5317,
+        "inside": true
+      },
+      {
+        "t": 87145.9,
+        "target_id": 7,
+        "offset_px": 12.3,
+        "offset_over_radius": 0.4557,
+        "inside": true
+      },
+      {
+        "t": 87444.0,
+        "target_id": 6,
+        "offset_px": 22.06,
+        "offset_over_radius": 1.0028,
+        "inside": true
+      },
+      {
+        "t": 87840.7,
+        "target_id": 4,
+        "offset_px": 4.77,
+        "offset_over_radius": 0.1908,
+        "inside": true
+      },
+      {
+        "t": 88188.4,
+        "target_id": 2,
+        "offset_px": 17.39,
+        "offset_over_radius": 0.7559,
+        "inside": true
+      }
+    ]
+  },
+  "spec": {
+    "targets": [
+      {
+        "id": 1,
+        "x": 839.7,
+        "y": 318.2,
+        "radius": 26,
+        "color": "#22d3ee"
+      },
+      {
+        "id": 2,
+        "x": 247.8,
+        "y": 464.6,
+        "radius": 23,
+        "color": "#a855f7"
+      },
+      {
+        "id": 3,
+        "x": 385.3,
+        "y": 242.7,
+        "radius": 24,
+        "color": "#f59e0b"
+      },
+      {
+        "id": 4,
+        "x": 304.6,
+        "y": 537.9,
+        "radius": 25,
+        "color": "#10b981"
+      },
+      {
+        "id": 5,
+        "x": 799.7,
+        "y": 406.4,
+        "radius": 28,
+        "color": "#f43f5e"
+      },
+      {
+        "id": 6,
+        "x": 402.8,
+        "y": 535.2,
+        "radius": 22,
+        "color": "#22d3ee"
+      },
+      {
+        "id": 7,
+        "x": 394.7,
+        "y": 444.0,
+        "radius": 27,
+        "color": "#a855f7"
+      }
+    ],
+    "click_tolerance_px": 30
+  },
+  "csv": "target_hunt_20260818_054114_86fd7edd-f9c7-42c0-a25f-.csv",
+  "relative_dir": "challenges/lan/target_hunt",
+  "saved_at": "2026-08-18T05:41:14.826834+00:00"
+}

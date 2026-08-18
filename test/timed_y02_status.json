@@ -1,0 +1,17 @@
+{
+  "model": "ymodel_v0.2",
+  "attempts": 27,
+  "elapsed_s": 528.1,
+  "best_model_human": 0.7267,
+  "best_bot_prob": 0.2733,
+  "best_family": "idle_correct",
+  "last_model_human": 0.7267,
+  "last_family": "idle_correct",
+  "target": 0.7,
+  "family_best": {
+    "hi_jit": 0.5202,
+    "pause_heavy": 0.0,
+    "idle_correct": 0.7267,
+    "wobble_mid": 0.4255
+  }
+}

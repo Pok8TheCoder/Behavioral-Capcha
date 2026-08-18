@@ -1,0 +1,73 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "9c263205-c344-4ff8-b668-430d3c0c3145",
+  "challenge_type": "shape_trace",
+  "seed": 593942066,
+  "task_passed": true,
+  "event_count": 476,
+  "features": {
+    "event_count": 476,
+    "duration_ms": 1393.3,
+    "total_distance_px": 526.04,
+    "euclidean_distance_px": 14.42,
+    "straightness_index": 0.0274,
+    "velocity_mean": 0.7918,
+    "velocity_std": 0.4628,
+    "velocity_max": 2.5,
+    "acceleration_mean": 0.30409,
+    "acceleration_std": 0.351119,
+    "acceleration_max": 2.539482,
+    "jerk_mean": 0.24932919,
+    "angle_change_mean": 0.6879,
+    "angle_change_std": 0.673,
+    "jitter_ratio": 0.3143,
+    "idle_ratio": 0.1625,
+    "avg_click_dwell_ms": 1393.3
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 1393.3,
+    "median_click_dwell_ms": 1393.3,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": "triangle",
+    "stroke_points": 476,
+    "stroke_length_px": 526.04,
+    "guide_length_px": 442.52,
+    "length_ratio": 1.1887,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 35.5864,
+    "max_distance_to_guide_px": 73.73,
+    "stroke_duration_ms": 1393.3,
+    "tolerance_px": 24.44
+  },
+  "spec": {
+    "shape": "triangle",
+    "guide_points": [
+      [
+        343.7651294351158,
+        603.7261858270847
+      ],
+      [
+        270.01171964880666,
+        475.98153284574965
+      ],
+      [
+        417.5185392214249,
+        475.9815328457496
+      ],
+      [
+        343.7651294351158,
+        603.7261858270847
+      ]
+    ],
+    "tolerance_px": 24.441353018327934,
+    "min_coverage_ratio": 0.55,
+    "min_stroke_points": 20
+  },
+  "csv": "shape_trace_20260817_120255_9c263205-c344-4ff8-b668-.csv",
+  "relative_dir": "challenges/shape_trace",
+  "saved_at": "2026-08-17T12:02:55.415304+00:00"
+}

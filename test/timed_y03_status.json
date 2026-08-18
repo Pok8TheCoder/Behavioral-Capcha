@@ -1,0 +1,19 @@
+{
+  "model": "ymodel_v0.3",
+  "attempts": 89,
+  "elapsed_s": 1204.1,
+  "best_model_human": 0.44320000000000004,
+  "best_bot_prob": 0.5568,
+  "best_family": "wide_arc",
+  "last_model_human": 0.034499999999999975,
+  "last_family": "micro_tremor",
+  "target": 0.7,
+  "family_best": {
+    "idle_correct": 0.03520000000000001,
+    "wide_arc": 0.44320000000000004,
+    "slow_arc": 0.0046000000000000485,
+    "pause_heavy": 0.009000000000000008,
+    "burst_hi_vel": 0.20120000000000005,
+    "micro_tremor": 0.034499999999999975
+  }
+}

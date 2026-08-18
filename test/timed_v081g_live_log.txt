@@ -1,0 +1,1084 @@
+--- qmodel_v0.8.1G live solver (target: 1-bot_prob >= 0.70) ---
+attempt 01 family=fast_human_click model_h=0.001 bot_prob=0.9991 fused_hc=0% http=200 decision=BLOCKED: BOT events=763 vel=0.2944 jerk=0.00083541 acc=0.011879 jit=0.1901 str=0.816 heur=0.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 02 family=trackpad_hesitate model_h=0.001 bot_prob=0.999 fused_hc=0% http=200 decision=BLOCKED: BOT events=636 vel=0.2064 jerk=0.00117622 acc=0.009577 jit=0.5143 str=0.2612 heur=0.36 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 03 family=trackpad_hesitate model_h=0.000 bot_prob=0.9995 fused_hc=0% http=200 decision=BLOCKED: BOT events=864 vel=0.202 jerk=0.00104279 acc=0.008535 jit=0.5847 str=0.226 heur=0.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 04 family=os_burst model_h=0.002 bot_prob=0.9977 fused_hc=0% http=200 decision=BLOCKED: BOT events=598 vel=0.2583 jerk=0.00214531 acc=0.014339 jit=0.3814 str=0.3288 heur=0.36 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 05 family=trackpad_hesitate model_h=0.003 bot_prob=0.9968 fused_hc=0% http=200 decision=BLOCKED: BOT events=517 vel=0.2111 jerk=0.00042119 acc=0.006784 jit=0.6321 str=0.1937 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 06 family=fast_human_click model_h=0.001 bot_prob=0.9985 fused_hc=0% http=200 decision=BLOCKED: BOT events=509 vel=0.1991 jerk=0.00250186 acc=0.01206 jit=0.4359 str=0.2763 heur=0.0 flags=No risk flags.
+attempt 07 family=trackpad_hesitate model_h=0.000 bot_prob=0.9997 fused_hc=0% http=200 decision=BLOCKED: BOT events=563 vel=0.2128 jerk=0.00055797 acc=0.008052 jit=0.5964 str=0.4084 heur=0.76 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 08 family=trackpad_hesitate model_h=0.001 bot_prob=0.9986 fused_hc=0% http=200 decision=BLOCKED: BOT events=457 vel=0.2044 jerk=0.00082991 acc=0.008402 jit=0.5092 str=0.1558 heur=0.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 09 family=os_correct model_h=0.002 bot_prob=0.9979 fused_hc=0% http=200 decision=BLOCKED: BOT events=758 vel=0.2186 jerk=0.00152341 acc=0.014722 jit=0.6239 str=0.4044 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 10 family=os_correct model_h=0.006 bot_prob=0.994 fused_hc=0% http=200 decision=BLOCKED: BOT events=721 vel=0.2125 jerk=0.00081961 acc=0.011187 jit=0.6441 str=0.0437 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 11 family=os_burst model_h=0.003 bot_prob=0.997 fused_hc=0% http=200 decision=BLOCKED: BOT events=573 vel=0.2452 jerk=0.00133886 acc=0.012598 jit=0.4088 str=0.3867 heur=0.36 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 12 family=os_correct model_h=0.003 bot_prob=0.9966 fused_hc=0% http=200 decision=BLOCKED: BOT events=1047 vel=0.1723 jerk=0.00057745 acc=0.007765 jit=0.6212 str=0.4062 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 13 family=os_burst model_h=0.001 bot_prob=0.9989 fused_hc=0% http=200 decision=BLOCKED: BOT events=482 vel=0.2169 jerk=0.00081687 acc=0.010855 jit=0.4508 str=0.2337 heur=0.36 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 14 family=trackpad_hesitate model_h=0.012 bot_prob=0.9877 fused_hc=0% http=200 decision=BLOCKED: BOT events=679 vel=0.2118 jerk=0.00062194 acc=0.008549 jit=0.5481 str=0.4463 heur=0.36 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 15 family=trackpad_hesitate model_h=0.001 bot_prob=0.9989 fused_hc=0% http=200 decision=BLOCKED: BOT events=812 vel=0.2081 jerk=0.00470662 acc=0.013848 jit=0.5745 str=0.1144 heur=0.76 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 16 family=os_correct model_h=0.003 bot_prob=0.9968 fused_hc=0% http=200 decision=BLOCKED: BOT events=868 vel=0.211 jerk=0.00572446 acc=0.017533 jit=0.6471 str=0.3505 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 17 family=trackpad_hesitate model_h=0.000 bot_prob=None fused_hc=—% http=404 decision=IN PROGRESS events=581 vel=None jerk=None acc=None jit=None str=None heur=None flags=No evaluation yet. Challenge session not found.
+--- qmodel_v0.8.1G live solver (target: 1-bot_prob >= 0.70) ---
+attempt 01 family=os_burst model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=85 vel=0.6493 jerk=0.00166684 acc=0.020345 jit=0.1687 str=0.5619 heur=0.0 flags=No risk flags.
+attempt 02 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=129 vel=0.6683 jerk=0.00221478 acc=0.022545 jit=0.1024 str=0.2339 heur=0.0 flags=No risk flags.
+attempt 03 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=187 vel=0.5375 jerk=0.00310804 acc=0.021514 jit=0.1243 str=0.2199 heur=0.0 flags=No risk flags.
+attempt 04 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=250 vel=0.5793 jerk=0.00256781 acc=0.02124 jit=0.0806 str=0.1875 heur=0.0 flags=No risk flags.
+attempt 05 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=131 vel=0.9158 jerk=0.00712405 acc=0.045783 jit=0.1783 str=0.2471 heur=0.38 flags=Flat-dynamics automation signature
+attempt 18 family=os_correct model_h=0.000 bot_prob=None fused_hc=—% http=404 decision=IN PROGRESS events=759 vel=None jerk=None acc=None jit=None str=None heur=None flags=No evaluation yet. Challenge session not found.
+attempt 06 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=105 vel=0.7691 jerk=0.00172788 acc=0.03037 jit=0.165 str=0.4241 heur=0.0 flags=No risk flags.
+attempt 07 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=122 vel=0.8623 jerk=0.00754104 acc=0.042766 jit=0.1917 str=0.2074 heur=0.38 flags=Flat-dynamics automation signature
+attempt 08 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=173 vel=0.8302 jerk=0.00313368 acc=0.035567 jit=0.1287 str=0.2536 heur=0.72 flags=Dynamic evasion rule match (evasion_cycle_005) | Flat-dynamics automation signature
+attempt 09 family=os_correct model_h=0.005 bot_prob=0.9945 fused_hc=1% http=200 decision=BLOCKED: BOT events=81 vel=0.5065 jerk=0.01342092 acc=0.03984 jit=0.2152 str=0.3976 heur=0.0 flags=No risk flags.
+attempt 19 family=fast_human_click model_h=0.001 bot_prob=0.9992 fused_hc=0% http=200 decision=BLOCKED: BOT events=619 vel=0.3197 jerk=0.00082609 acc=0.013757 jit=0.2014 str=0.9157 heur=0.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 10 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=138 vel=0.79 jerk=0.00561943 acc=0.04402 jit=0.1618 str=0.2787 heur=0.0 flags=No risk flags.
+attempt 11 family=os_correct model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=128 vel=0.5984 jerk=0.00422907 acc=0.025897 jit=0.1667 str=0.2393 heur=0.0 flags=No risk flags.
+attempt 20 family=fast_human_click model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=409 vel=0.1877 jerk=0.00083712 acc=0.009424 jit=0.4447 str=0.1519 heur=0.0 flags=No risk flags.
+attempt 12 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=125 vel=0.6999 jerk=0.00218384 acc=0.025088 jit=0.1382 str=0.1796 heur=0.0 flags=No risk flags.
+attempt 13 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=168 vel=0.5127 jerk=0.00378167 acc=0.019649 jit=0.1747 str=0.1928 heur=0.0 flags=No risk flags.
+attempt 14 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=120 vel=0.4894 jerk=0.00306317 acc=0.01835 jit=0.1441 str=0.1761 heur=0.0 flags=No risk flags.
+--- qmodel_v0.8.1G live solver (target: 1-bot_prob >= 0.70) ---
+attempt 01 family=dense_var model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=142 vel=0.5791 jerk=0.00367534 acc=0.035879 jit=0.1 str=0.5454 heur=0.0 flags=No risk flags.
+attempt 15 family=hop_accel model_h=0.000 bot_prob=None fused_hc=—% http=404 decision=IN PROGRESS events=163 vel=None jerk=None acc=None jit=None str=None heur=None flags=No evaluation yet. Challenge session not found.
+attempt 21 family=trackpad_hesitate model_h=0.000 bot_prob=None fused_hc=—% http=404 decision=IN PROGRESS events=613 vel=None jerk=None acc=None jit=None str=None heur=None flags=No evaluation yet. Challenge session not found.
+attempt 02 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=146 vel=0.7077 jerk=0.00838442 acc=0.061443 jit=0.1181 str=0.4407 heur=0.0 flags=No risk flags.
+attempt 16 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=81 vel=0.6717 jerk=0.00125798 acc=0.022932 jit=0.1266 str=0.5084 heur=0.0 flags=No risk flags.
+attempt 03 family=dense_var model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=145 vel=0.533 jerk=0.00215463 acc=0.026664 jit=0.1329 str=0.3626 heur=0.0 flags=No risk flags.
+attempt 17 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=79 vel=0.7229 jerk=0.00294501 acc=0.029425 jit=0.1688 str=0.1329 heur=0.0 flags=No risk flags.
+attempt 04 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=111 vel=0.8229 jerk=0.00348719 acc=0.041465 jit=0.1927 str=0.1638 heur=0.38 flags=Flat-dynamics automation signature
+attempt 18 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=102 vel=0.7427 jerk=0.00557313 acc=0.042024 jit=0.21 str=0.1957 heur=0.0 flags=No risk flags.
+attempt 05 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=112 vel=0.8393 jerk=0.00389874 acc=0.043366 jit=0.1909 str=0.2003 heur=0.38 flags=Flat-dynamics automation signature
+attempt 19 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=164 vel=0.5271 jerk=0.00222531 acc=0.018358 jit=0.0988 str=0.2935 heur=0.0 flags=No risk flags.
+attempt 06 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=95 vel=0.6436 jerk=0.00102278 acc=0.019365 jit=0.1505 str=0.1348 heur=0.0 flags=No risk flags.
+attempt 20 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=110 vel=0.6892 jerk=0.00500416 acc=0.029829 jit=0.1481 str=0.0808 heur=0.0 flags=No risk flags.
+attempt 07 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=162 vel=0.5857 jerk=0.00645868 acc=0.037747 jit=0.125 str=0.1959 heur=0.0 flags=No risk flags.
+attempt 21 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=115 vel=0.5705 jerk=0.00109332 acc=0.01785 jit=0.177 str=0.0967 heur=0.0 flags=No risk flags.
+attempt 08 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=115 vel=0.5731 jerk=0.00318382 acc=0.023289 jit=0.1593 str=0.0752 heur=0.0 flags=No risk flags.
+attempt 22 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=136 vel=0.5613 jerk=0.0024176 acc=0.020399 jit=0.1343 str=0.2732 heur=0.0 flags=No risk flags.
+attempt 22 error: Timeout 30000ms exceeded while waiting for event "response"
+attempt 09 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=117 vel=0.6869 jerk=0.00187348 acc=0.021798 jit=0.113 str=0.1444 heur=0.0 flags=No risk flags.
+attempt 23 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=86 vel=0.8458 jerk=0.0026629 acc=0.028894 jit=0.1786 str=0.3023 heur=0.38 flags=Flat-dynamics automation signature
+attempt 10 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=144 vel=0.8645 jerk=0.0060264 acc=0.036767 jit=0.162 str=0.2064 heur=0.38 flags=Flat-dynamics automation signature
+attempt 24 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=193 vel=0.5265 jerk=0.00109008 acc=0.017053 jit=0.1099 str=0.2902 heur=0.0 flags=No risk flags.
+attempt 11 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=92 vel=0.8325 jerk=0.00299532 acc=0.041387 jit=0.1778 str=0.2417 heur=0.38 flags=Flat-dynamics automation signature
+attempt 23 family=fast_human_click model_h=0.001 bot_prob=0.9992 fused_hc=0% http=200 decision=BLOCKED: BOT events=487 vel=0.3055 jerk=0.00075606 acc=0.013795 jit=0.121 str=0.865 heur=0.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 25 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=139 vel=0.8404 jerk=0.0049659 acc=0.034876 jit=0.1679 str=0.2817 heur=0.38 flags=Flat-dynamics automation signature
+attempt 12 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=124 vel=0.4662 jerk=0.00266904 acc=0.019968 jit=0.1066 str=0.2103 heur=0.0 flags=No risk flags.
+attempt 26 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=109 vel=0.6855 jerk=0.00276553 acc=0.034299 jit=0.2056 str=0.1747 heur=0.0 flags=No risk flags.
+attempt 13 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=158 vel=0.8499 jerk=0.00150093 acc=0.024503 jit=0.141 str=0.1989 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_005) | Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 27 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=140 vel=0.5152 jerk=0.00146165 acc=0.017778 jit=0.1159 str=0.4865 heur=0.0 flags=No risk flags.
+attempt 14 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=122 vel=0.8656 jerk=0.00210796 acc=0.03184 jit=0.1333 str=0.1449 heur=0.38 flags=Flat-dynamics automation signature
+attempt 28 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=118 vel=0.8578 jerk=0.00228352 acc=0.026978 jit=0.1293 str=0.1972 heur=0.38 flags=Flat-dynamics automation signature
+attempt 24 family=fast_human_click model_h=0.000 bot_prob=0.9996 fused_hc=0% http=200 decision=BLOCKED: BOT events=567 vel=0.2511 jerk=0.00046471 acc=0.009291 jit=0.2195 str=0.8968 heur=0.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 15 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=143 vel=0.8538 jerk=0.00256593 acc=0.029533 jit=0.1277 str=0.1107 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 29 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=111 vel=0.5545 jerk=0.00592506 acc=0.025917 jit=0.1835 str=0.1801 heur=0.0 flags=No risk flags.
+attempt 16 family=os_correct model_h=0.000 bot_prob=0.9996 fused_hc=0% http=200 decision=BLOCKED: BOT events=143 vel=0.5179 jerk=0.00344281 acc=0.021261 jit=0.0922 str=0.0419 heur=0.0 flags=No risk flags.
+attempt 30 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=79 vel=0.8001 jerk=0.00164195 acc=0.023249 jit=0.1558 str=0.1794 heur=0.38 flags=Flat-dynamics automation signature
+attempt 31 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=140 vel=0.9054 jerk=0.00271154 acc=0.027621 jit=0.1449 str=0.2552 heur=0.38 flags=Flat-dynamics automation signature
+attempt 17 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=253 vel=0.7036 jerk=0.00564714 acc=0.048687 jit=0.0916 str=0.1656 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001) | Low-straightness fast evasion (issue 001 variant) | Low-straightn
+attempt 25 family=os_burst model_h=0.003 bot_prob=0.9972 fused_hc=0% http=200 decision=BLOCKED: BOT events=547 vel=0.1612 jerk=0.00036845 acc=0.006331 jit=0.6827 str=0.4532 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 32 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=162 vel=0.6146 jerk=0.00200739 acc=0.024011 jit=0.1125 str=0.0431 heur=0.0 flags=No risk flags.
+attempt 18 family=os_burst model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=122 vel=0.637 jerk=0.00496814 acc=0.027976 jit=0.1833 str=0.3973 heur=0.0 flags=No risk flags.
+attempt 33 family=fast_human_click model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=69 vel=0.7711 jerk=0.00598634 acc=0.032326 jit=0.2239 str=0.43 heur=0.0 flags=No risk flags.
+attempt 19 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=138 vel=0.68 jerk=0.00314158 acc=0.024614 jit=0.125 str=0.1031 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 34 family=os_correct model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=114 vel=0.5756 jerk=0.00379843 acc=0.029449 jit=0.1607 str=0.1312 heur=0.0 flags=No risk flags.
+attempt 20 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=123 vel=0.5429 jerk=0.00288373 acc=0.020407 jit=0.1074 str=0.1336 heur=0.0 flags=No risk flags.
+attempt 26 family=fast_human_click model_h=0.002 bot_prob=0.9983 fused_hc=0% http=200 decision=BLOCKED: BOT events=517 vel=0.2466 jerk=0.00128235 acc=0.011762 jit=0.3476 str=0.0434 heur=0.0 flags=No risk flags.
+attempt 35 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=180 vel=0.9204 jerk=0.00788761 acc=0.047308 jit=0.1067 str=0.0688 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness fast evasion (issue 001 variant) | Flat-dynamics automation signature | Low-straightness low-j
+attempt 21 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=113 vel=0.9914 jerk=0.00345271 acc=0.052676 jit=0.1441 str=0.2465 heur=0.38 flags=Flat-dynamics automation signature
+attempt 36 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=155 vel=0.7242 jerk=0.00509445 acc=0.028531 jit=0.1307 str=0.1608 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 22 family=dense_var model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=229 vel=0.6868 jerk=0.00882143 acc=0.06264 jit=0.1057 str=0.0474 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001) | Low-straightness fast evasion (issue 001 variant) | Low-straightn
+attempt 37 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=111 vel=0.5968 jerk=0.00272437 acc=0.024689 jit=0.1376 str=0.149 heur=0.0 flags=No risk flags.
+attempt 23 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=190 vel=0.6178 jerk=0.00386958 acc=0.038329 jit=0.0745 str=0.2428 heur=0.8 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001)
+attempt 38 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=154 vel=0.892 jerk=0.00180645 acc=0.025562 jit=0.1316 str=0.1082 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 24 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=197 vel=0.6723 jerk=0.0075752 acc=0.03535 jit=0.1282 str=0.0816 heur=0.8 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness low-jitter Playwright hop
+attempt 39 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=151 vel=0.7692 jerk=0.00173782 acc=0.02926 jit=0.1342 str=0.1815 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 25 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=115 vel=0.933 jerk=0.00365182 acc=0.0515 jit=0.1593 str=0.2052 heur=0.38 flags=Flat-dynamics automation signature
+attempt 40 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=148 vel=0.7862 jerk=0.00495577 acc=0.040892 jit=0.1644 str=0.3124 heur=0.0 flags=No risk flags.
+attempt 26 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=115 vel=0.8803 jerk=0.00204874 acc=0.027429 jit=0.1327 str=0.2576 heur=0.38 flags=Flat-dynamics automation signature
+attempt 41 family=fast_human_click model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=75 vel=0.8898 jerk=0.00454748 acc=0.036863 jit=0.1507 str=0.1913 heur=0.38 flags=Flat-dynamics automation signature
+attempt 27 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=121 vel=0.6199 jerk=0.00176058 acc=0.02484 jit=0.1092 str=0.0106 heur=0.0 flags=No risk flags.
+attempt 42 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=109 vel=0.8733 jerk=0.00254178 acc=0.027487 jit=0.1495 str=0.1152 heur=0.38 flags=Flat-dynamics automation signature
+attempt 27 error: Timeout 30000ms exceeded while waiting for event "response"
+attempt 28 family=dense_var model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=182 vel=0.7317 jerk=0.01066381 acc=0.061482 jit=0.1056 str=0.2222 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001) | Low-straightness low-jitter Playwright hop
+attempt 43 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=182 vel=0.8367 jerk=0.00385732 acc=0.03581 jit=0.1167 str=0.1284 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness fast evasion (issue 001 variant) | Flat-dynamics automation signature | Low-straightness low-j
+attempt 44 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=97 vel=0.8296 jerk=0.00681377 acc=0.052241 jit=0.1368 str=0.1876 heur=0.38 flags=Flat-dynamics automation signature
+attempt 29 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=203 vel=0.6839 jerk=0.00450239 acc=0.0422 jit=0.1144 str=0.127 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001) | Low-straightness fast evasion (issue 001 variant) | Low-straightn
+attempt 30 family=os_correct model_h=0.000 bot_prob=0.9997 fused_hc=0% http=200 decision=BLOCKED: BOT events=113 vel=0.6816 jerk=0.00338022 acc=0.028392 jit=0.1441 str=0.0702 heur=0.0 flags=No risk flags.
+attempt 45 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=167 vel=0.7798 jerk=0.00209831 acc=0.022146 jit=0.1152 str=0.2112 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 31 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=108 vel=1.0505 jerk=0.0086114 acc=0.072484 jit=0.1321 str=0.2785 heur=0.38 flags=Flat-dynamics automation signature
+attempt 46 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=83 vel=0.8632 jerk=0.00272901 acc=0.039522 jit=0.1605 str=0.4385 heur=0.38 flags=Flat-dynamics automation signature
+attempt 47 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=112 vel=0.6705 jerk=0.00171791 acc=0.022102 jit=0.1727 str=0.0933 heur=0.0 flags=No risk flags.
+attempt 28 family=trackpad_hesitate model_h=0.000 bot_prob=0.9995 fused_hc=0% http=200 decision=BLOCKED: BOT events=655 vel=0.2251 jerk=0.00190657 acc=0.010841 jit=0.6069 str=0.2875 heur=0.36 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 32 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=262 vel=0.6591 jerk=0.00399786 acc=0.039085 jit=0.0846 str=0.1596 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001) | Low-straightness low-jitter Playwright hop
+attempt 48 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=97 vel=0.6862 jerk=0.00527149 acc=0.030845 jit=0.2 str=0.2457 heur=0.0 flags=No risk flags.
+attempt 49 family=os_correct model_h=0.001 bot_prob=0.9994 fused_hc=0% http=200 decision=BLOCKED: BOT events=96 vel=0.5476 jerk=0.00670727 acc=0.032493 jit=0.1489 str=0.2783 heur=0.0 flags=No risk flags.
+attempt 33 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=158 vel=0.5422 jerk=0.00577339 acc=0.026883 jit=0.1603 str=0.0631 heur=0.0 flags=No risk flags.
+attempt 50 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=109 vel=0.6728 jerk=0.00312905 acc=0.028765 jit=0.1495 str=0.0637 heur=0.0 flags=No risk flags.
+attempt 29 family=os_burst model_h=0.000 bot_prob=0.9997 fused_hc=0% http=200 decision=BLOCKED: BOT events=357 vel=0.1938 jerk=0.00104816 acc=0.008817 jit=0.4732 str=0.294 heur=0.36 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 34 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=132 vel=0.6389 jerk=0.00469689 acc=0.040338 jit=0.1077 str=0.4964 heur=0.0 flags=No risk flags.
+attempt 51 family=os_burst model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=76 vel=0.6561 jerk=0.00503609 acc=0.026029 jit=0.1757 str=0.1826 heur=0.0 flags=No risk flags.
+attempt 35 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=111 vel=0.8183 jerk=0.00283971 acc=0.026869 jit=0.1743 str=0.1181 heur=0.38 flags=Flat-dynamics automation signature
+attempt 52 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=105 vel=0.7506 jerk=0.0125656 acc=0.048364 jit=0.1553 str=0.2255 heur=0.0 flags=No risk flags.
+attempt 36 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=114 vel=0.558 jerk=0.00530236 acc=0.026705 jit=0.1875 str=0.4048 heur=0.0 flags=No risk flags.
+attempt 53 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=193 vel=0.7538 jerk=0.00567697 acc=0.029025 jit=0.1047 str=0.056 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness fast evasion (issue 001 variant) | Low-straightness low-jitter Playwright hop
+attempt 30 family=fast_human_click model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=569 vel=0.2666 jerk=0.00196841 acc=0.013944 jit=0.3439 str=0.1817 heur=0.0 flags=No risk flags.
+attempt 37 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=225 vel=0.7081 jerk=0.00660974 acc=0.05425 jit=0.1031 str=0.2272 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001) | Low-straightness low-jitter Playwright hop
+attempt 54 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=86 vel=0.7131 jerk=0.00808652 acc=0.042166 jit=0.2143 str=0.2163 heur=0.0 flags=No risk flags.
+attempt 38 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=190 vel=0.672 jerk=0.00627224 acc=0.051314 jit=0.1011 str=0.1421 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001) | Low-straightness low-jitter Playwright hop
+attempt 55 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=145 vel=0.5824 jerk=0.00346495 acc=0.02311 jit=0.1259 str=0.3517 heur=0.0 flags=No risk flags.
+attempt 39 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=171 vel=1.0359 jerk=0.00776856 acc=0.065849 jit=0.1065 str=0.0548 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 56 family=hop_accel model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=115 vel=0.6929 jerk=0.00449706 acc=0.033941 jit=0.1416 str=0.2984 heur=0.0 flags=No risk flags.
+attempt 31 family=os_burst model_h=0.001 bot_prob=0.9987 fused_hc=0% http=200 decision=BLOCKED: BOT events=445 vel=0.1975 jerk=0.00087536 acc=0.009408 jit=0.465 str=0.0836 heur=0.0 flags=No risk flags.
+attempt 40 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=85 vel=0.9092 jerk=0.00444777 acc=0.050329 jit=0.1807 str=0.2458 heur=0.38 flags=Flat-dynamics automation signature
+attempt 57 family=hop_accel model_h=0.000 bot_prob=0.9997 fused_hc=0% http=200 decision=BLOCKED: BOT events=97 vel=0.7954 jerk=0.00268222 acc=0.035283 jit=0.1368 str=0.3808 heur=0.0 flags=No risk flags.
+attempt 41 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=157 vel=0.6143 jerk=0.00561604 acc=0.04623 jit=0.129 str=0.3353 heur=0.0 flags=No risk flags.
+attempt 58 family=os_correct model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=158 vel=0.5535 jerk=0.00381758 acc=0.026203 jit=0.1538 str=0.2712 heur=0.0 flags=No risk flags.
+attempt 42 family=fast_human_click model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=141 vel=0.8381 jerk=0.00290498 acc=0.032999 jit=0.1727 str=0.2012 heur=0.38 flags=Flat-dynamics automation signature
+attempt 59 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=101 vel=0.9027 jerk=0.00245077 acc=0.033072 jit=0.1414 str=0.0959 heur=0.38 flags=Flat-dynamics automation signature
+attempt 32 family=fast_human_click model_h=0.001 bot_prob=0.9993 fused_hc=0% http=200 decision=BLOCKED: BOT events=480 vel=0.2191 jerk=0.00150022 acc=0.012634 jit=0.4728 str=0.2401 heur=0.0 flags=No risk flags.
+attempt 43 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=131 vel=0.5903 jerk=0.00159044 acc=0.019308 jit=0.1163 str=0.1673 heur=0.0 flags=No risk flags.
+attempt 60 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=155 vel=0.8767 jerk=0.00314075 acc=0.02878 jit=0.1111 str=0.0858 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 44 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=127 vel=0.6865 jerk=0.0019305 acc=0.02481 jit=0.12 str=0.3815 heur=0.0 flags=No risk flags.
+attempt 45 family=fast_human_click model_h=0.003 bot_prob=0.997 fused_hc=0% http=200 decision=BLOCKED: BOT events=48 vel=0.6493 jerk=0.00267964 acc=0.031314 jit=0.3478 str=0.5725 heur=0.0 flags=No risk flags.
+attempt 61 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=189 vel=0.5985 jerk=0.00090051 acc=0.016831 jit=0.0856 str=0.0291 heur=0.0 flags=No risk flags.
+attempt 46 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=97 vel=0.9513 jerk=0.00427152 acc=0.054377 jit=0.1895 str=0.2072 heur=0.38 flags=Flat-dynamics automation signature
+attempt 62 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=113 vel=0.8421 jerk=0.00958476 acc=0.050071 jit=0.1081 str=0.1398 heur=0.38 flags=Flat-dynamics automation signature
+attempt 63 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=143 vel=0.9109 jerk=0.00906213 acc=0.038701 jit=0.1489 str=0.2434 heur=0.38 flags=Flat-dynamics automation signature
+attempt 47 family=os_burst model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=134 vel=0.695 jerk=0.00228571 acc=0.027801 jit=0.1212 str=0.3918 heur=0.0 flags=No risk flags.
+attempt 48 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=85 vel=1.0059 jerk=0.00793746 acc=0.067101 jit=0.1807 str=0.1717 heur=0.38 flags=Flat-dynamics automation signature
+attempt 33 family=os_correct model_h=0.005 bot_prob=0.9954 fused_hc=0% http=200 decision=BLOCKED: BOT events=797 vel=0.1789 jerk=0.00041376 acc=0.007037 jit=0.6471 str=0.4166 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 64 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=116 vel=0.7103 jerk=0.00162106 acc=0.022787 jit=0.1316 str=0.4251 heur=0.0 flags=No risk flags.
+attempt 49 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=103 vel=0.822 jerk=0.00170387 acc=0.027906 jit=0.1485 str=0.2775 heur=0.38 flags=Flat-dynamics automation signature
+attempt 65 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=118 vel=0.7328 jerk=0.00509135 acc=0.040069 jit=0.1552 str=0.1666 heur=0.0 flags=No risk flags.
+attempt 50 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=177 vel=0.6435 jerk=0.0055461 acc=0.043208 jit=0.1371 str=0.2834 heur=0.4 flags=Dynamic evasion rule match (evasion_cycle_002)
+attempt 66 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=172 vel=0.5573 jerk=0.0040721 acc=0.024847 jit=0.1412 str=0.0799 heur=0.0 flags=No risk flags.
+attempt 51 family=fast_human_click model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=149 vel=0.9074 jerk=0.00934117 acc=0.043949 jit=0.1429 str=0.0071 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 67 family=hop_accel model_h=0.001 bot_prob=0.9994 fused_hc=0% http=200 decision=BLOCKED: BOT events=109 vel=0.7629 jerk=0.01474551 acc=0.06141 jit=0.1963 str=0.0648 heur=0.0 flags=No risk flags.
+attempt 52 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=124 vel=0.7066 jerk=0.00242364 acc=0.027537 jit=0.1639 str=0.0888 heur=0.0 flags=No risk flags.
+attempt 68 family=os_correct model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=143 vel=0.5846 jerk=0.00620487 acc=0.027144 jit=0.1206 str=0.3041 heur=0.0 flags=No risk flags.
+attempt 53 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=105 vel=0.7937 jerk=0.00204199 acc=0.025788 jit=0.1359 str=0.2919 heur=0.0 flags=No risk flags.
+attempt 34 family=os_correct model_h=0.001 bot_prob=0.9988 fused_hc=0% http=200 decision=BLOCKED: BOT events=797 vel=0.2003 jerk=0.00117888 acc=0.009709 jit=0.6452 str=0.2886 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 69 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=104 vel=0.561 jerk=0.00372173 acc=0.021926 jit=0.1569 str=0.1818 heur=0.0 flags=No risk flags.
+attempt 54 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=205 vel=0.6392 jerk=0.00472278 acc=0.041 jit=0.064 str=0.3199 heur=0.8 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001)
+attempt 70 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=111 vel=0.7542 jerk=0.00182792 acc=0.023495 jit=0.1284 str=0.2775 heur=0.0 flags=No risk flags.
+attempt 55 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=154 vel=0.6615 jerk=0.00547606 acc=0.043493 jit=0.1118 str=0.1412 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 71 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=140 vel=0.5275 jerk=0.00406643 acc=0.024869 jit=0.1522 str=0.2345 heur=0.0 flags=No risk flags.
+attempt 56 family=os_burst model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=96 vel=0.6661 jerk=0.0036094 acc=0.024779 jit=0.2021 str=0.3013 heur=0.0 flags=No risk flags.
+attempt 72 family=hop_accel model_h=0.000 bot_prob=0.9996 fused_hc=0% http=200 decision=BLOCKED: BOT events=102 vel=0.8385 jerk=0.01437413 acc=0.062473 jit=0.14 str=0.2022 heur=0.38 flags=Flat-dynamics automation signature
+attempt 57 family=dense_var model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=287 vel=0.6698 jerk=0.00359657 acc=0.040378 jit=0.0737 str=0.0359 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Wobble-linear evasion signature (issue 001) | Low-straightness low-jitter Playwright hop | High event-count low
+attempt 73 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=124 vel=0.6796 jerk=0.00533325 acc=0.031923 jit=0.1557 str=0.1823 heur=0.0 flags=No risk flags.
+attempt 74 family=fast_human_click model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=66 vel=0.7236 jerk=0.00711315 acc=0.037283 jit=0.1562 str=0.5193 heur=0.0 flags=No risk flags.
+attempt 35 family=trackpad_hesitate model_h=0.002 bot_prob=0.9975 fused_hc=0% http=200 decision=BLOCKED: BOT events=690 vel=0.1672 jerk=0.00031331 acc=0.006161 jit=0.625 str=0.2726 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 58 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=208 vel=0.5969 jerk=0.00270108 acc=0.032289 jit=0.1068 str=0.3359 heur=0.0 flags=No risk flags.
+attempt 75 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=219 vel=0.5776 jerk=0.00136111 acc=0.017679 jit=0.0922 str=0.2486 heur=0.0 flags=No risk flags.
+attempt 59 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=128 vel=0.4876 jerk=0.00433376 acc=0.021072 jit=0.1984 str=0.2661 heur=0.0 flags=No risk flags.
+attempt 76 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=87 vel=0.8201 jerk=0.00350251 acc=0.030817 jit=0.1765 str=0.1913 heur=0.38 flags=Flat-dynamics automation signature
+attempt 60 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=162 vel=0.6958 jerk=0.00255125 acc=0.023469 jit=0.1 str=0.0193 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 77 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=121 vel=0.5519 jerk=0.00416197 acc=0.025804 jit=0.1429 str=0.0603 heur=0.0 flags=No risk flags.
+attempt 61 family=fast_human_click model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=62 vel=0.6179 jerk=0.00506414 acc=0.033339 jit=0.2667 str=0.3171 heur=0.0 flags=No risk flags.
+attempt 36 family=os_burst model_h=0.003 bot_prob=0.9966 fused_hc=0% http=200 decision=BLOCKED: BOT events=542 vel=0.2026 jerk=0.00031904 acc=0.007235 jit=0.3846 str=0.4017 heur=0.36 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002)
+attempt 78 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=89 vel=0.6534 jerk=0.00121044 acc=0.019339 jit=0.1609 str=0.3771 heur=0.0 flags=No risk flags.
+attempt 62 family=dense_var model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=104 vel=0.5949 jerk=0.00412191 acc=0.035341 jit=0.1373 str=0.7295 heur=0.0 flags=No risk flags.
+attempt 63 family=os_correct model_h=0.001 bot_prob=0.9992 fused_hc=0% http=200 decision=BLOCKED: BOT events=103 vel=0.5166 jerk=0.00277461 acc=0.022884 jit=0.2277 str=0.5669 heur=0.0 flags=No risk flags.
+attempt 79 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=205 vel=0.5896 jerk=0.00792973 acc=0.032084 jit=0.1084 str=0.1294 heur=0.0 flags=No risk flags.
+attempt 64 family=hop_accel model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=126 vel=0.9413 jerk=0.00949914 acc=0.059049 jit=0.1613 str=0.337 heur=0.38 flags=Flat-dynamics automation signature
+attempt 80 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=103 vel=0.8592 jerk=0.00349703 acc=0.037027 jit=0.1881 str=0.3603 heur=0.38 flags=Flat-dynamics automation signature
+attempt 65 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=111 vel=0.8608 jerk=0.0029845 acc=0.03314 jit=0.1193 str=0.3876 heur=0.38 flags=Flat-dynamics automation signature
+attempt 81 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=127 vel=0.4991 jerk=0.00165012 acc=0.01988 jit=0.12 str=0.2432 heur=0.0 flags=No risk flags.
+attempt 66 family=hop_accel model_h=0.000 bot_prob=0.9997 fused_hc=0% http=200 decision=BLOCKED: BOT events=127 vel=1.0754 jerk=0.01097395 acc=0.078816 jit=0.12 str=0.0867 heur=0.38 flags=Flat-dynamics automation signature
+attempt 82 family=hop_accel model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=107 vel=0.7493 jerk=0.006905 acc=0.037018 jit=0.1619 str=0.3687 heur=0.0 flags=No risk flags.
+attempt 37 family=os_correct model_h=0.001 bot_prob=0.9994 fused_hc=0% http=200 decision=BLOCKED: BOT events=807 vel=0.2095 jerk=0.00065241 acc=0.008173 jit=0.6471 str=0.5466 heur=1.0 flags=Automation kinematic mismatch (inflated jitter, low dynamics) | Inflated jitter sparse-hop automation (issue 002) | Extreme jitter inflation (micro-jiggle autom
+attempt 67 family=os_correct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=193 vel=0.5737 jerk=0.00407197 acc=0.027196 jit=0.1257 str=0.119 heur=0.0 flags=No risk flags.
+attempt 83 family=fast_human_click model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=140 vel=0.9051 jerk=0.00454159 acc=0.03782 jit=0.1449 str=0.276 heur=0.38 flags=Flat-dynamics automation signature
+attempt 84 family=os_correct model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=100 vel=0.5565 jerk=0.00521162 acc=0.030398 jit=0.1327 str=0.2967 heur=0.0 flags=No risk flags.
+attempt 68 family=os_burst model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=129 vel=0.6669 jerk=0.00291981 acc=0.022112 jit=0.189 str=0.2924 heur=0.0 flags=No risk flags.
+attempt 85 family=os_correct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=97 vel=0.4741 jerk=0.00083338 acc=0.016176 jit=0.1684 str=0.084 heur=0.0 flags=No risk flags.
+attempt 69 error: Timeout 30000ms exceeded while waiting for event "response"
+attempt 86 error: Page.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#btn-submit")
+    - locator resolved to <button disabled class="btn" type="button" id="btn-submit">Submit Attempt</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    57 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+attempt 38 error: Page.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#btn-submit")
+    - locator resolved to <button disabled class="btn" type="button" id="btn-submit">Submit Attempt</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    58 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+attempt 70 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 87 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 39 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 71 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 88 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 40 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 72 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 89 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 41 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 73 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 90 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 42 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 74 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 91 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 43 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 75 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 92 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 44 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 76 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 93 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 45 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 77 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 94 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 46 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 78 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 95 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 47 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 79 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 96 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 48 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+DEADLINE_HIT best_model_human=0.0123 attempts=48
+attempt 80 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 97 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 81 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 98 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 82 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 99 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 83 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 100 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 84 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 101 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 85 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+attempt 102 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 86 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 103 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 87 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 104 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 88 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 105 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 89 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 106 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 90 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 107 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 91 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 108 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+DEADLINE_HIT best_model_human=0.0055 attempts=108
+attempt 92 error: Page.select_option: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+--- qmodel_v0.8.1G live solver (target: 1-bot_prob >= 0.70) ---
+attempt 93 family=dense_var model_h=0.000 bot_prob=None fused_hc=—% http=404 decision=IN PROGRESS events=210 vel=None jerk=None acc=None jit=None str=None heur=None flags=No evaluation yet. Challenge session not found.
+attempt 01 family=minjerk_direct model_h=0.001 bot_prob=0.9986 fused_hc=0% http=200 decision=BLOCKED: BOT events=119 vel=0.4528 jerk=0.00908939 acc=0.031716 jit=0.1538 str=0.2857 heur=0.0 flags=No risk flags.
+attempt 02 family=irregular_poly model_h=0.006 bot_prob=0.9942 fused_hc=1% http=200 decision=BLOCKED: BOT events=132 vel=0.7104 jerk=0.03406028 acc=0.111186 jit=0.1923 str=0.3209 heur=0.0 flags=No risk flags.
+attempt 94 family=os_burst model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=188 vel=0.7051 jerk=0.00229024 acc=0.022333 jit=0.1237 str=0.2498 heur=0.4 flags=Dynamic evasion rule match (evasion_cycle_002)
+attempt 95 family=os_burst model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=182 vel=0.8036 jerk=0.00697508 acc=0.034549 jit=0.1 str=0.1358 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness fast evasion (issue 001 variant) | Flat-dynamics automation signature | Low-straightness low-j
+attempt 96 family=dense_var model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=168 vel=0.6479 jerk=0.00561574 acc=0.048891 jit=0.1024 str=0.2941 heur=0.0 flags=No risk flags.
+DEADLINE_HIT best_model_human=0.0030 attempts=96
+attempt 03 error: Timeout 12000ms exceeded while waiting for event "response"
+attempt 04 error: Timeout 12000ms exceeded while waiting for event "response"
+attempt 05 family=minjerk_direct model_h=0.007 bot_prob=0.9932 fused_hc=1% http=200 decision=BLOCKED: BOT events=233 vel=0.6973 jerk=0.02809095 acc=0.081746 jit=0.1299 str=0.1861 heur=0.8 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness low-jitter Playwright hop
+attempt 06 error: Timeout 12000ms exceeded while waiting for event "response"
+--- qmodel_v0.8.1G live solver (target: 1-bot_prob >= 0.70) ---
+attempt 07 family=minjerk_direct model_h=0.006 bot_prob=0.9943 fused_hc=1% http=200 decision=BLOCKED: BOT events=216 vel=0.664 jerk=0.034647 acc=0.091609 jit=0.1168 str=0.2704 heur=0.4 flags=Dynamic evasion rule match (evasion_cycle_002)
+attempt 08 family=minjerk_fast model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=84 vel=0.8435 jerk=0.00421502 acc=0.035555 jit=0.2073 str=0.2928 heur=0.38 flags=Flat-dynamics automation signature
+attempt 09 family=irregular_poly model_h=0.007 bot_prob=0.9934 fused_hc=1% http=200 decision=BLOCKED: BOT events=227 vel=0.7475 jerk=0.03140167 acc=0.099197 jit=0.16 str=0.2142 heur=0.0 flags=No risk flags.
+attempt 10 family=minjerk_fast model_h=0.002 bot_prob=0.9983 fused_hc=0% http=200 decision=BLOCKED: BOT events=131 vel=0.9811 jerk=0.03683124 acc=0.102564 jit=0.2171 str=0.1458 heur=0.38 flags=Flat-dynamics automation signature
+attempt 01 family=stepped_arc model_h=0.003 bot_prob=0.9966 fused_hc=0% http=200 decision=BLOCKED: BOT events=775 vel=0.139 jerk=0.00651893 acc=0.011186 jit=0.0183 str=0.6634 heur=0.0 flags=Complete absence of organic micro-tremor / sub-movements
+attempt 02 family=minjerk_direct model_h=0.011 bot_prob=0.989 fused_hc=1% http=200 decision=BLOCKED: BOT events=175 vel=0.5964 jerk=0.01760272 acc=0.058514 jit=0.185 str=0.0395 heur=0.0 flags=No risk flags.
+attempt 11 family=minjerk_direct model_h=0.008 bot_prob=0.9921 fused_hc=1% http=200 decision=BLOCKED: BOT events=250 vel=0.582 jerk=0.0215582 acc=0.064944 jit=0.1452 str=0.0365 heur=0.0 flags=No risk flags.
+attempt 12 family=irregular_poly model_h=0.008 bot_prob=0.9922 fused_hc=1% http=200 decision=BLOCKED: BOT events=196 vel=0.7125 jerk=0.05388772 acc=0.13902 jit=0.2165 str=0.4065 heur=0.0 flags=No risk flags.
+attempt 03 family=irregular_poly model_h=0.006 bot_prob=0.9941 fused_hc=1% http=200 decision=BLOCKED: BOT events=274 vel=0.859 jerk=0.0574119 acc=0.141622 jit=0.1801 str=0.08 heur=0.0 flags=No risk flags.
+attempt 13 family=minjerk_direct model_h=0.033 bot_prob=0.9665 fused_hc=3% http=200 decision=BLOCKED: BOT events=205 vel=0.6892 jerk=0.04972656 acc=0.118318 jit=0.1576 str=0.0738 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 14 family=irregular_poly model_h=0.031 bot_prob=0.9691 fused_hc=3% http=200 decision=BLOCKED: BOT events=209 vel=0.7526 jerk=0.05009647 acc=0.138558 jit=0.2029 str=0.2279 heur=0.0 flags=No risk flags.
+attempt 04 family=stepped_arc model_h=0.003 bot_prob=0.997 fused_hc=0% http=200 decision=BLOCKED: BOT events=958 vel=0.1577 jerk=0.0044109 acc=0.010349 jit=0.0184 str=0.6017 heur=0.0 flags=Complete absence of organic micro-tremor / sub-movements
+attempt 15 family=irregular_poly model_h=0.050 bot_prob=0.9501 fused_hc=5% http=200 decision=BLOCKED: BOT events=186 vel=0.7084 jerk=0.06610388 acc=0.151387 jit=0.2446 str=0.2749 heur=0.0 flags=No risk flags.
+attempt 16 family=minjerk_fast model_h=0.011 bot_prob=0.9892 fused_hc=1% http=200 decision=BLOCKED: BOT events=171 vel=1.0668 jerk=0.05853922 acc=0.158444 jit=0.1953 str=0.3493 heur=0.38 flags=Flat-dynamics automation signature
+attempt 17 family=minjerk_fast model_h=0.020 bot_prob=0.9796 fused_hc=2% http=200 decision=BLOCKED: BOT events=192 vel=1.0 jerk=0.04432336 acc=0.119829 jit=0.1526 str=0.05 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 18 family=irregular_poly model_h=0.068 bot_prob=0.932 fused_hc=7% http=200 decision=BLOCKED: BOT events=245 vel=0.7585 jerk=0.04564875 acc=0.137694 jit=0.2346 str=0.059 heur=0.0 flags=No risk flags.
+attempt 05 family=stepped_arc model_h=0.003 bot_prob=0.9973 fused_hc=0% http=200 decision=BLOCKED: BOT events=1210 vel=0.1769 jerk=0.00947757 acc=0.015661 jit=0.0124 str=0.508 heur=0.0 flags=Complete absence of organic micro-tremor / sub-movements | Near-perfect linear trajectory (Straightness: 0.989) | Near-perfect linear trajectory (Straightness:
+attempt 19 family=irregular_poly model_h=0.018 bot_prob=0.9821 fused_hc=2% http=200 decision=BLOCKED: BOT events=114 vel=0.8356 jerk=0.04337483 acc=0.130322 jit=0.1786 str=0.471 heur=0.38 flags=Flat-dynamics automation signature
+attempt 06 family=irregular_poly model_h=0.019 bot_prob=0.9813 fused_hc=2% http=200 decision=BLOCKED: BOT events=194 vel=0.696 jerk=0.03409374 acc=0.102849 jit=0.2083 str=0.067 heur=0.0 flags=No risk flags.
+attempt 07 family=minjerk_direct model_h=0.013 bot_prob=0.9869 fused_hc=1% http=200 decision=BLOCKED: BOT events=217 vel=0.5751 jerk=0.02149365 acc=0.062031 jit=0.1302 str=0.2994 heur=0.0 flags=No risk flags.
+attempt 08 family=irregular_poly model_h=0.000 bot_prob=0.9996 fused_hc=0% http=200 decision=BLOCKED: BOT events=222 vel=0.5924 jerk=0.0171793 acc=0.048276 jit=0.2045 str=0.3598 heur=0.0 flags=No risk flags.
+attempt 20 error: Timeout 12000ms exceeded while waiting for event "response"
+attempt 21 family=irregular_poly model_h=0.030 bot_prob=0.97 fused_hc=3% http=200 decision=BLOCKED: BOT events=175 vel=0.6563 jerk=0.04882923 acc=0.126793 jit=0.2428 str=0.4122 heur=0.0 flags=No risk flags.
+attempt 09 family=stepped_arc model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=463 vel=0.1458 jerk=0.02240486 acc=0.028165 jit=0.0195 str=0.4787 heur=0.0 flags=No risk flags.
+attempt 22 family=stepped_arc model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=592 vel=0.1541 jerk=0.00454127 acc=0.013529 jit=0.0186 str=0.3958 heur=0.0 flags=No risk flags.
+attempt 23 family=irregular_poly model_h=0.029 bot_prob=0.971 fused_hc=3% http=200 decision=BLOCKED: BOT events=260 vel=0.7358 jerk=0.04494945 acc=0.127066 jit=0.1938 str=0.0554 heur=0.0 flags=No risk flags.
+attempt 10 family=stepped_arc model_h=0.002 bot_prob=0.9975 fused_hc=0% http=200 decision=BLOCKED: BOT events=954 vel=0.1558 jerk=0.00461086 acc=0.010764 jit=0.0062 str=0.1206 heur=0.0 flags=Complete absence of organic micro-tremor / sub-movements | Near-perfect linear trajectory (Straightness: 0.992)
+attempt 24 family=minjerk_direct model_h=0.012 bot_prob=0.9881 fused_hc=1% http=200 decision=BLOCKED: BOT events=212 vel=0.6801 jerk=0.03531922 acc=0.093382 jit=0.1619 str=0.1747 heur=0.0 flags=No risk flags.
+attempt 11 family=minjerk_direct model_h=0.003 bot_prob=0.9968 fused_hc=0% http=200 decision=BLOCKED: BOT events=205 vel=0.5818 jerk=0.02425981 acc=0.060591 jit=0.1626 str=0.0625 heur=0.0 flags=No risk flags.
+attempt 12 family=minjerk_direct model_h=0.074 bot_prob=0.9258 fused_hc=7% http=200 decision=BLOCKED: BOT events=188 vel=0.6519 jerk=0.04091736 acc=0.10777 jit=0.1989 str=0.3351 heur=0.0 flags=No risk flags.
+attempt 25 error: Timeout 12000ms exceeded while waiting for event "response"
+attempt 13 family=stepped_arc model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=628 vel=0.1504 jerk=0.01017023 acc=0.017159 jit=0.016 str=0.2547 heur=0.0 flags=No risk flags.
+attempt 26 family=minjerk_fast model_h=0.006 bot_prob=0.9938 fused_hc=1% http=200 decision=BLOCKED: BOT events=151 vel=0.9377 jerk=0.04617437 acc=0.121055 jit=0.1745 str=0.2944 heur=0.38 flags=Flat-dynamics automation signature
+attempt 14 family=irregular_poly model_h=0.014 bot_prob=0.9859 fused_hc=1% http=200 decision=BLOCKED: BOT events=191 vel=0.7425 jerk=0.05876385 acc=0.15206 jit=0.1693 str=0.1296 heur=0.0 flags=No risk flags.
+attempt 27 family=minjerk_fast model_h=0.001 bot_prob=0.9993 fused_hc=0% http=200 decision=BLOCKED: BOT events=168 vel=0.8357 jerk=0.01679008 acc=0.052656 jit=0.1205 str=0.0681 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 15 family=minjerk_direct model_h=0.006 bot_prob=0.994 fused_hc=1% http=200 decision=BLOCKED: BOT events=232 vel=0.6598 jerk=0.04485802 acc=0.10497 jit=0.1478 str=0.0811 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 28 family=minjerk_direct model_h=0.002 bot_prob=0.9978 fused_hc=0% http=200 decision=BLOCKED: BOT events=264 vel=0.6656 jerk=0.02240909 acc=0.064953 jit=0.1336 str=0.1342 heur=0.8 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness low-jitter Playwright hop
+attempt 16 family=irregular_poly model_h=0.028 bot_prob=0.9722 fused_hc=3% http=200 decision=BLOCKED: BOT events=242 vel=0.7233 jerk=0.04956376 acc=0.127714 jit=0.1625 str=0.2037 heur=0.0 flags=No risk flags.
+attempt 29 family=irregular_poly model_h=0.063 bot_prob=0.937 fused_hc=6% http=200 decision=BLOCKED: BOT events=254 vel=0.9531 jerk=0.0788974 acc=0.195539 jit=0.1667 str=0.096 heur=0.78 flags=Abnormal velocity spike (16.6 px/ms) | Flat-dynamics automation signature
+attempt 17 family=minjerk_fast model_h=0.003 bot_prob=0.9971 fused_hc=0% http=200 decision=BLOCKED: BOT events=141 vel=1.0414 jerk=0.04312724 acc=0.113601 jit=0.1655 str=0.1798 heur=0.38 flags=Flat-dynamics automation signature
+attempt 18 family=minjerk_fast model_h=0.144 bot_prob=0.8557 fused_hc=14% http=200 decision=BLOCKED: BOT events=150 vel=1.0262 jerk=0.08615482 acc=0.20468 jit=0.1892 str=0.2286 heur=0.82 flags=Flat-dynamics automation signature | Playwright dense-hop family automation
+attempt 30 family=irregular_poly model_h=0.049 bot_prob=0.9505 fused_hc=5% http=200 decision=BLOCKED: BOT events=162 vel=0.8733 jerk=0.07938929 acc=0.205454 jit=0.225 str=0.3326 heur=0.38 flags=Flat-dynamics automation signature
+attempt 19 family=minjerk_fast model_h=0.283 bot_prob=0.7165 fused_hc=28% http=200 decision=BLOCKED: BOT events=93 vel=0.9897 jerk=0.07498663 acc=0.192749 jit=0.1758 str=0.2082 heur=0.38 flags=Flat-dynamics automation signature
+attempt 20 family=minjerk_fast model_h=0.037 bot_prob=0.9626 fused_hc=4% http=200 decision=BLOCKED: BOT events=150 vel=1.1122 jerk=0.06312979 acc=0.163409 jit=0.2027 str=0.1344 heur=0.78 flags=Abnormal velocity spike (15.4 px/ms) | Flat-dynamics automation signature
+attempt 31 family=minjerk_direct model_h=0.003 bot_prob=0.9972 fused_hc=0% http=200 decision=BLOCKED: BOT events=292 vel=0.6486 jerk=0.02057421 acc=0.061083 jit=0.1103 str=0.2436 heur=0.82 flags=Dynamic evasion rule match (evasion_cycle_002) | High event-count low-jitter Playwright automation
+attempt 21 family=minjerk_direct model_h=0.007 bot_prob=0.9934 fused_hc=1% http=200 decision=BLOCKED: BOT events=200 vel=0.6838 jerk=0.03157193 acc=0.083961 jit=0.1212 str=0.3367 heur=0.4 flags=Dynamic evasion rule match (evasion_cycle_002)
+attempt 22 family=minjerk_fast model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=151 vel=0.7081 jerk=0.0096836 acc=0.036254 jit=0.1409 str=0.0882 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 23 family=minjerk_fast model_h=0.000 bot_prob=0.9996 fused_hc=0% http=200 decision=BLOCKED: BOT events=179 vel=0.9291 jerk=0.02641747 acc=0.078704 jit=0.1356 str=0.1169 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness fast evasion (issue 001 variant) | Flat-dynamics automation signature | Low-straightness low-j
+attempt 32 error: Timeout 12000ms exceeded while waiting for event "response"
+attempt 33 family=irregular_poly model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=140 vel=0.6874 jerk=0.01194319 acc=0.059046 jit=0.1884 str=0.2787 heur=0.0 flags=No risk flags.
+attempt 24 family=minjerk_direct model_h=0.010 bot_prob=0.99 fused_hc=1% http=200 decision=BLOCKED: BOT events=233 vel=0.6701 jerk=0.03497985 acc=0.082222 jit=0.1039 str=0.2416 heur=0.4 flags=Dynamic evasion rule match (evasion_cycle_002)
+attempt 34 family=minjerk_direct model_h=0.023 bot_prob=0.9773 fused_hc=2% http=200 decision=BLOCKED: BOT events=158 vel=0.6637 jerk=0.02762852 acc=0.089069 jit=0.1667 str=0.5074 heur=0.0 flags=No risk flags.
+attempt 25 family=irregular_poly model_h=0.006 bot_prob=0.9943 fused_hc=1% http=200 decision=BLOCKED: BOT events=198 vel=0.6068 jerk=0.03376334 acc=0.088597 jit=0.1939 str=0.2768 heur=0.0 flags=No risk flags.
+attempt 35 family=irregular_poly model_h=0.008 bot_prob=0.9924 fused_hc=1% http=200 decision=BLOCKED: BOT events=227 vel=0.684 jerk=0.02898069 acc=0.097904 jit=0.1689 str=0.1607 heur=0.0 flags=No risk flags.
+attempt 36 family=minjerk_fast model_h=0.051 bot_prob=0.9494 fused_hc=5% http=200 decision=BLOCKED: BOT events=102 vel=1.1241 jerk=0.08626274 acc=0.22127 jit=0.17 str=0.1568 heur=0.82 flags=Flat-dynamics automation signature | Playwright dense-hop family automation
+attempt 26 family=stepped_arc model_h=0.001 bot_prob=0.9994 fused_hc=0% http=200 decision=BLOCKED: BOT events=758 vel=0.1481 jerk=0.00607915 acc=0.011253 jit=0.0403 str=0.4232 heur=0.0 flags=No risk flags.
+attempt 37 family=minjerk_direct model_h=0.003 bot_prob=0.9969 fused_hc=0% http=200 decision=BLOCKED: BOT events=242 vel=0.6395 jerk=0.03418662 acc=0.079969 jit=0.1417 str=0.3408 heur=0.0 flags=No risk flags.
+attempt 27 family=minjerk_fast model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=148 vel=1.0025 jerk=0.01393474 acc=0.049101 jit=0.1507 str=0.2164 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 38 family=irregular_poly model_h=0.021 bot_prob=0.9785 fused_hc=2% http=200 decision=BLOCKED: BOT events=201 vel=0.8052 jerk=0.05368948 acc=0.156871 jit=0.1859 str=0.2088 heur=0.38 flags=Flat-dynamics automation signature
+attempt 28 family=irregular_poly model_h=0.004 bot_prob=0.9956 fused_hc=0% http=200 decision=BLOCKED: BOT events=309 vel=0.7882 jerk=0.04138958 acc=0.126503 jit=0.1401 str=0.0538 heur=0.82 flags=Low-straightness low-jitter Playwright hop | High event-count low-jitter Playwright automation
+attempt 39 family=irregular_poly model_h=0.004 bot_prob=0.9957 fused_hc=0% http=200 decision=BLOCKED: BOT events=194 vel=0.7003 jerk=0.02383318 acc=0.086998 jit=0.2188 str=0.1204 heur=0.0 flags=No risk flags.
+attempt 40 family=minjerk_fast model_h=0.002 bot_prob=0.9984 fused_hc=0% http=200 decision=BLOCKED: BOT events=162 vel=0.9088 jerk=0.01312398 acc=0.046728 jit=0.1375 str=0.0798 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 41 error: Page.click: Timeout 12000ms exceeded.
+Call log:
+  - waiting for locator("#btn-submit")
+    - locator resolved to <button disabled class="btn" type="button" id="btn-submit">Submit Attempt</button>
+  - attempting click action
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+    - waiting 20ms
+    2 × waiting for element to be visible, enabled and stable
+      - element is not enabled
+    - retrying click action
+      - waiting 100ms
+    23 × waiting for element to be visible, enabled and stable
+       - element is not enabled
+     - retrying click action
+       - waiting 500ms
+attempt 41 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 29 error: Timeout 45000ms exceeded while waiting for event "response"
+attempt 42 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 42 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 43 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 43 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 44 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 29 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 30 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 44 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 45 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 45 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 46 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 46 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 30 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 47 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 31 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 47 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 48 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 48 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 49 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 31 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 49 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 32 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 50 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 50 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 51 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 51 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 52 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 32 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 33 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 52 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 53 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 53 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 54 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 54 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 33 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 55 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 34 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 55 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 56 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 56 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 57 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 34 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 57 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 35 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 58 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 58 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 59 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 59 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 60 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 35 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 36 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 60 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 61 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 61 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 62 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 62 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 36 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 63 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 37 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 63 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 64 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 64 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 65 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 37 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 65 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 38 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 66 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 66 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 67 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 67 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 38 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 68 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 39 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 68 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 69 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 69 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 70 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 39 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 70 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 40 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 71 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 71 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 72 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 72 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 73 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 40 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 41 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 73 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 74 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 74 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 75 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 75 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 41 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 76 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 42 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 76 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 77 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 77 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 78 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 42 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 78 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 43 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 79 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 79 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 80 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 80 recover failed: Page.goto: Timeout 12000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+DEADLINE_HIT best_model_human=0.0680 attempts=80
+attempt 43 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 44 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 44 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+attempt 45 error: Page.select_option: Timeout 8000ms exceeded.
+Call log:
+  - waiting for locator("#challenge-type")
+    - waiting for "http://127.0.0.1:8010/" navigation to finish...
+attempt 45 recover failed: Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "http://127.0.0.1:8010/", waiting until "commit"
+DEADLINE_HIT best_model_human=0.2835 attempts=45
+--- qmodel_v0.8.1G live solver (target: 1-bot_prob >= 0.70) ---
+attempt 01 family=minjerk_fast model_h=0.001 bot_prob=0.9985 fused_hc=0% http=200 decision=BLOCKED: BOT events=76 vel=0.9552 jerk=0.01462251 acc=0.070982 jit=0.1622 str=0.2411 heur=0.38 flags=Flat-dynamics automation signature
+attempt 02 family=sparse_irregular model_h=0.001 bot_prob=0.9987 fused_hc=0% http=200 decision=BLOCKED: BOT events=140 vel=1.057 jerk=0.02374402 acc=0.10382 jit=0.1884 str=0.154 heur=0.38 flags=Flat-dynamics automation signature
+attempt 03 family=minjerk_direct model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=120 vel=0.6858 jerk=0.00477564 acc=0.036458 jit=0.1271 str=0.4251 heur=0.0 flags=No risk flags.
+attempt 04 family=minjerk_fast model_h=0.005 bot_prob=0.9954 fused_hc=0% http=200 decision=BLOCKED: BOT events=95 vel=1.1945 jerk=0.039978 acc=0.143601 jit=0.1398 str=0.1918 heur=0.38 flags=Flat-dynamics automation signature
+attempt 05 family=minjerk_direct model_h=0.003 bot_prob=0.9971 fused_hc=0% http=200 decision=BLOCKED: BOT events=208 vel=0.7491 jerk=0.01695296 acc=0.063671 jit=0.1553 str=0.2886 heur=0.0 flags=No risk flags.
+attempt 06 family=minjerk_direct model_h=0.041 bot_prob=0.9592 fused_hc=4% http=200 decision=BLOCKED: BOT events=146 vel=0.8184 jerk=0.01944087 acc=0.077521 jit=0.1319 str=0.029 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 07 family=minjerk_direct model_h=0.001 bot_prob=0.9992 fused_hc=0% http=200 decision=BLOCKED: BOT events=135 vel=0.8446 jerk=0.02886593 acc=0.081459 jit=0.1654 str=0.3082 heur=0.38 flags=Flat-dynamics automation signature
+attempt 08 family=minjerk_fast model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=139 vel=1.1224 jerk=0.00780645 acc=0.048948 jit=0.146 str=0.1341 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 09 family=sparse_fast model_h=0.005 bot_prob=0.9951 fused_hc=0% http=200 decision=BLOCKED: BOT events=103 vel=1.4906 jerk=0.06758854 acc=0.19499 jit=0.1782 str=0.2182 heur=0.78 flags=Abnormal velocity spike (17.1 px/ms) | Flat-dynamics automation signature
+attempt 10 family=minjerk_direct model_h=0.007 bot_prob=0.9926 fused_hc=1% http=200 decision=BLOCKED: BOT events=156 vel=0.9958 jerk=0.02552955 acc=0.100652 jit=0.1234 str=0.2902 heur=0.38 flags=Flat-dynamics automation signature
+attempt 11 family=sparse_irregular model_h=0.001 bot_prob=0.9988 fused_hc=0% http=200 decision=BLOCKED: BOT events=143 vel=1.2422 jerk=0.01442248 acc=0.084483 jit=0.1773 str=0.0346 heur=0.38 flags=Flat-dynamics automation signature
+attempt 12 family=minjerk_direct model_h=0.001 bot_prob=0.9992 fused_hc=0% http=200 decision=BLOCKED: BOT events=144 vel=0.6987 jerk=0.01040661 acc=0.046159 jit=0.1479 str=0.416 heur=0.0 flags=No risk flags.
+attempt 13 family=minjerk_direct model_h=0.003 bot_prob=0.9967 fused_hc=0% http=200 decision=BLOCKED: BOT events=171 vel=0.7377 jerk=0.02246701 acc=0.073401 jit=0.1538 str=0.0664 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 14 family=minjerk_direct model_h=0.001 bot_prob=0.9992 fused_hc=0% http=200 decision=BLOCKED: BOT events=81 vel=0.6668 jerk=0.024254 acc=0.068258 jit=0.1772 str=0.0768 heur=0.0 flags=No risk flags.
+attempt 15 family=sparse_irregular model_h=0.004 bot_prob=0.9957 fused_hc=0% http=200 decision=BLOCKED: BOT events=98 vel=1.049 jerk=0.02152239 acc=0.098297 jit=0.1979 str=0.0544 heur=0.38 flags=Flat-dynamics automation signature
+attempt 16 family=minjerk_direct model_h=0.026 bot_prob=0.9736 fused_hc=0% http=200 decision=BLOCKED: BOT events=184 vel=0.9441 jerk=0.04611739 acc=0.125639 jit=0.1374 str=0.0495 heur=1.0 flags=Low-straightness fast evasion (issue 001 variant) | Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 17 family=sparse_fast model_h=0.004 bot_prob=0.9962 fused_hc=0% http=200 decision=BLOCKED: BOT events=132 vel=1.6435 jerk=0.07346269 acc=0.19992 jit=0.1692 str=0.2401 heur=0.78 flags=Abnormal velocity spike (15.8 px/ms) | Flat-dynamics automation signature
+attempt 18 family=minjerk_direct model_h=0.072 bot_prob=0.9283 fused_hc=7% http=200 decision=BLOCKED: BOT events=150 vel=0.7758 jerk=0.0402576 acc=0.098286 jit=0.1622 str=0.2487 heur=0.0 flags=No risk flags.
+attempt 19 family=sparse_fast model_h=0.014 bot_prob=0.9858 fused_hc=1% http=200 decision=BLOCKED: BOT events=117 vel=1.3414 jerk=0.06776567 acc=0.17542 jit=0.2087 str=0.078 heur=0.38 flags=Flat-dynamics automation signature
+attempt 20 family=sparse_irregular model_h=0.013 bot_prob=0.9872 fused_hc=1% http=200 decision=BLOCKED: BOT events=110 vel=1.1622 jerk=0.05852939 acc=0.176804 jit=0.2315 str=0.2278 heur=0.38 flags=Flat-dynamics automation signature
+attempt 21 family=minjerk_fast model_h=0.002 bot_prob=0.9983 fused_hc=0% http=200 decision=BLOCKED: BOT events=78 vel=0.8935 jerk=0.01780545 acc=0.073017 jit=0.1974 str=0.1773 heur=0.38 flags=Flat-dynamics automation signature
+attempt 22 family=sparse_fast model_h=0.001 bot_prob=0.9992 fused_hc=0% http=200 decision=BLOCKED: BOT events=84 vel=1.3959 jerk=0.01731605 acc=0.089699 jit=0.2195 str=0.0938 heur=0.38 flags=Flat-dynamics automation signature
+attempt 23 family=minjerk_direct model_h=0.005 bot_prob=0.9945 fused_hc=0% http=200 decision=BLOCKED: BOT events=216 vel=0.8949 jerk=0.02824074 acc=0.087157 jit=0.1355 str=0.0656 heur=1.0 flags=Dynamic evasion rule match (evasion_cycle_002) | Low-straightness fast evasion (issue 001 variant) | Flat-dynamics automation signature | Low-straightness low-j
+attempt 24 family=minjerk_direct model_h=0.020 bot_prob=0.9799 fused_hc=2% http=200 decision=BLOCKED: BOT events=215 vel=0.8914 jerk=0.04161532 acc=0.096225 jit=0.1784 str=0.0624 heur=0.38 flags=Flat-dynamics automation signature
+attempt 25 family=sparse_fast model_h=0.016 bot_prob=0.9841 fused_hc=2% http=200 decision=BLOCKED: BOT events=114 vel=1.4116 jerk=0.04627646 acc=0.16075 jit=0.2143 str=0.3447 heur=0.38 flags=Flat-dynamics automation signature
+attempt 26 family=minjerk_direct model_h=0.015 bot_prob=0.9846 fused_hc=2% http=200 decision=BLOCKED: BOT events=153 vel=0.8839 jerk=0.04026886 acc=0.091622 jit=0.1258 str=0.1432 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 27 family=sparse_fast model_h=0.071 bot_prob=0.929 fused_hc=7% http=200 decision=BLOCKED: BOT events=95 vel=1.9372 jerk=0.15960081 acc=0.418906 jit=0.2151 str=0.1159 heur=0.4 flags=Abnormal velocity spike (24.3 px/ms)
+attempt 28 family=minjerk_direct model_h=0.005 bot_prob=0.9953 fused_hc=0% http=200 decision=BLOCKED: BOT events=141 vel=0.8845 jerk=0.03258879 acc=0.09874 jit=0.1511 str=0.3419 heur=0.38 flags=Flat-dynamics automation signature
+attempt 29 family=sparse_fast model_h=0.001 bot_prob=0.9986 fused_hc=0% http=200 decision=BLOCKED: BOT events=90 vel=1.2618 jerk=0.01226321 acc=0.078952 jit=0.2727 str=0.0779 heur=0.38 flags=Flat-dynamics automation signature
+attempt 30 family=sparse_fast model_h=0.000 bot_prob=0.9996 fused_hc=0% http=200 decision=BLOCKED: BOT events=87 vel=0.9912 jerk=0.01630885 acc=0.065752 jit=0.2 str=0.0942 heur=0.38 flags=Flat-dynamics automation signature
+attempt 31 family=sparse_irregular model_h=0.026 bot_prob=0.9736 fused_hc=3% http=200 decision=BLOCKED: BOT events=111 vel=0.9858 jerk=0.02880924 acc=0.099744 jit=0.2294 str=0.1505 heur=0.38 flags=Flat-dynamics automation signature
+attempt 32 family=sparse_fast model_h=0.023 bot_prob=0.9766 fused_hc=2% http=200 decision=BLOCKED: BOT events=106 vel=1.5828 jerk=0.1041226 acc=0.260825 jit=0.1731 str=0.1351 heur=0.4 flags=Abnormal velocity spike (19.1 px/ms)
+attempt 33 family=sparse_fast model_h=0.075 bot_prob=0.9249 fused_hc=8% http=200 decision=BLOCKED: BOT events=71 vel=1.2662 jerk=0.04053555 acc=0.130347 jit=0.2464 str=0.1726 heur=0.38 flags=Flat-dynamics automation signature
+attempt 34 family=minjerk_fast model_h=0.036 bot_prob=0.9638 fused_hc=4% http=200 decision=BLOCKED: BOT events=112 vel=1.162 jerk=0.05463139 acc=0.158115 jit=0.1818 str=0.1823 heur=0.38 flags=Flat-dynamics automation signature
+attempt 35 family=sparse_irregular model_h=0.011 bot_prob=0.989 fused_hc=1% http=200 decision=BLOCKED: BOT events=104 vel=1.3278 jerk=0.05552269 acc=0.173283 jit=0.1961 str=0.1247 heur=0.38 flags=Flat-dynamics automation signature
+attempt 36 family=sparse_fast model_h=0.003 bot_prob=0.9972 fused_hc=0% http=200 decision=BLOCKED: BOT events=68 vel=1.3426 jerk=0.05222526 acc=0.161042 jit=0.1818 str=0.3908 heur=0.0 flags=No risk flags.
+attempt 37 family=sparse_fast model_h=0.025 bot_prob=0.9754 fused_hc=2% http=200 decision=BLOCKED: BOT events=80 vel=1.4919 jerk=0.07559884 acc=0.198295 jit=0.141 str=0.3014 heur=0.78 flags=Abnormal velocity spike (15.5 px/ms) | Flat-dynamics automation signature
+attempt 38 family=minjerk_fast model_h=0.008 bot_prob=0.9921 fused_hc=1% http=200 decision=BLOCKED: BOT events=147 vel=1.1249 jerk=0.04856548 acc=0.123968 jit=0.2 str=0.0715 heur=0.38 flags=Flat-dynamics automation signature
+attempt 39 family=minjerk_fast model_h=0.001 bot_prob=0.9991 fused_hc=0% http=200 decision=BLOCKED: BOT events=147 vel=1.0772 jerk=0.01615426 acc=0.059879 jit=0.1517 str=0.2054 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 40 family=sparse_irregular model_h=0.034 bot_prob=0.9664 fused_hc=3% http=200 decision=BLOCKED: BOT events=85 vel=1.0584 jerk=0.04133442 acc=0.12993 jit=0.253 str=0.308 heur=0.38 flags=Flat-dynamics automation signature
+attempt 41 family=minjerk_fast model_h=0.001 bot_prob=0.999 fused_hc=0% http=200 decision=BLOCKED: BOT events=74 vel=0.8334 jerk=0.01250254 acc=0.059794 jit=0.1944 str=0.2648 heur=0.38 flags=Flat-dynamics automation signature
+attempt 42 family=sparse_fast model_h=0.019 bot_prob=0.9806 fused_hc=2% http=200 decision=BLOCKED: BOT events=71 vel=1.6989 jerk=0.0882976 acc=0.314155 jit=0.2609 str=0.3172 heur=0.4 flags=Abnormal velocity spike (17.6 px/ms)
+attempt 43 family=sparse_irregular model_h=0.011 bot_prob=0.9892 fused_hc=1% http=200 decision=BLOCKED: BOT events=111 vel=1.4454 jerk=0.09983792 acc=0.224356 jit=0.1376 str=0.1314 heur=0.38 flags=Flat-dynamics automation signature
+attempt 44 family=sparse_irregular model_h=0.043 bot_prob=0.9574 fused_hc=4% http=200 decision=BLOCKED: BOT events=110 vel=1.2426 jerk=0.04539997 acc=0.165294 jit=0.2407 str=0.162 heur=0.38 flags=Flat-dynamics automation signature
+attempt 45 family=sparse_fast model_h=0.006 bot_prob=0.9944 fused_hc=1% http=200 decision=BLOCKED: BOT events=63 vel=1.2831 jerk=0.03366789 acc=0.126372 jit=0.1967 str=0.642 heur=0.0 flags=No risk flags.
+attempt 46 family=minjerk_direct model_h=0.001 bot_prob=0.9992 fused_hc=0% http=200 decision=BLOCKED: BOT events=129 vel=0.7803 jerk=0.01124497 acc=0.044505 jit=0.1654 str=0.2073 heur=0.0 flags=No risk flags.
+attempt 47 family=minjerk_direct model_h=0.006 bot_prob=0.9942 fused_hc=1% http=200 decision=BLOCKED: BOT events=176 vel=0.7226 jerk=0.02169533 acc=0.068 jit=0.1839 str=0.3314 heur=0.0 flags=No risk flags.
+attempt 48 family=sparse_irregular model_h=0.016 bot_prob=0.9844 fused_hc=2% http=200 decision=BLOCKED: BOT events=119 vel=0.9589 jerk=0.02342087 acc=0.097915 jit=0.2479 str=0.2917 heur=0.38 flags=Flat-dynamics automation signature
+attempt 49 family=minjerk_direct model_h=0.001 bot_prob=0.9986 fused_hc=0% http=200 decision=BLOCKED: BOT events=181 vel=0.8145 jerk=0.02614249 acc=0.08299 jit=0.1955 str=0.3575 heur=0.38 flags=Flat-dynamics automation signature
+attempt 50 family=minjerk_direct model_h=0.002 bot_prob=0.9982 fused_hc=0% http=200 decision=BLOCKED: BOT events=132 vel=0.7562 jerk=0.01873064 acc=0.063611 jit=0.1538 str=0.3933 heur=0.0 flags=No risk flags.
+attempt 51 family=minjerk_fast model_h=0.001 bot_prob=0.9994 fused_hc=0% http=200 decision=BLOCKED: BOT events=119 vel=0.9988 jerk=0.01037564 acc=0.057846 jit=0.2051 str=0.3775 heur=0.38 flags=Flat-dynamics automation signature
+attempt 52 family=minjerk_fast model_h=0.003 bot_prob=0.9972 fused_hc=0% http=200 decision=BLOCKED: BOT events=103 vel=1.1512 jerk=0.02428606 acc=0.089596 jit=0.198 str=0.1466 heur=0.38 flags=Flat-dynamics automation signature
+attempt 53 family=minjerk_fast model_h=0.003 bot_prob=0.9973 fused_hc=0% http=200 decision=BLOCKED: BOT events=162 vel=1.0125 jerk=0.02646287 acc=0.08182 jit=0.15 str=0.1635 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 54 family=sparse_fast model_h=0.013 bot_prob=0.9873 fused_hc=1% http=200 decision=BLOCKED: BOT events=68 vel=1.4976 jerk=0.08604414 acc=0.244837 jit=0.2121 str=0.6247 heur=0.4 flags=Abnormal velocity spike (16.0 px/ms)
+attempt 55 family=minjerk_fast model_h=0.007 bot_prob=0.9928 fused_hc=1% http=200 decision=BLOCKED: BOT events=93 vel=1.0291 jerk=0.04705899 acc=0.107434 jit=0.2088 str=0.157 heur=0.38 flags=Flat-dynamics automation signature
+attempt 56 family=sparse_fast model_h=0.022 bot_prob=0.9778 fused_hc=2% http=200 decision=BLOCKED: BOT events=68 vel=1.3761 jerk=0.06354069 acc=0.150467 jit=0.1818 str=0.584 heur=0.0 flags=No risk flags.
+attempt 57 family=minjerk_direct model_h=0.020 bot_prob=0.9803 fused_hc=2% http=200 decision=BLOCKED: BOT events=121 vel=0.6685 jerk=0.01521305 acc=0.047785 jit=0.1429 str=0.561 heur=0.0 flags=No risk flags.
+attempt 58 family=sparse_fast model_h=0.033 bot_prob=0.9673 fused_hc=3% http=200 decision=BLOCKED: BOT events=99 vel=1.5446 jerk=0.08374909 acc=0.229214 jit=0.2371 str=0.2157 heur=0.78 flags=Abnormal velocity spike (16.2 px/ms) | Flat-dynamics automation signature
+attempt 59 family=minjerk_fast model_h=0.008 bot_prob=0.992 fused_hc=1% http=200 decision=BLOCKED: BOT events=125 vel=1.1229 jerk=0.04165063 acc=0.114538 jit=0.187 str=0.118 heur=0.38 flags=Flat-dynamics automation signature
+attempt 60 family=sparse_fast model_h=0.032 bot_prob=0.9684 fused_hc=3% http=200 decision=BLOCKED: BOT events=111 vel=1.3926 jerk=0.07140931 acc=0.224676 jit=0.2202 str=0.1362 heur=0.78 flags=Abnormal velocity spike (16.2 px/ms) | Flat-dynamics automation signature
+attempt 61 family=minjerk_direct model_h=0.002 bot_prob=0.9984 fused_hc=0% http=200 decision=BLOCKED: BOT events=145 vel=0.9325 jerk=0.03860297 acc=0.107056 jit=0.1189 str=0.297 heur=0.38 flags=Flat-dynamics automation signature
+attempt 62 family=sparse_fast model_h=0.001 bot_prob=0.9987 fused_hc=0% http=200 decision=BLOCKED: BOT events=80 vel=1.2647 jerk=0.03186862 acc=0.096117 jit=0.2179 str=0.3145 heur=0.38 flags=Flat-dynamics automation signature
+attempt 63 family=minjerk_direct model_h=0.059 bot_prob=0.9405 fused_hc=6% http=200 decision=BLOCKED: BOT events=145 vel=1.036 jerk=0.07985848 acc=0.170657 jit=0.1538 str=0.316 heur=0.78 flags=Abnormal velocity spike (17.1 px/ms) | Flat-dynamics automation signature
+attempt 64 family=minjerk_direct model_h=0.034 bot_prob=0.9664 fused_hc=3% http=200 decision=BLOCKED: BOT events=116 vel=0.6686 jerk=0.04023384 acc=0.101198 jit=0.1491 str=0.6303 heur=0.0 flags=No risk flags.
+attempt 65 family=sparse_fast model_h=0.439 bot_prob=0.5606 fused_hc=44% http=200 decision=BLOCKED: BOT events=68 vel=1.6232 jerk=0.11975931 acc=0.266774 jit=0.2273 str=0.2455 heur=0.0 flags=No risk flags.
+attempt 66 family=sparse_irregular model_h=0.055 bot_prob=0.9449 fused_hc=6% http=200 decision=BLOCKED: BOT events=112 vel=1.1493 jerk=0.05473186 acc=0.16382 jit=0.2455 str=0.1599 heur=0.38 flags=Flat-dynamics automation signature
+attempt 67 family=sparse_irregular model_h=0.014 bot_prob=0.9859 fused_hc=1% http=200 decision=BLOCKED: BOT events=94 vel=1.2895 jerk=0.05391974 acc=0.149597 jit=0.1957 str=0.0485 heur=0.38 flags=Flat-dynamics automation signature
+attempt 68 family=minjerk_fast model_h=0.098 bot_prob=0.9019 fused_hc=10% http=200 decision=BLOCKED: BOT events=90 vel=1.2627 jerk=0.13537286 acc=0.263435 jit=0.1591 str=0.2159 heur=0.84 flags=Abnormal velocity spike (19.4 px/ms) | Playwright dense-hop family automation
+attempt 69 family=minjerk_fast model_h=0.011 bot_prob=0.9894 fused_hc=1% http=200 decision=BLOCKED: BOT events=96 vel=0.8662 jerk=0.04498528 acc=0.097044 jit=0.1915 str=0.3621 heur=0.38 flags=Flat-dynamics automation signature
+attempt 70 family=minjerk_direct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=177 vel=0.7563 jerk=0.00796547 acc=0.036817 jit=0.1371 str=0.308 heur=0.4 flags=Dynamic evasion rule match (evasion_cycle_002)
+attempt 71 family=sparse_irregular model_h=0.001 bot_prob=0.9987 fused_hc=0% http=200 decision=BLOCKED: BOT events=98 vel=1.2436 jerk=0.03872273 acc=0.141233 jit=0.1458 str=0.2224 heur=0.38 flags=Flat-dynamics automation signature
+attempt 72 family=sparse_fast model_h=0.009 bot_prob=0.9907 fused_hc=1% http=200 decision=BLOCKED: BOT events=92 vel=1.2256 jerk=0.05159564 acc=0.138816 jit=0.1889 str=0.2696 heur=0.38 flags=Flat-dynamics automation signature
+attempt 73 family=sparse_fast model_h=0.044 bot_prob=0.9557 fused_hc=4% http=200 decision=BLOCKED: BOT events=105 vel=1.5351 jerk=0.09370667 acc=0.239193 jit=0.2233 str=0.0111 heur=0.78 flags=Abnormal velocity spike (20.0 px/ms) | Flat-dynamics automation signature
+attempt 74 family=minjerk_direct model_h=0.000 bot_prob=0.9995 fused_hc=0% http=200 decision=BLOCKED: BOT events=163 vel=0.7505 jerk=0.0100074 acc=0.041291 jit=0.1677 str=0.3128 heur=0.0 flags=No risk flags.
+attempt 75 family=minjerk_direct model_h=0.000 bot_prob=0.9997 fused_hc=0% http=200 decision=BLOCKED: BOT events=163 vel=0.7067 jerk=0.01241357 acc=0.049534 jit=0.1739 str=0.1806 heur=0.0 flags=No risk flags.
+attempt 76 family=sparse_irregular model_h=0.008 bot_prob=0.992 fused_hc=1% http=200 decision=BLOCKED: BOT events=75 vel=0.9075 jerk=0.03696961 acc=0.113923 jit=0.2055 str=0.3119 heur=0.38 flags=Flat-dynamics automation signature
+attempt 77 family=sparse_fast model_h=0.002 bot_prob=0.9977 fused_hc=0% http=200 decision=BLOCKED: BOT events=68 vel=1.0966 jerk=0.01338254 acc=0.064855 jit=0.2576 str=0.1985 heur=0.0 flags=No risk flags.
+attempt 78 family=minjerk_fast model_h=0.064 bot_prob=0.9356 fused_hc=6% http=200 decision=BLOCKED: BOT events=87 vel=0.9475 jerk=0.04492268 acc=0.126432 jit=0.2235 str=0.1368 heur=0.38 flags=Flat-dynamics automation signature
+attempt 79 family=sparse_fast model_h=0.002 bot_prob=0.9982 fused_hc=0% http=200 decision=BLOCKED: BOT events=124 vel=1.1817 jerk=0.01901473 acc=0.068321 jit=0.2213 str=0.2908 heur=0.38 flags=Flat-dynamics automation signature
+attempt 80 family=minjerk_direct model_h=0.004 bot_prob=0.9956 fused_hc=0% http=200 decision=BLOCKED: BOT events=166 vel=0.8014 jerk=0.02350246 acc=0.084802 jit=0.1585 str=0.3635 heur=0.38 flags=Flat-dynamics automation signature
+attempt 81 family=sparse_irregular model_h=0.002 bot_prob=0.9975 fused_hc=0% http=200 decision=BLOCKED: BOT events=101 vel=1.1988 jerk=0.02237786 acc=0.10497 jit=0.2222 str=0.2667 heur=0.38 flags=Flat-dynamics automation signature
+attempt 82 family=minjerk_direct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=204 vel=0.7533 jerk=0.00518841 acc=0.031068 jit=0.1337 str=0.2995 heur=0.4 flags=Dynamic evasion rule match (evasion_cycle_002)
+attempt 83 family=minjerk_fast model_h=0.007 bot_prob=0.9934 fused_hc=1% http=200 decision=BLOCKED: BOT events=122 vel=1.3112 jerk=0.06546955 acc=0.178038 jit=0.2167 str=0.2371 heur=0.78 flags=Abnormal velocity spike (18.5 px/ms) | Flat-dynamics automation signature
+attempt 84 family=sparse_irregular model_h=0.000 bot_prob=0.9995 fused_hc=0% http=200 decision=BLOCKED: BOT events=87 vel=0.9913 jerk=0.01337395 acc=0.075856 jit=0.2118 str=0.2227 heur=0.38 flags=Flat-dynamics automation signature
+attempt 85 family=sparse_fast model_h=0.019 bot_prob=0.9809 fused_hc=2% http=200 decision=BLOCKED: BOT events=82 vel=1.4257 jerk=0.04344099 acc=0.133232 jit=0.2375 str=0.3238 heur=0.38 flags=Flat-dynamics automation signature
+attempt 86 family=minjerk_fast model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=93 vel=0.9366 jerk=0.00525393 acc=0.030688 jit=0.2198 str=0.1242 heur=0.38 flags=Flat-dynamics automation signature
+attempt 87 family=minjerk_fast model_h=0.002 bot_prob=0.9983 fused_hc=0% http=200 decision=BLOCKED: BOT events=88 vel=1.0477 jerk=0.01423035 acc=0.056249 jit=0.186 str=0.0443 heur=0.38 flags=Flat-dynamics automation signature
+attempt 88 family=sparse_fast model_h=0.000 bot_prob=0.9995 fused_hc=0% http=200 decision=BLOCKED: BOT events=82 vel=1.4297 jerk=0.03329581 acc=0.109383 jit=0.1375 str=0.4235 heur=0.38 flags=Flat-dynamics automation signature
+attempt 89 family=sparse_irregular model_h=0.152 bot_prob=0.8479 fused_hc=15% http=200 decision=BLOCKED: BOT events=98 vel=1.1548 jerk=0.06246711 acc=0.190641 jit=0.25 str=0.3484 heur=0.38 flags=Flat-dynamics automation signature
+attempt 90 family=minjerk_fast model_h=0.003 bot_prob=0.9972 fused_hc=0% http=200 decision=BLOCKED: BOT events=83 vel=1.0768 jerk=0.01079794 acc=0.059058 jit=0.1852 str=0.4411 heur=0.38 flags=Flat-dynamics automation signature
+attempt 91 family=sparse_fast model_h=0.003 bot_prob=0.9969 fused_hc=0% http=200 decision=BLOCKED: BOT events=88 vel=1.4717 jerk=0.03796259 acc=0.119088 jit=0.1628 str=0.0537 heur=0.38 flags=Flat-dynamics automation signature
+attempt 92 family=minjerk_fast model_h=0.034 bot_prob=0.9663 fused_hc=3% http=200 decision=BLOCKED: BOT events=117 vel=1.4084 jerk=0.05058082 acc=0.153691 jit=0.1739 str=0.2064 heur=0.38 flags=Flat-dynamics automation signature
+attempt 93 family=sparse_fast model_h=0.001 bot_prob=0.9991 fused_hc=0% http=200 decision=BLOCKED: BOT events=133 vel=1.3212 jerk=0.01886782 acc=0.089051 jit=0.1832 str=0.1552 heur=0.38 flags=Flat-dynamics automation signature
+attempt 94 family=sparse_fast model_h=0.018 bot_prob=0.9824 fused_hc=2% http=200 decision=BLOCKED: BOT events=94 vel=1.1392 jerk=0.03199755 acc=0.106869 jit=0.2391 str=0.145 heur=0.38 flags=Flat-dynamics automation signature
+attempt 95 family=minjerk_fast model_h=0.001 bot_prob=0.9991 fused_hc=0% http=200 decision=BLOCKED: BOT events=87 vel=0.9487 jerk=0.02135716 acc=0.075857 jit=0.1765 str=0.4857 heur=0.38 flags=Flat-dynamics automation signature
+attempt 96 family=minjerk_direct model_h=0.017 bot_prob=0.9826 fused_hc=2% http=200 decision=BLOCKED: BOT events=131 vel=0.8813 jerk=0.04371114 acc=0.107295 jit=0.155 str=0.4094 heur=0.38 flags=Flat-dynamics automation signature
+attempt 97 family=sparse_irregular model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=112 vel=0.9993 jerk=0.00593269 acc=0.061052 jit=0.2182 str=0.3292 heur=0.38 flags=Flat-dynamics automation signature
+attempt 98 family=sparse_fast model_h=0.001 bot_prob=0.9993 fused_hc=0% http=200 decision=BLOCKED: BOT events=108 vel=1.2897 jerk=0.02103467 acc=0.092833 jit=0.217 str=0.324 heur=0.38 flags=Flat-dynamics automation signature
+attempt 99 family=sparse_irregular model_h=0.072 bot_prob=0.9281 fused_hc=7% http=200 decision=BLOCKED: BOT events=97 vel=1.1521 jerk=0.06142302 acc=0.187273 jit=0.2526 str=0.1801 heur=0.38 flags=Flat-dynamics automation signature
+attempt 100 family=minjerk_fast model_h=0.028 bot_prob=0.9722 fused_hc=3% http=200 decision=BLOCKED: BOT events=75 vel=1.1468 jerk=0.03939885 acc=0.156375 jit=0.1918 str=0.5025 heur=0.38 flags=Flat-dynamics automation signature
+attempt 101 family=minjerk_direct model_h=0.001 bot_prob=0.9987 fused_hc=0% http=200 decision=BLOCKED: BOT events=207 vel=0.7105 jerk=0.0146504 acc=0.060021 jit=0.1902 str=0.1117 heur=0.0 flags=No risk flags.
+attempt 102 family=minjerk_fast model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=150 vel=1.1455 jerk=0.0068316 acc=0.044472 jit=0.1757 str=0.2834 heur=0.38 flags=Flat-dynamics automation signature
+attempt 103 family=sparse_fast model_h=0.000 bot_prob=0.9996 fused_hc=0% http=200 decision=BLOCKED: BOT events=104 vel=1.383 jerk=0.02534146 acc=0.089809 jit=0.2157 str=0.2934 heur=0.38 flags=Flat-dynamics automation signature
+attempt 104 family=sparse_fast model_h=0.004 bot_prob=0.9962 fused_hc=0% http=200 decision=BLOCKED: BOT events=109 vel=1.2683 jerk=0.07006027 acc=0.179208 jit=0.1589 str=0.1019 heur=0.78 flags=Abnormal velocity spike (20.3 px/ms) | Flat-dynamics automation signature
+attempt 105 family=sparse_fast model_h=0.006 bot_prob=0.9935 fused_hc=1% http=200 decision=BLOCKED: BOT events=84 vel=1.0683 jerk=0.02368664 acc=0.082093 jit=0.2439 str=0.2791 heur=0.38 flags=Flat-dynamics automation signature
+attempt 106 family=sparse_fast model_h=0.029 bot_prob=0.9711 fused_hc=3% http=200 decision=BLOCKED: BOT events=104 vel=1.3837 jerk=0.04372129 acc=0.130609 jit=0.2549 str=0.2912 heur=0.38 flags=Flat-dynamics automation signature
+attempt 107 family=sparse_irregular model_h=0.002 bot_prob=0.9977 fused_hc=0% http=200 decision=BLOCKED: BOT events=130 vel=0.9768 jerk=0.01092669 acc=0.065253 jit=0.2266 str=0.1499 heur=0.38 flags=Flat-dynamics automation signature
+attempt 108 family=minjerk_direct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=146 vel=0.7391 jerk=0.00461754 acc=0.031463 jit=0.1875 str=0.4441 heur=0.0 flags=No risk flags.
+attempt 109 family=sparse_fast model_h=0.015 bot_prob=0.9849 fused_hc=0% http=200 decision=BLOCKED: BOT events=80 vel=1.2285 jerk=0.08657359 acc=0.196811 jit=0.2051 str=0.2319 heur=1.0 flags=Abnormal velocity spike (15.3 px/ms) | Flat-dynamics automation signature | Playwright dense-hop family automation
+attempt 110 family=minjerk_fast model_h=0.012 bot_prob=0.9878 fused_hc=1% http=200 decision=BLOCKED: BOT events=125 vel=1.2581 jerk=0.05350514 acc=0.179556 jit=0.1789 str=0.1368 heur=0.38 flags=Flat-dynamics automation signature
+attempt 111 family=sparse_fast model_h=0.045 bot_prob=0.9548 fused_hc=5% http=200 decision=BLOCKED: BOT events=81 vel=1.4169 jerk=0.03146354 acc=0.16508 jit=0.2532 str=0.2509 heur=0.38 flags=Flat-dynamics automation signature
+attempt 112 family=minjerk_direct model_h=0.001 bot_prob=0.9993 fused_hc=0% http=200 decision=BLOCKED: BOT events=104 vel=0.6931 jerk=0.0095043 acc=0.037825 jit=0.1078 str=0.5208 heur=0.0 flags=No risk flags.
+attempt 113 family=sparse_irregular model_h=0.021 bot_prob=0.9789 fused_hc=2% http=200 decision=BLOCKED: BOT events=136 vel=1.1661 jerk=0.0302586 acc=0.131173 jit=0.2537 str=0.144 heur=0.38 flags=Flat-dynamics automation signature
+attempt 114 family=minjerk_fast model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=134 vel=0.9308 jerk=0.00865242 acc=0.036211 jit=0.1818 str=0.2621 heur=0.38 flags=Flat-dynamics automation signature
+attempt 115 family=sparse_fast model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=81 vel=1.1068 jerk=0.00601894 acc=0.038438 jit=0.1519 str=0.1316 heur=0.38 flags=Flat-dynamics automation signature
+attempt 116 family=sparse_fast model_h=0.003 bot_prob=0.9972 fused_hc=0% http=200 decision=BLOCKED: BOT events=127 vel=1.3859 jerk=0.03544519 acc=0.107871 jit=0.216 str=0.0756 heur=0.38 flags=Flat-dynamics automation signature
+attempt 117 family=sparse_fast model_h=0.051 bot_prob=0.9491 fused_hc=5% http=200 decision=BLOCKED: BOT events=62 vel=1.5777 jerk=0.09567457 acc=0.292632 jit=0.25 str=0.2817 heur=0.4 flags=Abnormal velocity spike (17.7 px/ms)
+attempt 118 family=sparse_irregular model_h=0.017 bot_prob=0.9831 fused_hc=2% http=200 decision=BLOCKED: BOT events=105 vel=1.2182 jerk=0.07894745 acc=0.197086 jit=0.2039 str=0.1857 heur=0.78 flags=Abnormal velocity spike (18.4 px/ms) | Flat-dynamics automation signature
+attempt 119 family=sparse_fast model_h=0.008 bot_prob=0.9916 fused_hc=1% http=200 decision=BLOCKED: BOT events=77 vel=1.1553 jerk=0.05296108 acc=0.1178 jit=0.1867 str=0.297 heur=0.38 flags=Flat-dynamics automation signature
+attempt 120 family=sparse_irregular model_h=0.021 bot_prob=0.979 fused_hc=2% http=200 decision=BLOCKED: BOT events=108 vel=1.3089 jerk=0.12506312 acc=0.280027 jit=0.217 str=0.3959 heur=0.0 flags=No risk flags.
+attempt 121 family=sparse_fast model_h=0.003 bot_prob=0.9967 fused_hc=0% http=200 decision=BLOCKED: BOT events=110 vel=1.2865 jerk=0.02508625 acc=0.112247 jit=0.2037 str=0.1407 heur=0.38 flags=Flat-dynamics automation signature
+attempt 122 family=minjerk_fast model_h=0.002 bot_prob=0.9979 fused_hc=0% http=200 decision=BLOCKED: BOT events=152 vel=1.0321 jerk=0.01811777 acc=0.076862 jit=0.1867 str=0.2414 heur=0.38 flags=Flat-dynamics automation signature
+attempt 123 family=sparse_fast model_h=0.043 bot_prob=0.9566 fused_hc=4% http=200 decision=BLOCKED: BOT events=115 vel=1.5332 jerk=0.03915891 acc=0.159963 jit=0.2389 str=0.2029 heur=0.38 flags=Flat-dynamics automation signature
+attempt 124 family=sparse_fast model_h=0.152 bot_prob=0.8481 fused_hc=15% http=200 decision=BLOCKED: BOT events=61 vel=1.3917 jerk=0.06629489 acc=0.222588 jit=0.2542 str=0.5136 heur=0.0 flags=No risk flags.
+attempt 125 family=minjerk_direct model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=150 vel=0.8346 jerk=0.00722173 acc=0.048727 jit=0.1284 str=0.1154 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 126 family=sparse_irregular model_h=0.006 bot_prob=0.9943 fused_hc=1% http=200 decision=BLOCKED: BOT events=92 vel=1.1226 jerk=0.04224873 acc=0.12518 jit=0.2 str=0.1844 heur=0.38 flags=Flat-dynamics automation signature
+attempt 127 family=minjerk_direct model_h=0.000 bot_prob=1.0 fused_hc=0% http=200 decision=BLOCKED: BOT events=157 vel=0.8028 jerk=0.00442186 acc=0.033652 jit=0.1548 str=0.2766 heur=0.38 flags=Flat-dynamics automation signature
+attempt 128 family=sparse_irregular model_h=0.001 bot_prob=0.9987 fused_hc=0% http=200 decision=BLOCKED: BOT events=85 vel=1.1679 jerk=0.01810785 acc=0.088757 jit=0.2169 str=0.1354 heur=0.38 flags=Flat-dynamics automation signature
+attempt 129 family=sparse_irregular model_h=0.002 bot_prob=0.9976 fused_hc=0% http=200 decision=BLOCKED: BOT events=156 vel=1.204 jerk=0.03127306 acc=0.116367 jit=0.2078 str=0.0982 heur=0.78 flags=Abnormal velocity spike (15.2 px/ms) | Flat-dynamics automation signature
+attempt 130 family=minjerk_fast model_h=0.001 bot_prob=0.9986 fused_hc=0% http=200 decision=BLOCKED: BOT events=110 vel=0.8698 jerk=0.01810865 acc=0.051465 jit=0.1574 str=0.189 heur=0.38 flags=Flat-dynamics automation signature
+attempt 131 family=sparse_fast model_h=0.002 bot_prob=0.9978 fused_hc=0% http=200 decision=BLOCKED: BOT events=112 vel=1.5672 jerk=0.03466119 acc=0.113766 jit=0.1727 str=0.0949 heur=0.38 flags=Flat-dynamics automation signature
+attempt 132 family=sparse_fast model_h=0.002 bot_prob=0.9981 fused_hc=0% http=200 decision=BLOCKED: BOT events=83 vel=1.3024 jerk=0.02268632 acc=0.084437 jit=0.2099 str=0.3844 heur=0.38 flags=Flat-dynamics automation signature
+attempt 133 family=sparse_fast model_h=0.004 bot_prob=0.9964 fused_hc=0% http=200 decision=BLOCKED: BOT events=111 vel=1.466 jerk=0.06072686 acc=0.170731 jit=0.211 str=0.2839 heur=0.78 flags=Abnormal velocity spike (16.7 px/ms) | Flat-dynamics automation signature
+attempt 134 family=sparse_irregular model_h=0.001 bot_prob=0.9985 fused_hc=0% http=200 decision=BLOCKED: BOT events=78 vel=1.1067 jerk=0.02188685 acc=0.106681 jit=0.1974 str=0.1313 heur=0.38 flags=Flat-dynamics automation signature
+attempt 135 family=sparse_fast model_h=0.049 bot_prob=0.9507 fused_hc=5% http=200 decision=BLOCKED: BOT events=73 vel=1.4496 jerk=0.05943469 acc=0.168108 jit=0.2676 str=0.4219 heur=0.38 flags=Flat-dynamics automation signature
+attempt 136 family=minjerk_direct model_h=0.001 bot_prob=0.9991 fused_hc=0% http=200 decision=BLOCKED: BOT events=144 vel=0.682 jerk=0.01029615 acc=0.036581 jit=0.169 str=0.3707 heur=0.0 flags=No risk flags.
+attempt 137 family=minjerk_fast model_h=0.003 bot_prob=0.9974 fused_hc=0% http=200 decision=BLOCKED: BOT events=102 vel=1.1705 jerk=0.04985194 acc=0.122505 jit=0.16 str=0.2827 heur=0.38 flags=Flat-dynamics automation signature
+attempt 138 family=sparse_irregular model_h=0.018 bot_prob=0.9822 fused_hc=2% http=200 decision=BLOCKED: BOT events=146 vel=1.2449 jerk=0.11084157 acc=0.241578 jit=0.1667 str=0.1816 heur=0.82 flags=Flat-dynamics automation signature | Playwright dense-hop family automation
+attempt 139 family=minjerk_fast model_h=0.005 bot_prob=0.9946 fused_hc=0% http=200 decision=BLOCKED: BOT events=105 vel=1.2278 jerk=0.10778512 acc=0.219428 jit=0.1942 str=0.116 heur=1.0 flags=Abnormal velocity spike (22.4 px/ms) | Flat-dynamics automation signature | Playwright dense-hop family automation
+attempt 140 family=sparse_irregular model_h=0.013 bot_prob=0.9873 fused_hc=1% http=200 decision=BLOCKED: BOT events=140 vel=1.1724 jerk=0.05196727 acc=0.132418 jit=0.2464 str=0.2644 heur=0.38 flags=Flat-dynamics automation signature
+attempt 141 family=minjerk_direct model_h=0.036 bot_prob=0.9636 fused_hc=0% http=200 decision=BLOCKED: BOT events=209 vel=0.9678 jerk=0.10456401 acc=0.198204 jit=0.1449 str=0.157 heur=1.0 flags=Abnormal velocity spike (17.3 px/ms) | Flat-dynamics automation signature | Playwright dense-hop family automation | Low-straightness low-jitter Playwright hop
+attempt 142 family=minjerk_fast model_h=0.002 bot_prob=0.9982 fused_hc=0% http=200 decision=BLOCKED: BOT events=157 vel=1.4854 jerk=0.09410375 acc=0.185925 jit=0.1226 str=0.1121 heur=1.0 flags=Abnormal velocity spike (20.5 px/ms) | Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 143 family=sparse_fast model_h=0.011 bot_prob=0.9885 fused_hc=1% http=200 decision=BLOCKED: BOT events=96 vel=1.2108 jerk=0.05634342 acc=0.127145 jit=0.2128 str=0.1646 heur=0.38 flags=Flat-dynamics automation signature
+attempt 144 family=minjerk_fast model_h=0.005 bot_prob=0.9954 fused_hc=0% http=200 decision=BLOCKED: BOT events=101 vel=0.9966 jerk=0.01502871 acc=0.073267 jit=0.1919 str=0.191 heur=0.38 flags=Flat-dynamics automation signature
+attempt 145 family=sparse_irregular model_h=0.016 bot_prob=0.9843 fused_hc=2% http=200 decision=BLOCKED: BOT events=146 vel=1.5985 jerk=0.15447692 acc=0.32713 jit=0.2014 str=0.1911 heur=0.4 flags=Abnormal velocity spike (25.8 px/ms)
+attempt 146 family=sparse_fast model_h=0.031 bot_prob=0.9691 fused_hc=3% http=200 decision=BLOCKED: BOT events=118 vel=1.7972 jerk=0.1311443 acc=0.300416 jit=0.1983 str=0.0787 heur=0.4 flags=Abnormal velocity spike (22.4 px/ms)
+attempt 147 family=minjerk_direct model_h=0.003 bot_prob=0.9969 fused_hc=0% http=200 decision=BLOCKED: BOT events=106 vel=0.5687 jerk=0.01018627 acc=0.040484 jit=0.2115 str=0.7629 heur=0.0 flags=No risk flags.
+attempt 148 family=sparse_fast model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=79 vel=1.1546 jerk=0.00975131 acc=0.059735 jit=0.1818 str=0.1107 heur=0.38 flags=Flat-dynamics automation signature
+attempt 149 family=minjerk_direct model_h=0.010 bot_prob=0.9898 fused_hc=1% http=200 decision=BLOCKED: BOT events=184 vel=1.0182 jerk=0.04611466 acc=0.121274 jit=0.1374 str=0.2338 heur=0.78 flags=Flat-dynamics automation signature | Low-straightness low-jitter Playwright hop
+attempt 150 family=sparse_irregular model_h=0.026 bot_prob=0.9735 fused_hc=3% http=200 decision=BLOCKED: BOT events=95 vel=1.3772 jerk=0.09680966 acc=0.253998 jit=0.2258 str=0.243 heur=0.4 flags=Abnormal velocity spike (19.0 px/ms)
+attempt 151 family=minjerk_fast model_h=0.011 bot_prob=0.9889 fused_hc=1% http=200 decision=BLOCKED: BOT events=127 vel=1.261 jerk=0.07214502 acc=0.201734 jit=0.168 str=0.1509 heur=0.78 flags=Abnormal velocity spike (16.6 px/ms) | Flat-dynamics automation signature
+attempt 152 family=minjerk_fast model_h=0.016 bot_prob=0.9843 fused_hc=2% http=200 decision=BLOCKED: BOT events=129 vel=1.0441 jerk=0.04359306 acc=0.122294 jit=0.1496 str=0.2726 heur=0.38 flags=Flat-dynamics automation signature
+attempt 153 family=minjerk_direct model_h=0.012 bot_prob=0.9875 fused_hc=1% http=200 decision=BLOCKED: BOT events=157 vel=0.9114 jerk=0.04071425 acc=0.110548 jit=0.1419 str=0.2676 heur=0.38 flags=Flat-dynamics automation signature
+attempt 154 family=minjerk_direct model_h=0.001 bot_prob=0.9989 fused_hc=0% http=200 decision=BLOCKED: BOT events=127 vel=0.8138 jerk=0.04576148 acc=0.104057 jit=0.128 str=0.2669 heur=0.38 flags=Flat-dynamics automation signature
+attempt 155 family=sparse_irregular model_h=0.782 bot_prob=0.2181 fused_hc=60% http=200 decision=PASSED: HUMAN events=60 vel=1.4335 jerk=0.19221112 acc=0.466679 jit=0.2414 str=0.1417 heur=0.4 flags=Abnormal velocity spike (18.3 px/ms)
+TARGET_REACHED model_human=0.7819 after 155 attempts in 620.6s

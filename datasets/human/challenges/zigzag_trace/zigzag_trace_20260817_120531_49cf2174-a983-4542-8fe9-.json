@@ -1,0 +1,88 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "49cf2174-a983-4542-8fe9-2cad285b3b9f",
+  "challenge_type": "zigzag_trace",
+  "seed": 1627708761,
+  "task_passed": true,
+  "event_count": 1008,
+  "features": {
+    "event_count": 1006,
+    "duration_ms": 1329.1,
+    "total_distance_px": 1729.16,
+    "euclidean_distance_px": 763.99,
+    "straightness_index": 0.4418,
+    "velocity_mean": 1.6192,
+    "velocity_std": 0.7643,
+    "velocity_max": 6.3246,
+    "acceleration_mean": 0.652111,
+    "acceleration_std": 0.683789,
+    "acceleration_max": 9.067708,
+    "jerk_mean": 0.53020759,
+    "angle_change_mean": 0.5246,
+    "angle_change_std": 0.4692,
+    "jitter_ratio": 0.1285,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": 1329.1
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 1329.1,
+    "median_click_dwell_ms": 1329.1,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": null,
+    "stroke_points": 1006,
+    "stroke_length_px": 1729.16,
+    "guide_length_px": 1160.74,
+    "length_ratio": 1.4897,
+    "coverage_ratio": 0.75,
+    "mean_distance_to_guide_px": 48.3986,
+    "max_distance_to_guide_px": 94.74,
+    "stroke_duration_ms": 1329.1,
+    "tolerance_px": 26.74
+  },
+  "spec": {
+    "guide_points": [
+      [
+        130.0,
+        393.17204813217734
+      ],
+      [
+        235.71428571428572,
+        265.4190768592797
+      ],
+      [
+        341.42857142857144,
+        393.17204813217734
+      ],
+      [
+        447.1428571428571,
+        265.4190768592797
+      ],
+      [
+        552.8571428571429,
+        393.17204813217734
+      ],
+      [
+        658.5714285714286,
+        265.4190768592797
+      ],
+      [
+        764.2857142857142,
+        393.17204813217734
+      ],
+      [
+        870.0,
+        265.4190768592797
+      ]
+    ],
+    "tolerance_px": 26.737700638008448,
+    "min_coverage_ratio": 0.58,
+    "min_stroke_points": 20
+  },
+  "csv": "zigzag_trace_20260817_120531_49cf2174-a983-4542-8fe9-.csv",
+  "relative_dir": "challenges/zigzag_trace",
+  "saved_at": "2026-08-17T12:05:31.862071+00:00"
+}

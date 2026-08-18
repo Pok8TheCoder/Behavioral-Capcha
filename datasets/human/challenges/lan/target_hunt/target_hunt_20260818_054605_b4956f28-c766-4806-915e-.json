@@ -1,0 +1,124 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "b4956f28-c766-4806-915e-733e60b4a414",
+  "challenge_type": "target_hunt",
+  "seed": 1186549497,
+  "task_passed": true,
+  "event_count": 174,
+  "features": {
+    "event_count": 91,
+    "duration_ms": 2549.5,
+    "total_distance_px": 1388.17,
+    "euclidean_distance_px": 460.86,
+    "straightness_index": 0.332,
+    "velocity_mean": 0.6822,
+    "velocity_std": 0.7465,
+    "velocity_max": 2.897,
+    "acceleration_mean": 0.013479,
+    "acceleration_std": 0.019764,
+    "acceleration_max": 0.149854,
+    "jerk_mean": 0.00112571,
+    "angle_change_mean": 0.2359,
+    "angle_change_std": 0.47,
+    "jitter_ratio": 0.0562,
+    "idle_ratio": 0.084,
+    "avg_click_dwell_ms": 76.14
+  },
+  "challenge_features": {
+    "click_count": 5,
+    "avg_click_dwell_ms": 76.14,
+    "median_click_dwell_ms": 74.9,
+    "inter_click_mean_ms": 409.975,
+    "inter_click_min_ms": 269.0,
+    "inter_click_max_ms": 535.3,
+    "target_count": 5,
+    "hits": 5,
+    "click_offset_mean_px": 21.96,
+    "click_offset_min_px": 13.85,
+    "click_offset_max_px": 28.0,
+    "mean_offset_over_radius": 0.8167,
+    "clicks": [
+      {
+        "t": 378493.5,
+        "target_id": 4,
+        "offset_px": 13.85,
+        "offset_over_radius": 0.4775,
+        "inside": true
+      },
+      {
+        "t": 378762.5,
+        "target_id": 3,
+        "offset_px": 28.0,
+        "offset_over_radius": 0.9999,
+        "inside": true
+      },
+      {
+        "t": 379213.0,
+        "target_id": 2,
+        "offset_px": 17.3,
+        "offset_over_radius": 0.7523,
+        "inside": true
+      },
+      {
+        "t": 379598.1,
+        "target_id": 1,
+        "offset_px": 23.66,
+        "offset_over_radius": 0.8159,
+        "inside": true
+      },
+      {
+        "t": 380133.4,
+        "target_id": 5,
+        "offset_px": 26.99,
+        "offset_over_radius": 1.0381,
+        "inside": true
+      }
+    ]
+  },
+  "spec": {
+    "targets": [
+      {
+        "id": 1,
+        "x": 324.7,
+        "y": 213.3,
+        "radius": 29,
+        "color": "#22d3ee"
+      },
+      {
+        "id": 2,
+        "x": 191.0,
+        "y": 399.8,
+        "radius": 23,
+        "color": "#a855f7"
+      },
+      {
+        "id": 3,
+        "x": 486.2,
+        "y": 530.3,
+        "radius": 28,
+        "color": "#f59e0b"
+      },
+      {
+        "id": 4,
+        "x": 278.1,
+        "y": 548.1,
+        "radius": 29,
+        "color": "#10b981"
+      },
+      {
+        "id": 5,
+        "x": 655.3,
+        "y": 200.2,
+        "radius": 26,
+        "color": "#f43f5e"
+      }
+    ],
+    "click_tolerance_px": 30
+  },
+  "csv": "target_hunt_20260818_054605_b4956f28-c766-4806-915e-.csv",
+  "relative_dir": "challenges/lan/target_hunt",
+  "saved_at": "2026-08-18T05:46:05.955385+00:00"
+}

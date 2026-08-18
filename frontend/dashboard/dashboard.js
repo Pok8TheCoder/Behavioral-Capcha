@@ -2,11 +2,41 @@ const API_BASE = window.location.origin.startsWith("http") ? window.location.ori
 const LOGICAL_WIDTH = 960;
 const LOGICAL_HEIGHT = 640;
 
-const MODEL_LABELS = {
+const DRAG_STROKE_TYPES = new Set([
+    "shape_trace",
+    "maze_navigate",
+    "zigzag_trace",
+    "spiral_trace",
+    "connect_dots",
+    "hazard_run",
+]);
+
+const LEGACY_MODEL_LABELS = {
+    random_forest_challenge: "Challenge RF (→ latest Qmodel)",
     random_forest_humanlike: "Random Forest (Human-like)",
     isolation_forest: "Isolation Forest",
     random_forest: "Random Forest (Legacy)",
 };
+
+function modelOptionLabel(name, details) {
+    if (details.label) return details.label;
+    if (details.family === "qmodel") return name.replace(/^qmodel_/i, "Qmodel ").replace("_", " ");
+    if (details.family === "ymodel") return name.replace(/^ymodel_/i, "Ymodel ").replace("_", " ");
+    return LEGACY_MODEL_LABELS[name] || name.replaceAll("_", " ");
+}
+
+function lookupModelDetails(models, modelId) {
+    if (!models || !modelId) return {};
+    if (models[modelId]) return models[modelId];
+    const lowered = String(modelId).toLowerCase();
+    const match = Object.keys(models).find(key => key.toLowerCase() === lowered);
+    return match ? models[match] : {};
+}
+
+function formatActiveModelLabel(data) {
+    const details = lookupModelDetails(data.available_models, data.active_model);
+    return data.active_model_label || modelOptionLabel(data.active_model, details);
+}
 
 let canvas, ctx, botCursor;
 let challenge = null;
@@ -16,7 +46,26 @@ let isCapturing = false;
 let isBotRunning = false;
 let sequenceProgress = 0;
 let pinProgress = 0;
+let targetHits = 0;
+let isDrawing = false;
 let submitting = false;
+let lastCompletedEvents = [];
+let liveAckCount = 0;
+let liveQueue = [];
+let liveFlushTimer = null;
+let liveFlushChain = Promise.resolve();
+let liveSocket = null;
+let liveUseWs = false;
+let livePumpQueued = false;
+let canvasRedrawQueued = false;
+const LIVE_BATCH = 48;
+const LIVE_FLUSH_MS = 250;
+const LIVE_WS_BUFFER_MAX = 256000;
+const TARGET_STREAM_HZ = 900;
+let clientInteractionStartMs = 0;
+let scaleTo900Hz = false;
+let lastRawMove = null;
+const rawMoveTimes = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("challenge-canvas");
@@ -28,23 +77,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("btn-new-challenge").addEventListener("click", () => startNewChallenge());
     document.getElementById("btn-next").addEventListener("click", () => { hideOverlay(); startNewChallenge(); });
+    document.getElementById("btn-save-human").addEventListener("click", saveHumanCapture);
     document.getElementById("btn-submit").addEventListener("click", () => submitAttempt("human"));
     document.getElementById("active-model").addEventListener("change", activateModel);
+    const hzToggle = document.getElementById("scale-900hz");
+    if (hzToggle) {
+        hzToggle.checked = localStorage.getItem("scaleTo900Hz") === "1";
+        scaleTo900Hz = hzToggle.checked;
+        hzToggle.addEventListener("change", () => {
+            scaleTo900Hz = hzToggle.checked;
+            localStorage.setItem("scaleTo900Hz", scaleTo900Hz ? "1" : "0");
+            updateHzReadout();
+        });
+    }
 
     document.querySelectorAll("[data-bot]").forEach(btn => {
         btn.addEventListener("click", () => runBot(btn.dataset.bot));
     });
 
     canvas.addEventListener("pointerdown", onPointerDown);
-    canvas.addEventListener("pointermove", onPointerMove);
+    canvas.addEventListener("pointermove", onPointerMove, { passive: true });
+    canvas.addEventListener("pointerrawupdate", onPointerRawUpdate, { passive: true });
     canvas.addEventListener("pointerup", onPointerUp);
-    canvas.addEventListener("pointerleave", onPointerUp);
-    canvas.addEventListener("dblclick", () => submitAttempt("human"));
+    canvas.addEventListener("pointercancel", onPointerUp);
 
     loadModelSelector();
+    loadChallengeCatalog();
     checkHealth();
     startNewChallenge();
 });
+
+function usesDragStroke() {
+    return challenge && DRAG_STROKE_TYPES.has(challenge.challenge_type);
+}
 
 function resizeCanvas() {
     const wrap = canvas.parentElement;
@@ -64,38 +129,319 @@ function canvasPoint(evt) {
     };
 }
 
-function recordEvent(x, y, t, type, isBot = false) {
-    events.push({ x: Math.round(x), y: Math.round(y), t: Math.round(t * 100) / 100, type });
-    document.getElementById("meta-events").textContent = String(events.length);
-    if (type === "mousemove") {
-        trail.push({ x, y, isBot });
+function round2(v) {
+    return Math.round(v * 100) / 100;
+}
+
+function noteRawMoveHz(t) {
+    rawMoveTimes.push(t);
+    const cutoff = t - 280;
+    while (rawMoveTimes.length > 2 && rawMoveTimes[0] < cutoff) {
+        rawMoveTimes.shift();
+    }
+}
+
+function currentCursorHz() {
+    if (rawMoveTimes.length < 4) return 0;
+    const span = rawMoveTimes[rawMoveTimes.length - 1] - rawMoveTimes[0];
+    if (span < 24) return 0;
+    return (rawMoveTimes.length - 1) * 1000 / span;
+}
+
+function updateHzReadout() {
+    const hzEl = document.getElementById("meta-cursor-hz");
+    const streamEl = document.getElementById("meta-stream-hz");
+    if (!hzEl || !streamEl) return;
+    const hz = currentCursorHz();
+    hzEl.textContent = hz > 0 ? `${Math.round(hz)}` : "—";
+    if (scaleTo900Hz && hz > 0) {
+        streamEl.textContent = String(TARGET_STREAM_HZ);
+    } else if (hz > 0) {
+        streamEl.textContent = `${Math.round(hz)}`;
+    } else {
+        streamEl.textContent = "—";
+    }
+}
+
+function emitRecorded(evt, interpolated) {
+    if (!interpolated && evt.type === "mousemove" && events.length) {
+        const prev = events[events.length - 1];
+        if (prev.type === "mousemove" && prev.x === evt.x && prev.y === evt.y && prev.t === evt.t) {
+            return;
+        }
+    }
+    events.push(evt);
+    pushLiveEvent(evt);
+    if (!interpolated && evt.type === "mousemove" && (events.length & 1) === 0) {
+        trail.push({ x: evt.x, y: evt.y, isBot: false });
         if (trail.length > 800) trail.shift();
     }
+    scheduleCanvasRedraw();
+}
+
+function emitScaledMoves(fromEvt, toEvt) {
+    const dt = toEvt.t - fromEvt.t;
+    const dist = Math.hypot(toEvt.x - fromEvt.x, toEvt.y - fromEvt.y);
+    if (dt < 1.6 || dist < 0.35) return;
+    const step = 1000 / TARGET_STREAM_HZ;
+    const n = Math.min(40, Math.floor(dt / step) - 1);
+    if (n < 1) return;
+    for (let i = 1; i <= n; i++) {
+        const u = i / (n + 1);
+        const mid = {
+            x: round2(fromEvt.x + (toEvt.x - fromEvt.x) * u),
+            y: round2(fromEvt.y + (toEvt.y - fromEvt.y) * u),
+            t: round2(fromEvt.t + dt * u),
+            type: "mousemove",
+        };
+        if (toEvt.pid != null) mid.pid = toEvt.pid;
+        if (toEvt.pt) mid.pt = toEvt.pt;
+        if (toEvt.src) mid.src = toEvt.src;
+        emitRecorded(mid, true);
+    }
+}
+
+function recordEvent(x, y, t, type, pointerMeta = null) {
+    const evt = {
+        x: round2(x),
+        y: round2(y),
+        t: round2(t),
+        type,
+    };
+    if (pointerMeta) {
+        if (pointerMeta.pid != null) evt.pid = pointerMeta.pid;
+        if (pointerMeta.pt) evt.pt = pointerMeta.pt;
+        if (pointerMeta.src) evt.src = pointerMeta.src;
+    }
+    if (type === "mousemove") {
+        noteRawMoveHz(evt.t);
+        if (scaleTo900Hz && lastRawMove && lastRawMove.type === "mousemove") {
+            emitScaledMoves(lastRawMove, evt);
+        }
+        lastRawMove = evt;
+    } else {
+        lastRawMove = evt;
+    }
+    emitRecorded(evt, false);
+}
+
+function pointerMetaFrom(evt) {
+    return {
+        pid: evt.pointerId,
+        pt: evt.pointerType || "mouse",
+        src: "canvas",
+    };
+}
+
+function scheduleCanvasRedraw() {
+    if (canvasRedrawQueued) return;
+    canvasRedrawQueued = true;
+    requestAnimationFrame(() => {
+        canvasRedrawQueued = false;
+        const meta = document.getElementById("meta-events");
+        if (meta) meta.textContent = String(events.length);
+        updateHzReadout();
+        drawChallenge();
+    });
+}
+
+function liveWsUrl(sessionId, token) {
+    const u = new URL(API_BASE);
+    const proto = u.protocol === "https:" ? "wss:" : "ws:";
+    return `${proto}//${u.host}/ws/challenge/live?session_id=${encodeURIComponent(sessionId)}&verify_token=${encodeURIComponent(token)}`;
+}
+
+function resetLiveTelemetry() {
+    liveAckCount = 0;
+    liveQueue = [];
+    liveUseWs = false;
+    if (liveFlushTimer) {
+        clearTimeout(liveFlushTimer);
+        liveFlushTimer = null;
+    }
+    if (liveSocket) {
+        try { liveSocket.close(); } catch (err) { /* ignore */ }
+        liveSocket = null;
+    }
+}
+
+function connectLiveTelemetry() {
+    resetLiveTelemetry();
+    if (!challenge) return;
+    try {
+        const socket = new WebSocket(liveWsUrl(challenge.session_id, challenge.verify_token));
+        liveSocket = socket;
+        socket.onopen = () => {
+            if (liveSocket === socket) {
+                liveUseWs = true;
+                pumpLiveQueue();
+            }
+        };
+        socket.onmessage = (msg) => {
+            try {
+                const data = JSON.parse(msg.data);
+                if (typeof data.count === "number") liveAckCount = data.count;
+            } catch (err) { /* ignore */ }
+        };
+        socket.onerror = () => {
+            if (liveSocket === socket) liveUseWs = false;
+        };
+        socket.onclose = () => {
+            if (liveSocket === socket) {
+                liveUseWs = false;
+                liveSocket = null;
+            }
+        };
+    } catch (err) {
+        liveUseWs = false;
+    }
+}
+
+function pushLiveEvent(evt) {
+    liveQueue.push(evt);
+    if (liveUseWs) {
+        pumpLiveQueue();
+        return;
+    }
+    if (liveQueue.length >= LIVE_BATCH) {
+        flushLiveTelemetry();
+        return;
+    }
+    if (!liveFlushTimer) {
+        liveFlushTimer = setTimeout(() => {
+            liveFlushTimer = null;
+            flushLiveTelemetry();
+        }, LIVE_FLUSH_MS);
+    }
+}
+
+function pumpLiveQueue() {
+    if (livePumpQueued) return;
+    livePumpQueued = true;
+    requestAnimationFrame(() => {
+        livePumpQueued = false;
+        if (!liveUseWs || !liveSocket || liveSocket.readyState !== 1) return;
+        while (liveQueue.length && liveSocket.bufferedAmount < LIVE_WS_BUFFER_MAX) {
+            const batch = liveQueue.splice(0, LIVE_BATCH);
+            liveSocket.send(JSON.stringify({ events: batch }));
+        }
+        if (liveQueue.length) pumpLiveQueue();
+    });
+}
+
+function flushLiveTelemetry() {
+    if (liveUseWs && liveSocket && liveSocket.readyState === 1) {
+        pumpLiveQueue();
+        if (liveSocket.readyState === 1) {
+            liveSocket.send(JSON.stringify({ flush: true }));
+        }
+        return liveFlushChain;
+    }
+    liveFlushChain = liveFlushChain.then(sendLiveBatches).catch(() => false);
+    return liveFlushChain;
+}
+
+async function sendLiveBatches() {
+    if (liveFlushTimer) {
+        clearTimeout(liveFlushTimer);
+        liveFlushTimer = null;
+    }
+    while (challenge && liveQueue.length) {
+        const batch = liveQueue.splice(0, LIVE_BATCH);
+        const resp = await fetch(`${API_BASE}/api/challenge/live`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                session_id: challenge.session_id,
+                verify_token: challenge.verify_token,
+                events: batch,
+            }),
+            keepalive: true,
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok) {
+            liveQueue = batch.concat(liveQueue);
+            throw new Error((data.detail && data.detail.message) || data.detail || "live ingest failed");
+        }
+        if (typeof data.count === "number") liveAckCount = data.count;
+    }
+    return liveAckCount;
+}
+
+async function waitLiveSynced(expected, timeoutMs = 20000) {
+    const start = performance.now();
+    while (performance.now() - start < timeoutMs) {
+        if (liveUseWs) {
+            pumpLiveQueue();
+            if (liveSocket && liveSocket.readyState === 1) {
+                liveSocket.send(JSON.stringify({ flush: true }));
+            }
+        } else {
+            try {
+                await flushLiveTelemetry();
+            } catch (err) {
+                await new Promise(r => setTimeout(r, 80));
+            }
+        }
+        if (liveAckCount >= expected && liveQueue.length === 0) return true;
+        await new Promise(r => setTimeout(r, 40));
+    }
+    try {
+        await flushLiveTelemetry();
+    } catch (err) { /* last try */ }
+    return liveAckCount >= expected && liveQueue.length === 0;
 }
 
 function onPointerDown(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
     canvas.setPointerCapture(evt.pointerId);
     const p = canvasPoint(evt);
-    recordEvent(p.x, p.y, performance.now(), "mousedown");
-    drawChallenge();
+    isDrawing = usesDragStroke();
+    const meta = pointerMetaFrom(evt);
+    recordEvent(p.x, p.y, performance.now(), "mousedown", meta);
+}
+
+function recordPointerSamples(evt) {
+    const points = typeof evt.getCoalescedEvents === "function" ? evt.getCoalescedEvents() : [evt];
+    for (let i = 0; i < points.length; i++) {
+        const e = points[i];
+        const p = canvasPoint(e);
+        recordEvent(p.x, p.y, e.timeStamp || performance.now(), "mousemove", pointerMetaFrom(e));
+    }
+}
+
+function onPointerRawUpdate(evt) {
+    if (!challenge || !isCapturing || isBotRunning) return;
+    if (usesDragStroke() && !isDrawing) return;
+    recordPointerSamples(evt);
 }
 
 function onPointerMove(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
-    const points = typeof evt.getCoalescedEvents === "function" ? evt.getCoalescedEvents() : [evt];
-    points.forEach(e => {
-        const p = canvasPoint(e);
-        recordEvent(p.x, p.y, e.timeStamp, "mousemove");
-    });
-    drawChallenge();
-    maybeAutoComplete();
+    if (usesDragStroke() && !isDrawing) return;
+    if (!("onpointerrawupdate" in window)) {
+        recordPointerSamples(evt);
+    }
+    if (!usesDragStroke()) {
+        maybeAutoComplete();
+    }
 }
 
 function onPointerUp(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
+    try {
+        canvas.releasePointerCapture(evt.pointerId);
+    } catch (err) {
+        /* already released */
+    }
     const p = canvasPoint(evt);
-    recordEvent(p.x, p.y, evt.timeStamp, "mouseup");
+    recordEvent(p.x, p.y, evt.timeStamp, "mouseup", pointerMetaFrom(evt));
+    if (usesDragStroke() && isDrawing) {
+        isDrawing = false;
+        drawChallenge();
+        submitAttempt("human");
+        return;
+    }
     handleClick(p.x, p.y);
     drawChallenge();
     maybeAutoComplete();
@@ -131,6 +477,18 @@ function handleClick(x, y) {
             }
         }
     }
+
+    if (type === "target_hunt") {
+        const tol = spec.click_tolerance_px;
+        for (const target of spec.targets) {
+            if (target.clicked) continue;
+            if (Math.hypot(x - target.x, y - target.y) <= tol + target.radius) {
+                target.clicked = true;
+                targetHits += 1;
+                break;
+            }
+        }
+    }
 }
 
 function maybeAutoComplete() {
@@ -140,14 +498,11 @@ function maybeAutoComplete() {
 
     if (type === "button_sequence" && sequenceProgress >= spec.sequence.length) submitAttempt("human");
     if (type === "pin_entry" && pinProgress >= spec.code.length) submitAttempt("human");
+    if (type === "target_hunt" && targetHits >= spec.targets.length) submitAttempt("human");
 
     const last = events[events.length - 1];
     if (!last) return;
 
-    if (type === "maze_navigate") {
-        const end = spec.end;
-        if (Math.hypot(last.x - end[0], last.y - end[1]) <= spec.finish_tolerance_px) submitAttempt("human");
-    }
     if (type === "path_gates") {
         const end = spec.end;
         if (Math.hypot(last.x - end[0], last.y - end[1]) <= spec.finish_tolerance_px) submitAttempt("human");
@@ -159,7 +514,7 @@ function checkHealth() {
     fetch(`${API_BASE}/api/health`)
         .then(r => r.json())
         .then(data => {
-            pill.textContent = `Online · ${data.active_model?.replaceAll("_", " ") || "ready"}`;
+            pill.textContent = `Online · ${formatActiveModelLabel(data) || data.active_model || "ready"}`;
             pill.className = "status-pill ok";
         })
         .catch(() => {
@@ -170,8 +525,9 @@ function checkHealth() {
 
 function loadModelSelector() {
     updateModelSelector({
-        active_model: "random_forest_humanlike",
+        active_model: "random_forest_challenge",
         available_models: {
+            random_forest_challenge: { available: true },
             random_forest_humanlike: { available: true },
             isolation_forest: { available: true },
             random_forest: { available: true },
@@ -186,18 +542,61 @@ function loadModelSelector() {
 
 function updateModelSelector(data) {
     const selector = document.getElementById("active-model");
-    const options = [];
-    Object.entries(data.available_models || {}).forEach(([name, details]) => {
-        if (!details.available) return;
-        const opt = document.createElement("option");
-        opt.value = name;
-        opt.textContent = MODEL_LABELS[name] || name.replaceAll("_", " ");
-        opt.selected = name === data.active_model;
-        options.push(opt);
-    });
-    if (!options.length) return;
+    const models = data.available_models || {};
+    const qmodelIds = Object.entries(models)
+        .filter(([, d]) => d.family === "qmodel" && d.available)
+        .sort((a, b) => (a[1].version || "").localeCompare(b[1].version || "", undefined, { numeric: true }));
+    const ymodelIds = Object.entries(models)
+        .filter(([, d]) => d.family === "ymodel" && d.available)
+        .sort((a, b) => (a[1].version || "").localeCompare(b[1].version || "", undefined, { numeric: true }));
+    const legacyIds = Object.entries(models)
+        .filter(([, d]) => d.family === "legacy" && d.available);
+
     selector.innerHTML = "";
-    options.forEach(o => selector.appendChild(o));
+
+    if (qmodelIds.length) {
+        const group = document.createElement("optgroup");
+        group.label = "Qmodel versions";
+        qmodelIds.forEach(([name, details]) => {
+            const opt = document.createElement("option");
+            opt.value = name;
+            const status = details.status ? ` · ${details.status}` : "";
+            opt.textContent = `${modelOptionLabel(name, details)}${status}`;
+            opt.selected = name.toLowerCase() === String(data.active_model || "").toLowerCase();
+            group.appendChild(opt);
+        });
+        selector.appendChild(group);
+    }
+
+    if (ymodelIds.length) {
+        const group = document.createElement("optgroup");
+        group.label = "Ymodel versions";
+        ymodelIds.forEach(([name, details]) => {
+            const opt = document.createElement("option");
+            opt.value = name;
+            const status = details.status ? ` · ${details.status}` : "";
+            opt.textContent = `${modelOptionLabel(name, details)}${status}`;
+            opt.selected = name.toLowerCase() === String(data.active_model || "").toLowerCase();
+            group.appendChild(opt);
+        });
+        selector.appendChild(group);
+    }
+
+    if (legacyIds.length) {
+        const group = document.createElement("optgroup");
+        group.label = "Legacy models";
+        legacyIds.forEach(([name, details]) => {
+            const opt = document.createElement("option");
+            opt.value = name;
+            opt.textContent = modelOptionLabel(name, details);
+            opt.selected = name.toLowerCase() === String(data.active_model || "").toLowerCase();
+            group.appendChild(opt);
+        });
+        selector.appendChild(group);
+    }
+
+    if (!selector.options.length) return;
+    document.getElementById("model-line").textContent = `Model: ${formatActiveModelLabel(data)}`;
 }
 
 function activateModel() {
@@ -208,42 +607,97 @@ function activateModel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ model_name: selector.value }),
     })
-        .then(r => r.json())
-        .then(data => {
+        .then(async r => {
+            const data = await r.json();
+            if (!r.ok) {
+                const message = data.detail?.message || data.detail || "Could not activate model.";
+                throw new Error(typeof message === "string" ? message : "Could not activate model.");
+            }
             updateModelSelector(data);
-            document.getElementById("model-line").textContent = `Model: ${data.active_model.replaceAll("_", " ")}`;
+            document.getElementById("model-line").textContent = `Model: ${formatActiveModelLabel(data)}`;
+        })
+        .catch(err => {
+            console.error(err);
+            alert(err.message || "Could not activate model.");
         })
         .finally(() => { selector.disabled = false; });
+}
+
+function loadChallengeCatalog() {
+    fetch(`${API_BASE}/api/challenge/types`)
+        .then(r => r.json())
+        .then(data => {
+            const picker = document.getElementById("challenge-type");
+            const catalog = document.getElementById("challenge-catalog");
+            const entries = data.catalog || {};
+            catalog.innerHTML = "";
+            Object.entries(entries).forEach(([id, info]) => {
+                const opt = document.createElement("option");
+                opt.value = id;
+                opt.textContent = info.title || id.replaceAll("_", " ");
+                picker.appendChild(opt);
+
+                const li = document.createElement("li");
+                li.dataset.type = id;
+                li.innerHTML = `<strong>${info.title || id}</strong> · ${info.interaction || ""}<br><span>${info.summary || ""}</span>`;
+                catalog.appendChild(li);
+            });
+        })
+        .catch(() => {
+            document.getElementById("challenge-catalog").innerHTML =
+                "<li class='flag idle'>Could not load catalog.</li>";
+        });
+}
+
+function highlightCatalogEntry(type) {
+    document.querySelectorAll("#challenge-catalog li").forEach(li => {
+        li.classList.toggle("active", li.dataset.type === type);
+    });
 }
 
 function startNewChallenge() {
     isCapturing = false;
     isBotRunning = false;
+    isDrawing = false;
     events = [];
+    lastCompletedEvents = [];
     trail = [];
+    lastRawMove = null;
+    rawMoveTimes.length = 0;
     sequenceProgress = 0;
     pinProgress = 0;
+    targetHits = 0;
     hideOverlay();
+    resetSaveHumanButton();
     setButtonsDisabled(false);
+
+    const picker = document.getElementById("challenge-type");
+    const chosen = picker && picker.value !== "random" ? picker.value : null;
 
     fetch(`${API_BASE}/api/challenge/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ challenge_type: chosen }),
     })
         .then(r => r.json())
         .then(data => {
             challenge = data;
             isCapturing = true;
+            clientInteractionStartMs = performance.now();
+            connectLiveTelemetry();
             document.getElementById("challenge-title").textContent = data.title;
             document.getElementById("challenge-instructions").textContent = data.instructions;
             document.getElementById("meta-type").textContent = data.challenge_type;
             document.getElementById("meta-seed").textContent = String(data.seed);
             document.getElementById("meta-events").textContent = "0";
             document.getElementById("meta-participant").textContent = "—";
-            resetAssessmentUI("IN PROGRESS", "Attempt the challenge or run a bot.");
+            highlightCatalogEntry(data.challenge_type);
+            resetAssessmentUI("IN PROGRESS", data.instructions);
+            const submitBtn = document.getElementById("btn-submit");
+            submitBtn.style.display = usesDragStroke() ? "none" : "inline-block";
             if (data.spec.buttons) data.spec.buttons.forEach(b => { b.clicked = false; });
             if (data.spec.keys) data.spec.keys.forEach(k => { k.pressed = false; });
+            if (data.spec.targets) data.spec.targets.forEach(t => { t.clicked = false; });
             drawChallenge();
         })
         .catch(err => {
@@ -270,16 +724,32 @@ function submitAttempt(participant) {
     isCapturing = false;
     setButtonsDisabled(true);
 
-    fetch(`${API_BASE}/api/challenge/verify`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            session_id: challenge.session_id,
-            events,
-            participant,
-        }),
+    waitLiveSynced(events.length).then((synced) => {
+        if (!synced) {
+            throw new Error("Live canvas stream did not catch up; retry the challenge.");
+        }
+        return fetch(`${API_BASE}/api/challenge/verify`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                session_id: challenge.session_id,
+                participant,
+                verify_token: challenge.verify_token,
+                client_started_ms: clientInteractionStartMs,
+                client_submitted_ms: performance.now(),
+                source: "dashboard",
+            }),
+        });
     })
-        .then(r => r.json())
+        .then(async r => {
+            const data = await r.json();
+            if (!r.ok) {
+                const detail = data.detail;
+                const msg = typeof detail === "object" ? detail.message || JSON.stringify(detail) : detail || r.statusText;
+                throw new Error(msg);
+            }
+            return data;
+        })
         .then(showResults)
         .catch(err => {
             document.getElementById("task-result").textContent = `Submit failed: ${err}`;
@@ -297,6 +767,8 @@ function runBot(botName) {
     setButtonsDisabled(true);
     events = [];
     trail = [];
+    lastRawMove = null;
+    rawMoveTimes.length = 0;
 
     fetch(`${API_BASE}/api/challenge/run-bot`, {
         method: "POST",
@@ -355,7 +827,10 @@ function drawChallenge() {
     drawGrid();
 
     const type = challenge.challenge_type;
-    if (type === "shape_trace") drawShapeTrace(challenge.spec);
+    if (type === "shape_trace" || type === "zigzag_trace" || type === "spiral_trace") drawGuidePath(challenge.spec);
+    if (type === "connect_dots") drawConnectDots(challenge.spec);
+    if (type === "target_hunt") drawTargetHunt(challenge.spec);
+    if (type === "hazard_run") drawHazardRun(challenge.spec);
     if (type === "button_sequence") drawButtonSequence(challenge.spec);
     if (type === "maze_navigate") drawMaze(challenge.spec);
     if (type === "pin_entry") drawPinEntry(challenge.spec);
@@ -387,7 +862,7 @@ function drawTrail() {
     }
 }
 
-function drawShapeTrace(spec) {
+function drawGuidePath(spec) {
     const pts = spec.guide_points;
     ctx.strokeStyle = "rgba(168, 85, 247, 0.55)";
     ctx.lineWidth = 3;
@@ -397,6 +872,73 @@ function drawShapeTrace(spec) {
     for (let i = 1; i < pts.length; i++) ctx.lineTo(pts[i][0], pts[i][1]);
     ctx.stroke();
     ctx.setLineDash([]);
+}
+
+function drawConnectDots(spec) {
+    const dots = spec.dots || [];
+    if (dots.length > 1) {
+        ctx.strokeStyle = "rgba(148, 163, 184, 0.25)";
+        ctx.lineWidth = 2;
+        ctx.setLineDash([4, 8]);
+        ctx.beginPath();
+        ctx.moveTo(dots[0].x, dots[0].y);
+        for (let i = 1; i < dots.length; i++) ctx.lineTo(dots[i].x, dots[i].y);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+    dots.forEach(dot => {
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(34, 211, 238, 0.2)";
+        ctx.fill();
+        ctx.strokeStyle = "#22d3ee";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.fillStyle = "#f8fafc";
+        ctx.font = "bold 16px Outfit";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(String(dot.id), dot.x, dot.y);
+    });
+}
+
+function drawTargetHunt(spec) {
+    spec.targets.forEach(target => {
+        ctx.beginPath();
+        ctx.arc(target.x, target.y, target.radius, 0, Math.PI * 2);
+        ctx.fillStyle = target.clicked ? "rgba(16, 185, 129, 0.35)" : `${target.color}33`;
+        ctx.fill();
+        ctx.strokeStyle = target.clicked ? "#10b981" : target.color;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    });
+}
+
+function drawHazardRun(spec) {
+    spec.hazards.forEach(h => {
+        ctx.beginPath();
+        ctx.arc(h.x, h.y, h.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(244, 63, 94, 0.25)";
+        ctx.fill();
+        ctx.strokeStyle = "rgba(244, 63, 94, 0.7)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    });
+    ctx.strokeStyle = "rgba(148, 163, 184, 0.3)";
+    ctx.lineWidth = 2;
+    ctx.setLineDash([6, 6]);
+    ctx.beginPath();
+    const wps = spec.waypoints || [];
+    if (wps.length) {
+        ctx.moveTo(wps[0][0], wps[0][1]);
+        for (let i = 1; i < wps.length; i++) ctx.lineTo(wps[i][0], wps[i][1]);
+        ctx.stroke();
+    }
+    ctx.setLineDash([]);
+    ctx.fillStyle = "#10b981";
+    ctx.beginPath(); ctx.arc(spec.start[0], spec.start[1], 10, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#f43f5e";
+    ctx.beginPath(); ctx.arc(spec.end[0], spec.end[1], 10, 0, Math.PI * 2); ctx.fill();
 }
 
 function drawButtonSequence(spec) {
@@ -491,11 +1033,14 @@ function drawPathGates(spec) {
 function showResults(data) {
     const evalData = data.evaluation || {};
     const task = data.task_result || {};
-    const humanPct = data.human_confidence != null ? Math.round(data.human_confidence * 100) : null;
+    const botProb = evalData.bot_probability;
+    const humanPct = typeof botProb === "number" ? Math.round((1 - botProb) * 100) : (
+        data.human_confidence != null ? Math.round(data.human_confidence * 100) : null
+    );
 
     document.getElementById("human-confidence").textContent = humanPct != null ? `${humanPct}%` : "—%";
     document.getElementById("task-result").textContent = task.reason || "Done";
-    document.getElementById("model-line").textContent = `Model: ${evalData.model_type || "unknown"}`;
+    document.getElementById("model-line").textContent = `Model: ${evalData.qmodel_label || evalData.model_type || "unknown"}`;
     document.getElementById("meta-participant").textContent = data.participant || "—";
 
     const badge = document.getElementById("decision-badge");
@@ -526,12 +1071,30 @@ function showResults(data) {
     const grid = document.getElementById("result-grid");
     grid.innerHTML = "";
     addResultCell(grid, "Task", task.passed ? "PASS" : "FAIL");
-    addResultCell(grid, "Risk", evalData.risk_score != null ? evalData.risk_score.toFixed(3) : "—");
+    addResultCell(grid, "Model human", humanPct != null ? `${humanPct}%` : "—");
     addResultCell(grid, "Bot prob.", evalData.bot_probability != null ? evalData.bot_probability.toFixed(3) : "—");
+    addResultCell(grid, "Heuristic", evalData.heuristic_score != null ? evalData.heuristic_score.toFixed(3) : "—");
+    addResultCell(grid, "Fused risk", evalData.risk_score != null ? evalData.risk_score.toFixed(3) : "—");
     addResultCell(grid, "Participant", data.participant || "—");
 
     document.getElementById("overlay-title").textContent = task.passed ? "Complete" : "Incomplete";
     document.getElementById("overlay-message").textContent = task.reason || "";
+
+    const saveBtn = document.getElementById("btn-save-human");
+    const saveStatus = document.getElementById("overlay-save-status");
+    const isHumanAttempt = !String(data.participant || "human").toLowerCase().startsWith("bot");
+    lastCompletedEvents = events.slice();
+    saveStatus.textContent = "";
+    if (isHumanAttempt && lastCompletedEvents.length >= 4) {
+        saveBtn.classList.remove("hidden");
+        saveBtn.disabled = false;
+        saveBtn.textContent = "Keep as human data & next";
+    } else {
+        saveBtn.classList.add("hidden");
+        if (!isHumanAttempt) {
+            saveStatus.textContent = "Bot runs are not saved as human data.";
+        }
+    }
     showOverlay();
 }
 
@@ -543,8 +1106,60 @@ function addResultCell(grid, label, value) {
 
 function showOverlay() {
     document.getElementById("challenge-overlay").classList.remove("hidden");
+    if (canvas) canvas.style.pointerEvents = "none";
 }
 
 function hideOverlay() {
     document.getElementById("challenge-overlay").classList.add("hidden");
+    if (canvas) canvas.style.pointerEvents = "";
+}
+
+function resetSaveHumanButton() {
+    const btn = document.getElementById("btn-save-human");
+    const status = document.getElementById("overlay-save-status");
+    btn.disabled = false;
+    btn.classList.add("hidden");
+    btn.textContent = "Keep as human data & next";
+    status.textContent = "";
+}
+
+function saveHumanCapture() {
+    if (!challenge) return;
+    const snapshot = (lastCompletedEvents.length ? lastCompletedEvents : events).slice();
+    const sessionId = challenge.session_id;
+    const verifyToken = challenge.verify_token;
+    const challengeType = challenge.challenge_type;
+    const seed = challenge.seed;
+    const btn = document.getElementById("btn-save-human");
+    const status = document.getElementById("overlay-save-status");
+    btn.disabled = true;
+    status.textContent = "Saving capture…";
+    fetch(`${API_BASE}/api/challenge/save-human`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            session_id: sessionId,
+            verify_token: verifyToken,
+            events: snapshot,
+            challenge_type: challengeType,
+            seed,
+            spec: challenge.spec || {},
+        }),
+    })
+        .then(async r => {
+            const data = await r.json().catch(() => ({}));
+            if (!r.ok) {
+                const detail = data.detail;
+                throw new Error(typeof detail === "object" ? detail.message || JSON.stringify(detail) : detail || r.statusText);
+            }
+            return data;
+        })
+        .then(() => {
+            hideOverlay();
+            startNewChallenge();
+        })
+        .catch(err => {
+            btn.disabled = false;
+            status.textContent = `Could not save: ${err.message || err}`;
+        });
 }

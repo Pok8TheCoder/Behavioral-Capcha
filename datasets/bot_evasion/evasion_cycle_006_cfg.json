@@ -1,0 +1,9 @@
+{
+  "families": [
+    "fast_direct",
+    "direct_wobble",
+    "human_turns",
+    "event_flood"
+  ],
+  "episodes_per_family": 12
+}

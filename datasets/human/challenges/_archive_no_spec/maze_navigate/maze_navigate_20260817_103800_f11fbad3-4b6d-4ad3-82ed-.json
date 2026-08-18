@@ -1,0 +1,31 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "f11fbad3-4b6d-4ad3-82ed-90968fa0c35c",
+  "challenge_type": "maze_navigate",
+  "seed": 1639187404,
+  "task_passed": true,
+  "event_count": 4275,
+  "features": {
+    "event_count": 4275,
+    "duration_ms": 7914.6,
+    "total_distance_px": 3458.3,
+    "euclidean_distance_px": 841.53,
+    "straightness_index": 0.2433,
+    "velocity_mean": 0.5826,
+    "velocity_std": 0.4531,
+    "velocity_max": 2.5,
+    "acceleration_mean": 0.458583,
+    "acceleration_std": 0.433355,
+    "acceleration_max": 3.125,
+    "jerk_mean": 0.32954334,
+    "angle_change_mean": 0.9131,
+    "angle_change_std": 1.0769,
+    "jitter_ratio": 0.3983,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": 7914.6
+  },
+  "csv": "maze_navigate_20260817_103800_f11fbad3-4b6d-4ad3-82ed-.csv",
+  "relative_dir": "challenges/maze_navigate",
+  "saved_at": "2026-08-17T10:38:00.099570+00:00"
+}

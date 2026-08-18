@@ -1,0 +1,8 @@
+--- qmodel_v0.5 live solver ---
+attempt 01 family=mid_dense hc=22% http=200 decision=BLOCKED: BOT events=144 vel=0.8405 jerk=0.10359852 acc=0.197163 jit=0.1408 str=0.2269 heur=0.78 flags=Abnormal velocity spike (15.1 px/ms) | Flat-dynamics automation signature
+attempt 02 family=contrast_hop hc=57% http=200 decision=PASSED: HUMAN events=66 vel=2.4811 jerk=0.63456982 acc=1.159187 jit=0.1719 str=0.3724 heur=0.4 flags=Abnormal velocity spike (39.4 px/ms)
+attempt 03 family=mid_dense hc=66% http=200 decision=PASSED: HUMAN events=201 vel=1.0608 jerk=0.26692482 acc=0.377063 jit=0.0704 str=0.0686 heur=0.34 flags=Low-straightness fast evasion (issue 001 variant)
+attempt 04 family=dense_alt hc=40% http=200 decision=BLOCKED: BOT events=166 vel=0.6606 jerk=0.08237378 acc=0.155509 jit=0.1159 str=0.1393 heur=0.0 flags=No risk flags.
+attempt 05 family=straighter_dense hc=3% http=200 decision=BLOCKED: BOT events=235 vel=0.4894 jerk=0.01341054 acc=0.045091 jit=0.0515 str=0.3514 heur=0.0 flags=No risk flags.
+attempt 06 family=mid_dense hc=95% http=200 decision=PASSED: HUMAN events=156 vel=0.945 jerk=0.17206579 acc=0.279899 jit=0.1429 str=0.2161 heur=0.0 flags=No risk flags.
+TARGET_REACHED 0.9500 after 6 attempts in 24.2s

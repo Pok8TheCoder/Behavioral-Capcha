@@ -1,0 +1,208 @@
+{
+  "session_sec_limit": 3600,
+  "cycle_sec_limit": 1200,
+  "target_human_confidence": 0.7,
+  "blue_detection_target": 0.7,
+  "motor": "fitts_minimum_jerk",
+  "started_at": "2026-08-16 23:00:07",
+  "cycles": [
+    {
+      "cycle": 1,
+      "red_success": true,
+      "red_avg_hc": 0.7033,
+      "red_max_hc": 0.9097,
+      "red_min_type_avg": 0.3419,
+      "red_type_avgs": {
+        "shape_trace": 0.743,
+        "button_sequence": 0.4648,
+        "maze_navigate": 0.8376,
+        "pin_entry": 0.8111,
+        "path_gates": 0.9025,
+        "zigzag_trace": 0.75,
+        "spiral_trace": 0.75,
+        "connect_dots": 0.3419,
+        "target_hunt": 0.6472,
+        "hazard_run": 0.785
+      },
+      "red_attempts": 21,
+      "motor_cfg": {
+        "fitts_a": 0.09804519244060662,
+        "fitts_b": 0.15014534407420876,
+        "target_width": 43.50761600638832,
+        "tremor_scale": 0.7959102736890921,
+        "curvature_scale": 0.11519344126950934,
+        "pause_probability": 0.27554696650988086,
+        "overshoot_probability": 0.2910291071948456,
+        "hesitation_ms": [
+          45.21879438728266,
+          93.38841552132155
+        ],
+        "sample_hz": [
+          64.329950790329,
+          127.9258280255622
+        ],
+        "dwell_ms": [
+          96.54040739688553,
+          196.8006507886862
+        ],
+        "wander_strength": 3.5757709387833025,
+        "pause_ms": [
+          166.77291322447715,
+          447.11160077882073
+        ],
+        "pre_click_delay_ms": [
+          33.403408453925266,
+          166.79211759103643
+        ]
+      },
+      "cycle_timeout": false,
+      "elapsed_sec": 153.84,
+      "patch": {
+        "export": {
+          "csv_path": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\\evasion_cycle_001.csv",
+          "cfg_path": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\\evasion_cycle_001_cfg.json",
+          "episodes": 100,
+          "rows": 90069,
+          "challenge_types": [
+            "shape_trace",
+            "button_sequence",
+            "maze_navigate",
+            "pin_entry",
+            "path_gates",
+            "zigzag_trace",
+            "spiral_trace",
+            "connect_dots",
+            "target_hunt",
+            "hazard_run"
+          ]
+        },
+        "heuristic_rule": {
+          "cycle": 1,
+          "straightness_max": 0.33240000000000003,
+          "straightness_min": 0.1724,
+          "jitter_min": 0.29159999999999997,
+          "vel_mean_min": 0.24930000000000002,
+          "vel_mean_max": 0.4893,
+          "vel_max_max": 2.0854999999999997,
+          "dwell_min": 102.24000000000001,
+          "duration_min": 8998.46,
+          "event_count_min": 552,
+          "score_boost": 0.34,
+          "label": "evasion_cycle_001"
+        },
+        "train": {
+          "exit_code": 0,
+          "elapsed_sec": 186.19,
+          "stdout_tail": "tier_bot_136.csv: 159 windows\n[Data] bot_challenge_tiers tier_bot_137.csv: 138 windows\n[Data] bot_challenge_tiers tier_bot_138.csv: 183 windows\n[Data] bot_challenge_tiers tier_bot_139.csv: 131 windows\n[Data] bot_challenge_tiers tier_bot_140.csv: 211 windows\n[Data] bot_challenge_tiers tier_bot_141.csv: 142 windows\n[Data] bot_challenge_tiers tier_bot_142.csv: 146 windows\n[Data] bot_challenge_tiers tier_bot_143.csv: 206 windows\n[Data] bot_challenge_tiers tier_bot_144.csv: 217 windows\n[Data] bot_challenge_tiers tier_bot_145.csv: 167 windows\n[Data] bot_challenge_tiers tier_bot_146.csv: 191 windows\n[Data] bot_challenge_tiers tier_bot_147.csv: 113 windows\n[Data] bot_challenge_tiers tier_bot_148.csv: 162 windows\n[Data] bot_challenge_tiers tier_bot_149.csv: 191 windows\n[Data] bot_challenge_tiers tier_bot_150.csv: 145 windows\n[Data] bot_challenge_tiers tier_bot_151.csv: 120 windows\n[Data] bot_challenge_tiers tier_bot_152.csv: 91 windows\n[Data] bot_challenge_tiers tier_bot_153.csv: 114 windows\n[Data] bot_challenge_tiers tier_bot_154.csv: 146 windows\n[Data] bot_challenge_tiers tier_bot_155.csv: 157 windows\n[Data] bot_challenge_tiers tier_bot_156.csv: 145 windows\n[Data] bot_challenge_tiers tier_bot_157.csv: 202 windows\n[Data] bot_challenge_tiers tier_bot_158.csv: 139 windows\n[Data] bot_challenge_tiers tier_bot_159.csv: 181 windows\n[Data] bot_challenge_tiers tier_bot_160.csv: 204 windows\n[Data] bot_challenge_tiers tier_bot_161.csv: 124 windows\n[Data] bot_challenge_tiers tier_humanoid_fast.csv: 288 windows\n[Data] bot_challenge_tiers tier_humanoid_simulated.csv: 1,853 windows\n[Data] bot_challenge_tiers tier_linear_fast.csv: 64 windows\n[Data] bot_challenge_tiers tier_linear_timed.csv: 349 windows\n[Data] bot_challenge_tiers tier_naive.csv: 289 windows\n[Data] Loading bot_evasion: 1 CSV files from D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\n[Data] bot_evasion evasion_cycle_001.csv: 489 windows\n[Data] Loading bot_tier_legacy: 4 CSV files from D:\\Cursor\\Behavioral Captcha\\datasets\\bot\n[Data] bot_tier_legacy bot_bezier_bot.csv: 1 windows\n[Data] bot_tier_legacy bot_humanoid_fitts_bot.csv: 1 windows\n[Data] bot_tier_legacy bot_linear_bot.csv: 1 windows\n[Data] bot_tier_legacy bot_naive_bot.csv: 0 windows\n[Train] Human windows loaded: 9,946\n[Train] Bot windows loaded: 96,018 by source: {'bot_challenge': 40340, 'bot_challenge_tiers': 55186, 'bot_evasion': 489, 'bot_tier_legacy': 3}\n[Train] Balanced total: 19,892\n[Train] Train windows: 17,374\n[Train] Test windows: 2,518\n[Train] OOB score: 0.9991\n[Eval] Confusion matrix (held-out file groups):\n[[ 911    0]\n [   3 1604]]\n[Eval] ROC-AUC: 1.0000\n[Eval] Classification report:\n              precision    recall  f1-score   support\n\n       Human       1.00      1.00      1.00       911\n         Bot       1.00      1.00      1.00      1607\n\n    accuracy                           1.00      2518\n   macro avg       1.00      1.00      1.00      2518\nweighted avg       1.00      1.00      1.00      2518\n\n[Eval] Feature importances:\n  jerk_mean                0.2209\n  acceleration_mean        0.1954\n  acceleration_std         0.1652\n  velocity_std             0.1197\n  velocity_mean            0.0850\n  velocity_max             0.0766\n  angle_change_mean        0.0719\n  jitter_ratio             0.0342\n  angle_change_std         0.0111\n  idle_ratio               0.0094\n  straightness_index       0.0070\n  avg_click_dwell_ms       0.0037\n[Eval-style] linear_fast: 100.0% detected (11/11 windows)\n[Eval-style] linear_timed: 100.0% detected (12/12 windows)\n[Eval-style] bezier_fast: 100.0% detected (13/13 windows)\n[Eval-style] bezier_timed: 100.0% detected (13/13 windows)\n[Eval-style] humanoid_fast: 91.7% detected (11/12 windows)\n[Eval-style] humanoid_simulated: 100.0% detected (177/177 windows)\n[Eval-style] naive: 100.0% detected (14/14 windows)\n[Save] Model: D:\\Cursor\\Behavioral Captcha\\backend\\behavioral_rf_challenge_model.joblib\n[Save] Metadata: D:\\Cursor\\Behavioral Captcha\\backend\\behavioral_rf_challenge_metadata.json\n",
+          "stderr_tail": ""
+        }
+      },
+      "blue_eval": {
+        "detection_rate": 1.0,
+        "avg_human_confidence": 0.0941,
+        "max_human_confidence": 0.2235,
+        "scores": [
+          0.2158,
+          0.093,
+          0.0705,
+          0.1919,
+          0.0094,
+          0.0291,
+          0.1077,
+          0.1063,
+          0.0909,
+          0.0589,
+          0.054,
+          0.1598,
+          0.0198,
+          0.2235,
+          0.1,
+          0.0523,
+          0.1037,
+          0.0203,
+          0.1568,
+          0.0181
+        ],
+        "blue_success": true
+      }
+    },
+    {
+      "cycle": 2,
+      "red_success": false,
+      "red_avg_hc": 0.2888,
+      "red_max_hc": 0.4197,
+      "red_min_type_avg": 0.1859,
+      "red_type_avgs": {
+        "shape_trace": 0.4147,
+        "button_sequence": 0.2536,
+        "maze_navigate": 0.229,
+        "pin_entry": 0.3698,
+        "path_gates": 0.349,
+        "zigzag_trace": 0.1884,
+        "spiral_trace": 0.1859,
+        "connect_dots": 0.2036,
+        "target_hunt": 0.3306,
+        "hazard_run": 0.3637
+      },
+      "red_attempts": 489,
+      "motor_cfg": {
+        "fitts_a": 0.07,
+        "fitts_b": 0.1,
+        "target_width": 67.92289367372989,
+        "tremor_scale": 0.3501374389975038,
+        "curvature_scale": 0.1901028046672212,
+        "pause_probability": 0.45,
+        "overshoot_probability": 0.55,
+        "hesitation_ms": [
+          70.24798137586004,
+          90.48169286429349
+        ],
+        "sample_hz": [
+          79.51393158047681,
+          123.79508372840313
+        ],
+        "dwell_ms": [
+          127.19737826964821,
+          180.5675736632548
+        ],
+        "wander_strength": 4.864833251360752,
+        "pause_ms": [
+          140.0,
+          466.36689818437947
+        ],
+        "pre_click_delay_ms": [
+          98.03290113972679,
+          117.12838242480834
+        ]
+      },
+      "cycle_timeout": true,
+      "elapsed_sec": 1210.9,
+      "red_scores_sample": [
+        0.4197,
+        0.4096,
+        0.2483,
+        0.259,
+        0.2179,
+        0.2401,
+        0.4092,
+        0.3304,
+        0.3174,
+        0.3806,
+        0.2998,
+        0.077,
+        0.1418,
+        0.23,
+        0.0025,
+        0.4047,
+        0.326,
+        0.3351,
+        0.3343,
+        0.393
+      ]
+    }
+  ],
+  "outcome": "stopped_on_red_failure",
+  "ended_at": "2026-08-16 23:26:05",
+  "elapsed_sec": 1557.82,
+  "cycle_count": 2
+}

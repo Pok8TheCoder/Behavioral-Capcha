@@ -1,0 +1,1448 @@
+{
+  "model_type": "random_forest_challenge",
+  "qmodel_id": "qmodel_v0.5",
+  "qmodel_label": "Qmodel V0.5",
+  "qmodel_version": "0.5",
+  "bot_evasion_in_training": true,
+  "window_mode": "dynamic_active",
+  "window_config": {
+    "afk_gap_ms": 5000.0,
+    "pause_gap_ms": 400.0,
+    "strong_pause_gap_ms": 900.0,
+    "min_window_ms": 500.0,
+    "max_window_ms": 12000.0,
+    "fallback_window_ms": 3000.0,
+    "fallback_stride_ms": 1500.0
+  },
+  "model_path": "D:\\Cursor\\Behavioral Captcha\\backend\\qmodels\\qmodel_v0.5.joblib",
+  "feature_names": [
+    "straightness_index",
+    "velocity_mean",
+    "velocity_std",
+    "velocity_max",
+    "acceleration_mean",
+    "acceleration_std",
+    "jerk_mean",
+    "angle_change_mean",
+    "angle_change_std",
+    "jitter_ratio",
+    "idle_ratio",
+    "avg_click_dwell_ms"
+  ],
+  "rf_params": {
+    "n_estimators": 600,
+    "max_depth": 16,
+    "min_samples_leaf": 4,
+    "min_samples_split": 8,
+    "max_features": "sqrt",
+    "class_weight": "balanced_subsample",
+    "bootstrap": true,
+    "oob_score": true,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "human_windows_loaded": 10053,
+  "bot_windows_loaded": 96056,
+  "bot_windows_by_source": {
+    "bot_challenge": 40340,
+    "bot_challenge_tiers": 55186,
+    "bot_evasion": 527,
+    "bot_tier_legacy": 3
+  },
+  "bot_style_eval": {
+    "linear_fast": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 11,
+      "windows_flagged_bot": 11
+    },
+    "linear_timed": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 12,
+      "windows_flagged_bot": 12
+    },
+    "bezier_fast": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 13,
+      "windows_flagged_bot": 13
+    },
+    "bezier_timed": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 13,
+      "windows_flagged_bot": 13
+    },
+    "humanoid_fast": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 12,
+      "windows_flagged_bot": 12
+    },
+    "humanoid_simulated": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 242,
+      "windows_flagged_bot": 242
+    },
+    "naive": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 14,
+      "windows_flagged_bot": 14
+    }
+  },
+  "balanced_windows": 20106,
+  "train_windows": 16791,
+  "test_windows": 3315,
+  "oob_score": 0.9987493299982133,
+  "random_state": 42,
+  "confusion_matrix": [
+    [
+      1604,
+      0
+    ],
+    [
+      1,
+      1710
+    ]
+  ],
+  "roc_auc": 0.9999996356274714,
+  "classification_report": "              precision    recall  f1-score   support\n\n       Human       1.00      1.00      1.00      1604\n         Bot       1.00      1.00      1.00      1711\n\n    accuracy                           1.00      3315\n   macro avg       1.00      1.00      1.00      3315\nweighted avg       1.00      1.00      1.00      3315\n",
+  "feature_importances": [
+    {
+      "feature": "jerk_mean",
+      "importance": 0.21842884930609927
+    },
+    {
+      "feature": "acceleration_mean",
+      "importance": 0.1928456809691044
+    },
+    {
+      "feature": "acceleration_std",
+      "importance": 0.16315547530181765
+    },
+    {
+      "feature": "velocity_std",
+      "importance": 0.12203198994012666
+    },
+    {
+      "feature": "velocity_mean",
+      "importance": 0.08360189063239434
+    },
+    {
+      "feature": "velocity_max",
+      "importance": 0.07880157742108909
+    },
+    {
+      "feature": "angle_change_mean",
+      "importance": 0.07848095108905595
+    },
+    {
+      "feature": "jitter_ratio",
+      "importance": 0.03409472881621613
+    },
+    {
+      "feature": "idle_ratio",
+      "importance": 0.009900904331797876
+    },
+    {
+      "feature": "angle_change_std",
+      "importance": 0.008311640178972795
+    },
+    {
+      "feature": "straightness_index",
+      "importance": 0.0072697322373909785
+    },
+    {
+      "feature": "avg_click_dwell_ms",
+      "importance": 0.003076579775934774
+    }
+  ],
+  "human_files": [
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260809_194956_to_20260809_195028.csv",
+      "raw_rows": 5422,
+      "windows": 0,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260809_205012_to_20260809_205012.csv",
+      "raw_rows": 3,
+      "windows": 0,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260809_210236_to_20260809_230205.csv",
+      "raw_rows": 972335,
+      "windows": 911,
+      "afk_splits": 70,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260811_132855_to_20260811_235556.csv",
+      "raw_rows": 4017149,
+      "windows": 3556,
+      "afk_splits": 460,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260812_171705_to_20260812_171721.csv",
+      "raw_rows": 3470,
+      "windows": 4,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260812_172254_to_20260813_000706.csv",
+      "raw_rows": 3092808,
+      "windows": 2789,
+      "afk_splits": 229,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260813_195642_to_20260814_002232.csv",
+      "raw_rows": 638340,
+      "windows": 624,
+      "afk_splits": 205,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260816_193311_to_20260816_225348.csv",
+      "raw_rows": 764597,
+      "windows": 689,
+      "afk_splits": 229,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260816_225526_to_20260816_232816.csv",
+      "raw_rows": 105020,
+      "windows": 107,
+      "afk_splits": 41,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\recovered_input_log_20260809_210236_part023.csv",
+      "raw_rows": 914367,
+      "windows": 849,
+      "afk_splits": 66,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\recovered_input_log_20260810_202546_part038.csv",
+      "raw_rows": 577177,
+      "windows": 524,
+      "afk_splits": 125,
+      "truncated": false
+    }
+  ],
+  "bot_files": [
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge\\challenge_bot_001.csv",
+      "raw_rows": 992858,
+      "windows": 6463,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge\\challenge_bot_002.csv",
+      "raw_rows": 757478,
+      "windows": 4843,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge\\challenge_bot_003.csv",
+      "raw_rows": 776537,
+      "windows": 4975,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge\\challenge_bot_004.csv",
+      "raw_rows": 1061798,
+      "windows": 7152,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge\\challenge_bot_005.csv",
+      "raw_rows": 865884,
+      "windows": 5615,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge\\challenge_bot_006.csv",
+      "raw_rows": 796305,
+      "windows": 5113,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge\\challenge_bot_007.csv",
+      "raw_rows": 946195,
+      "windows": 6179,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bezier_fast.csv",
+      "raw_rows": 75548,
+      "windows": 286,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bezier_timed.csv",
+      "raw_rows": 105786,
+      "windows": 348,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_011.csv",
+      "raw_rows": 211921,
+      "windows": 1224,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_012.csv",
+      "raw_rows": 211838,
+      "windows": 1136,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_013.csv",
+      "raw_rows": 239363,
+      "windows": 1331,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_014.csv",
+      "raw_rows": 240612,
+      "windows": 1331,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_015.csv",
+      "raw_rows": 310471,
+      "windows": 1852,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_016.csv",
+      "raw_rows": 216208,
+      "windows": 1157,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_017.csv",
+      "raw_rows": 222530,
+      "windows": 1231,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_018.csv",
+      "raw_rows": 278710,
+      "windows": 1618,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_019.csv",
+      "raw_rows": 213761,
+      "windows": 1082,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_020.csv",
+      "raw_rows": 170953,
+      "windows": 807,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_021.csv",
+      "raw_rows": 200138,
+      "windows": 1040,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_022.csv",
+      "raw_rows": 200049,
+      "windows": 1107,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_023.csv",
+      "raw_rows": 202216,
+      "windows": 1044,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_024.csv",
+      "raw_rows": 198196,
+      "windows": 978,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_025.csv",
+      "raw_rows": 307706,
+      "windows": 1814,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_026.csv",
+      "raw_rows": 230772,
+      "windows": 1310,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_027.csv",
+      "raw_rows": 189322,
+      "windows": 893,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_028.csv",
+      "raw_rows": 262569,
+      "windows": 1511,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_029.csv",
+      "raw_rows": 203398,
+      "windows": 1144,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_030.csv",
+      "raw_rows": 163755,
+      "windows": 772,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_031.csv",
+      "raw_rows": 160588,
+      "windows": 747,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_032.csv",
+      "raw_rows": 241909,
+      "windows": 1370,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_033.csv",
+      "raw_rows": 188994,
+      "windows": 912,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_034.csv",
+      "raw_rows": 185860,
+      "windows": 932,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_035.csv",
+      "raw_rows": 257236,
+      "windows": 1404,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_036.csv",
+      "raw_rows": 335808,
+      "windows": 2095,
+      "afk_splits": 399,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_037.csv",
+      "raw_rows": 29061,
+      "windows": 114,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_038.csv",
+      "raw_rows": 47349,
+      "windows": 203,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_039.csv",
+      "raw_rows": 38018,
+      "windows": 162,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_040.csv",
+      "raw_rows": 31642,
+      "windows": 119,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_041.csv",
+      "raw_rows": 40087,
+      "windows": 179,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_042.csv",
+      "raw_rows": 44482,
+      "windows": 194,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_043.csv",
+      "raw_rows": 47978,
+      "windows": 212,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_044.csv",
+      "raw_rows": 34750,
+      "windows": 114,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_045.csv",
+      "raw_rows": 27309,
+      "windows": 98,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_046.csv",
+      "raw_rows": 33864,
+      "windows": 131,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_047.csv",
+      "raw_rows": 42938,
+      "windows": 217,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_048.csv",
+      "raw_rows": 29602,
+      "windows": 103,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_049.csv",
+      "raw_rows": 43495,
+      "windows": 207,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_050.csv",
+      "raw_rows": 30060,
+      "windows": 104,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_051.csv",
+      "raw_rows": 32713,
+      "windows": 152,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_052.csv",
+      "raw_rows": 48826,
+      "windows": 261,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_053.csv",
+      "raw_rows": 31459,
+      "windows": 138,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_054.csv",
+      "raw_rows": 35555,
+      "windows": 200,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_055.csv",
+      "raw_rows": 39079,
+      "windows": 177,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_056.csv",
+      "raw_rows": 30975,
+      "windows": 102,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_057.csv",
+      "raw_rows": 37537,
+      "windows": 166,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_058.csv",
+      "raw_rows": 31466,
+      "windows": 126,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_059.csv",
+      "raw_rows": 35033,
+      "windows": 129,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_060.csv",
+      "raw_rows": 31120,
+      "windows": 156,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_061.csv",
+      "raw_rows": 33802,
+      "windows": 147,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_062.csv",
+      "raw_rows": 34351,
+      "windows": 143,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_063.csv",
+      "raw_rows": 35412,
+      "windows": 170,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_064.csv",
+      "raw_rows": 32599,
+      "windows": 121,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_065.csv",
+      "raw_rows": 36556,
+      "windows": 174,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_066.csv",
+      "raw_rows": 41035,
+      "windows": 170,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_067.csv",
+      "raw_rows": 46273,
+      "windows": 226,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_068.csv",
+      "raw_rows": 34239,
+      "windows": 136,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_069.csv",
+      "raw_rows": 30063,
+      "windows": 117,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_070.csv",
+      "raw_rows": 38745,
+      "windows": 182,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_071.csv",
+      "raw_rows": 32786,
+      "windows": 160,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_072.csv",
+      "raw_rows": 33035,
+      "windows": 106,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_073.csv",
+      "raw_rows": 34484,
+      "windows": 112,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_074.csv",
+      "raw_rows": 44429,
+      "windows": 204,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_075.csv",
+      "raw_rows": 36679,
+      "windows": 157,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_076.csv",
+      "raw_rows": 49806,
+      "windows": 234,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_077.csv",
+      "raw_rows": 36077,
+      "windows": 128,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_078.csv",
+      "raw_rows": 34898,
+      "windows": 134,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_079.csv",
+      "raw_rows": 44519,
+      "windows": 203,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_080.csv",
+      "raw_rows": 34499,
+      "windows": 169,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_081.csv",
+      "raw_rows": 33415,
+      "windows": 136,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_082.csv",
+      "raw_rows": 36124,
+      "windows": 187,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_083.csv",
+      "raw_rows": 34685,
+      "windows": 144,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_084.csv",
+      "raw_rows": 39540,
+      "windows": 183,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_085.csv",
+      "raw_rows": 37274,
+      "windows": 148,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_086.csv",
+      "raw_rows": 47373,
+      "windows": 212,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_087.csv",
+      "raw_rows": 48044,
+      "windows": 228,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_088.csv",
+      "raw_rows": 31400,
+      "windows": 104,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_089.csv",
+      "raw_rows": 48983,
+      "windows": 237,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_090.csv",
+      "raw_rows": 34963,
+      "windows": 173,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_091.csv",
+      "raw_rows": 33908,
+      "windows": 149,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_092.csv",
+      "raw_rows": 34613,
+      "windows": 166,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_093.csv",
+      "raw_rows": 32346,
+      "windows": 113,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_094.csv",
+      "raw_rows": 39308,
+      "windows": 162,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_095.csv",
+      "raw_rows": 46758,
+      "windows": 208,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_096.csv",
+      "raw_rows": 45414,
+      "windows": 203,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_097.csv",
+      "raw_rows": 36291,
+      "windows": 155,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_098.csv",
+      "raw_rows": 42217,
+      "windows": 189,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_099.csv",
+      "raw_rows": 31736,
+      "windows": 131,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_100.csv",
+      "raw_rows": 33764,
+      "windows": 127,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_101.csv",
+      "raw_rows": 40378,
+      "windows": 176,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_102.csv",
+      "raw_rows": 39342,
+      "windows": 172,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_103.csv",
+      "raw_rows": 41104,
+      "windows": 174,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_104.csv",
+      "raw_rows": 37248,
+      "windows": 169,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_105.csv",
+      "raw_rows": 28722,
+      "windows": 118,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_106.csv",
+      "raw_rows": 41075,
+      "windows": 161,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_107.csv",
+      "raw_rows": 38667,
+      "windows": 166,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_108.csv",
+      "raw_rows": 39010,
+      "windows": 165,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_109.csv",
+      "raw_rows": 39847,
+      "windows": 137,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_110.csv",
+      "raw_rows": 38656,
+      "windows": 155,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_111.csv",
+      "raw_rows": 31062,
+      "windows": 110,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_112.csv",
+      "raw_rows": 42868,
+      "windows": 143,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_113.csv",
+      "raw_rows": 29202,
+      "windows": 105,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_114.csv",
+      "raw_rows": 32639,
+      "windows": 106,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_115.csv",
+      "raw_rows": 28020,
+      "windows": 115,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_116.csv",
+      "raw_rows": 34085,
+      "windows": 141,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_117.csv",
+      "raw_rows": 37424,
+      "windows": 145,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_118.csv",
+      "raw_rows": 36951,
+      "windows": 164,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_119.csv",
+      "raw_rows": 28580,
+      "windows": 113,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_120.csv",
+      "raw_rows": 44306,
+      "windows": 220,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_121.csv",
+      "raw_rows": 40502,
+      "windows": 180,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_122.csv",
+      "raw_rows": 40547,
+      "windows": 190,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_123.csv",
+      "raw_rows": 43301,
+      "windows": 197,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_124.csv",
+      "raw_rows": 33849,
+      "windows": 146,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_125.csv",
+      "raw_rows": 34009,
+      "windows": 141,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_126.csv",
+      "raw_rows": 41315,
+      "windows": 151,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_127.csv",
+      "raw_rows": 37757,
+      "windows": 179,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_128.csv",
+      "raw_rows": 37602,
+      "windows": 190,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_129.csv",
+      "raw_rows": 37561,
+      "windows": 172,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_130.csv",
+      "raw_rows": 31332,
+      "windows": 111,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_131.csv",
+      "raw_rows": 31882,
+      "windows": 117,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_132.csv",
+      "raw_rows": 48385,
+      "windows": 206,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_133.csv",
+      "raw_rows": 34329,
+      "windows": 154,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_134.csv",
+      "raw_rows": 33789,
+      "windows": 139,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_135.csv",
+      "raw_rows": 39833,
+      "windows": 202,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_136.csv",
+      "raw_rows": 37847,
+      "windows": 159,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_137.csv",
+      "raw_rows": 33485,
+      "windows": 138,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_138.csv",
+      "raw_rows": 42351,
+      "windows": 183,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_139.csv",
+      "raw_rows": 36583,
+      "windows": 131,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_140.csv",
+      "raw_rows": 45414,
+      "windows": 211,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_141.csv",
+      "raw_rows": 37098,
+      "windows": 142,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_142.csv",
+      "raw_rows": 34145,
+      "windows": 146,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_143.csv",
+      "raw_rows": 43302,
+      "windows": 206,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_144.csv",
+      "raw_rows": 43238,
+      "windows": 217,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_145.csv",
+      "raw_rows": 39876,
+      "windows": 167,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_146.csv",
+      "raw_rows": 41430,
+      "windows": 191,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_147.csv",
+      "raw_rows": 24622,
+      "windows": 113,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_148.csv",
+      "raw_rows": 35855,
+      "windows": 162,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_149.csv",
+      "raw_rows": 40735,
+      "windows": 191,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_150.csv",
+      "raw_rows": 35545,
+      "windows": 145,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_151.csv",
+      "raw_rows": 32369,
+      "windows": 120,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_152.csv",
+      "raw_rows": 29592,
+      "windows": 91,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_153.csv",
+      "raw_rows": 29075,
+      "windows": 114,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_154.csv",
+      "raw_rows": 37128,
+      "windows": 146,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_155.csv",
+      "raw_rows": 33921,
+      "windows": 157,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_156.csv",
+      "raw_rows": 34695,
+      "windows": 145,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_157.csv",
+      "raw_rows": 42947,
+      "windows": 202,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_158.csv",
+      "raw_rows": 32621,
+      "windows": 139,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_159.csv",
+      "raw_rows": 36672,
+      "windows": 181,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_160.csv",
+      "raw_rows": 42248,
+      "windows": 204,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_bot_161.csv",
+      "raw_rows": 29210,
+      "windows": 124,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_humanoid_fast.csv",
+      "raw_rows": 82342,
+      "windows": 288,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_humanoid_simulated.csv",
+      "raw_rows": 370734,
+      "windows": 1853,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_linear_fast.csv",
+      "raw_rows": 45710,
+      "windows": 64,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_linear_timed.csv",
+      "raw_rows": 91182,
+      "windows": 349,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_challenge_tiers\\tier_naive.csv",
+      "raw_rows": 87985,
+      "windows": 289,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\\evasion_cycle_001.csv",
+      "raw_rows": 90069,
+      "windows": 489,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\\evasion_cycle_002.csv",
+      "raw_rows": 2385,
+      "windows": 8,
+      "afk_splits": 7,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\\evasion_cycle_003.csv",
+      "raw_rows": 3298,
+      "windows": 15,
+      "afk_splits": 14,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\\evasion_cycle_004.csv",
+      "raw_rows": 1874,
+      "windows": 15,
+      "afk_splits": 14,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot\\bot_bezier_bot.csv",
+      "raw_rows": 470,
+      "windows": 1,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot\\bot_humanoid_fitts_bot.csv",
+      "raw_rows": 821,
+      "windows": 1,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot\\bot_linear_bot.csv",
+      "raw_rows": 370,
+      "windows": 1,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot\\bot_naive_bot.csv",
+      "raw_rows": 30,
+      "windows": 0,
+      "afk_splits": 0,
+      "truncated": false
+    }
+  ]
+}

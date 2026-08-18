@@ -1,0 +1,79 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "533a5efe-cc58-467f-8f32-a2d171774399",
+  "challenge_type": "shape_trace",
+  "seed": 877281256,
+  "task_passed": true,
+  "event_count": 155,
+  "features": {
+    "event_count": 90,
+    "duration_ms": 1904.7,
+    "total_distance_px": 543.99,
+    "euclidean_distance_px": 6.33,
+    "straightness_index": 0.0116,
+    "velocity_mean": 0.314,
+    "velocity_std": 0.1855,
+    "velocity_max": 0.8265,
+    "acceleration_mean": 0.004305,
+    "acceleration_std": 0.003769,
+    "acceleration_max": 0.017456,
+    "jerk_mean": 0.00021071,
+    "angle_change_mean": 0.214,
+    "angle_change_std": 0.3743,
+    "jitter_ratio": 0.0455,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": 1904.7
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 1904.7,
+    "median_click_dwell_ms": 1904.7,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": "square",
+    "stroke_points": 155,
+    "stroke_length_px": 549.35,
+    "guide_length_px": 535.12,
+    "length_ratio": 1.0266,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 28.4098,
+    "max_distance_to_guide_px": 66.87,
+    "stroke_duration_ms": 1904.7,
+    "tolerance_px": 25.15
+  },
+  "spec": {
+    "shape": "square",
+    "guide_points": [
+      [
+        561.401408987674,
+        285.72244490354217
+      ],
+      [
+        695.1814442140859,
+        285.72244490354217
+      ],
+      [
+        695.1814442140859,
+        419.50248012995394
+      ],
+      [
+        561.401408987674,
+        419.50248012995394
+      ],
+      [
+        561.401408987674,
+        285.72244490354217
+      ]
+    ],
+    "tolerance_px": 25.149168823827416,
+    "min_coverage_ratio": 0.55,
+    "min_stroke_points": 20
+  },
+  "csv": "shape_trace_20260818_054454_533a5efe-cc58-467f-8f32-.csv",
+  "relative_dir": "challenges/lan/shape_trace",
+  "saved_at": "2026-08-18T05:44:54.619203+00:00"
+}

@@ -1,0 +1,168 @@
+attempt 01 family=os_direct hc=54% decision=PASSED: HUMAN events=103 vel=1.1884 jerk=0.07650458 acc=0.207734 jit=0.1485 str=0.3319 flags=No risk flags.
+attempt 02 family=os_wiggly hc=14% decision=BLOCKED: BOT events=261 vel=0.7316 jerk=0.03016636 acc=0.078672 jit=0.2008 str=0.1185 flags=No risk flags.
+attempt 03 family=os_fast hc=38% decision=BLOCKED: BOT events=125 vel=0.9674 jerk=0.04069502 acc=0.127727 jit=0.1626 str=0.0318 flags=No risk flags.
+attempt 04 family=os_wiggly hc=26% decision=BLOCKED: BOT events=174 vel=0.8514 jerk=0.02876965 acc=0.087996 jit=0.2209 str=0.1796 flags=No risk flags.
+attempt 12 family=desk_fidget hc=—% decision=IN PROGRESS events=627 flags=No evaluation yet.
+attempt 37 family=busy_mouse hc=—% decision=IN PROGRESS events=319 flags=No evaluation yet.
+attempt 05 family=os_wiggly hc=39% decision=BLOCKED: BOT events=119 vel=0.9231 jerk=0.03649182 acc=0.112124 jit=0.188 str=0.0066 flags=No risk flags.
+attempt 06 family=os_wiggly hc=22% decision=BLOCKED: BOT events=169 vel=0.7981 jerk=0.03453013 acc=0.082485 jit=0.1916 str=0.1298 flags=No risk flags.
+attempt 38 family=busy_mouse hc=11% decision=BLOCKED: BOT events=225 flags=Procedural human-mimic movement signature
+attempt 07 family=os_wiggly hc=15% decision=BLOCKED: BOT events=153 vel=0.7312 jerk=0.03303466 acc=0.074791 jit=0.1722 str=0.1725 flags=No risk flags.
+attempt 08 family=os_fast hc=16% decision=BLOCKED: BOT events=129 vel=0.8635 jerk=0.02915765 acc=0.073007 jit=0.2441 str=0.1777 flags=No risk flags.
+attempt 39 family=jitter_arc hc=10% decision=BLOCKED: BOT events=229 flags=No risk flags.
+attempt 09 family=os_direct hc=9% decision=BLOCKED: BOT events=121 vel=0.7818 jerk=0.02422813 acc=0.059989 jit=0.2017 str=0.2314 flags=No risk flags.
+attempt 10 family=os_fast hc=13% decision=BLOCKED: BOT events=173 vel=0.9499 jerk=0.01819659 acc=0.082667 jit=0.1754 str=0.1527 flags=No risk flags.
+attempt 40 family=careful hc=4% decision=BLOCKED: BOT events=103 flags=No risk flags.
+attempt 13 family=desk_fidget hc=3% decision=BLOCKED: BOT events=1076 flags=No risk flags.
+attempt 11 family=os_fast hc=33% decision=BLOCKED: BOT events=170 vel=0.9237 jerk=0.02999335 acc=0.111404 jit=0.1548 str=0.267 flags=No risk flags.
+attempt 12 family=os_fast hc=3% decision=BLOCKED: BOT events=102 vel=0.8 jerk=0.01098196 acc=0.048565 jit=0.15 str=0.2632 flags=No risk flags.
+attempt 41 family=busy_mouse hc=11% decision=BLOCKED: BOT events=237 flags=Procedural human-mimic movement signature
+attempt 13 family=os_fast hc=14% decision=BLOCKED: BOT events=154 vel=0.7697 jerk=0.01573156 acc=0.066927 jit=0.25 str=0.0562 flags=No risk flags.
+attempt 14 family=os_wiggly hc=50% decision=BLOCKED: BOT events=124 vel=0.9278 jerk=0.06700665 acc=0.144746 jit=0.1885 str=0.3203 flags=No risk flags.
+attempt 42 family=careful hc=3% decision=BLOCKED: BOT events=170 flags=No risk flags.
+attempt 15 family=os_fast hc=21% decision=BLOCKED: BOT events=147 vel=0.7914 jerk=0.03573834 acc=0.081682 jit=0.2414 str=0.1385 flags=No risk flags.
+attempt 14 family=desk_fidget hc=15% decision=BLOCKED: BOT events=750 flags=No risk flags.
+attempt 16 family=os_wiggly hc=40% decision=BLOCKED: BOT events=181 vel=0.847 jerk=0.03800076 acc=0.108238 jit=0.2402 str=0.1199 flags=No risk flags.
+attempt 43 family=slow_arc hc=2% decision=BLOCKED: BOT events=124 flags=No risk flags.
+attempt 17 family=os_wiggly hc=16% decision=BLOCKED: BOT events=127 vel=0.7918 jerk=0.00891627 acc=0.047256 jit=0.28 str=0.1937 flags=No risk flags.
+attempt 18 family=os_wiggly hc=60% decision=PASSED: HUMAN events=113 vel=0.8719 jerk=0.06381567 acc=0.131021 jit=0.2703 str=0.3574 flags=No risk flags.
+--- restart os_direct_v2 ---
+attempt 01 family=os_direct_v2 hc=69% decision=PASSED: HUMAN events=182 vel=0.6525 jerk=0.04647398 acc=0.123648 jit=0.7278 str=0.2792 flags=No risk flags.
+attempt 02 family=os_direct_v2 hc=60% decision=PASSED: HUMAN events=276 vel=0.7364 jerk=0.1548111 acc=0.247491 jit=0.7336 str=0.2738 flags=Abnormal velocity spike (34.8 px/ms)
+attempt 03 family=os_direct_v2 hc=64% decision=PASSED: HUMAN events=265 vel=0.5356 jerk=0.01715495 acc=0.073704 jit=0.7186 str=0.0227 flags=No risk flags.
+attempt 04 family=os_direct_v2 hc=58% decision=PASSED: HUMAN events=174 vel=0.5284 jerk=0.01291673 acc=0.070976 jit=0.7326 str=0.3293 flags=No risk flags.
+attempt 44 family=careful hc=—% decision=IN PROGRESS events=181 flags=No evaluation yet.
+attempt 05 family=os_direct_v2 hc=63% decision=PASSED: HUMAN events=148 vel=0.6052 jerk=0.02799895 acc=0.102829 jit=0.6986 str=0.4627 flags=No risk flags.
+attempt 19 family=os_fast hc=—% decision=IN PROGRESS events=160 vel=None jerk=None acc=None jit=None str=None flags=No evaluation yet.
+attempt 15 family=jitter_arc hc=—% decision=IN PROGRESS events=745 flags=No evaluation yet.
+attempt 06 family=os_direct_v2 hc=60% decision=PASSED: HUMAN events=164 vel=0.5498 jerk=0.00862533 acc=0.066972 jit=0.7593 str=0.199 flags=No risk flags.
+attempt 20 family=os_fast hc=36% decision=BLOCKED: BOT events=156 vel=0.9226 jerk=0.04568577 acc=0.106543 jit=0.1753 str=0.26 flags=No risk flags.
+attempt 07 family=os_direct_v2 hc=56% decision=PASSED: HUMAN events=185 vel=0.5077 jerk=0.00726813 acc=0.060023 jit=0.7268 str=0.2437 flags=No risk flags.
+attempt 45 family=jitter_arc hc=20% decision=BLOCKED: BOT events=237 flags=No risk flags.
+attempt 08 family=os_direct_v2 hc=61% decision=PASSED: HUMAN events=121 vel=0.5129 jerk=0.00736144 acc=0.061761 jit=0.7647 str=0.1294 flags=No risk flags.
+attempt 21 family=os_fast hc=26% decision=BLOCKED: BOT events=103 vel=0.8969 jerk=0.02454365 acc=0.085168 jit=0.2574 str=0.4434 flags=No risk flags.
+attempt 09 family=os_direct_v2 hc=74% decision=PASSED: HUMAN events=163 vel=0.6014 jerk=0.0619993 acc=0.142835 jit=0.7888 str=0.2683 flags=No risk flags.
+TARGET_REACHED 0.7400 after 9 attempts in 40.0s
+attempt 22 family=os_direct hc=25% decision=BLOCKED: BOT events=156 vel=0.9099 jerk=0.03003962 acc=0.084028 jit=0.2403 str=0.0143 flags=No risk flags.
+attempt 16 family=desk_fidget hc=20% decision=BLOCKED: BOT events=417 flags=No risk flags.
+attempt 46 family=slow_arc hc=3% decision=BLOCKED: BOT events=127 flags=No risk flags.
+attempt 23 family=os_direct hc=2% decision=BLOCKED: BOT events=140 vel=0.8295 jerk=0.00835205 acc=0.047161 jit=0.1449 str=0.2961 flags=No risk flags.
+attempt 24 family=os_direct hc=11% decision=BLOCKED: BOT events=149 vel=0.9092 jerk=0.0187466 acc=0.076979 jit=0.1701 str=0.2226 flags=No risk flags.
+attempt 47 family=slow_arc hc=2% decision=BLOCKED: BOT events=205 flags=No risk flags.
+attempt 25 family=os_direct hc=44% decision=BLOCKED: BOT events=85 vel=0.9579 jerk=0.03608384 acc=0.112342 jit=0.2169 str=0.2706 flags=No risk flags.
+attempt 26 family=os_wiggly hc=51% decision=PASSED: HUMAN events=155 vel=0.7514 jerk=0.02636426 acc=0.083283 jit=0.3007 str=0.0661 flags=No risk flags.
+attempt 48 family=busy_mouse hc=7% decision=BLOCKED: BOT events=149 flags=No risk flags.
+attempt 17 family=busy_mouse hc=8% decision=BLOCKED: BOT events=664 flags=No risk flags.
+attempt 27 family=os_direct hc=38% decision=BLOCKED: BOT events=142 vel=1.0131 jerk=0.03650844 acc=0.116565 jit=0.2071 str=0.0108 flags=No risk flags.
+attempt 28 family=os_direct hc=31% decision=BLOCKED: BOT events=74 vel=0.9348 jerk=0.02734712 acc=0.090081 jit=0.2361 str=0.3462 flags=No risk flags.
+attempt 49 family=busy_mouse hc=17% decision=BLOCKED: BOT events=225 flags=Procedural human-mimic movement signature
+attempt 29 family=os_fast hc=19% decision=BLOCKED: BOT events=104 vel=0.93 jerk=0.02622253 acc=0.086423 jit=0.1275 str=0.2069 flags=No risk flags.
+attempt 30 family=os_fast hc=52% decision=PASSED: HUMAN events=123 vel=1.0661 jerk=0.06538912 acc=0.157974 jit=0.1818 str=0.0777 flags=No risk flags.
+attempt 50 family=careful hc=3% decision=BLOCKED: BOT events=152 flags=No risk flags.
+attempt 31 family=os_fast hc=21% decision=BLOCKED: BOT events=158 vel=0.8545 jerk=0.02895231 acc=0.087356 jit=0.1603 str=0.2607 flags=No risk flags.
+attempt 32 family=os_direct hc=19% decision=BLOCKED: BOT events=151 vel=0.9008 jerk=0.02084178 acc=0.078947 jit=0.2483 str=0.2401 flags=No risk flags.
+attempt 51 family=jitter_arc hc=23% decision=BLOCKED: BOT events=196 flags=No risk flags.
+attempt 33 family=os_fast hc=18% decision=BLOCKED: BOT events=139 vel=0.8197 jerk=0.02534308 acc=0.074387 jit=0.2482 str=0.1658 flags=No risk flags.
+attempt 18 family=jitter_arc hc=10% decision=BLOCKED: BOT events=1009 flags=No risk flags.
+attempt 34 family=os_wiggly hc=13% decision=BLOCKED: BOT events=143 vel=0.7696 jerk=0.0279767 acc=0.078723 jit=0.1702 str=0.0926 flags=No risk flags.
+attempt 52 family=jitter_arc hc=2% decision=BLOCKED: BOT events=291 flags=No risk flags.
+attempt 35 family=os_fast hc=7% decision=BLOCKED: BOT events=168 vel=0.8513 jerk=0.02568405 acc=0.069996 jit=0.1627 str=0.2494 flags=No risk flags.
+attempt 36 family=os_fast hc=17% decision=BLOCKED: BOT events=173 vel=0.9158 jerk=0.03336463 acc=0.081068 jit=0.1754 str=0.0136 flags=No risk flags.
+attempt 19 family=jitter_arc hc=15% decision=BLOCKED: BOT events=605 flags=No risk flags.
+attempt 37 family=os_wiggly hc=16% decision=BLOCKED: BOT events=139 vel=0.7645 jerk=0.02000486 acc=0.050284 jit=0.2336 str=0.1695 flags=No risk flags.
+attempt 53 family=careful hc=3% decision=BLOCKED: BOT events=164 flags=No risk flags.
+attempt 38 family=os_direct hc=38% decision=BLOCKED: BOT events=93 vel=0.9507 jerk=0.0465771 acc=0.099658 jit=0.2308 str=0.1899 flags=No risk flags.
+attempt 39 family=os_direct hc=25% decision=BLOCKED: BOT events=109 vel=0.9128 jerk=0.03782773 acc=0.093547 jit=0.1776 str=0.2292 flags=No risk flags.
+attempt 54 family=slow_arc hc=3% decision=BLOCKED: BOT events=151 flags=No risk flags.
+attempt 40 family=os_direct hc=28% decision=BLOCKED: BOT events=106 vel=0.8433 jerk=0.01264544 acc=0.062783 jit=0.2788 str=0.0285 flags=No risk flags.
+attempt 41 family=os_fast hc=10% decision=BLOCKED: BOT events=173 vel=0.8316 jerk=0.02317309 acc=0.064586 jit=0.1754 str=0.0935 flags=No risk flags.
+attempt 20 family=busy_mouse hc=12% decision=BLOCKED: BOT events=652 flags=No risk flags.
+attempt 42 family=os_direct hc=54% decision=PASSED: HUMAN events=96 vel=0.906 jerk=0.04796415 acc=0.097864 jit=0.2872 str=0.3948 flags=No risk flags.
+attempt 55 family=jitter_arc hc=1% decision=BLOCKED: BOT events=315 flags=No risk flags.
+attempt 43 family=os_fast hc=25% decision=BLOCKED: BOT events=183 vel=0.8919 jerk=0.04509293 acc=0.090566 jit=0.1713 str=0.1598 flags=No risk flags.
+attempt 44 family=os_direct hc=32% decision=BLOCKED: BOT events=154 vel=0.9932 jerk=0.03614659 acc=0.102869 jit=0.1645 str=0.0435 flags=No risk flags.
+attempt 45 family=os_fast hc=38% decision=BLOCKED: BOT events=105 vel=0.9269 jerk=0.04322551 acc=0.106261 jit=0.2136 str=0.2799 flags=No risk flags.
+attempt 21 family=jitter_arc hc=8% decision=BLOCKED: BOT events=610 flags=No risk flags.
+attempt 46 family=os_fast hc=28% decision=BLOCKED: BOT events=72 vel=0.8022 jerk=0.03812096 acc=0.086846 jit=0.1857 str=0.2683 flags=No risk flags.
+attempt 56 family=slow_arc hc=1% decision=BLOCKED: BOT events=262 flags=No risk flags.
+attempt 47 family=os_direct hc=35% decision=BLOCKED: BOT events=109 vel=0.8823 jerk=0.02839669 acc=0.105505 jit=0.2056 str=0.4584 flags=No risk flags.
+attempt 48 family=os_direct hc=42% decision=BLOCKED: BOT events=143 vel=0.9397 jerk=0.04282273 acc=0.109181 jit=0.1915 str=0.1158 flags=No risk flags.
+attempt 57 family=careful hc=3% decision=BLOCKED: BOT events=126 flags=No risk flags.
+attempt 49 family=os_fast hc=24% decision=BLOCKED: BOT events=184 vel=0.8994 jerk=0.03426498 acc=0.089519 jit=0.1978 str=0.12 flags=No risk flags.
+attempt 22 family=desk_fidget hc=0% decision=BLOCKED: BOT events=486 flags=No risk flags.
+attempt 50 family=os_fast hc=32% decision=BLOCKED: BOT events=133 vel=0.909 jerk=0.05039187 acc=0.097633 jit=0.2061 str=0.2453 flags=No risk flags.
+attempt 51 family=os_fast hc=24% decision=BLOCKED: BOT events=131 vel=0.8551 jerk=0.02887493 acc=0.075051 jit=0.2248 str=0.1706 flags=No risk flags.
+attempt 58 family=slow_arc hc=3% decision=BLOCKED: BOT events=207 flags=No risk flags.
+attempt 52 family=os_wiggly hc=6% decision=BLOCKED: BOT events=113 vel=0.7603 jerk=0.01718177 acc=0.057544 jit=0.1712 str=0.4135 flags=No risk flags.
+attempt 23 family=jitter_arc hc=36% decision=BLOCKED: BOT events=536 flags=No risk flags.
+attempt 53 family=os_fast hc=41% decision=BLOCKED: BOT events=133 vel=0.9479 jerk=0.05727246 acc=0.137664 jit=0.1908 str=0.1633 flags=Abnormal velocity spike (20.4 px/ms)
+attempt 54 family=os_direct hc=22% decision=BLOCKED: BOT events=176 vel=0.9909 jerk=0.0264093 acc=0.095443 jit=0.1782 str=0.1265 flags=No risk flags.
+attempt 59 family=careful hc=3% decision=BLOCKED: BOT events=205 flags=No risk flags.
+attempt 55 family=os_direct hc=8% decision=BLOCKED: BOT events=82 vel=0.8287 jerk=0.01258123 acc=0.044286 jit=0.2375 str=0.2395 flags=No risk flags.
+attempt 56 family=os_fast hc=8% decision=BLOCKED: BOT events=111 vel=0.8352 jerk=0.00794938 acc=0.049486 jit=0.2202 str=0.2865 flags=No risk flags.
+attempt 60 family=busy_mouse hc=18% decision=BLOCKED: BOT events=191 flags=No risk flags.
+attempt 57 family=os_direct hc=11% decision=BLOCKED: BOT events=94 vel=0.8828 jerk=0.02315494 acc=0.064746 jit=0.1957 str=0.3186 flags=No risk flags.
+attempt 24 family=desk_fidget hc=0% decision=BLOCKED: BOT events=537 flags=No risk flags.
+attempt 58 family=os_direct hc=23% decision=BLOCKED: BOT events=133 vel=0.9909 jerk=0.02909311 acc=0.095113 jit=0.1832 str=0.3198 flags=No risk flags.
+attempt 59 family=os_fast hc=14% decision=BLOCKED: BOT events=140 vel=0.8242 jerk=0.02889913 acc=0.07822 jit=0.2101 str=0.112 flags=No risk flags.
+attempt 61 family=careful hc=3% decision=BLOCKED: BOT events=182 flags=No risk flags.
+attempt 60 family=os_fast hc=5% decision=BLOCKED: BOT events=100 vel=0.8052 jerk=0.01211883 acc=0.050243 jit=0.2143 str=0.3988 flags=No risk flags.
+attempt 61 family=os_wiggly hc=3% decision=BLOCKED: BOT events=238 vel=0.7188 jerk=0.01161344 acc=0.042981 jit=0.1822 str=0.0814 flags=No risk flags.
+attempt 62 family=careful hc=3% decision=BLOCKED: BOT events=173 flags=No risk flags.
+attempt 62 family=os_fast hc=72% decision=PASSED: HUMAN events=106 vel=1.0506 jerk=0.08725105 acc=0.181261 jit=0.2692 str=0.3515 flags=No risk flags.
+TARGET_REACHED 0.7200 after 62 attempts in 307.2s
+attempt 25 family=jitter_arc hc=16% decision=BLOCKED: BOT events=770 flags=No risk flags.
+attempt 63 family=slow_arc hc=2% decision=BLOCKED: BOT events=172 flags=No risk flags.
+attempt 64 family=slow_arc hc=5% decision=BLOCKED: BOT events=214 flags=No risk flags.
+attempt 26 family=busy_mouse hc=11% decision=BLOCKED: BOT events=806 flags=No risk flags.
+attempt 65 family=slow_arc hc=3% decision=BLOCKED: BOT events=173 flags=No risk flags.
+attempt 66 family=slow_arc hc=1% decision=BLOCKED: BOT events=145 flags=No risk flags.
+attempt 67 family=careful hc=3% decision=BLOCKED: BOT events=110 flags=No risk flags.
+attempt 68 family=busy_mouse hc=21% decision=BLOCKED: BOT events=173 flags=Procedural human-mimic movement signature
+attempt 27 family=busy_mouse hc=6% decision=BLOCKED: BOT events=1184 flags=No risk flags.
+attempt 69 family=careful hc=5% decision=BLOCKED: BOT events=85 flags=No risk flags.
+attempt 70 family=jitter_arc hc=26% decision=BLOCKED: BOT events=172 flags=No risk flags.
+attempt 28 family=busy_mouse hc=8% decision=BLOCKED: BOT events=842 flags=No risk flags.
+attempt 71 family=jitter_arc hc=20% decision=BLOCKED: BOT events=253 flags=No risk flags.
+attempt 72 family=careful hc=3% decision=BLOCKED: BOT events=221 flags=Near-perfect linear trajectory (Straightness: 0.985)
+attempt 29 family=desk_fidget hc=5% decision=BLOCKED: BOT events=669 flags=No risk flags.
+attempt 73 family=jitter_arc hc=6% decision=BLOCKED: BOT events=304 flags=Procedural human-mimic movement signature
+attempt 30 family=desk_fidget hc=3% decision=BLOCKED: BOT events=453 flags=No risk flags.
+attempt 74 family=slow_arc hc=1% decision=BLOCKED: BOT events=157 flags=No risk flags.
+attempt 75 family=careful hc=3% decision=BLOCKED: BOT events=118 flags=No risk flags.
+attempt 31 family=jitter_arc hc=56% decision=PASSED: HUMAN events=680 flags=No risk flags.
+attempt 76 family=slow_arc hc=1% decision=BLOCKED: BOT events=269 flags=No risk flags.
+attempt 77 family=busy_mouse hc=8% decision=BLOCKED: BOT events=211 flags=Procedural human-mimic movement signature
+attempt 32 family=desk_fidget hc=20% decision=BLOCKED: BOT events=840 flags=No risk flags.
+attempt 78 family=slow_arc hc=3% decision=BLOCKED: BOT events=186 flags=No risk flags.
+attempt 79 family=busy_mouse hc=15% decision=BLOCKED: BOT events=251 flags=Procedural human-mimic movement signature
+attempt 80 family=busy_mouse hc=18% decision=BLOCKED: BOT events=211 flags=No risk flags.
+attempt 33 family=jitter_arc hc=3% decision=BLOCKED: BOT events=730 flags=No risk flags.
+attempt 81 family=jitter_arc hc=24% decision=BLOCKED: BOT events=247 flags=No risk flags.
+attempt 34 family=jitter_arc hc=14% decision=BLOCKED: BOT events=626 flags=No risk flags.
+attempt 82 family=careful hc=—% decision=IN PROGRESS events=223 flags=No evaluation yet.
+attempt 35 family=busy_mouse hc=—% decision=IN PROGRESS events=713 flags=No evaluation yet.
+attempt 83 family=jitter_arc hc=—% decision=IN PROGRESS events=248 flags=No evaluation yet.
+attempt 84 family=busy_mouse hc=18% decision=BLOCKED: BOT events=206 flags=Procedural human-mimic movement signature
+attempt 85 family=jitter_arc hc=16% decision=BLOCKED: BOT events=256 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 36 family=busy_mouse hc=—% decision=IN PROGRESS events=662 flags=No evaluation yet.
+attempt 86 family=careful hc=3% decision=BLOCKED: BOT events=161 flags=No risk flags.
+attempt 37 family=desk_fidget hc=18% decision=BLOCKED: BOT events=398 flags=No risk flags.
+attempt 87 family=busy_mouse hc=18% decision=BLOCKED: BOT events=298 flags=Procedural human-mimic movement signature
+attempt 88 family=jitter_arc hc=2% decision=BLOCKED: BOT events=175 flags=No risk flags.
+attempt 38 family=jitter_arc hc=12% decision=BLOCKED: BOT events=590 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 89 family=slow_arc hc=1% decision=BLOCKED: BOT events=130 flags=No risk flags.
+attempt 90 family=careful hc=4% decision=BLOCKED: BOT events=81 flags=No risk flags.
+attempt 91 family=busy_mouse hc=22% decision=BLOCKED: BOT events=174 flags=Procedural human-mimic movement signature
+attempt 39 family=busy_mouse hc=6% decision=BLOCKED: BOT events=801 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 92 family=slow_arc hc=1% decision=BLOCKED: BOT events=258 flags=Near-perfect linear trajectory (Straightness: 0.988)
+DEADLINE_HIT best=0.2600 attempts=92
+attempt 40 family=busy_mouse hc=12% decision=BLOCKED: BOT events=913 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 41 family=busy_mouse hc=5% decision=BLOCKED: BOT events=595 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 42 family=busy_mouse hc=6% decision=BLOCKED: BOT events=660 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 43 family=busy_mouse hc=11% decision=BLOCKED: BOT events=645 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 44 family=jitter_arc hc=18% decision=BLOCKED: BOT events=549 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 45 family=jitter_arc hc=3% decision=BLOCKED: BOT events=1046 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 46 family=jitter_arc hc=2% decision=BLOCKED: BOT events=992 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+attempt 47 family=desk_fidget hc=13% decision=BLOCKED: BOT events=665 flags=Automation kinematic mismatch (inflated jitter, low dynamics)
+DEADLINE_HIT best=0.5600 attempts=47

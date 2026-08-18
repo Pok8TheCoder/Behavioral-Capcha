@@ -1,0 +1,31 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "c7a97353-6984-40e6-9357-f88092b34519",
+  "challenge_type": "path_gates",
+  "seed": 440844674,
+  "task_passed": true,
+  "event_count": 1589,
+  "features": {
+    "event_count": 1589,
+    "duration_ms": 2399.8,
+    "total_distance_px": 1617.23,
+    "euclidean_distance_px": 466.01,
+    "straightness_index": 0.2882,
+    "velocity_mean": 0.9024,
+    "velocity_std": 0.683,
+    "velocity_max": 4.2857,
+    "acceleration_mean": 0.60536,
+    "acceleration_std": 0.562496,
+    "acceleration_max": 3.665231,
+    "jerk_mean": 0.442331,
+    "angle_change_mean": 0.4864,
+    "angle_change_std": 0.6733,
+    "jitter_ratio": 0.2016,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": -1.0
+  },
+  "csv": "path_gates_20260817_103508_c7a97353-6984-40e6-9357-.csv",
+  "relative_dir": "challenges/path_gates",
+  "saved_at": "2026-08-17T10:35:08.413430+00:00"
+}

@@ -3,46 +3,138 @@ import joblib
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from backend.feature_extractor import feature_dict_to_vector
+from backend.evasion_heuristics import load_rules, score_dynamic_rules
+from backend.qmodel_registry import (
+    catalog_for_api,
+    get_evasion_rules_path,
+    get_qmodel_artifact_path,
+    get_qmodel_entry,
+    list_qmodel_versions,
+    procedural_mimic_enabled as qmodel_procedural_mimic,
+)
+from backend.ymodel_registry import (
+    get_ymodel_entry,
+    get_ymodel_evasion_rules_path,
+    list_ymodel_versions,
+)
 
 IFOREST_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_iforest_model.joblib")
+RF_CHALLENGE_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_rf_challenge_model.joblib")
 RF_HUMANLIKE_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_rf_humanlike_model.joblib")
 RF_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_rf_model.joblib")
 
-MODEL_REGISTRY = {
+LEGACY_MODEL_REGISTRY = {
+    "random_forest_challenge": RF_CHALLENGE_MODEL_PATH,
     "random_forest_humanlike": RF_HUMANLIKE_MODEL_PATH,
     "isolation_forest": IFOREST_MODEL_PATH,
     "random_forest": RF_MODEL_PATH,
 }
 
+
+def _build_model_registry() -> dict:
+    registry = dict(LEGACY_MODEL_REGISTRY)
+    for entry in list_qmodel_versions():
+        registry[entry["id"]] = entry["path"]
+    for entry in list_ymodel_versions():
+        registry[entry["id"]] = entry["path"]
+    return registry
+
+
+def _canonical_model_id(model_name: str, registry: dict) -> str | None:
+    """Match registry keys case-insensitively (e.g. qmodel_v0.8.1G)."""
+    requested = model_name.strip()
+    if not requested:
+        return None
+    if requested in registry:
+        return requested
+    lowered = requested.lower()
+    for key in registry:
+        if key.lower() == lowered:
+            return key
+    return None
+
+
+MODEL_REGISTRY = _build_model_registry()
+
 class BehavioralClassifier:
     def __init__(self):
         self.model = None
         self.model_type = "unloaded"
+        self.display_name = "unloaded"
         self.feature_names = []
         self.metadata = {}
         self.is_trained = False
-        requested_model = os.getenv("BEHAVIORAL_MODEL", "random_forest_humanlike")
+        self.evasion_rules_path = None
+        self.use_procedural_mimic_heuristic = True
+        requested_model = os.getenv("BEHAVIORAL_MODEL", "").strip()
+        if not requested_model:
+            catalog = catalog_for_api()
+            requested_model = catalog.get("latest") or "random_forest_challenge"
         if not self.load_model(requested_model):
-            print(f"[Model] Could not load requested model '{requested_model}'; trying available artifacts.")
-            for model_name in ("random_forest_humanlike", "isolation_forest", "random_forest"):
+            print(f"[Model] Could not load requested model '{requested_model}'; trying fallbacks.")
+            for model_name in self._fallback_order():
                 if self.load_model(model_name):
                     return
             self.train_synthetic_model()
 
+    def _fallback_order(self) -> tuple:
+        catalog = catalog_for_api()
+        latest = catalog.get("latest")
+        order = []
+        if latest:
+            order.append(latest)
+        for entry in reversed(catalog.get("versions", [])):
+            if entry["id"] != latest:
+                order.append(entry["id"])
+        order.extend(["random_forest_challenge", "random_forest_humanlike", "isolation_forest", "random_forest"])
+        return tuple(order)
+
     def available_models(self) -> dict:
-        """Returns the selectable model artifacts and whether each is present on disk."""
-        return {
-            model_name: {
+        """Selectable artifacts: Qmodels first, then legacy."""
+        out: dict = {}
+        for entry in list_qmodel_versions():
+            out[entry["id"]] = {
+                "available": entry.get("available", False),
+                "path": entry.get("path"),
+                "label": entry.get("label"),
+                "version": entry.get("version"),
+                "status": entry.get("status"),
+                "family": "qmodel",
+            }
+        for entry in list_ymodel_versions():
+            out[entry["id"]] = {
+                "available": entry.get("available", False),
+                "path": entry.get("path"),
+                "label": entry.get("label"),
+                "version": entry.get("version"),
+                "status": entry.get("status"),
+                "family": "ymodel",
+            }
+        for model_name, model_path in LEGACY_MODEL_REGISTRY.items():
+            out[model_name] = {
                 "available": os.path.exists(model_path),
                 "path": model_path,
+                "label": model_name.replace("_", " "),
+                "family": "legacy",
             }
-            for model_name, model_path in MODEL_REGISTRY.items()
-        }
+        return out
+
+    def qmodel_catalog(self) -> dict:
+        return catalog_for_api()
 
     def load_model(self, model_name: str) -> bool:
-        """Loads one registered artifact without changing the API contract."""
-        normalized_name = model_name.strip().lower()
-        model_path = MODEL_REGISTRY.get(normalized_name)
+        """Loads one registered artifact (Qmodel or legacy)."""
+        requested = model_name.strip()
+        if requested.lower() == "random_forest_challenge":
+            catalog = catalog_for_api()
+            latest = catalog.get("latest")
+            if latest and get_qmodel_entry(latest):
+                requested = latest
+
+        global MODEL_REGISTRY
+        MODEL_REGISTRY = _build_model_registry()
+        canonical_name = _canonical_model_id(requested, MODEL_REGISTRY)
+        model_path = MODEL_REGISTRY.get(canonical_name) if canonical_name else None
         if not model_path:
             print(f"[Model] Unknown model requested: {model_name}")
             return False
@@ -55,12 +147,25 @@ class BehavioralClassifier:
             self.model = package["model"] if isinstance(package, dict) and "model" in package else package
             self.feature_names = package.get("feature_names", []) if isinstance(package, dict) else []
             self.metadata = package.get("metadata", {}) if isinstance(package, dict) else {}
-            self.model_type = normalized_name
+            self.model_type = canonical_name
+            entry = get_qmodel_entry(canonical_name) or get_ymodel_entry(canonical_name)
+            if entry:
+                self.display_name = entry.get("label", canonical_name)
+                if get_qmodel_entry(canonical_name):
+                    self.evasion_rules_path = get_evasion_rules_path(canonical_name)
+                    self.use_procedural_mimic_heuristic = qmodel_procedural_mimic(canonical_name)
+                else:
+                    self.evasion_rules_path = get_ymodel_evasion_rules_path(canonical_name)
+                    self.use_procedural_mimic_heuristic = bool(entry.get("procedural_mimic_heuristic", True))
+            else:
+                self.display_name = self.metadata.get("qmodel_label") or canonical_name.replace("_", " ")
+                self.evasion_rules_path = None
+                self.use_procedural_mimic_heuristic = True
             self.is_trained = True
-            print(f"[Model] Loaded {normalized_name} from {model_path}")
+            print(f"[Model] Loaded {self.display_name} ({canonical_name}) from {model_path}")
             return True
         except Exception as e:
-            print(f"[Model] Error loading {normalized_name}: {e}")
+            print(f"[Model] Error loading {canonical_name}: {e}")
             return False
 
     def _load_or_train_model(self):
@@ -225,6 +330,7 @@ class BehavioralClassifier:
             "isolation_forest_score": round(decision_score, 6),
             "heuristic_score": round(min(1.0, heuristic_bot_score), 4),
             "model_type": self.model_type,
+            "qmodel_label": self.display_name if (get_qmodel_entry(self.model_type) or get_ymodel_entry(self.model_type)) else None,
             "flags": flags,
             "biometric_summary": {
                 "straightness": features.get("straightness_index", 0.0),
@@ -273,7 +379,7 @@ class BehavioralClassifier:
             heuristic_bot_score += 0.40
 
         # 5. Superhuman Click Speed
-        if 0 < click_dwell < 15.0:
+        if click_dwell >= 0.0 and click_dwell < 15.0 and event_count > 4:
             flags.append(f"Superhuman click dwell duration ({click_dwell:.1f}ms)")
             heuristic_bot_score += 0.30
 
@@ -286,6 +392,322 @@ class BehavioralClassifier:
         if duration < 1000.0 and features.get("total_distance_px", 0) > 250:
             flags.append(f"Very fast movement sequence ({duration:.0f}ms over {features.get('total_distance_px', 0):.0f}px)")
             heuristic_bot_score += 0.25
+
+        # 8. Procedural human-mimic (sharepad evasion signature) — Qmodel V0.1 disables this
+        if self.use_procedural_mimic_heuristic and (
+            straightness < 0.22
+            and jitter_ratio > 0.28
+            and 0.28 < vel_mean < 0.58
+            and vel_max < 2.5
+            and click_dwell >= 90.0
+            and event_count > 15
+            and duration > 4000.0
+        ):
+            flags.append("Procedural human-mimic movement signature")
+            heuristic_bot_score += 0.32
+
+        dynamic_boost, dynamic_flags = score_dynamic_rules(
+            features, load_rules(self.evasion_rules_path),
+        )
+        if dynamic_boost > 0:
+            flags.extend(dynamic_flags)
+            heuristic_bot_score += dynamic_boost
+
+        # 9. Wobble-linear API evasion (issue 001 — low jitter, elevated velocity, button_sequence timing)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jitter_ratio < 0.13
+            and 0.60 < vel_mean < 1.08
+            and 3.2 < vel_max < 10.0
+            and 60.0 <= click_dwell < 115.0
+            and 180 < event_count < 540
+            and 3400.0 < duration < 9500.0
+            and straightness < 0.56
+        ):
+            flags.append("Wobble-linear evasion signature (issue 001)")
+            heuristic_bot_score += 0.40
+
+        # 10. Low-straightness fast variant from same wobble generator
+        if (
+            self.use_procedural_mimic_heuristic
+            and straightness < 0.22
+            and jitter_ratio < 0.14
+            and vel_mean > 0.68
+            and event_count > 175
+            and duration > 3200.0
+            and 55.0 <= click_dwell < 115.0
+        ):
+            flags.append("Low-straightness fast evasion (issue 001 variant)")
+            heuristic_bot_score += 0.34
+
+        jerk_mean = features.get("jerk_mean", 0.0)
+        acc_mean = features.get("acceleration_mean", 0.0)
+
+        # 11. Playwright hop+jiggle inflation (issue 002 — high jitter, low jerk/acceleration)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jitter_ratio > 0.48
+            and jerk_mean < 0.18
+            and acc_mean < 0.28
+            and 0.42 < vel_mean < 0.88
+            and 85 < event_count < 320
+            and straightness < 0.52
+            and duration > 2000.0
+        ):
+            flags.append("Playwright micro-jiggle inflation (issue 002)")
+            heuristic_bot_score += 0.48
+
+        # 12. Broad automation kinematic mismatch (high apparent jitter, flat dynamics)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jitter_ratio > 0.38
+            and jerk_mean < 0.22
+            and acc_mean < 0.35
+            and vel_mean < 0.92
+            and 70 < event_count < 380
+            and duration > 1800.0
+        ):
+            flags.append("Automation kinematic mismatch (inflated jitter, low dynamics)")
+            heuristic_bot_score += 0.36
+
+        # 13. Inflated jitter + sparse Playwright hops (issue 002 live fingerprint)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jitter_ratio > 0.50
+            and vel_mean < 0.88
+            and event_count < 280
+            and straightness < 0.55
+        ):
+            flags.append("Inflated jitter sparse-hop automation (issue 002)")
+            heuristic_bot_score += 0.40
+
+        # 14. Extreme jitter inflation from micro-jiggle automation (live + synthetic variants)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jitter_ratio > 0.62
+            and event_count < 300
+            and straightness < 0.55
+        ):
+            flags.append("Extreme jitter inflation (micro-jiggle automation)")
+            heuristic_bot_score += 0.52
+
+        # 15. Fast-hop Playwright flat dynamics (issue 003 hi_dyn)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jerk_mean < 0.10
+            and acc_mean < 0.22
+            and 0.28 < jitter_ratio < 0.52
+            and 0.82 < vel_mean < 1.50
+            and 85 < event_count < 230
+            and straightness < 0.55
+        ):
+            flags.append("Fast-hop Playwright flat dynamics (issue 003)")
+            heuristic_bot_score += 0.50
+
+        # 16. Flat dynamics automation (any jitter band, elevated velocity)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jerk_mean < 0.12
+            and acc_mean < 0.25
+            and vel_mean > 0.80
+            and 70 < event_count < 260
+            and duration > 1200.0
+        ):
+            flags.append("Flat-dynamics automation signature")
+            heuristic_bot_score += 0.38
+
+        # 17. mid_dense linear dense-hop (issue 004 winner)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 0.08 < jitter_ratio < 0.22
+            and 0.12 < jerk_mean < 0.32
+            and 0.22 < acc_mean < 0.45
+            and 0.82 < vel_mean < 1.18
+            and 115 < event_count < 225
+            and straightness < 0.38
+            and duration > 1500.0
+        ):
+            flags.append("Dense-hop Playwright mid_dense (issue 004)")
+            heuristic_bot_score += 0.50
+
+        # 18. Playwright dense-hop family (whole family — low jitter, moderate dynamics)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jitter_ratio < 0.24
+            and jerk_mean > 0.08
+            and acc_mean > 0.18
+            and 0.45 < vel_mean < 1.28
+            and 50 < event_count < 280
+            and straightness < 0.50
+            and duration > 1000.0
+        ):
+            flags.append("Playwright dense-hop family automation")
+            heuristic_bot_score += 0.44
+
+        # 19. Strengthen #10 corridor for low-jitter low-straightness (attempt 03 was 66%)
+        if (
+            self.use_procedural_mimic_heuristic
+            and straightness < 0.24
+            and jitter_ratio < 0.16
+            and vel_mean > 0.65
+            and event_count > 130
+            and duration > 2000.0
+        ):
+            flags.append("Low-straightness low-jitter Playwright hop")
+            heuristic_bot_score += 0.40
+
+        # 20. Dart-hop high-jitter fast_direct (issue 005 winner)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 0.38 < jitter_ratio < 0.62
+            and 1.05 < vel_mean < 1.55
+            and 70 < event_count < 180
+            and straightness < 0.35
+            and 0.08 < jerk_mean < 0.28
+            and 0.18 < acc_mean < 0.50
+            and duration > 800.0
+        ):
+            flags.append("Playwright dart-hop high-jitter (issue 005)")
+            heuristic_bot_score += 0.50
+
+        # 21. Dart-hop family (lateral darts, elevated velocity, sparse events)
+        if (
+            self.use_procedural_mimic_heuristic
+            and jitter_ratio > 0.42
+            and vel_mean > 1.00
+            and event_count < 220
+            and straightness < 0.45
+            and jerk_mean < 0.35
+            and acc_mean > 0.16
+        ):
+            flags.append("Playwright dart-hop family automation")
+            heuristic_bot_score += 0.44
+
+        # 22. Min-jerk dense overflow (issue 006 — events above #18 cap of 280)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 0.10 < jitter_ratio < 0.22
+            and 0.10 < jerk_mean < 0.28
+            and 0.16 < acc_mean < 0.35
+            and 0.65 < vel_mean < 1.05
+            and event_count > 270
+            and straightness < 0.28
+        ):
+            flags.append("Min-jerk dense Playwright overflow (issue 006)")
+            heuristic_bot_score += 0.50
+
+        # 23. High event-count low-jitter automation
+        if (
+            self.use_procedural_mimic_heuristic
+            and event_count >= 280
+            and jitter_ratio < 0.24
+            and straightness < 0.40
+            and 0.40 < vel_mean < 1.10
+        ):
+            flags.append("High event-count low-jitter Playwright automation")
+            heuristic_bot_score += 0.42
+
+        # 24. Sparse irregular min-jerk (issue 007 — ~60 events, high vel/acc, mid jitter)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 45 <= event_count <= 110
+            and 1.15 < vel_mean < 1.85
+            and 0.18 < jitter_ratio < 0.32
+            and jerk_mean > 0.10
+            and acc_mean > 0.28
+            and straightness < 0.35
+            and duration > 1200.0
+        ):
+            flags.append("Sparse irregular Playwright min-jerk (issue 007)")
+            heuristic_bot_score += 0.50
+
+        # 25. Mid-count irregular (issue 008 — events above #24 cap of 110)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 111 <= event_count <= 250
+            and 1.05 < vel_mean < 1.70
+            and 0.14 < jitter_ratio < 0.28
+            and jerk_mean > 0.18
+            and acc_mean > 0.32
+            and straightness < 0.12
+            and duration > 1800.0
+        ):
+            flags.append("Mid-count irregular Playwright min-jerk (issue 008)")
+            heuristic_bot_score += 0.50
+
+        # 26. High-str fast hops (issue 009 — vel above #24/#25 caps)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 45 <= event_count <= 95
+            and vel_mean > 1.70
+            and 0.14 < jitter_ratio < 0.28
+            and jerk_mean > 0.28
+            and acc_mean > 0.45
+            and duration > 1200.0
+        ):
+            flags.append("High-str fast Playwright hops (issue 009)")
+            heuristic_bot_score += 0.50
+
+        # 27. Idle-correct long dwell (issue 010 — events above #26 cap, vel above #25)
+        idle_ratio = features.get("idle_ratio", 0.0)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 120 <= event_count <= 220
+            and vel_mean > 1.55
+            and 0.14 < jitter_ratio < 0.24
+            and jerk_mean > 0.35
+            and acc_mean > 0.50
+            and idle_ratio > 0.32
+            and straightness < 0.18
+            and duration > 3500.0
+            and click_dwell >= 90.0
+        ):
+            flags.append("Idle-correct Playwright long-dwell (issue 010)")
+            heuristic_bot_score += 0.50
+
+        # 28. High-jitter mid-count (issue 011 — jitter above #25 cap of 0.28)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 100 <= event_count <= 145
+            and 1.05 < vel_mean < 1.50
+            and jitter_ratio > 0.28
+            and jerk_mean > 0.18
+            and acc_mean > 0.32
+            and 0.18 < straightness < 0.45
+            and idle_ratio < 0.28
+            and duration > 2000.0
+            and click_dwell < 110.0
+        ):
+            flags.append("High-jitter Playwright mid-count (issue 011)")
+            heuristic_bot_score += 0.50
+
+        # 29. Smooth low-jitter (issue 012 — jitter below #25 floor of 0.14)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 100 <= event_count <= 160
+            and 1.05 < vel_mean < 1.50
+            and jitter_ratio < 0.14
+            and jerk_mean > 0.18
+            and acc_mean > 0.32
+            and straightness < 0.15
+            and duration > 2000.0
+        ):
+            flags.append("Smooth low-jitter Playwright hops (issue 012)")
+            heuristic_bot_score += 0.50
+
+        # 30. High-jitter long trace (issue 013 — events above #25 cap of 250)
+        if (
+            self.use_procedural_mimic_heuristic
+            and 220 <= event_count <= 340
+            and 1.05 < vel_mean < 1.50
+            and 0.24 < jitter_ratio < 0.36
+            and jerk_mean > 0.18
+            and acc_mean > 0.32
+            and straightness < 0.12
+            and duration > 4000.0
+        ):
+            flags.append("High-jitter long Playwright trace (issue 013)")
+            heuristic_bot_score += 0.50
 
         if self.is_trained and self.model_type == "isolation_forest":
             return self._evaluate_isolation_forest(features, flags, heuristic_bot_score)
@@ -310,6 +732,7 @@ class BehavioralClassifier:
             "bot_probability": round(ml_bot_prob, 4),
             "heuristic_score": round(min(1.0, heuristic_bot_score), 4),
             "model_type": self.model_type,
+            "qmodel_label": self.display_name if (get_qmodel_entry(self.model_type) or get_ymodel_entry(self.model_type)) else None,
             "flags": flags,
             "biometric_summary": {
                 "straightness": straightness,

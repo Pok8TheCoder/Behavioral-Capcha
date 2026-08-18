@@ -16,7 +16,11 @@ build/
 # Large Datasets (>50MB)
 datasets/human/*.csv
 datasets/human/*.bin
+datasets/human/dashboard_*.json
+datasets/human/challenges/
 datasets/bot_humanlike/
+datasets/bot_challenge/
+datasets/bot_challenge_tiers/
 
 # Temporary & Autosave datasets
 temp/

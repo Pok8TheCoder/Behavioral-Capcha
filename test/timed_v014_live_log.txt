@@ -1,0 +1,16 @@
+--- qmodel_v0.14 live solver (target: 1-bot_prob >= 0.70) ---
+attempt 01 family=long_trace model_h=0.035 bot_prob=0.9654 fused_hc=3% http=200 decision=BLOCKED: BOT events=308 vel=0.6584 jerk=0.10542545 acc=0.153423 jit=0.232 str=0.1281 heur=0.42 flags=High event-count low-jitter Playwright automation
+attempt 02 family=hi_jit_long model_h=0.065 bot_prob=0.9348 fused_hc=7% http=200 decision=BLOCKED: BOT events=163 vel=0.9324 jerk=0.15362925 acc=0.304102 jit=0.2547 str=0.4045 heur=0.4 flags=Abnormal velocity spike (16.0 px/ms)
+attempt 03 family=slow_mid model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=164 vel=0.3901 jerk=0.00869232 acc=0.020255 jit=0.2222 str=0.3004 heur=0.0 flags=No risk flags.
+attempt 04 family=slow_mid model_h=0.000 bot_prob=0.9996 fused_hc=0% http=200 decision=BLOCKED: BOT events=139 vel=0.4758 jerk=0.01953426 acc=0.03926 jit=0.1898 str=0.1154 heur=0.0 flags=No risk flags.
+attempt 05 family=long_trace model_h=0.015 bot_prob=0.9846 fused_hc=0% http=200 decision=BLOCKED: BOT events=189 vel=0.7187 jerk=0.13185065 acc=0.208785 jit=0.123 str=0.2033 heur=1.0 flags=Low-straightness fast evasion (issue 001 variant) | Playwright dense-hop family automation | Low-straightness low-jitter Playwright hop
+attempt 06 family=hi_jit_long model_h=0.442 bot_prob=0.5582 fused_hc=44% http=200 decision=BLOCKED: BOT events=251 vel=0.9511 jerk=0.21803199 acc=0.321656 jit=0.3293 str=0.0481 heur=0.4 flags=Abnormal velocity spike (19.4 px/ms)
+attempt 07 family=long_trace model_h=0.094 bot_prob=0.9063 fused_hc=9% http=200 decision=BLOCKED: BOT events=207 vel=0.5225 jerk=0.07539975 acc=0.122 jit=0.239 str=0.1912 heur=0.0 flags=No risk flags.
+attempt 08 family=long_trace model_h=0.031 bot_prob=0.9694 fused_hc=3% http=200 decision=BLOCKED: BOT events=183 vel=0.6275 jerk=0.10859415 acc=0.16111 jit=0.2265 str=0.3331 heur=0.0 flags=No risk flags.
+attempt 09 family=hi_jit_long model_h=0.219 bot_prob=0.7814 fused_hc=22% http=200 decision=BLOCKED: BOT events=133 vel=0.9562 jerk=0.18106881 acc=0.303373 jit=0.229 str=0.2922 heur=0.44 flags=Playwright dense-hop family automation
+attempt 10 family=slow_mid model_h=0.000 bot_prob=0.9998 fused_hc=0% http=200 decision=BLOCKED: BOT events=175 vel=0.3417 jerk=0.01822717 acc=0.030594 jit=0.1734 str=0.306 heur=0.0 flags=No risk flags.
+attempt 11 family=hi_jit_long model_h=0.253 bot_prob=0.7474 fused_hc=25% http=200 decision=BLOCKED: BOT events=202 vel=0.959 jerk=0.21052491 acc=0.329992 jit=0.285 str=0.0915 heur=0.4 flags=Abnormal velocity spike (15.5 px/ms)
+attempt 12 family=low_dyn model_h=0.026 bot_prob=0.9739 fused_hc=0% http=200 decision=BLOCKED: BOT events=287 vel=4.749 jerk=12.62890559 acc=7.449213 jit=0.0877 str=0.1708 heur=1.0 flags=Abnormal velocity spike (51.0 px/ms) | Low-straightness fast evasion (issue 001 variant) | Low-straightness low-jitter Playwright hop
+attempt 13 family=slow_mid model_h=0.000 bot_prob=0.9999 fused_hc=0% http=200 decision=BLOCKED: BOT events=153 vel=0.4079 jerk=0.00770199 acc=0.019644 jit=0.1656 str=0.3431 heur=0.0 flags=No risk flags.
+attempt 14 family=hi_jit_long model_h=0.770 bot_prob=0.2301 fused_hc=60% http=200 decision=PASSED: HUMAN events=252 vel=1.2276 jerk=0.30171774 acc=0.473234 jit=0.288 str=0.052 heur=0.4 flags=Abnormal velocity spike (20.1 px/ms)
+TARGET_REACHED model_human=0.7699 after 14 attempts in 77.2s

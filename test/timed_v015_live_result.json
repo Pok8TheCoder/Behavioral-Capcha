@@ -1,0 +1,40 @@
+{
+  "model_human": 0.7635000000000001,
+  "bot_probability": 0.2365,
+  "attempts": 37,
+  "elapsed_s": 415.3,
+  "best": 0.7635000000000001,
+  "model": "qmodel_v0.15",
+  "family": "wobble_mid",
+  "fused_hc": "0%",
+  "decision": "BLOCKED: BOT",
+  "features": {
+    "event_count": 163,
+    "duration_ms": 4431.5,
+    "total_distance_px": 1764.4,
+    "euclidean_distance_px": 120.21,
+    "straightness_index": 0.0681,
+    "velocity_mean": 1.139,
+    "velocity_std": 2.0083,
+    "velocity_max": 16.7862,
+    "acceleration_mean": 0.360127,
+    "acceleration_std": 1.279577,
+    "acceleration_max": 11.078234,
+    "jerk_mean": 0.2468964,
+    "angle_change_mean": 0.5863,
+    "angle_change_std": 0.7653,
+    "jitter_ratio": 0.2298,
+    "idle_ratio": 0.2317,
+    "avg_click_dwell_ms": 89.55
+  },
+  "evaluation": {
+    "heuristic_score": 1.0,
+    "risk_score": 1.0,
+    "bot_probability": 0.2365,
+    "flags": [
+      "Abnormal velocity spike (16.8 px/ms)",
+      "Playwright dense-hop family automation",
+      "Mid-count irregular Playwright min-jerk (issue 008)"
+    ]
+  }
+}

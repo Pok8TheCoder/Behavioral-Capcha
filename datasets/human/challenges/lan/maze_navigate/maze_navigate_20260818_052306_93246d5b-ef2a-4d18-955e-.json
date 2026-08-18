@@ -1,0 +1,452 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "93246d5b-ef2a-4d18-955e-150ecbb68338",
+  "challenge_type": "maze_navigate",
+  "seed": 1125198722,
+  "task_passed": true,
+  "event_count": 694,
+  "features": {
+    "event_count": 388,
+    "duration_ms": 8068.7,
+    "total_distance_px": 2045.4,
+    "euclidean_distance_px": 842.62,
+    "straightness_index": 0.412,
+    "velocity_mean": 0.2614,
+    "velocity_std": 0.1216,
+    "velocity_max": 0.6778,
+    "acceleration_mean": 0.003185,
+    "acceleration_std": 0.002931,
+    "acceleration_max": 0.025281,
+    "jerk_mean": 0.00013339,
+    "angle_change_mean": 0.1845,
+    "angle_change_std": 0.2267,
+    "jitter_ratio": 0.013,
+    "idle_ratio": 0.016,
+    "avg_click_dwell_ms": 8068.7
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 8068.7,
+    "median_click_dwell_ms": 8068.7,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "stroke_points": 694,
+    "stroke_length_px": 2067.74,
+    "ideal_path_length_px": 2327.95,
+    "length_ratio": 0.8882,
+    "finish_distance_px": 4.09,
+    "reached_end": true
+  },
+  "spec": {
+    "maze": {
+      "cols": 8,
+      "rows": 11,
+      "h_walls": [
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ],
+        [
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          false,
+          true,
+          true,
+          false
+        ],
+        [
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          false
+        ],
+        [
+          false,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          false,
+          false,
+          true,
+          true,
+          true,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false
+        ],
+        [
+          false,
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        [
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          false,
+          true
+        ],
+        [
+          false,
+          true,
+          false,
+          true,
+          true,
+          true,
+          true,
+          false
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          true
+        ]
+      ],
+      "v_walls": [
+        [
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          false,
+          false,
+          false,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          false,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          true,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          false,
+          true,
+          false,
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          true,
+          true,
+          false,
+          false,
+          true,
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      ],
+      "start_cell": [
+        0,
+        0
+      ],
+      "end_cell": [
+        7,
+        10
+      ]
+    },
+    "origin": [
+      90,
+      130
+    ],
+    "cell_width": 102.5,
+    "cell_height": 41.81818181818182,
+    "start": [
+      141.25,
+      150.9090909090909
+    ],
+    "end": [
+      858.75,
+      569.0909090909091
+    ],
+    "waypoints": [
+      [
+        141.25,
+        150.9090909090909
+      ],
+      [
+        141.25,
+        192.72727272727275
+      ],
+      [
+        243.75,
+        192.72727272727275
+      ],
+      [
+        346.25,
+        192.72727272727275
+      ],
+      [
+        346.25,
+        234.54545454545456
+      ],
+      [
+        243.75,
+        234.54545454545456
+      ],
+      [
+        243.75,
+        276.3636363636364
+      ],
+      [
+        141.25,
+        276.3636363636364
+      ],
+      [
+        141.25,
+        318.1818181818182
+      ],
+      [
+        141.25,
+        360.0
+      ],
+      [
+        141.25,
+        401.8181818181818
+      ],
+      [
+        141.25,
+        443.6363636363636
+      ],
+      [
+        243.75,
+        443.6363636363636
+      ],
+      [
+        346.25,
+        443.6363636363636
+      ],
+      [
+        346.25,
+        401.8181818181818
+      ],
+      [
+        346.25,
+        360.0
+      ],
+      [
+        448.75,
+        360.0
+      ],
+      [
+        551.25,
+        360.0
+      ],
+      [
+        551.25,
+        401.8181818181818
+      ],
+      [
+        551.25,
+        443.6363636363636
+      ],
+      [
+        653.75,
+        443.6363636363636
+      ],
+      [
+        653.75,
+        485.4545454545455
+      ],
+      [
+        551.25,
+        485.4545454545455
+      ],
+      [
+        551.25,
+        527.2727272727273
+      ],
+      [
+        448.75,
+        527.2727272727273
+      ],
+      [
+        346.25,
+        527.2727272727273
+      ],
+      [
+        346.25,
+        569.0909090909091
+      ],
+      [
+        448.75,
+        569.0909090909091
+      ],
+      [
+        551.25,
+        569.0909090909091
+      ],
+      [
+        653.75,
+        569.0909090909091
+      ],
+      [
+        756.25,
+        569.0909090909091
+      ],
+      [
+        858.75,
+        569.0909090909091
+      ]
+    ],
+    "wall_tolerance_px": 6,
+    "finish_tolerance_px": 32
+  },
+  "csv": "maze_navigate_20260818_052306_93246d5b-ef2a-4d18-955e-.csv",
+  "relative_dir": "challenges/lan/maze_navigate",
+  "saved_at": "2026-08-18T05:23:06.576831+00:00"
+}

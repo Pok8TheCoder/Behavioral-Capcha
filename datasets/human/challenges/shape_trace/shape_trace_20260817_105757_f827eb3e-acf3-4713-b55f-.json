@@ -1,0 +1,77 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "f827eb3e-acf3-4713-b55f-f5660294d63d",
+  "challenge_type": "shape_trace",
+  "seed": 1713620565,
+  "task_passed": true,
+  "event_count": 497,
+  "features": {
+    "event_count": 497,
+    "duration_ms": 1204.5,
+    "total_distance_px": 555.31,
+    "euclidean_distance_px": 11.31,
+    "straightness_index": 0.0204,
+    "velocity_mean": 0.838,
+    "velocity_std": 0.4393,
+    "velocity_max": 2.4845,
+    "acceleration_mean": 0.288499,
+    "acceleration_std": 0.348772,
+    "acceleration_max": 1.940035,
+    "jerk_mean": 0.23161027,
+    "angle_change_mean": 0.3198,
+    "angle_change_std": 0.5801,
+    "jitter_ratio": 0.1434,
+    "idle_ratio": 0.0964,
+    "avg_click_dwell_ms": 1204.5
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 1204.5,
+    "median_click_dwell_ms": 1204.5,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": "square",
+    "stroke_points": 497,
+    "stroke_length_px": 555.31,
+    "guide_length_px": 434.56,
+    "length_ratio": 1.2778,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 27.3266,
+    "max_distance_to_guide_px": 57.89,
+    "stroke_duration_ms": 1204.5,
+    "tolerance_px": 22.5
+  },
+  "spec": {
+    "shape": "square",
+    "guide_points": [
+      [
+        742.3998463484589,
+        422.03298351516344
+      ],
+      [
+        851.0406408923319,
+        422.03298351516344
+      ],
+      [
+        851.0406408923319,
+        530.6737780590363
+      ],
+      [
+        742.3998463484589,
+        530.6737780590363
+      ],
+      [
+        742.3998463484589,
+        422.03298351516344
+      ]
+    ],
+    "tolerance_px": 22.504844455432476,
+    "min_coverage_ratio": 0.55,
+    "min_stroke_points": 20
+  },
+  "csv": "shape_trace_20260817_105757_f827eb3e-acf3-4713-b55f-.csv",
+  "relative_dir": "challenges/shape_trace",
+  "saved_at": "2026-08-17T10:57:57.315448+00:00"
+}

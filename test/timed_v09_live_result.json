@@ -1,0 +1,38 @@
+{
+  "model_human": 0.7681,
+  "bot_probability": 0.2319,
+  "attempts": 214,
+  "elapsed_s": 1142.2,
+  "best": 0.7681,
+  "model": "qmodel_v0.9",
+  "family": "mid_count",
+  "fused_hc": "60%",
+  "decision": "PASSED: HUMAN",
+  "features": {
+    "event_count": 127,
+    "duration_ms": 3480.4,
+    "total_distance_px": 1471.24,
+    "euclidean_distance_px": 41.44,
+    "straightness_index": 0.0282,
+    "velocity_mean": 1.3047,
+    "velocity_std": 2.7854,
+    "velocity_max": 23.2555,
+    "acceleration_mean": 0.501202,
+    "acceleration_std": 1.949658,
+    "acceleration_max": 16.330294,
+    "jerk_mean": 0.33883843,
+    "angle_change_mean": 0.5243,
+    "angle_change_std": 0.7577,
+    "jitter_ratio": 0.2,
+    "idle_ratio": 0.2853,
+    "avg_click_dwell_ms": 92.67
+  },
+  "evaluation": {
+    "heuristic_score": 0.4,
+    "risk_score": 0.4,
+    "bot_probability": 0.2319,
+    "flags": [
+      "Abnormal velocity spike (23.3 px/ms)"
+    ]
+  }
+}

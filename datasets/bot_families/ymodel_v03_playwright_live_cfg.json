@@ -1,0 +1,36 @@
+{
+  "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_families\\ymodel_v03_playwright_live.csv",
+  "episodes_ok": 144,
+  "episodes_failed": 0,
+  "rows": 19378,
+  "by_family": {
+    "idle_correct": 12,
+    "tight_arc": 12,
+    "dwell_long": 12,
+    "mid_count": 12,
+    "hi_jit_long": 12,
+    "wobble_mid": 12,
+    "idle_sparse": 12,
+    "pause_heavy": 12,
+    "smooth_low_jit": 12,
+    "sparse_mid": 12,
+    "hi_jit": 12,
+    "high_str_fast": 12
+  },
+  "episodes_per_family_target": 12,
+  "families": [
+    "idle_correct",
+    "idle_sparse",
+    "pause_heavy",
+    "wobble_mid",
+    "hi_jit",
+    "hi_jit_long",
+    "smooth_low_jit",
+    "high_str_fast",
+    "sparse_mid",
+    "mid_count",
+    "tight_arc",
+    "dwell_long"
+  ],
+  "elapsed_s": 606.5
+}

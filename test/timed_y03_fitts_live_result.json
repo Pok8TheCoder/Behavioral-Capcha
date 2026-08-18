@@ -1,0 +1,10 @@
+{
+  "best_model_human": 0.03600000000000003,
+  "best_bot_prob": 0.964,
+  "best_family": "fitts_twitchy",
+  "attempts": 203,
+  "elapsed_s": 1201.6,
+  "model": "ymodel_v0.3",
+  "motor": "fitts",
+  "target_reached": false
+}

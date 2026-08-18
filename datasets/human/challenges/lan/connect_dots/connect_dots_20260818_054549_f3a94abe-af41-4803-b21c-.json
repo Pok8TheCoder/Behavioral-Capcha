@@ -1,0 +1,123 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "f3a94abe-af41-4803-b21c-cf5c1dc8f7a8",
+  "challenge_type": "connect_dots",
+  "seed": 1584934161,
+  "task_passed": true,
+  "event_count": 181,
+  "features": {
+    "event_count": 103,
+    "duration_ms": 2477.5,
+    "total_distance_px": 1695.93,
+    "euclidean_distance_px": 197.27,
+    "straightness_index": 0.1163,
+    "velocity_mean": 0.8362,
+    "velocity_std": 0.7077,
+    "velocity_max": 2.8563,
+    "acceleration_mean": 0.012222,
+    "acceleration_std": 0.013051,
+    "acceleration_max": 0.062991,
+    "jerk_mean": 0.00050996,
+    "angle_change_mean": 0.1993,
+    "angle_change_std": 0.4235,
+    "jitter_ratio": 0.0495,
+    "idle_ratio": 0.1495,
+    "avg_click_dwell_ms": 2477.5
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 2477.5,
+    "median_click_dwell_ms": 2477.5,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "expected_sequence": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "dot_order": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "sequence_ok": true,
+    "mean_distance_to_nearest_dot_px": 73.0278,
+    "stroke_points": 181
+  },
+  "spec": {
+    "dots": [
+      {
+        "id": 1,
+        "x": 273.7,
+        "y": 283.6,
+        "radius": 24
+      },
+      {
+        "id": 2,
+        "x": 804.9,
+        "y": 494.7,
+        "radius": 24
+      },
+      {
+        "id": 3,
+        "x": 373.8,
+        "y": 533.5,
+        "radius": 24
+      },
+      {
+        "id": 4,
+        "x": 697.8,
+        "y": 288.1,
+        "radius": 24
+      },
+      {
+        "id": 5,
+        "x": 487.1,
+        "y": 234.2,
+        "radius": 24
+      }
+    ],
+    "sequence": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "guide_points": [
+      [
+        273.7,
+        283.6
+      ],
+      [
+        804.9,
+        494.7
+      ],
+      [
+        373.8,
+        533.5
+      ],
+      [
+        697.8,
+        288.1
+      ],
+      [
+        487.1,
+        234.2
+      ]
+    ],
+    "dot_tolerance_px": 32,
+    "min_stroke_points": 18
+  },
+  "csv": "connect_dots_20260818_054549_f3a94abe-af41-4803-b21c-.csv",
+  "relative_dir": "challenges/lan/connect_dots",
+  "saved_at": "2026-08-18T05:45:49.971030+00:00"
+}

@@ -1,0 +1,17 @@
+{
+  "model": "qmodel_v0.14",
+  "attempts": 14,
+  "elapsed_s": 77.2,
+  "best_model_human": 0.7699,
+  "best_bot_prob": 0.2301,
+  "best_family": "hi_jit_long",
+  "last_model_human": 0.7699,
+  "last_family": "hi_jit_long",
+  "target": 0.7,
+  "family_best": {
+    "long_trace": 0.0937,
+    "hi_jit_long": 0.7699,
+    "slow_mid": 0.00039999999999995595,
+    "low_dyn": 0.026100000000000012
+  }
+}

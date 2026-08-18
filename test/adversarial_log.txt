@@ -1,0 +1,48 @@
+[23:00:07] ========================================================================
+[23:00:07] Session 3600s | cycles 1200s | target HC>=0.7
+[23:00:07] Motor: Fitts-law + minimum-jerk + tremor/overshoot
+[23:00:07] --- Cycle 1 (red team, up to 1200s) ---
+[23:00:08] Red baseline: mixed avg=0.5794 max=0.7962
+[23:00:09] Red attempt 1: probe avg=0.7491 max=0.8695
+[23:00:15] Red probe hit target — validating: overall_avg=0.5966 min_type=0.0031
+[23:00:22] Red probe hit target — validating: overall_avg=0.5093 min_type=0.0073
+[23:00:23] Red attempt 3: probe avg=0.7883 max=0.8993
+[23:00:27] Red probe hit target — validating: overall_avg=0.5584 min_type=0.2452
+[23:00:33] Red probe hit target — validating: overall_avg=0.6327 min_type=0.3085
+[23:00:39] Red probe hit target — validating: overall_avg=0.6734 min_type=0.3031
+[23:00:43] Red probe hit target — validating: overall_avg=0.6833 min_type=0.3837
+[23:00:49] Red probe hit target — validating: overall_avg=0.6250 min_type=0.0543
+[23:00:58] Red probe hit target — validating: overall_avg=0.6424 min_type=0.3397
+[23:01:05] Red probe hit target — validating: overall_avg=0.6397 min_type=0.1482
+[23:01:13] Red probe hit target — validating: overall_avg=0.6595 min_type=0.3240
+[23:01:21] Red probe hit target — validating: overall_avg=0.6842 min_type=0.4313
+[23:01:28] Red probe hit target — validating: overall_avg=0.6934 min_type=0.3636
+[23:01:34] Red probe hit target — validating: overall_avg=0.6611 min_type=0.2066
+[23:01:40] Red probe hit target — validating: overall_avg=0.6690 min_type=0.3426
+[23:01:47] Red probe hit target — validating: overall_avg=0.6612 min_type=0.3111
+[23:01:55] Red probe hit target — validating: overall_avg=0.5188 min_type=0.3231
+[23:02:05] Red probe hit target — validating: overall_avg=0.6542 min_type=0.3179
+[23:02:14] Red probe hit target — validating: overall_avg=0.6657 min_type=0.4728
+[23:02:24] Red probe hit target — validating: overall_avg=0.6714 min_type=0.3931
+[23:02:31] Red probe hit target — validating: overall_avg=0.6347 min_type=0.2082
+[23:02:41] Red probe hit target — validating: overall_avg=0.7033 min_type=0.3419
+[23:02:41] Cycle 1 RED PASS avg=0.7033 — blue team patch
+[23:05:54] Cycle 1 BLUE detection=1.0000 avg_hc=0.0941
+[23:05:54] --- Cycle 2 (red team, up to 1200s) ---
+[23:05:55] Red baseline: mixed avg=0.0308 max=0.0624
+[23:05:57] Red attempt 1: probe avg=0.1568 max=0.2328
+[23:06:09] Red attempt 7: probe avg=0.1708 max=0.3116
+[23:06:16] Red attempt 11: probe avg=0.1773 max=0.2683
+[23:06:22] Red attempt 15: probe avg=0.1818 max=0.2490
+[23:06:30] Red attempt 19: probe avg=0.2015 max=0.2678
+[23:06:33] Red attempt 20: probe avg=0.2295 max=0.3650
+[23:06:37] Red attempt 22: probe avg=0.2320 max=0.3022
+[23:06:46] Red attempt 30: probe avg=0.2357 max=0.3713
+[23:06:54] Red attempt 33: probe avg=0.2454 max=0.2830
+[23:06:58] Red attempt 37: probe avg=0.2463 max=0.3397
+[23:07:02] Red attempt 40: probe avg=0.2497 max=0.3790
+[23:07:05] Red attempt 43: probe avg=0.2829 max=0.3558
+[23:07:10] Red attempt 47: probe avg=0.2900 max=0.3242
+[23:07:48] Red attempt 69: probe avg=0.3524 max=0.4384
+[23:20:57] Red attempt 376: probe avg=0.3555 max=0.4292
+[23:26:05] Cycle 2 RED FAIL avg=0.2888 max=0.4197 — stopping session

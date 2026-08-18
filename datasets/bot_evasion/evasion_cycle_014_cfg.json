@@ -1,0 +1,8 @@
+{
+  "families": [
+    "hi_jit_long",
+    "long_trace",
+    "low_dyn"
+  ],
+  "episodes_per_family": 16
+}

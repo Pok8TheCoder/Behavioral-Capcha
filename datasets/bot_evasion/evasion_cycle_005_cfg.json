@@ -1,0 +1,9 @@
+{
+  "families": [
+    "mid_dense",
+    "dense_alt",
+    "contrast_hop",
+    "straighter_dense"
+  ],
+  "episodes_per_family": 12
+}

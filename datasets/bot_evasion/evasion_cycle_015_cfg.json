@@ -1,0 +1,8 @@
+{
+  "families": [
+    "wobble_mid",
+    "mid_str_fast",
+    "dense_slow"
+  ],
+  "episodes_per_family": 16
+}

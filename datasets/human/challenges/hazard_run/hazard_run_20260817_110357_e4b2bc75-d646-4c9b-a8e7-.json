@@ -1,0 +1,119 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "e4b2bc75-d646-4c9b-a8e7-cd7910faf149",
+  "challenge_type": "hazard_run",
+  "seed": 48181268,
+  "task_passed": true,
+  "event_count": 1050,
+  "features": {
+    "event_count": 1050,
+    "duration_ms": 2185.7,
+    "total_distance_px": 1256.5,
+    "euclidean_distance_px": 772.82,
+    "straightness_index": 0.6151,
+    "velocity_mean": 0.9422,
+    "velocity_std": 0.4664,
+    "velocity_max": 3.1427,
+    "acceleration_mean": 0.344152,
+    "acceleration_std": 0.35951,
+    "acceleration_max": 2.257317,
+    "jerk_mean": 0.27185024,
+    "angle_change_mean": 0.808,
+    "angle_change_std": 0.6157,
+    "jitter_ratio": 0.3597,
+    "idle_ratio": 0.067,
+    "avg_click_dwell_ms": 2185.7
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 2185.7,
+    "median_click_dwell_ms": 2185.7,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "stroke_points": 1050,
+    "min_clearance_to_hazard_px": 38.81,
+    "hit_hazard": false,
+    "finish_distance_px": 7.94,
+    "reached_end": true,
+    "stroke_length_px": 1256.5
+  },
+  "spec": {
+    "start": [
+      120,
+      360.0
+    ],
+    "end": [
+      880,
+      422.9417779375939
+    ],
+    "hazards": [
+      {
+        "x": 721.8,
+        "y": 461.6,
+        "radius": 45.0
+      },
+      {
+        "x": 248.6,
+        "y": 253.8,
+        "radius": 38.3
+      },
+      {
+        "x": 214.9,
+        "y": 305.7,
+        "radius": 42.4
+      },
+      {
+        "x": 518.3,
+        "y": 244.1,
+        "radius": 39.7
+      },
+      {
+        "x": 363.3,
+        "y": 414.2,
+        "radius": 38.9
+      }
+    ],
+    "waypoints": [
+      [
+        120,
+        360.0
+      ],
+      [
+        228.57142857142856,
+        441.32538976731036
+      ],
+      [
+        337.1428571428571,
+        257.34658779526336
+      ],
+      [
+        445.7142857142857,
+        345.74335866744207
+      ],
+      [
+        554.2857142857142,
+        322.4334760008847
+      ],
+      [
+        662.8571428571429,
+        382.218645413536
+      ],
+      [
+        771.4285714285714,
+        275.1365511741627
+      ],
+      [
+        880,
+        422.9417779375939
+      ]
+    ],
+    "hazard_margin_px": 12,
+    "finish_tolerance_px": 34,
+    "min_stroke_points": 18
+  },
+  "csv": "hazard_run_20260817_110357_e4b2bc75-d646-4c9b-a8e7-.csv",
+  "relative_dir": "challenges/hazard_run",
+  "saved_at": "2026-08-17T11:03:57.019156+00:00"
+}

@@ -1,0 +1,8 @@
+{
+  "families": [
+    "mid_count",
+    "high_str",
+    "low_jit_dense"
+  ],
+  "episodes_per_family": 16
+}

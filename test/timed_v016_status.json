@@ -1,0 +1,17 @@
+{
+  "model": "qmodel_v0.16",
+  "attempts": 13,
+  "elapsed_s": 83.4,
+  "best_model_human": 0.9079,
+  "best_bot_prob": 0.0921,
+  "best_family": "pause_heavy",
+  "last_model_human": 0.9079,
+  "last_family": "pause_heavy",
+  "target": 0.7,
+  "family_best": {
+    "tight_arc": 0.02629999999999999,
+    "pause_heavy": 0.9079,
+    "micro_tremor": 0.02210000000000001,
+    "slow_arc": 0.0006000000000000449
+  }
+}

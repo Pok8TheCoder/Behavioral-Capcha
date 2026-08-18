@@ -1,0 +1,10 @@
+--- qmodel_v0.12 live solver (target: 1-bot_prob >= 0.70) ---
+attempt 01 family=hi_jit model_h=0.228 bot_prob=0.7718 fused_hc=23% http=200 decision=BLOCKED: BOT events=118 vel=1.0893 jerk=0.18210347 acc=0.348923 jit=0.3793 str=0.4662 heur=0.4 flags=Abnormal velocity spike (16.4 px/ms)
+attempt 02 family=high_str model_h=0.001 bot_prob=0.9994 fused_hc=0% http=200 decision=BLOCKED: BOT events=118 vel=0.8871 jerk=0.0633437 acc=0.117526 jit=0.1207 str=0.2383 heur=0.38 flags=Flat-dynamics automation signature
+attempt 03 family=slow_dense model_h=0.001 bot_prob=0.9989 fused_hc=0% http=200 decision=BLOCKED: BOT events=229 vel=0.523 jerk=0.01806651 acc=0.039657 jit=0.1894 str=0.0271 heur=0.0 flags=No risk flags.
+attempt 04 family=low_idle_fast model_h=0.010 bot_prob=0.9897 fused_hc=1% http=200 decision=BLOCKED: BOT events=216 vel=0.817 jerk=0.140823 acc=0.224979 jit=0.1822 str=0.238 heur=0.84 flags=Abnormal velocity spike (16.6 px/ms) | Playwright dense-hop family automation
+attempt 05 family=hi_jit model_h=0.000 bot_prob=None fused_hc=—% http=403 decision=IN PROGRESS events=194 vel=None jerk=None acc=None jit=None str=None heur=None flags=No evaluation yet. {'message': 'Detected Playwright mid-count automation.', 'security_flags': ['Mid-count Playwright min-jerk (events=194, vel=1.18, jitter=0.25)']}
+attempt 06 family=low_idle_fast model_h=0.012 bot_prob=0.9879 fused_hc=1% http=200 decision=BLOCKED: BOT events=223 vel=0.7296 jerk=0.09544152 acc=0.15884 jit=0.2217 str=0.1239 heur=0.4 flags=Abnormal velocity spike (18.2 px/ms)
+attempt 07 family=hi_jit model_h=0.067 bot_prob=0.9331 fused_hc=7% http=200 decision=BLOCKED: BOT events=116 vel=0.9379 jerk=0.07205005 acc=0.182082 jit=0.3421 str=0.1677 heur=0.88 flags=Fast-hop Playwright flat dynamics (issue 003) | Flat-dynamics automation signature
+attempt 08 family=hi_jit model_h=0.719 bot_prob=0.2811 fused_hc=72% http=200 decision=PASSED: HUMAN events=119 vel=1.2298 jerk=0.28420734 acc=0.449907 jit=0.3162 str=0.2964 heur=0.0 flags=No risk flags.
+TARGET_REACHED model_human=0.7189 after 8 attempts in 60.6s

@@ -1,0 +1,59 @@
+{
+  "pre_patch": {
+    "avg_hc": 0.5594416666666666,
+    "max_hc": 0.7995,
+    "detection_rate": 0.4166666666666667,
+    "scores": [
+      0.7995,
+      0.6026,
+      0.4496,
+      0.68,
+      0.6636,
+      0.7773,
+      0.4994,
+      0.0689,
+      0.2292,
+      0.7899,
+      0.68,
+      0.4733
+    ]
+  },
+  "post_patch": {
+    "avg_hc": 0.503075,
+    "max_hc": 0.7648,
+    "detection_rate": 0.5,
+    "scores": [
+      0.3773,
+      0.7073,
+      0.3926,
+      0.1575,
+      0.68,
+      0.4662,
+      0.4071,
+      0.68,
+      0.7648,
+      0.0826,
+      0.68,
+      0.6415
+    ]
+  },
+  "export": {
+    "csv_path": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\\evasion_cycle_001.csv",
+    "cfg_path": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_evasion\\evasion_cycle_001_cfg.json",
+    "episodes": 60,
+    "rows": 13806,
+    "challenge_types": [
+      "shape_trace",
+      "button_sequence",
+      "maze_navigate",
+      "pin_entry",
+      "path_gates",
+      "zigzag_trace",
+      "spiral_trace",
+      "connect_dots",
+      "target_hunt",
+      "hazard_run"
+    ]
+  },
+  "train_exit_code": 0
+}

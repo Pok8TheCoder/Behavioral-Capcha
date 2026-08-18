@@ -1,0 +1,78 @@
+{
+  "timestamp": 1786895371.8322475,
+  "session_id": "f418e096-df1d-4730-9b63-f023e79f1681",
+  "participant": "bot_optimizer",
+  "challenge_type": "button_sequence",
+  "task_result": {
+    "passed": true,
+    "reason": "Click order [1, 2, 3, 4, 5], expected [1, 2, 3, 4, 5]",
+    "click_order": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "features": {
+    "event_count": 222,
+    "duration_ms": 8664.09,
+    "total_distance_px": 2275.59,
+    "euclidean_distance_px": 395.52,
+    "straightness_index": 0.1738,
+    "velocity_mean": 0.4046,
+    "velocity_std": 0.3251,
+    "velocity_max": 1.1025,
+    "acceleration_mean": 0.002685,
+    "acceleration_std": 0.002558,
+    "acceleration_max": 0.014286,
+    "jerk_mean": 8.995e-05,
+    "angle_change_mean": 0.9555,
+    "angle_change_std": 1.124,
+    "jitter_ratio": 0.3857,
+    "idle_ratio": 0.3302,
+    "avg_click_dwell_ms": 227.27
+  },
+  "evaluation": {
+    "decision": "PASSED",
+    "is_bot": false,
+    "risk_score": 0.0974,
+    "bot_probability": 0.0974,
+    "heuristic_score": 0.0,
+    "model_type": "random_forest_humanlike",
+    "flags": [],
+    "biometric_summary": {
+      "straightness": 0.1738,
+      "velocity_mean": 0.4046,
+      "velocity_variance": 0.3251,
+      "jitter_ratio": 0.3857,
+      "click_dwell_ms": 227.27
+    },
+    "window_count": 1,
+    "aggregation": "max_risk"
+  },
+  "active_windows_scored": 1,
+  "human_confidence": 0.9026,
+  "_cfg": {
+    "max_speed_px_ms": 0.7316875895872461,
+    "dwell_ms": [
+      114.62991296279344,
+      255.6147550655669
+    ],
+    "pause_ms": [
+      279.6033811448404,
+      531.9694939812301
+    ],
+    "move_interval_ms": [
+      18.471673210841097,
+      30.745156930123535
+    ],
+    "jitter_px": 4.468538585944212,
+    "overshoot_px": 22.266995999175176,
+    "pre_click_delay_ms": [
+      57.820268261401765,
+      197.16327163697687
+    ],
+    "wander_strength": 4.602561447658741
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "families": [
+    "smooth_low_jit",
+    "burst_hi_vel",
+    "wide_low_jerk"
+  ],
+  "episodes_per_family": 16
+}

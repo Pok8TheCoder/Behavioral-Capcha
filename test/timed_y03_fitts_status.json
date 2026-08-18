@@ -1,0 +1,20 @@
+{
+  "model": "ymodel_v0.3",
+  "motor": "fitts",
+  "attempts": 203,
+  "elapsed_s": 1201.2,
+  "best_model_human": 0.03600000000000003,
+  "best_bot_prob": 0.964,
+  "best_family": "fitts_twitchy",
+  "last_model_human": 0.0,
+  "last_family": "fitts_twitchy",
+  "target": 0.7,
+  "family_best": {
+    "fitts_fast": 0.0014999999999999458,
+    "fitts_default": 0.0010000000000000009,
+    "fitts_dense": 0.008499999999999952,
+    "fitts_hesitant": 0.0006000000000000449,
+    "fitts_overshoot": 0.008600000000000052,
+    "fitts_twitchy": 0.03600000000000003
+  }
+}

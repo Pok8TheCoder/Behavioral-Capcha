@@ -1,0 +1,461 @@
+{
+  "qmodel": "qmodel_v0.15",
+  "ymodel": "ymodel_v0.1",
+  "note": "ML-only (1 - predict_proba bot). Heuristics/403s are not applied.",
+  "live_winner_fingerprints": {
+    "count": 8,
+    "qmodel_still_under_0.30_botprob": 7,
+    "ymodel_still_under_0.30_botprob": 6,
+    "rows": [
+      {
+        "file": "timed_v010_live_result.json",
+        "attacked_model": "qmodel_v0.10",
+        "family": "high_str_fast",
+        "live_model_human": 0.874,
+        "qmodel_bot_prob": 0.1599,
+        "ymodel_bot_prob": 0.2079,
+        "qmodel_human": 0.8401,
+        "ymodel_human": 0.7921
+      },
+      {
+        "file": "timed_v011_live_result.json",
+        "attacked_model": "qmodel_v0.11",
+        "family": "idle_correct",
+        "live_model_human": 0.743,
+        "qmodel_bot_prob": 0.2828,
+        "ymodel_bot_prob": 0.2105,
+        "qmodel_human": 0.7172,
+        "ymodel_human": 0.7895
+      },
+      {
+        "file": "timed_v012_live_result.json",
+        "attacked_model": "qmodel_v0.12",
+        "family": "hi_jit",
+        "live_model_human": 0.7189,
+        "qmodel_bot_prob": 0.3065,
+        "ymodel_bot_prob": 0.225,
+        "qmodel_human": 0.6935,
+        "ymodel_human": 0.775
+      },
+      {
+        "file": "timed_v013_live_result.json",
+        "attacked_model": "qmodel_v0.13",
+        "family": "smooth_low_jit",
+        "live_model_human": 0.7621,
+        "qmodel_bot_prob": 0.2651,
+        "ymodel_bot_prob": 0.3288,
+        "qmodel_human": 0.7349,
+        "ymodel_human": 0.6712
+      },
+      {
+        "file": "timed_v014_live_result.json",
+        "attacked_model": "qmodel_v0.14",
+        "family": "hi_jit_long",
+        "live_model_human": 0.7699,
+        "qmodel_bot_prob": 0.2334,
+        "ymodel_bot_prob": 0.2062,
+        "qmodel_human": 0.7666,
+        "ymodel_human": 0.7938
+      },
+      {
+        "file": "timed_v015_live_result.json",
+        "attacked_model": "qmodel_v0.15",
+        "family": "wobble_mid",
+        "live_model_human": 0.7635000000000001,
+        "qmodel_bot_prob": 0.2365,
+        "ymodel_bot_prob": 0.643,
+        "qmodel_human": 0.7635,
+        "ymodel_human": 0.357
+      },
+      {
+        "file": "timed_v081g_live_result.json",
+        "attacked_model": "qmodel_v0.8.1G",
+        "family": "sparse_irregular",
+        "live_model_human": 0.7819,
+        "qmodel_bot_prob": 0.1291,
+        "ymodel_bot_prob": 0.167,
+        "qmodel_human": 0.8709,
+        "ymodel_human": 0.833
+      },
+      {
+        "file": "timed_v09_live_result.json",
+        "attacked_model": "qmodel_v0.9",
+        "family": "mid_count",
+        "live_model_human": 0.7681,
+        "qmodel_bot_prob": 0.1869,
+        "ymodel_bot_prob": 0.2558,
+        "qmodel_human": 0.8131,
+        "ymodel_human": 0.7442
+      }
+    ]
+  },
+  "fresh_family_holdout": {
+    "episodes": 36,
+    "qmodel_mean_human": 0.001,
+    "ymodel_mean_human": 0.0008,
+    "qmodel_ge_70_human": 0,
+    "ymodel_ge_70_human": 0,
+    "rows": [
+      {
+        "family": "sparse_irregular",
+        "event_count": 110,
+        "velocity_mean": 1.2663,
+        "jitter_ratio": 0.2913,
+        "qmodel_human": 0.0004,
+        "ymodel_human": 0.0004,
+        "qmodel_bot_prob": 0.9996,
+        "ymodel_bot_prob": 0.9996
+      },
+      {
+        "family": "mid_count",
+        "event_count": 215,
+        "velocity_mean": 0.9332,
+        "jitter_ratio": 0.2126,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "high_str_fast",
+        "event_count": 102,
+        "velocity_mean": 1.4067,
+        "jitter_ratio": 0.1368,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "idle_correct",
+        "event_count": 205,
+        "velocity_mean": 1.0963,
+        "jitter_ratio": 0.203,
+        "qmodel_human": 0.0005,
+        "ymodel_human": 0.0001,
+        "qmodel_bot_prob": 0.9995,
+        "ymodel_bot_prob": 0.9999
+      },
+      {
+        "family": "hi_jit",
+        "event_count": 126,
+        "velocity_mean": 0.9171,
+        "jitter_ratio": 0.3417,
+        "qmodel_human": 0.0012,
+        "ymodel_human": 0.0004,
+        "qmodel_bot_prob": 0.9988,
+        "ymodel_bot_prob": 0.9996
+      },
+      {
+        "family": "smooth_low_jit",
+        "event_count": 141,
+        "velocity_mean": 0.8319,
+        "jitter_ratio": 0.1037,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "hi_jit_long",
+        "event_count": 147,
+        "velocity_mean": 0.8564,
+        "jitter_ratio": 0.3121,
+        "qmodel_human": 0.0018,
+        "ymodel_human": 0.0004,
+        "qmodel_bot_prob": 0.9982,
+        "ymodel_bot_prob": 0.9996
+      },
+      {
+        "family": "wobble_mid",
+        "event_count": 148,
+        "velocity_mean": 1.3115,
+        "jitter_ratio": 0.2183,
+        "qmodel_human": 0.0005,
+        "ymodel_human": 0.0002,
+        "qmodel_bot_prob": 0.9995,
+        "ymodel_bot_prob": 0.9998
+      },
+      {
+        "family": "slow_arc",
+        "event_count": 103,
+        "velocity_mean": 0.487,
+        "jitter_ratio": 0.1959,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "dense_slow",
+        "event_count": 296,
+        "velocity_mean": 0.4883,
+        "jitter_ratio": 0.1701,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "burst_hi_vel",
+        "event_count": 127,
+        "velocity_mean": 2.5998,
+        "jitter_ratio": 0.2333,
+        "qmodel_human": 0.0083,
+        "ymodel_human": 0.0022,
+        "qmodel_bot_prob": 0.9917,
+        "ymodel_bot_prob": 0.9978
+      },
+      {
+        "family": "low_dyn",
+        "event_count": 117,
+        "velocity_mean": 0.9025,
+        "jitter_ratio": 0.2364,
+        "qmodel_human": 0.0001,
+        "ymodel_human": 0.0001,
+        "qmodel_bot_prob": 0.9999,
+        "ymodel_bot_prob": 0.9999
+      },
+      {
+        "family": "sweep_000",
+        "event_count": 168,
+        "velocity_mean": 0.7451,
+        "jitter_ratio": 0.1988,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_001",
+        "event_count": 138,
+        "velocity_mean": 0.3915,
+        "jitter_ratio": 0.0909,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_002",
+        "event_count": 180,
+        "velocity_mean": 0.5448,
+        "jitter_ratio": 0.1156,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_003",
+        "event_count": 127,
+        "velocity_mean": 1.1988,
+        "jitter_ratio": 0.1933,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_004",
+        "event_count": 117,
+        "velocity_mean": 0.2436,
+        "jitter_ratio": 0.3964,
+        "qmodel_human": 0.0001,
+        "ymodel_human": 0.0002,
+        "qmodel_bot_prob": 0.9999,
+        "ymodel_bot_prob": 0.9998
+      },
+      {
+        "family": "sweep_005",
+        "event_count": 143,
+        "velocity_mean": 0.2287,
+        "jitter_ratio": 0.4672,
+        "qmodel_human": 0.0002,
+        "ymodel_human": 0.0003,
+        "qmodel_bot_prob": 0.9998,
+        "ymodel_bot_prob": 0.9997
+      },
+      {
+        "family": "sweep_006",
+        "event_count": 146,
+        "velocity_mean": 0.344,
+        "jitter_ratio": 0.1871,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_007",
+        "event_count": 105,
+        "velocity_mean": 1.2028,
+        "jitter_ratio": 0.4141,
+        "qmodel_human": 0.0188,
+        "ymodel_human": 0.0199,
+        "qmodel_bot_prob": 0.9812,
+        "ymodel_bot_prob": 0.9801
+      },
+      {
+        "family": "sweep_008",
+        "event_count": 152,
+        "velocity_mean": 1.6256,
+        "jitter_ratio": 0.1233,
+        "qmodel_human": 0.0001,
+        "ymodel_human": 0.0001,
+        "qmodel_bot_prob": 0.9999,
+        "ymodel_bot_prob": 0.9999
+      },
+      {
+        "family": "sweep_009",
+        "event_count": 162,
+        "velocity_mean": 0.7847,
+        "jitter_ratio": 0.1753,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_010",
+        "event_count": 89,
+        "velocity_mean": 0.5332,
+        "jitter_ratio": 0.1687,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_011",
+        "event_count": 186,
+        "velocity_mean": 1.4107,
+        "jitter_ratio": 0.1006,
+        "qmodel_human": 0.0002,
+        "ymodel_human": 0.0001,
+        "qmodel_bot_prob": 0.9998,
+        "ymodel_bot_prob": 0.9999
+      },
+      {
+        "family": "sweep_012",
+        "event_count": 157,
+        "velocity_mean": 0.6317,
+        "jitter_ratio": 0.2914,
+        "qmodel_human": 0.0004,
+        "ymodel_human": 0.0007,
+        "qmodel_bot_prob": 0.9996,
+        "ymodel_bot_prob": 0.9993
+      },
+      {
+        "family": "sweep_013",
+        "event_count": 194,
+        "velocity_mean": 0.6003,
+        "jitter_ratio": 0.1559,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_014",
+        "event_count": 187,
+        "velocity_mean": 1.1372,
+        "jitter_ratio": 0.2123,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_015",
+        "event_count": 139,
+        "velocity_mean": 0.6251,
+        "jitter_ratio": 0.3534,
+        "qmodel_human": 0.0003,
+        "ymodel_human": 0.0002,
+        "qmodel_bot_prob": 0.9997,
+        "ymodel_bot_prob": 0.9998
+      },
+      {
+        "family": "sweep_016",
+        "event_count": 122,
+        "velocity_mean": 0.2882,
+        "jitter_ratio": 0.1121,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_017",
+        "event_count": 117,
+        "velocity_mean": 0.8494,
+        "jitter_ratio": 0.1261,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_018",
+        "event_count": 138,
+        "velocity_mean": 0.41,
+        "jitter_ratio": 0.1136,
+        "qmodel_human": 0.0,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 1.0,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_019",
+        "event_count": 158,
+        "velocity_mean": 0.9463,
+        "jitter_ratio": 0.3311,
+        "qmodel_human": 0.0006,
+        "ymodel_human": 0.0002,
+        "qmodel_bot_prob": 0.9994,
+        "ymodel_bot_prob": 0.9998
+      },
+      {
+        "family": "sweep_020",
+        "event_count": 130,
+        "velocity_mean": 0.5773,
+        "jitter_ratio": 0.252,
+        "qmodel_human": 0.0001,
+        "ymodel_human": 0.0001,
+        "qmodel_bot_prob": 0.9999,
+        "ymodel_bot_prob": 0.9999
+      },
+      {
+        "family": "sweep_021",
+        "event_count": 148,
+        "velocity_mean": 1.0318,
+        "jitter_ratio": 0.1929,
+        "qmodel_human": 0.0001,
+        "ymodel_human": 0.0,
+        "qmodel_bot_prob": 0.9999,
+        "ymodel_bot_prob": 1.0
+      },
+      {
+        "family": "sweep_022",
+        "event_count": 213,
+        "velocity_mean": 0.853,
+        "jitter_ratio": 0.2927,
+        "qmodel_human": 0.0003,
+        "ymodel_human": 0.0002,
+        "qmodel_bot_prob": 0.9997,
+        "ymodel_bot_prob": 0.9998
+      },
+      {
+        "family": "sweep_023",
+        "event_count": 183,
+        "velocity_mean": 0.5071,
+        "jitter_ratio": 0.3829,
+        "qmodel_human": 0.0011,
+        "ymodel_human": 0.0013,
+        "qmodel_bot_prob": 0.9989,
+        "ymodel_bot_prob": 0.9987
+      }
+    ]
+  }
+}

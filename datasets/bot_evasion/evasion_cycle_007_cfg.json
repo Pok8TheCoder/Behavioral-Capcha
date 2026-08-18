@@ -1,0 +1,9 @@
+{
+  "families": [
+    "minjerk_direct",
+    "dense_smooth",
+    "curved_idle",
+    "slow_settle"
+  ],
+  "episodes_per_family": 12
+}

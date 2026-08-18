@@ -1,0 +1,152 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "5a6eae52-4493-48e6-8f72-94e67d0f2022",
+  "challenge_type": "button_sequence",
+  "seed": 243893787,
+  "task_passed": true,
+  "event_count": 1863,
+  "features": {
+    "event_count": 1863,
+    "duration_ms": 4415.9,
+    "total_distance_px": 2666.82,
+    "euclidean_distance_px": 134.37,
+    "straightness_index": 0.0504,
+    "velocity_mean": 1.2899,
+    "velocity_std": 0.8601,
+    "velocity_max": 7.4536,
+    "acceleration_mean": 0.605732,
+    "acceleration_std": 1.009255,
+    "acceleration_max": 21.336428,
+    "jerk_mean": 0.65820325,
+    "angle_change_mean": 0.4264,
+    "angle_change_std": 0.5288,
+    "jitter_ratio": 0.1123,
+    "idle_ratio": 0.1742,
+    "avg_click_dwell_ms": 59.33
+  },
+  "challenge_features": {
+    "click_count": 6,
+    "avg_click_dwell_ms": 59.3333,
+    "median_click_dwell_ms": 60.1,
+    "inter_click_mean_ms": 628.94,
+    "inter_click_min_ms": 276.4,
+    "inter_click_max_ms": 959.8,
+    "expected_sequence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "click_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "sequence_ok": true,
+    "click_offset_mean_px": 13.9183,
+    "click_offset_min_px": 4.85,
+    "click_offset_max_px": 21.71,
+    "clicks": [
+      {
+        "t": 94636.8,
+        "target_id": 1,
+        "offset_px": 17.74,
+        "offset_over_radius": 0.6335,
+        "inside": true
+      },
+      {
+        "t": 95374.8,
+        "target_id": 2,
+        "offset_px": 14.83,
+        "offset_over_radius": 0.5295,
+        "inside": true
+      },
+      {
+        "t": 96334.6,
+        "target_id": 3,
+        "offset_px": 4.85,
+        "offset_over_radius": 0.1734,
+        "inside": true
+      },
+      {
+        "t": 97090.5,
+        "target_id": 4,
+        "offset_px": 10.51,
+        "offset_over_radius": 0.3754,
+        "inside": true
+      },
+      {
+        "t": 97366.9,
+        "target_id": 5,
+        "offset_px": 21.71,
+        "offset_over_radius": 0.7753,
+        "inside": true
+      },
+      {
+        "t": 97781.5,
+        "target_id": 6,
+        "offset_px": 13.87,
+        "offset_over_radius": 0.4954,
+        "inside": true
+      }
+    ]
+  },
+  "spec": {
+    "buttons": [
+      {
+        "id": 4,
+        "x": 806.5,
+        "y": 232.5,
+        "radius": 28
+      },
+      {
+        "id": 3,
+        "x": 362.4,
+        "y": 371.1,
+        "radius": 28
+      },
+      {
+        "id": 2,
+        "x": 778.2,
+        "y": 371.9,
+        "radius": 28
+      },
+      {
+        "id": 6,
+        "x": 478.2,
+        "y": 273.4,
+        "radius": 28
+      },
+      {
+        "id": 1,
+        "x": 471.9,
+        "y": 402.5,
+        "radius": 28
+      },
+      {
+        "id": 5,
+        "x": 866.8,
+        "y": 352.9,
+        "radius": 28
+      }
+    ],
+    "sequence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "click_tolerance_px": 34
+  },
+  "csv": "button_sequence_20260817_120414_5a6eae52-4493-48e6-8f72-.csv",
+  "relative_dir": "challenges/button_sequence",
+  "saved_at": "2026-08-17T12:04:14.927473+00:00"
+}

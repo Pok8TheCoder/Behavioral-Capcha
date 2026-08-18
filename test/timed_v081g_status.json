@@ -1,0 +1,17 @@
+{
+  "model": "qmodel_v0.8.1G",
+  "attempts": 155,
+  "elapsed_s": 620.6,
+  "best_model_human": 0.7819,
+  "best_bot_prob": 0.2181,
+  "best_family": "sparse_irregular",
+  "last_model_human": 0.7819,
+  "last_family": "sparse_irregular",
+  "target": 0.7,
+  "family_best": {
+    "minjerk_fast": 0.09809999999999997,
+    "sparse_irregular": 0.7819,
+    "minjerk_direct": 0.07169999999999999,
+    "sparse_fast": 0.4394
+  }
+}

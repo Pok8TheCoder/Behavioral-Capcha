@@ -1,0 +1,79 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "0be2eea5-7f03-4ea7-8748-01604c9d2d8c",
+  "challenge_type": "shape_trace",
+  "seed": 143944651,
+  "task_passed": true,
+  "event_count": 159,
+  "features": {
+    "event_count": 87,
+    "duration_ms": 2276.5,
+    "total_distance_px": 391.64,
+    "euclidean_distance_px": 5.42,
+    "straightness_index": 0.0138,
+    "velocity_mean": 0.2118,
+    "velocity_std": 0.1348,
+    "velocity_max": 0.5791,
+    "acceleration_mean": 0.002769,
+    "acceleration_std": 0.00269,
+    "acceleration_max": 0.013263,
+    "jerk_mean": 0.00012565,
+    "angle_change_mean": 0.2561,
+    "angle_change_std": 0.4248,
+    "jitter_ratio": 0.0706,
+    "idle_ratio": 0.2016,
+    "avg_click_dwell_ms": 2267.8
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 2267.8,
+    "median_click_dwell_ms": 2267.8,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": "square",
+    "stroke_points": 159,
+    "stroke_length_px": 399.95,
+    "guide_length_px": 344.32,
+    "length_ratio": 1.1616,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 17.8585,
+    "max_distance_to_guide_px": 42.97,
+    "stroke_duration_ms": 2267.8,
+    "tolerance_px": 27.65
+  },
+  "spec": {
+    "shape": "square",
+    "guide_points": [
+      [
+        188.61699369037763,
+        400.9594729544289
+      ],
+      [
+        274.69661344432416,
+        400.9594729544289
+      ],
+      [
+        274.69661344432416,
+        487.03909270837545
+      ],
+      [
+        188.61699369037763,
+        487.03909270837545
+      ],
+      [
+        188.61699369037763,
+        400.9594729544289
+      ]
+    ],
+    "tolerance_px": 27.648636173277477,
+    "min_coverage_ratio": 0.55,
+    "min_stroke_points": 20
+  },
+  "csv": "shape_trace_20260818_055025_0be2eea5-7f03-4ea7-8748-.csv",
+  "relative_dir": "challenges/lan/shape_trace",
+  "saved_at": "2026-08-18T05:50:25.589855+00:00"
+}

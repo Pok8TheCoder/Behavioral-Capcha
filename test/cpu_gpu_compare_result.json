@@ -1,0 +1,200 @@
+{
+  "dataset": {
+    "balanced_windows": 20106,
+    "train_windows": 16794,
+    "test_windows": 3312,
+    "features": [
+      "straightness_index",
+      "velocity_mean",
+      "velocity_std",
+      "velocity_max",
+      "acceleration_mean",
+      "acceleration_std",
+      "jerk_mean",
+      "angle_change_mean",
+      "angle_change_std",
+      "jitter_ratio",
+      "idle_ratio",
+      "avg_click_dwell_ms"
+    ]
+  },
+  "note": "sklearn RandomForestClassifier runs on CPU only. GPU comparison uses XGBoost (hist + CUDA) with matched tree depth/count.",
+  "qmodel_v0.4_saved": {
+    "confusion_matrix": [
+      [
+        1604,
+        0
+      ],
+      [
+        3,
+        1705
+      ]
+    ],
+    "confusion_matrix_sklearn_order": "[[TN, FP], [FN, TP]]",
+    "roc_auc": 0.9999861295239653,
+    "tn": 1604,
+    "fp": 0,
+    "fn": 3,
+    "tp": 1705,
+    "human_tnr": 1.0,
+    "bot_recall": 0.998244,
+    "bot_precision": 1.0,
+    "accuracy": 0.999094,
+    "classification_report": "              precision    recall  f1-score   support\n\n       Human       1.00      1.00      1.00      1604\n         Bot       1.00      1.00      1.00      1708\n\n    accuracy                           1.00      3312\n   macro avg       1.00      1.00      1.00      3312\nweighted avg       1.00      1.00      1.00      3312\n",
+    "artifact_train_confusion_matrix": [
+      [
+        1604,
+        0
+      ],
+      [
+        3,
+        1705
+      ]
+    ],
+    "artifact_train_roc_auc": 0.9999861295239653,
+    "artifact_oob_score": 0.9985113731094438,
+    "artifact_train_windows": 16794,
+    "artifact_test_windows": 3312
+  },
+  "cpu_sklearn_rf": {
+    "confusion_matrix": [
+      [
+        1604,
+        0
+      ],
+      [
+        3,
+        1705
+      ]
+    ],
+    "confusion_matrix_sklearn_order": "[[TN, FP], [FN, TP]]",
+    "roc_auc": 0.9999861295239653,
+    "tn": 1604,
+    "fp": 0,
+    "fn": 3,
+    "tp": 1705,
+    "human_tnr": 1.0,
+    "bot_recall": 0.998244,
+    "bot_precision": 1.0,
+    "accuracy": 0.999094,
+    "classification_report": "              precision    recall  f1-score   support\n\n       Human       1.00      1.00      1.00      1604\n         Bot       1.00      1.00      1.00      1708\n\n    accuracy                           1.00      3312\n   macro avg       1.00      1.00      1.00      3312\nweighted avg       1.00      1.00      1.00      3312\n",
+    "oob_score": 0.9985113731094438,
+    "train_seconds": 3.533,
+    "bot_style_eval": {
+      "linear_fast": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 11,
+        "windows_flagged_bot": 11
+      },
+      "linear_timed": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 12,
+        "windows_flagged_bot": 12
+      },
+      "bezier_fast": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 13,
+        "windows_flagged_bot": 13
+      },
+      "bezier_timed": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 13,
+        "windows_flagged_bot": 13
+      },
+      "humanoid_fast": {
+        "bot_detection_rate": 0.9167,
+        "windows_scored": 12,
+        "windows_flagged_bot": 11
+      },
+      "humanoid_simulated": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 465,
+        "windows_flagged_bot": 465
+      },
+      "naive": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 14,
+        "windows_flagged_bot": 14
+      }
+    }
+  },
+  "gpu_xgboost": {
+    "confusion_matrix": [
+      [
+        1604,
+        0
+      ],
+      [
+        2,
+        1706
+      ]
+    ],
+    "confusion_matrix_sklearn_order": "[[TN, FP], [FN, TP]]",
+    "roc_auc": 1.0,
+    "tn": 1604,
+    "fp": 0,
+    "fn": 2,
+    "tp": 1706,
+    "human_tnr": 1.0,
+    "bot_recall": 0.998829,
+    "bot_precision": 1.0,
+    "accuracy": 0.999396,
+    "classification_report": "              precision    recall  f1-score   support\n\n       Human       1.00      1.00      1.00      1604\n         Bot       1.00      1.00      1.00      1708\n\n    accuracy                           1.00      3312\n   macro avg       1.00      1.00      1.00      3312\nweighted avg       1.00      1.00      1.00      3312\n",
+    "train_seconds": 1.332,
+    "xgb_params": {
+      "n_estimators": 600,
+      "max_depth": 16,
+      "min_child_weight": 4,
+      "subsample": 0.8,
+      "colsample_bytree": 0.35,
+      "learning_rate": 0.05,
+      "tree_method": "hist",
+      "device": "cuda",
+      "eval_metric": "logloss",
+      "random_state": 42,
+      "n_jobs": 1
+    },
+    "bot_style_eval": {
+      "linear_fast": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 11,
+        "windows_flagged_bot": 11
+      },
+      "linear_timed": {
+        "bot_detection_rate": 0.9167,
+        "windows_scored": 12,
+        "windows_flagged_bot": 11
+      },
+      "bezier_fast": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 13,
+        "windows_flagged_bot": 13
+      },
+      "bezier_timed": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 13,
+        "windows_flagged_bot": 13
+      },
+      "humanoid_fast": {
+        "bot_detection_rate": 0.9167,
+        "windows_scored": 12,
+        "windows_flagged_bot": 11
+      },
+      "humanoid_simulated": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 120,
+        "windows_flagged_bot": 120
+      },
+      "naive": {
+        "bot_detection_rate": 1.0,
+        "windows_scored": 14,
+        "windows_flagged_bot": 14
+      }
+    }
+  },
+  "timing": {
+    "cpu_sklearn_rf_seconds": 3.533,
+    "gpu_xgboost_seconds": 1.332,
+    "cpu_vs_gpu_speedup": 2.65
+  }
+}

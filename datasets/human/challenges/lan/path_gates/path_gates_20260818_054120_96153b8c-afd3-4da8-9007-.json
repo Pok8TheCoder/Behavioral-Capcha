@@ -1,0 +1,126 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "96153b8c-afd3-4da8-9007-bda753d52886",
+  "challenge_type": "path_gates",
+  "seed": 61054310,
+  "task_passed": true,
+  "event_count": 249,
+  "features": {
+    "event_count": 142,
+    "duration_ms": 3392.6,
+    "total_distance_px": 1339.06,
+    "euclidean_distance_px": 422.55,
+    "straightness_index": 0.3156,
+    "velocity_mean": 0.4659,
+    "velocity_std": 0.3456,
+    "velocity_max": 2.1088,
+    "acceleration_mean": 0.004494,
+    "acceleration_std": 0.00484,
+    "acceleration_max": 0.041518,
+    "jerk_mean": 0.00019814,
+    "angle_change_mean": 0.1712,
+    "angle_change_std": 0.3407,
+    "jitter_ratio": 0.0357,
+    "idle_ratio": 0.1397,
+    "avg_click_dwell_ms": -1.0
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": null,
+    "median_click_dwell_ms": null,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "gates_total": 6,
+    "gates_passed": 6,
+    "mean_gap_error_px": 8.7317,
+    "gates": [
+      {
+        "passed": true,
+        "min_gap_error_px": 4.9,
+        "gap_half_px": 50.8
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 23.66,
+        "gap_half_px": 53.0
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 0.75,
+        "gap_half_px": 54.9
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 18.36,
+        "gap_half_px": 45.1
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 0.42,
+        "gap_half_px": 53.8
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 4.3,
+        "gap_half_px": 53.7
+      }
+    ]
+  },
+  "spec": {
+    "gates": [
+      {
+        "x": 200.0,
+        "gap_y": 465.4,
+        "gap_half": 50.8,
+        "thickness": 8
+      },
+      {
+        "x": 320.0,
+        "gap_y": 459.0,
+        "gap_half": 53.0,
+        "thickness": 8
+      },
+      {
+        "x": 440.0,
+        "gap_y": 490.6,
+        "gap_half": 54.9,
+        "thickness": 8
+      },
+      {
+        "x": 560.0,
+        "gap_y": 491.1,
+        "gap_half": 45.1,
+        "thickness": 8
+      },
+      {
+        "x": 680.0,
+        "gap_y": 432.3,
+        "gap_half": 53.8,
+        "thickness": 8
+      },
+      {
+        "x": 800.0,
+        "gap_y": 374.4,
+        "gap_half": 53.7,
+        "thickness": 8
+      }
+    ],
+    "start": [
+      110,
+      360.0
+    ],
+    "end": [
+      890,
+      374.4417447661469
+    ],
+    "gate_tolerance_px": 26,
+    "finish_tolerance_px": 36
+  },
+  "csv": "path_gates_20260818_054120_96153b8c-afd3-4da8-9007-.csv",
+  "relative_dir": "challenges/lan/path_gates",
+  "saved_at": "2026-08-18T05:41:20.404252+00:00"
+}

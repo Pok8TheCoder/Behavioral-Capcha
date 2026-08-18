@@ -9,6 +9,11 @@ let isCapturing = false;
 let sequenceProgress = 0;
 let pinProgress = 0;
 let trail = [];
+let liveAckCount = 0;
+let liveQueue = [];
+let liveFlushTimer = null;
+let liveFlushChain = Promise.resolve();
+let clientInteractionStartMs = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
     canvas = document.getElementById("challenge-canvas");
@@ -52,8 +57,15 @@ function canvasPoint(evt) {
     };
 }
 
-function recordEvent(x, y, t, type) {
-    events.push({ x: Math.round(x), y: Math.round(y), t: Math.round(t * 100) / 100, type });
+function recordEvent(x, y, t, type, pointerMeta) {
+    const evt = { x: Math.round(x), y: Math.round(y), t: Math.round(t * 100) / 100, type };
+    if (pointerMeta) {
+        if (pointerMeta.pid != null) evt.pid = pointerMeta.pid;
+        if (pointerMeta.pt) evt.pt = pointerMeta.pt;
+        if (pointerMeta.src) evt.src = pointerMeta.src;
+    }
+    events.push(evt);
+    pushLiveEvent(evt);
     document.getElementById("meta-events").textContent = String(events.length);
     if (type === "mousemove") {
         trail.push({ x, y });
@@ -61,11 +73,87 @@ function recordEvent(x, y, t, type) {
     }
 }
 
+function resetLiveTelemetry() {
+    liveAckCount = 0;
+    liveQueue = [];
+    if (liveFlushTimer) {
+        clearTimeout(liveFlushTimer);
+        liveFlushTimer = null;
+    }
+}
+
+function connectLiveTelemetry() {
+    resetLiveTelemetry();
+}
+
+function pushLiveEvent(evt) {
+    liveQueue.push(evt);
+    if (liveQueue.length >= 48) {
+        flushLiveTelemetry();
+        return;
+    }
+    if (!liveFlushTimer) {
+        liveFlushTimer = setTimeout(() => {
+            liveFlushTimer = null;
+            flushLiveTelemetry();
+        }, 200);
+    }
+}
+
+function flushLiveTelemetry() {
+    liveFlushChain = liveFlushChain.then(sendLiveBatches).catch(() => false);
+    return liveFlushChain;
+}
+
+async function sendLiveBatches() {
+    if (liveFlushTimer) {
+        clearTimeout(liveFlushTimer);
+        liveFlushTimer = null;
+    }
+    while (challenge && liveQueue.length) {
+        const batch = liveQueue.splice(0, 48);
+        const resp = await fetch(`${API_BASE}/api/challenge/live`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                session_id: challenge.session_id,
+                verify_token: challenge.verify_token,
+                events: batch,
+            }),
+        });
+        const data = await resp.json().catch(() => ({}));
+        if (!resp.ok) {
+            liveQueue = batch.concat(liveQueue);
+            throw new Error((data.detail && data.detail.message) || data.detail || "live ingest failed");
+        }
+        if (typeof data.count === "number") liveAckCount = data.count;
+    }
+    return liveAckCount;
+}
+
+async function waitLiveSynced(expected, timeoutMs = 20000) {
+    const start = performance.now();
+    while (performance.now() - start < timeoutMs) {
+        try {
+            await flushLiveTelemetry();
+        } catch (err) {
+            await new Promise(r => setTimeout(r, 40));
+        }
+        if (liveAckCount >= expected && liveQueue.length === 0) return true;
+        await new Promise(r => setTimeout(r, 25));
+    }
+    try {
+        await flushLiveTelemetry();
+    } catch (err) { /* last try */ }
+    return liveAckCount >= expected && liveQueue.length === 0;
+}
+
 function onPointerDown(evt) {
     if (!challenge || !isCapturing) return;
     canvas.setPointerCapture(evt.pointerId);
     const p = canvasPoint(evt);
-    recordEvent(p.x, p.y, performance.now(), "mousedown");
+    const meta = { pid: evt.pointerId, pt: evt.pointerType || "mouse", src: "canvas" };
+    recordEvent(p.x, p.y, performance.now(), "mousedown", meta);
     drawChallenge();
 }
 
@@ -74,7 +162,7 @@ function onPointerMove(evt) {
     const points = typeof evt.getCoalescedEvents === "function" ? evt.getCoalescedEvents() : [evt];
     points.forEach(e => {
         const p = canvasPoint(e);
-        recordEvent(p.x, p.y, e.timeStamp, "mousemove");
+        recordEvent(p.x, p.y, e.timeStamp, "mousemove", { pid: e.pointerId, pt: e.pointerType || "mouse", src: "canvas" });
     });
     drawChallenge();
     maybeAutoComplete();
@@ -83,7 +171,7 @@ function onPointerMove(evt) {
 function onPointerUp(evt) {
     if (!challenge || !isCapturing) return;
     const p = canvasPoint(evt);
-    recordEvent(p.x, p.y, evt.timeStamp, "mouseup");
+    recordEvent(p.x, p.y, evt.timeStamp, "mouseup", { pid: evt.pointerId, pt: evt.pointerType || "mouse", src: "canvas" });
     handleClick(p.x, p.y);
     drawChallenge();
     maybeAutoComplete();
@@ -181,6 +269,8 @@ function startNewChallenge() {
         .then(data => {
             challenge = data;
             isCapturing = true;
+            clientInteractionStartMs = performance.now();
+            connectLiveTelemetry();
             document.getElementById("challenge-title").textContent = data.title;
             document.getElementById("challenge-instructions").textContent = data.instructions;
             document.getElementById("meta-type").textContent = data.challenge_type;
@@ -355,14 +445,20 @@ function submitAttempt() {
     submitting = true;
     isCapturing = false;
 
-    fetch(`${API_BASE}/api/challenge/verify`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            session_id: challenge.session_id,
-            events,
-            participant: "human",
-        }),
+    waitLiveSynced(events.length).then((synced) => {
+        if (!synced) throw new Error("Live canvas stream did not catch up; retry the challenge.");
+        return fetch(`${API_BASE}/api/challenge/verify`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                session_id: challenge.session_id,
+                participant: "human",
+                verify_token: challenge.verify_token,
+                client_started_ms: clientInteractionStartMs,
+                client_submitted_ms: performance.now(),
+                source: "dashboard",
+            }),
+        });
     })
         .then(r => r.json())
         .then(showResults)
@@ -375,7 +471,10 @@ function submitAttempt() {
 function showResults(data) {
     const evalData = data.evaluation || {};
     const task = data.task_result || {};
-    const humanPct = data.human_confidence != null ? Math.round(data.human_confidence * 100) : null;
+    const botProb = evalData.bot_probability;
+    const humanPct = typeof botProb === "number" ? Math.round((1 - botProb) * 100) : (
+        data.human_confidence != null ? Math.round(data.human_confidence * 100) : null
+    );
 
     document.getElementById("human-confidence").textContent = humanPct != null ? `${humanPct}%` : "—%";
     document.getElementById("task-result").textContent = task.reason || "Done";
@@ -409,8 +508,10 @@ function showResults(data) {
     const grid = document.getElementById("result-grid");
     grid.innerHTML = "";
     addResultCell(grid, "Task", task.passed ? "PASS" : "FAIL");
-    addResultCell(grid, "Risk", evalData.risk_score != null ? evalData.risk_score.toFixed(3) : "—");
+    addResultCell(grid, "Model human", humanPct != null ? `${humanPct}%` : "—");
     addResultCell(grid, "Bot prob.", evalData.bot_probability != null ? evalData.bot_probability.toFixed(3) : "—");
+    addResultCell(grid, "Heuristic", evalData.heuristic_score != null ? evalData.heuristic_score.toFixed(3) : "—");
+    addResultCell(grid, "Fused risk", evalData.risk_score != null ? evalData.risk_score.toFixed(3) : "—");
     addResultCell(grid, "Type", data.challenge_type);
 
     document.getElementById("overlay-title").textContent = task.passed ? "Challenge complete" : "Challenge incomplete";

@@ -1,0 +1,8 @@
+{
+  "families": [
+    "hi_jit",
+    "low_idle_fast",
+    "high_str"
+  ],
+  "episodes_per_family": 16
+}

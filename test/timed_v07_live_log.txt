@@ -1,0 +1,77 @@
+--- qmodel_v0.7 live solver ---
+attempt 01 family=dense_smooth hc=28% http=200 decision=BLOCKED: BOT events=509 vel=0.5092 jerk=0.07059309 acc=0.118205 jit=0.1321 str=0.2668 heur=0.0 flags=No risk flags.
+attempt 02 family=slow_settle hc=16% http=200 decision=BLOCKED: BOT events=209 vel=0.4689 jerk=0.03971101 acc=0.059597 jit=0.0773 str=0.2463 heur=0.0 flags=No risk flags.
+attempt 03 family=minjerk_direct hc=51% http=200 decision=PASSED: HUMAN events=312 vel=0.8594 jerk=0.11303102 acc=0.174484 jit=0.1161 str=0.2188 heur=0.4 flags=Low-straightness low-jitter Playwright hop
+attempt 04 family=curved_idle hc=15% http=200 decision=BLOCKED: BOT events=212 vel=0.4694 jerk=0.01980479 acc=0.039464 jit=0.1333 str=0.0668 heur=0.0 flags=No risk flags.
+attempt 05 family=dense_smooth hc=6% http=200 decision=BLOCKED: BOT events=345 vel=0.3794 jerk=0.03126881 acc=0.054822 jit=0.1574 str=0.1597 heur=0.0 flags=No risk flags.
+attempt 06 family=curved_idle hc=18% http=200 decision=BLOCKED: BOT events=236 vel=0.4258 jerk=0.02482433 acc=0.046095 jit=0.141 str=0.1701 heur=0.0 flags=No risk flags.
+attempt 07 family=dense_smooth hc=28% http=200 decision=BLOCKED: BOT events=377 vel=0.4464 jerk=0.0627663 acc=0.105509 jit=0.1413 str=0.2236 heur=0.0 flags=No risk flags.
+attempt 08 family=curved_idle hc=15% http=200 decision=BLOCKED: BOT events=194 vel=0.4321 jerk=0.02050139 acc=0.040937 jit=0.1615 str=0.1967 heur=0.0 flags=No risk flags.
+attempt 09 family=minjerk_direct hc=0% http=200 decision=BLOCKED: BOT events=230 vel=0.8255 jerk=0.11644476 acc=0.207768 jit=0.1096 str=0.2082 heur=1.0 flags=Flat-dynamics automation signature | Playwright dense-hop family automation | Low-straightness low-jitter Playwright hop
+attempt 10 family=curved_idle hc=15% http=200 decision=BLOCKED: BOT events=248 vel=0.4495 jerk=0.02545327 acc=0.044441 jit=0.1707 str=0.1893 heur=0.0 flags=No risk flags.
+attempt 11 family=curved_idle hc=13% http=200 decision=BLOCKED: BOT events=258 vel=0.4643 jerk=0.01732096 acc=0.037804 jit=0.168 str=0.1506 heur=0.0 flags=No risk flags.
+attempt 12 family=curved_idle hc=10% http=200 decision=BLOCKED: BOT events=214 vel=0.4299 jerk=0.01487002 acc=0.033129 jit=0.1887 str=0.0509 heur=0.0 flags=No risk flags.
+attempt 13 family=dense_smooth hc=47% http=200 decision=BLOCKED: BOT events=320 vel=0.5058 jerk=0.08675481 acc=0.133785 jit=0.1415 str=0.3788 heur=0.0 flags=No risk flags.
+attempt 14 family=slow_settle hc=14% http=200 decision=BLOCKED: BOT events=230 vel=0.484 jerk=0.03025306 acc=0.048139 jit=0.0658 str=0.0698 heur=0.0 flags=No risk flags.
+attempt 15 family=minjerk_direct hc=56% http=200 decision=PASSED: HUMAN events=178 vel=0.7433 jerk=0.16145716 acc=0.258639 jit=0.1875 str=0.2534 heur=0.44 flags=Playwright dense-hop family automation
+attempt 16 family=minjerk_direct hc=56% http=200 decision=PASSED: HUMAN events=249 vel=0.7468 jerk=0.13434118 acc=0.192292 jit=0.1457 str=0.311 heur=0.44 flags=Playwright dense-hop family automation
+attempt 17 family=minjerk_direct hc=52% http=200 decision=PASSED: HUMAN events=216 vel=0.6774 jerk=0.10120978 acc=0.163395 jit=0.1776 str=0.2254 heur=0.0 flags=No risk flags.
+attempt 18 family=curved_idle hc=11% http=200 decision=BLOCKED: BOT events=249 vel=0.4525 jerk=0.01574375 acc=0.032948 jit=0.1498 str=0.1056 heur=0.0 flags=No risk flags.
+attempt 19 family=dense_smooth hc=51% http=200 decision=PASSED: HUMAN events=255 vel=0.4984 jerk=0.09430133 acc=0.140738 jit=0.1502 str=0.3415 heur=0.0 flags=No risk flags.
+attempt 20 family=curved_idle hc=12% http=200 decision=BLOCKED: BOT events=197 vel=0.3103 jerk=0.0159197 acc=0.02874 jit=0.2359 str=0.2331 heur=0.0 flags=No risk flags.
+attempt 21 family=dense_smooth hc=47% http=200 decision=BLOCKED: BOT events=334 vel=0.4662 jerk=0.08185429 acc=0.126057 jit=0.1355 str=0.1452 heur=0.0 flags=No risk flags.
+attempt 22 family=slow_settle hc=12% http=200 decision=BLOCKED: BOT events=247 vel=0.521 jerk=0.0221943 acc=0.038727 jit=0.0612 str=0.123 heur=0.0 flags=No risk flags.
+attempt 23 family=curved_idle hc=15% http=200 decision=BLOCKED: BOT events=206 vel=0.4178 jerk=0.0277269 acc=0.048612 jit=0.1765 str=0.2177 heur=0.0 flags=No risk flags.
+attempt 24 family=curved_idle hc=20% http=200 decision=BLOCKED: BOT events=167 vel=0.4644 jerk=0.05611516 acc=0.079805 jit=0.1455 str=0.1733 heur=0.0 flags=No risk flags.
+attempt 25 family=dense_smooth hc=31% http=200 decision=BLOCKED: BOT events=521 vel=0.4873 jerk=0.07338704 acc=0.11588 jit=0.1445 str=0.1634 heur=0.0 flags=No risk flags.
+attempt 26 family=dense_smooth hc=43% http=200 decision=BLOCKED: BOT events=407 vel=0.4959 jerk=0.07756677 acc=0.128664 jit=0.1605 str=0.3329 heur=0.0 flags=No risk flags.
+attempt 27 family=slow_settle hc=9% http=200 decision=BLOCKED: BOT events=216 vel=0.4321 jerk=0.01617634 acc=0.032749 jit=0.0935 str=0.0477 heur=0.0 flags=No risk flags.
+attempt 28 family=slow_settle hc=19% http=200 decision=BLOCKED: BOT events=188 vel=0.4598 jerk=0.02396217 acc=0.042037 jit=0.0591 str=0.3823 heur=0.0 flags=No risk flags.
+attempt 29 family=curved_idle hc=9% http=200 decision=BLOCKED: BOT events=213 vel=0.3954 jerk=0.01221018 acc=0.026713 jit=0.1469 str=0.1981 heur=0.0 flags=No risk flags.
+attempt 30 family=dense_smooth hc=51% http=200 decision=PASSED: HUMAN events=363 vel=0.5052 jerk=0.09197298 acc=0.144718 jit=0.1551 str=0.1954 heur=0.0 flags=No risk flags.
+attempt 31 family=slow_settle hc=26% http=200 decision=BLOCKED: BOT events=151 vel=0.5698 jerk=0.06234631 acc=0.089993 jit=0.094 str=0.2381 heur=0.0 flags=No risk flags.
+attempt 32 family=slow_settle hc=11% http=200 decision=BLOCKED: BOT events=206 vel=0.4563 jerk=0.01681076 acc=0.02896 jit=0.098 str=0.3645 heur=0.0 flags=No risk flags.
+attempt 33 family=dense_smooth hc=53% http=200 decision=PASSED: HUMAN events=378 vel=0.5199 jerk=0.09409268 acc=0.147967 jit=0.1463 str=0.1791 heur=0.0 flags=No risk flags.
+attempt 34 family=minjerk_direct hc=56% http=200 decision=PASSED: HUMAN events=225 vel=0.8678 jerk=0.18326691 acc=0.28704 jit=0.1704 str=0.2281 heur=0.44 flags=Playwright dense-hop family automation
+attempt 35 family=dense_smooth hc=43% http=200 decision=BLOCKED: BOT events=441 vel=0.4974 jerk=0.08120631 acc=0.129412 jit=0.1458 str=0.2924 heur=0.0 flags=No risk flags.
+attempt 36 family=minjerk_direct hc=56% http=200 decision=PASSED: HUMAN events=269 vel=0.7381 jerk=0.14020823 acc=0.22902 jit=0.161 str=0.1006 heur=0.44 flags=Playwright dense-hop family automation
+attempt 37 family=curved_idle hc=23% http=200 decision=BLOCKED: BOT events=169 vel=0.3989 jerk=0.04091366 acc=0.060749 jit=0.1916 str=0.4583 heur=0.0 flags=No risk flags.
+attempt 38 family=curved_idle hc=9% http=200 decision=BLOCKED: BOT events=179 vel=0.375 jerk=0.01402409 acc=0.03111 jit=0.1356 str=0.4619 heur=0.0 flags=No risk flags.
+attempt 39 family=curved_idle hc=9% http=200 decision=BLOCKED: BOT events=235 vel=0.3788 jerk=0.01023434 acc=0.024879 jit=0.1502 str=0.19 heur=0.0 flags=No risk flags.
+attempt 40 family=dense_smooth hc=23% http=200 decision=BLOCKED: BOT events=499 vel=0.4119 jerk=0.05311126 acc=0.089105 jit=0.1408 str=0.2119 heur=0.0 flags=No risk flags.
+attempt 41 family=dense_smooth hc=62% http=200 decision=PASSED: HUMAN events=291 vel=0.5294 jerk=0.11456525 acc=0.18033 jit=0.1834 str=0.1885 heur=0.0 flags=No risk flags.
+attempt 42 family=minjerk_direct hc=0% http=200 decision=BLOCKED: BOT events=186 vel=0.9762 jerk=0.26296617 acc=0.383432 jit=0.1522 str=0.2296 heur=1.0 flags=Abnormal velocity spike (15.6 px/ms) | Dense-hop Playwright mid_dense (issue 004) | Playwright dense-hop family automation | Low-straightness low-jitt
+attempt 43 family=slow_settle hc=11% http=200 decision=BLOCKED: BOT events=179 vel=0.4881 jerk=0.02091093 acc=0.041013 jit=0.0452 str=0.0435 heur=0.0 flags=No risk flags.
+attempt 44 family=minjerk_direct hc=45% http=200 decision=BLOCKED: BOT events=131 vel=0.507 jerk=0.07275832 acc=0.118514 jit=0.2481 str=0.8588 heur=0.0 flags=No risk flags.
+attempt 45 family=curved_idle hc=18% http=200 decision=BLOCKED: BOT events=269 vel=0.4606 jerk=0.02778874 acc=0.046351 jit=0.1461 str=0.1704 heur=0.0 flags=No risk flags.
+attempt 46 family=slow_settle hc=20% http=200 decision=BLOCKED: BOT events=232 vel=0.4496 jerk=0.03686449 acc=0.055432 jit=0.0652 str=0.1173 heur=0.0 flags=No risk flags.
+attempt 47 family=minjerk_direct hc=26% http=200 decision=BLOCKED: BOT events=301 vel=0.8014 jerk=0.15294242 acc=0.234768 jit=0.1371 str=0.1967 heur=0.74 flags=Low-straightness fast evasion (issue 001 variant) | Low-straightness low-jitter Playwright hop
+attempt 48 family=curved_idle hc=18% http=200 decision=BLOCKED: BOT events=207 vel=0.4048 jerk=0.02681557 acc=0.04096 jit=0.1659 str=0.3989 heur=0.0 flags=No risk flags.
+attempt 49 family=slow_settle hc=18% http=200 decision=BLOCKED: BOT events=165 vel=0.4365 jerk=0.02433257 acc=0.042338 jit=0.1411 str=0.1126 heur=0.0 flags=No risk flags.
+attempt 50 family=curved_idle hc=18% http=200 decision=BLOCKED: BOT events=243 vel=0.4183 jerk=0.0268088 acc=0.040008 jit=0.1577 str=0.1446 heur=0.0 flags=No risk flags.
+attempt 51 family=dense_smooth hc=48% http=200 decision=BLOCKED: BOT events=308 vel=0.4906 jerk=0.08814314 acc=0.135999 jit=0.1209 str=0.4379 heur=0.0 flags=No risk flags.
+attempt 52 family=slow_settle hc=8% http=200 decision=BLOCKED: BOT events=163 vel=0.5371 jerk=0.01610087 acc=0.031634 jit=0.0683 str=0.0161 heur=0.0 flags=No risk flags.
+attempt 53 family=slow_settle hc=14% http=200 decision=BLOCKED: BOT events=167 vel=0.4859 jerk=0.0237368 acc=0.04801 jit=0.103 str=0.407 heur=0.0 flags=No risk flags.
+attempt 54 family=dense_smooth hc=33% http=200 decision=BLOCKED: BOT events=451 vel=0.4381 jerk=0.0679501 acc=0.103018 jit=0.1581 str=0.1577 heur=0.0 flags=No risk flags.
+attempt 55 family=curved_idle hc=3% http=200 decision=BLOCKED: BOT events=346 vel=0.4172 jerk=0.00819599 acc=0.024966 jit=0.1512 str=0.23 heur=0.0 flags=No risk flags.
+attempt 56 family=minjerk_direct hc=53% http=200 decision=PASSED: HUMAN events=141 vel=0.7174 jerk=0.09365318 acc=0.177745 jit=0.1871 str=0.241 heur=0.0 flags=No risk flags.
+attempt 57 family=slow_settle hc=24% http=200 decision=BLOCKED: BOT events=139 vel=0.4597 jerk=0.04802877 acc=0.072342 jit=0.1022 str=0.1882 heur=0.0 flags=No risk flags.
+attempt 58 family=slow_settle hc=15% http=200 decision=BLOCKED: BOT events=187 vel=0.492 jerk=0.03603929 acc=0.057384 jit=0.1189 str=0.146 heur=0.0 flags=No risk flags.
+attempt 59 family=curved_idle hc=5% http=200 decision=BLOCKED: BOT events=313 vel=0.4451 jerk=0.01324511 acc=0.032882 jit=0.1479 str=0.0815 heur=0.0 flags=No risk flags.
+attempt 60 family=minjerk_direct hc=56% http=200 decision=PASSED: HUMAN events=236 vel=0.8562 jerk=0.20572997 acc=0.295289 jit=0.1325 str=0.3414 heur=0.44 flags=Playwright dense-hop family automation
+attempt 61 family=slow_settle hc=17% http=200 decision=BLOCKED: BOT events=149 vel=0.4675 jerk=0.03463691 acc=0.049013 jit=0.068 str=0.1764 heur=0.0 flags=No risk flags.
+attempt 62 family=dense_smooth hc=58% http=200 decision=PASSED: HUMAN events=419 vel=0.5402 jerk=0.12197227 acc=0.182835 jit=0.1151 str=0.2893 heur=0.0 flags=No risk flags.
+attempt 63 family=minjerk_direct hc=43% http=200 decision=BLOCKED: BOT events=195 vel=0.6496 jerk=0.08964264 acc=0.135871 jit=0.1399 str=0.2442 heur=0.0 flags=No risk flags.
+attempt 64 family=slow_settle hc=20% http=200 decision=BLOCKED: BOT events=148 vel=0.4996 jerk=0.04378201 acc=0.063257 jit=0.0822 str=0.2732 heur=0.0 flags=No risk flags.
+attempt 65 family=curved_idle hc=11% http=200 decision=BLOCKED: BOT events=225 vel=0.4402 jerk=0.01551277 acc=0.03474 jit=0.1435 str=0.3756 heur=0.0 flags=No risk flags.
+attempt 66 family=dense_smooth hc=20% http=200 decision=BLOCKED: BOT events=508 vel=0.4147 jerk=0.05580809 acc=0.090569 jit=0.1482 str=0.0363 heur=0.0 flags=No risk flags.
+attempt 67 family=slow_settle hc=14% http=200 decision=BLOCKED: BOT events=190 vel=0.5126 jerk=0.02417358 acc=0.043336 jit=0.0798 str=0.2917 heur=0.0 flags=No risk flags.
+attempt 68 family=dense_smooth hc=50% http=200 decision=BLOCKED: BOT events=316 vel=0.4722 jerk=0.08909699 acc=0.132941 jit=0.1911 str=0.1634 heur=0.0 flags=No risk flags.
+attempt 69 family=slow_settle hc=16% http=200 decision=BLOCKED: BOT events=236 vel=0.4621 jerk=0.02585759 acc=0.043052 jit=0.0513 str=0.1547 heur=0.0 flags=No risk flags.
+attempt 70 family=curved_idle hc=10% http=200 decision=BLOCKED: BOT events=315 vel=0.4752 jerk=0.01345074 acc=0.03337 jit=0.1597 str=0.1436 heur=0.0 flags=No risk flags.
+attempt 71 family=dense_smooth hc=19% http=200 decision=BLOCKED: BOT events=240 vel=0.453 jerk=0.05203682 acc=0.09429 jit=0.1387 str=0.5069 heur=0.0 flags=No risk flags.
+attempt 72 family=minjerk_direct hc=26% http=200 decision=BLOCKED: BOT events=291 vel=0.9645 jerk=0.23337657 acc=0.339899 jit=0.1176 str=0.0653 heur=0.74 flags=Low-straightness fast evasion (issue 001 variant) | Low-straightness low-jitter Playwright hop
+attempt 73 family=minjerk_direct hc=0% http=200 decision=BLOCKED: BOT events=195 vel=0.8318 jerk=0.15667357 acc=0.227442 jit=0.1088 str=0.1086 heur=1.0 flags=Dense-hop Playwright mid_dense (issue 004) | Playwright dense-hop family automation | Low-straightness low-jitter Playwright hop
+attempt 74 family=slow_settle hc=17% http=200 decision=BLOCKED: BOT events=216 vel=0.4396 jerk=0.03864564 acc=0.055394 jit=0.0701 str=0.1813 heur=0.0 flags=No risk flags.
+attempt 75 family=minjerk_direct hc=86% http=200 decision=PASSED: HUMAN events=360 vel=0.8602 jerk=0.16825402 acc=0.245522 jit=0.162 str=0.1303 heur=0.0 flags=No risk flags.
+TARGET_REACHED 0.8600 after 75 attempts in 615.6s

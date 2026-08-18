@@ -1,0 +1,113 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "d2f08441-4b9d-465b-a9ef-202211a1a0d3",
+  "challenge_type": "path_gates",
+  "seed": 1149398652,
+  "task_passed": true,
+  "event_count": 1039,
+  "features": {
+    "event_count": 1039,
+    "duration_ms": 1898.7,
+    "total_distance_px": 1327.67,
+    "euclidean_distance_px": 405.6,
+    "straightness_index": 0.3055,
+    "velocity_mean": 1.0754,
+    "velocity_std": 0.5902,
+    "velocity_max": 4.1231,
+    "acceleration_mean": 0.379209,
+    "acceleration_std": 0.405719,
+    "acceleration_max": 2.469136,
+    "jerk_mean": 0.28479325,
+    "angle_change_mean": 0.4267,
+    "angle_change_std": 0.5454,
+    "jitter_ratio": 0.136,
+    "idle_ratio": 0.1191,
+    "avg_click_dwell_ms": -1.0
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": null,
+    "median_click_dwell_ms": null,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "gates_total": 5,
+    "gates_passed": 5,
+    "mean_gap_error_px": 11.7,
+    "gates": [
+      {
+        "passed": true,
+        "min_gap_error_px": 14.1,
+        "gap_half_px": 48.7
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 14.4,
+        "gap_half_px": 50.6
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 12.7,
+        "gap_half_px": 57.0
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 3.2,
+        "gap_half_px": 51.0
+      },
+      {
+        "passed": true,
+        "min_gap_error_px": 14.1,
+        "gap_half_px": 49.6
+      }
+    ]
+  },
+  "spec": {
+    "gates": [
+      {
+        "x": 220.0,
+        "gap_y": 425.1,
+        "gap_half": 48.7,
+        "thickness": 8
+      },
+      {
+        "x": 360.0,
+        "gap_y": 387.6,
+        "gap_half": 50.6,
+        "thickness": 8
+      },
+      {
+        "x": 500.0,
+        "gap_y": 332.3,
+        "gap_half": 57.0,
+        "thickness": 8
+      },
+      {
+        "x": 640.0,
+        "gap_y": 391.8,
+        "gap_half": 51.0,
+        "thickness": 8
+      },
+      {
+        "x": 780.0,
+        "gap_y": 408.1,
+        "gap_half": 49.6,
+        "thickness": 8
+      }
+    ],
+    "start": [
+      110,
+      360.0
+    ],
+    "end": [
+      890,
+      408.1326641805877
+    ],
+    "gate_tolerance_px": 26,
+    "finish_tolerance_px": 36
+  },
+  "csv": "path_gates_20260817_105315_d2f08441-4b9d-465b-a9ef-.csv",
+  "relative_dir": "challenges/path_gates",
+  "saved_at": "2026-08-17T10:53:15.079967+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "best_model_human": 0.6391,
+  "best_bot_prob": 0.3609,
+  "best_family": "pause_heavy",
+  "attempts": 123,
+  "elapsed_s": 1203.1,
+  "model": "ymodel_v0.1",
+  "target_reached": false
+}

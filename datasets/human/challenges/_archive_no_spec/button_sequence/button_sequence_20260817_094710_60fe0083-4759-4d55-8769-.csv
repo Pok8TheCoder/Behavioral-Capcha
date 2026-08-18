@@ -1,0 +1,28 @@
+# Display Metrics: VirtualBounds=(0,0), Size=(960x640)
+# source=dashboard session_id=60fe0083-4759-4d55-8769-460af3ea5bf8 challenge_type=button_sequence seed=670969155 task_passed=True
+rel_time_ms,x_px,y_px,x_norm,y_norm,scroll_x,scroll_y,scroll_dx,scroll_dy,event_type,target_item
+0.000,120.0,160.0,0.12500,0.25000,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+13.800,456.0,184.0,0.47500,0.28750,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+81.900,456.0,184.0,0.47500,0.28750,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+83.400,456.0,184.0,0.47500,0.28750,0.0,0.0,0,0,mouse_click_down,dashboard_human:button_sequence
+82.000,456.0,184.0,0.47500,0.28750,0.0,0.0,0,0,mouse_click_up,dashboard_human:button_sequence
+215.100,453.0,539.0,0.47187,0.84219,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+280.800,453.0,539.0,0.47187,0.84219,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+282.000,453.0,539.0,0.47187,0.84219,0.0,0.0,0,0,mouse_click_down,dashboard_human:button_sequence
+280.900,453.0,539.0,0.47187,0.84219,0.0,0.0,0,0,mouse_click_up,dashboard_human:button_sequence
+404.600,557.0,243.0,0.58021,0.37969,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+454.900,557.0,243.0,0.58021,0.37969,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+456.800,557.0,243.0,0.58021,0.37969,0.0,0.0,0,0,mouse_click_down,dashboard_human:button_sequence
+455.000,557.0,243.0,0.58021,0.37969,0.0,0.0,0,0,mouse_click_up,dashboard_human:button_sequence
+584.600,264.0,229.0,0.27500,0.35781,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+655.000,264.0,229.0,0.27500,0.35781,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+656.600,264.0,229.0,0.27500,0.35781,0.0,0.0,0,0,mouse_click_down,dashboard_human:button_sequence
+655.200,264.0,229.0,0.27500,0.35781,0.0,0.0,0,0,mouse_click_up,dashboard_human:button_sequence
+784.700,821.0,188.0,0.85521,0.29375,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+844.800,821.0,188.0,0.85521,0.29375,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+845.500,821.0,188.0,0.85521,0.29375,0.0,0.0,0,0,mouse_click_down,dashboard_human:button_sequence
+845.000,821.0,188.0,0.85521,0.29375,0.0,0.0,0,0,mouse_click_up,dashboard_human:button_sequence
+974.600,835.0,461.0,0.86979,0.72031,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+1034.800,835.0,461.0,0.86979,0.72031,0.0,0.0,0,0,mouse_move,dashboard_human:button_sequence
+1036.100,835.0,461.0,0.86979,0.72031,0.0,0.0,0,0,mouse_click_down,dashboard_human:button_sequence
+1034.900,835.0,461.0,0.86979,0.72031,0.0,0.0,0,0,mouse_click_up,dashboard_human:button_sequence

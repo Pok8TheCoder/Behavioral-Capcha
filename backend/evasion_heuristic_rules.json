@@ -1,0 +1,16 @@
+[
+  {
+    "cycle": 1,
+    "straightness_max": 0.33240000000000003,
+    "straightness_min": 0.1724,
+    "jitter_min": 0.29159999999999997,
+    "vel_mean_min": 0.24930000000000002,
+    "vel_mean_max": 0.4893,
+    "vel_max_max": 2.0854999999999997,
+    "dwell_min": 102.24000000000001,
+    "duration_min": 8998.46,
+    "event_count_min": 552,
+    "score_boost": 0.34,
+    "label": "evasion_cycle_001"
+  }
+]

@@ -1,0 +1,101 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "d2bd09ab-a250-4605-82d4-e3ac27a86e72",
+  "challenge_type": "shape_trace",
+  "seed": 131771185,
+  "task_passed": true,
+  "event_count": 552,
+  "features": {
+    "event_count": 552,
+    "duration_ms": 2529.0,
+    "total_distance_px": 582.0,
+    "euclidean_distance_px": 7.0,
+    "straightness_index": 0.012,
+    "velocity_mean": 0.5553,
+    "velocity_std": 0.3595,
+    "velocity_max": 2.0203,
+    "acceleration_mean": 0.248153,
+    "acceleration_std": 0.315743,
+    "acceleration_max": 2.45325,
+    "jerk_mean": 0.2220414,
+    "angle_change_mean": 0.7705,
+    "angle_change_std": 0.7716,
+    "jitter_ratio": 0.3927,
+    "idle_ratio": 0.0828,
+    "avg_click_dwell_ms": 2529.0
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 2529.0,
+    "median_click_dwell_ms": 2529.0,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": "star",
+    "stroke_points": 552,
+    "stroke_length_px": 582.0,
+    "guide_length_px": 389.88,
+    "length_ratio": 1.4928,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 10.7928,
+    "max_distance_to_guide_px": 21.85,
+    "stroke_duration_ms": 2529.0,
+    "tolerance_px": 21.29
+  },
+  "spec": {
+    "shape": "star",
+    "guide_points": [
+      [
+        440.49871655686985,
+        473.5101799165576
+      ],
+      [
+        425.5260751773843,
+        437.5116328457597
+      ],
+      [
+        386.66262177160155,
+        434.3959675133326
+      ],
+      [
+        416.27247390349913,
+        409.03197654553935
+      ],
+      [
+        407.22618015801305,
+        371.1078424017317
+      ],
+      [
+        440.49871655686985,
+        391.43058096408805
+      ],
+      [
+        473.7712529557266,
+        371.1078424017317
+      ],
+      [
+        464.72495921024057,
+        409.03197654553935
+      ],
+      [
+        494.33481134213815,
+        434.39596751333255
+      ],
+      [
+        455.4713579363554,
+        437.5116328457597
+      ],
+      [
+        440.49871655686985,
+        473.5101799165576
+      ]
+    ],
+    "tolerance_px": 21.2921888614318,
+    "min_coverage_ratio": 0.55,
+    "min_stroke_points": 20
+  },
+  "csv": "shape_trace_20260817_120239_d2bd09ab-a250-4605-82d4-.csv",
+  "relative_dir": "challenges/shape_trace",
+  "saved_at": "2026-08-17T12:02:39.566877+00:00"
+}

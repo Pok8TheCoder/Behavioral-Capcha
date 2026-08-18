@@ -1,0 +1,31 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "ba9c513a-195a-493c-8270-49f4977dd95f",
+  "challenge_type": "target_hunt",
+  "seed": 146717816,
+  "task_passed": true,
+  "event_count": 888,
+  "features": {
+    "event_count": 888,
+    "duration_ms": 1613.1,
+    "total_distance_px": 1354.75,
+    "euclidean_distance_px": 382.56,
+    "straightness_index": 0.2824,
+    "velocity_mean": 1.357,
+    "velocity_std": 0.9061,
+    "velocity_max": 7.0711,
+    "acceleration_mean": 0.533967,
+    "acceleration_std": 1.310145,
+    "acceleration_max": 35.355339,
+    "jerk_mean": 0.5899452,
+    "angle_change_mean": 0.5239,
+    "angle_change_std": 0.567,
+    "jitter_ratio": 0.1749,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": 61.02
+  },
+  "csv": "target_hunt_20260817_104403_ba9c513a-195a-493c-8270-.csv",
+  "relative_dir": "challenges/target_hunt",
+  "saved_at": "2026-08-17T10:44:03.980040+00:00"
+}

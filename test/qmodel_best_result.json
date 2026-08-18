@@ -1,0 +1,79 @@
+{
+  "timestamp": 1786944318.6078475,
+  "session_id": "759935cd-9e1c-41b7-8eb5-7eb7edaee6d9",
+  "participant": "bot_qmodel_evasion",
+  "challenge_type": "button_sequence",
+  "task_result": {
+    "passed": true,
+    "reason": "Click order [1, 2, 3, 4, 5, 6], expected [1, 2, 3, 4, 5, 6]",
+    "click_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "features": {
+    "event_count": 351,
+    "duration_ms": 6426.93,
+    "total_distance_px": 2199.34,
+    "euclidean_distance_px": 539.13,
+    "straightness_index": 0.2451,
+    "velocity_mean": 0.7836,
+    "velocity_std": 0.96,
+    "velocity_max": 5.7289,
+    "acceleration_mean": 0.178366,
+    "acceleration_std": 0.638714,
+    "acceleration_max": 5.226584,
+    "jerk_mean": 0.16970951,
+    "angle_change_mean": 0.2866,
+    "angle_change_std": 0.5282,
+    "jitter_ratio": 0.07,
+    "idle_ratio": 0.2396,
+    "avg_click_dwell_ms": 88.33
+  },
+  "evaluation": {
+    "decision": "PASSED",
+    "is_bot": false,
+    "risk_score": 0.0829,
+    "bot_probability": 0.0829,
+    "heuristic_score": 0.0,
+    "model_type": "qmodel_v0.2",
+    "qmodel_label": "Qmodel V0.2",
+    "flags": [],
+    "biometric_summary": {
+      "straightness": 0.2451,
+      "velocity_mean": 0.7836,
+      "velocity_variance": 0.96,
+      "jitter_ratio": 0.07,
+      "click_dwell_ms": 88.33
+    },
+    "window_count": 1,
+    "aggregation": "max_risk"
+  },
+  "active_windows_scored": 1,
+  "human_confidence": 0.9171,
+  "_cfg": {
+    "max_speed_px_ms": 1.8376511974306284,
+    "min_speed_px_ms": 0.4904613082664439,
+    "dwell_ms": [
+      77.54051771992104,
+      98.27922988168054
+    ],
+    "pause_ms": [
+      121.99802011699678,
+      191.60900063240467
+    ],
+    "move_interval_ms": [
+      11.656372305323222,
+      17.106477087536074
+    ],
+    "aim_jitter_px": 3.3994180102494695,
+    "arc_strength": 6.266922566919572,
+    "directness": 0.6840155850541072,
+    "tremor_px": 0.6912716879606422,
+    "burst_speed_mult": 1.0107286909900108
+  }
+}

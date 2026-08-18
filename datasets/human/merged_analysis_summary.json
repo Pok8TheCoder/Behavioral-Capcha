@@ -1,0 +1,91 @@
+{
+  "human_dir": "D:\\Cursor\\Behavioral Captcha\\datasets\\human",
+  "file_count": 9,
+  "merged_virtual_windows": 20540,
+  "total_raw_rows": 10221071,
+  "total_afk_splits": 1155,
+  "preprocessing": {
+    "afk_gap_ms": 5000.0,
+    "window_ms": 3000.0,
+    "stride_ms": 1500.0
+  },
+  "per_file": [
+    {
+      "file": "input_log_20260809_194956_to_20260809_195028.csv",
+      "windows": 0,
+      "raw_rows": 5422,
+      "afk_splits": 0,
+      "truncated": false,
+      "error": null
+    },
+    {
+      "file": "input_log_20260809_205012_to_20260809_205012.csv",
+      "windows": 0,
+      "raw_rows": 3,
+      "afk_splits": 0,
+      "truncated": false,
+      "error": null
+    },
+    {
+      "file": "input_log_20260809_210236_to_20260809_230205.csv",
+      "windows": 2103,
+      "raw_rows": 972335,
+      "afk_splits": 70,
+      "truncated": false,
+      "error": null
+    },
+    {
+      "file": "input_log_20260811_132855_to_20260811_235556.csv",
+      "windows": 7773,
+      "raw_rows": 4017149,
+      "afk_splits": 460,
+      "truncated": false,
+      "error": null
+    },
+    {
+      "file": "input_log_20260812_171705_to_20260812_171721.csv",
+      "windows": 9,
+      "raw_rows": 3470,
+      "afk_splits": 0,
+      "truncated": false,
+      "error": null
+    },
+    {
+      "file": "input_log_20260812_172254_to_20260813_000706.csv",
+      "windows": 5989,
+      "raw_rows": 3092808,
+      "afk_splits": 229,
+      "truncated": false,
+      "error": null
+    },
+    {
+      "file": "input_log_20260813_195642_to_20260814_002232.csv",
+      "windows": 1449,
+      "raw_rows": 638340,
+      "afk_splits": 205,
+      "truncated": false,
+      "error": null
+    },
+    {
+      "file": "recovered_input_log_20260809_210236_part023.csv",
+      "windows": 1958,
+      "raw_rows": 914367,
+      "afk_splits": 66,
+      "truncated": false,
+      "error": null
+    },
+    {
+      "file": "recovered_input_log_20260810_202546_part038.csv",
+      "windows": 1259,
+      "raw_rows": 577177,
+      "afk_splits": 125,
+      "truncated": false,
+      "error": null
+    }
+  ],
+  "bot_targets": {
+    "2x_windows": 41080,
+    "3x_windows": 61620,
+    "4x_windows": 82160
+  }
+}

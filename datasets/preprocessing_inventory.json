@@ -1,0 +1,3435 @@
+{
+  "generated_at": "2026-08-17T11:10:17.620168+00:00",
+  "pipeline": {
+    "afk_gap_ms": 5000,
+    "pause_gap_ms": 400,
+    "min_window_ms": 500,
+    "max_window_ms": 12000,
+    "min_events": 12,
+    "min_distance_px": 20,
+    "features": [
+      "straightness_index",
+      "velocity_mean",
+      "velocity_std",
+      "velocity_max",
+      "acceleration_mean",
+      "acceleration_std",
+      "jerk_mean",
+      "angle_change_mean",
+      "angle_change_std",
+      "jitter_ratio",
+      "idle_ratio",
+      "avg_click_dwell_ms"
+    ],
+    "max_windows_per_file": 100000
+  },
+  "human": {
+    "os_recordings": {
+      "label": "human_os_recordings",
+      "feature_names": [
+        "straightness_index",
+        "velocity_mean",
+        "velocity_std",
+        "velocity_max",
+        "acceleration_mean",
+        "acceleration_std",
+        "jerk_mean",
+        "angle_change_mean",
+        "angle_change_std",
+        "jitter_ratio",
+        "idle_ratio",
+        "avg_click_dwell_ms"
+      ],
+      "totals": {
+        "files": 11,
+        "raw_rows": 11090688,
+        "windows": 10053,
+        "afk_splits": 1425,
+        "errors": 0,
+        "empty_files": 2,
+        "truncated_files": 0
+      },
+      "by_subtype": {
+        "human": {
+          "files": 11,
+          "raw_rows": 11090688,
+          "windows": 10053,
+          "afk_splits": 1425,
+          "errors": 0
+        }
+      },
+      "files": [
+        {
+          "file": "human/input_log_20260809_194956_to_20260809_195028.csv",
+          "windows": 0,
+          "raw_rows": 5422,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/input_log_20260809_205012_to_20260809_205012.csv",
+          "windows": 0,
+          "raw_rows": 3,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/input_log_20260809_210236_to_20260809_230205.csv",
+          "windows": 911,
+          "raw_rows": 972335,
+          "afk_splits": 70,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/input_log_20260811_132855_to_20260811_235556.csv",
+          "windows": 3556,
+          "raw_rows": 4017149,
+          "afk_splits": 460,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/input_log_20260812_171705_to_20260812_171721.csv",
+          "windows": 4,
+          "raw_rows": 3470,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/input_log_20260812_172254_to_20260813_000706.csv",
+          "windows": 2789,
+          "raw_rows": 3092808,
+          "afk_splits": 229,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/input_log_20260813_195642_to_20260814_002232.csv",
+          "windows": 624,
+          "raw_rows": 638340,
+          "afk_splits": 205,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/input_log_20260816_193311_to_20260816_225348.csv",
+          "windows": 689,
+          "raw_rows": 764597,
+          "afk_splits": 229,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/input_log_20260816_225526_to_20260816_232816.csv",
+          "windows": 107,
+          "raw_rows": 105020,
+          "afk_splits": 41,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/recovered_input_log_20260809_210236_part023.csv",
+          "windows": 849,
+          "raw_rows": 914367,
+          "afk_splits": 66,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/recovered_input_log_20260810_202546_part038.csv",
+          "windows": 524,
+          "raw_rows": 577177,
+          "afk_splits": 125,
+          "error": null,
+          "truncated": false
+        }
+      ]
+    },
+    "dashboard_live": {
+      "label": "human_dashboard_live",
+      "feature_names": [
+        "straightness_index",
+        "velocity_mean",
+        "velocity_std",
+        "velocity_max",
+        "acceleration_mean",
+        "acceleration_std",
+        "jerk_mean",
+        "angle_change_mean",
+        "angle_change_std",
+        "jitter_ratio",
+        "idle_ratio",
+        "avg_click_dwell_ms"
+      ],
+      "totals": {
+        "files": 126,
+        "raw_rows": 146953,
+        "windows": 126,
+        "afk_splits": 0,
+        "errors": 0,
+        "empty_files": 0,
+        "truncated_files": 0
+      },
+      "by_subtype": {
+        "button_sequence": {
+          "files": 12,
+          "raw_rows": 19793,
+          "windows": 12,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "connect_dots": {
+          "files": 14,
+          "raw_rows": 19629,
+          "windows": 14,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "hazard_run": {
+          "files": 17,
+          "raw_rows": 18081,
+          "windows": 17,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "maze_navigate": {
+          "files": 8,
+          "raw_rows": 17439,
+          "windows": 8,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "path_gates": {
+          "files": 14,
+          "raw_rows": 15095,
+          "windows": 14,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "pin_entry": {
+          "files": 10,
+          "raw_rows": 12758,
+          "windows": 10,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "shape_trace": {
+          "files": 17,
+          "raw_rows": 8311,
+          "windows": 17,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "spiral_trace": {
+          "files": 14,
+          "raw_rows": 13784,
+          "windows": 14,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "target_hunt": {
+          "files": 10,
+          "raw_rows": 10436,
+          "windows": 10,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "zigzag_trace": {
+          "files": 10,
+          "raw_rows": 11627,
+          "windows": 10,
+          "afk_splits": 0,
+          "errors": 0
+        }
+      },
+      "files": [
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105110_4d026427-5283-489b-9750-.csv",
+          "windows": 1,
+          "raw_rows": 1402,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105302_f6b9a76e-9d0b-456e-81d0-.csv",
+          "windows": 1,
+          "raw_rows": 1543,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105308_28612a03-bb91-4412-a72d-.csv",
+          "windows": 1,
+          "raw_rows": 1872,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105826_802e7953-cbee-4864-b165-.csv",
+          "windows": 1,
+          "raw_rows": 1167,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105830_ddce2ca1-d835-4a2a-97ae-.csv",
+          "windows": 1,
+          "raw_rows": 1351,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105834_772a9f26-ac47-4c06-a192-.csv",
+          "windows": 1,
+          "raw_rows": 2477,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105839_112b6bd1-e866-4bbc-8e14-.csv",
+          "windows": 1,
+          "raw_rows": 2350,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105842_11255bc6-d80c-4db9-8936-.csv",
+          "windows": 1,
+          "raw_rows": 723,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105844_aff53e57-87da-49d5-9725-.csv",
+          "windows": 1,
+          "raw_rows": 926,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105848_4382a66e-a142-46fc-b800-.csv",
+          "windows": 1,
+          "raw_rows": 1316,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105854_429d8b43-15a6-4f70-b88e-.csv",
+          "windows": 1,
+          "raw_rows": 2671,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/button_sequence/button_sequence_20260817_105903_4525f81d-ad1b-4837-8f47-.csv",
+          "windows": 1,
+          "raw_rows": 1995,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_105117_5df76abe-8df6-46f3-b782-.csv",
+          "windows": 1,
+          "raw_rows": 1402,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_105209_4f469046-cc3d-4566-8e30-.csv",
+          "windows": 1,
+          "raw_rows": 1593,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_105338_d86502fb-f101-4b1a-a9eb-.csv",
+          "windows": 1,
+          "raw_rows": 1325,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_105502_f3d4af5c-0a3e-4aed-ace9-.csv",
+          "windows": 1,
+          "raw_rows": 1550,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_105510_d9d6646a-35ae-4cb3-9597-.csv",
+          "windows": 1,
+          "raw_rows": 1142,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_105520_779db36b-9bd6-48d0-b06b-.csv",
+          "windows": 1,
+          "raw_rows": 969,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_110543_bf067c16-4abe-4eee-917e-.csv",
+          "windows": 1,
+          "raw_rows": 1926,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_110546_e9011190-22d6-43c9-a413-.csv",
+          "windows": 1,
+          "raw_rows": 642,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_110549_8e1c7386-9567-486b-9eb6-.csv",
+          "windows": 1,
+          "raw_rows": 772,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_110557_01f040a5-a7b8-4c0b-86de-.csv",
+          "windows": 1,
+          "raw_rows": 1672,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_110602_ee05e31d-75d2-4c33-9af3-.csv",
+          "windows": 1,
+          "raw_rows": 1410,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_110616_283c993a-8535-443e-a9ca-.csv",
+          "windows": 1,
+          "raw_rows": 2197,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_110626_5a5f7c94-8136-42a1-946d-.csv",
+          "windows": 1,
+          "raw_rows": 1835,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/connect_dots/connect_dots_20260817_110644_6d9b2435-e277-4388-a368-.csv",
+          "windows": 1,
+          "raw_rows": 1194,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_105130_df62b021-cf5f-4bee-8054-.csv",
+          "windows": 1,
+          "raw_rows": 1058,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_105150_c122456a-4263-4f64-be55-.csv",
+          "windows": 1,
+          "raw_rows": 918,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_105249_e4083c3d-cefe-4988-b622-.csv",
+          "windows": 1,
+          "raw_rows": 921,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110357_e4b2bc75-d646-4c9b-a8e7-.csv",
+          "windows": 1,
+          "raw_rows": 1050,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110359_0c9efe8b-5a8e-45d7-86a1-.csv",
+          "windows": 1,
+          "raw_rows": 903,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110403_8bda2555-0d84-49ab-83d2-.csv",
+          "windows": 1,
+          "raw_rows": 964,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110407_2e033d69-10e1-472d-a654-.csv",
+          "windows": 1,
+          "raw_rows": 1136,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110411_8b87e7c4-f446-4917-bab2-.csv",
+          "windows": 1,
+          "raw_rows": 1257,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110415_823c1902-91a2-4050-95c4-.csv",
+          "windows": 1,
+          "raw_rows": 1010,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110418_104b20ff-c95d-4fbb-a8c6-.csv",
+          "windows": 1,
+          "raw_rows": 1078,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110422_b90af690-522f-4a00-8d31-.csv",
+          "windows": 1,
+          "raw_rows": 960,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110426_486a4147-c045-44da-b98e-.csv",
+          "windows": 1,
+          "raw_rows": 1091,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110430_a261953e-3f99-4734-9f57-.csv",
+          "windows": 1,
+          "raw_rows": 1165,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110433_5d04dc97-71de-460f-9e06-.csv",
+          "windows": 1,
+          "raw_rows": 1144,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110437_988ae733-b0da-4d40-93da-.csv",
+          "windows": 1,
+          "raw_rows": 1214,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110440_2450da28-8423-4952-8a44-.csv",
+          "windows": 1,
+          "raw_rows": 822,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/hazard_run/hazard_run_20260817_110445_3755b6c5-ef4b-4cdd-bad3-.csv",
+          "windows": 1,
+          "raw_rows": 1390,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/maze_navigate/maze_navigate_20260817_105221_1eb8510c-aed5-43f6-8db6-.csv",
+          "windows": 1,
+          "raw_rows": 1949,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/maze_navigate/maze_navigate_20260817_105241_6a3d970b-50e0-45d1-96b4-.csv",
+          "windows": 1,
+          "raw_rows": 1321,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/maze_navigate/maze_navigate_20260817_105312_864b95c1-ae34-49e8-9f9d-.csv",
+          "windows": 1,
+          "raw_rows": 1206,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/maze_navigate/maze_navigate_20260817_105918_8bbae17b-f219-4ede-945e-.csv",
+          "windows": 1,
+          "raw_rows": 3101,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/maze_navigate/maze_navigate_20260817_105926_36751005-b226-4731-93cb-.csv",
+          "windows": 1,
+          "raw_rows": 2794,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/maze_navigate/maze_navigate_20260817_105937_1c609b8a-c9b0-4a41-b604-.csv",
+          "windows": 1,
+          "raw_rows": 3327,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/maze_navigate/maze_navigate_20260817_105943_a880c0a5-e387-4a70-a85e-.csv",
+          "windows": 1,
+          "raw_rows": 1543,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/maze_navigate/maze_navigate_20260817_105952_0b4358d3-62cd-4141-8c68-.csv",
+          "windows": 1,
+          "raw_rows": 2198,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_105244_66314c37-7cc4-492e-b7de-.csv",
+          "windows": 1,
+          "raw_rows": 1069,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_105315_d2f08441-4b9d-465b-a9ef-.csv",
+          "windows": 1,
+          "raw_rows": 1039,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_105326_d077810a-3194-4177-94a9-.csv",
+          "windows": 1,
+          "raw_rows": 1061,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110318_41dc2f91-24a4-47c1-a620-.csv",
+          "windows": 1,
+          "raw_rows": 1050,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110320_844774c8-1bcd-4cc3-91e4-.csv",
+          "windows": 1,
+          "raw_rows": 1005,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110323_9b8c4d5d-1ea9-4fb7-af82-.csv",
+          "windows": 1,
+          "raw_rows": 1004,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110325_6c3b3f67-651c-4eca-9a30-.csv",
+          "windows": 1,
+          "raw_rows": 944,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110327_afe23406-0c77-45e8-8c82-.csv",
+          "windows": 1,
+          "raw_rows": 983,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110330_4f8c3180-ea4c-4e47-b259-.csv",
+          "windows": 1,
+          "raw_rows": 1155,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110332_5e4ff75d-79f2-4232-ac50-.csv",
+          "windows": 1,
+          "raw_rows": 1129,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110335_3e4ebd41-58f0-41c3-8bfa-.csv",
+          "windows": 1,
+          "raw_rows": 1115,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110337_0fc5a46a-9cda-4903-bd36-.csv",
+          "windows": 1,
+          "raw_rows": 1180,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110340_2b4f660d-0d24-4e2e-ac2d-.csv",
+          "windows": 1,
+          "raw_rows": 1195,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/path_gates/path_gates_20260817_110345_8ae7aad2-f812-4b63-a653-.csv",
+          "windows": 1,
+          "raw_rows": 1166,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_105141_440bb950-a635-4c1a-ba94-.csv",
+          "windows": 1,
+          "raw_rows": 1396,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_105237_9a8560c6-3ef8-46bf-b7e2-.csv",
+          "windows": 1,
+          "raw_rows": 1618,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_105322_4e2adc8e-91ce-466b-8624-.csv",
+          "windows": 1,
+          "raw_rows": 2074,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_110201_55f5d0ed-1ce8-47da-922b-.csv",
+          "windows": 1,
+          "raw_rows": 1445,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_110210_443143fb-e296-43e5-bc7c-.csv",
+          "windows": 1,
+          "raw_rows": 1122,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_110219_21c9e25b-50a7-4e67-bdb2-.csv",
+          "windows": 1,
+          "raw_rows": 1115,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_110225_eb8bea4c-1405-4c9f-9987-.csv",
+          "windows": 1,
+          "raw_rows": 1040,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_110233_3ce47df4-f1cd-4624-ba72-.csv",
+          "windows": 1,
+          "raw_rows": 1249,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_110239_6d0afe6b-ebd9-44a3-ac13-.csv",
+          "windows": 1,
+          "raw_rows": 966,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/pin_entry/pin_entry_20260817_110245_ec27fef5-61b6-4415-bb7b-.csv",
+          "windows": 1,
+          "raw_rows": 733,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105258_93bfb897-ce5c-49a8-aa53-.csv",
+          "windows": 1,
+          "raw_rows": 488,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105735_d6babf02-a5bd-41f0-b999-.csv",
+          "windows": 1,
+          "raw_rows": 447,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105741_f7a32c89-b9e3-4758-9d3d-.csv",
+          "windows": 1,
+          "raw_rows": 723,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105744_90421427-faf1-4324-a269-.csv",
+          "windows": 1,
+          "raw_rows": 475,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105746_89a52a7b-e879-4e70-946b-.csv",
+          "windows": 1,
+          "raw_rows": 506,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105749_78dd3776-ada9-4cc7-9279-.csv",
+          "windows": 1,
+          "raw_rows": 374,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105752_fc652eef-8d66-41ba-959d-.csv",
+          "windows": 1,
+          "raw_rows": 397,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105754_52e3973e-55b1-4c69-abdc-.csv",
+          "windows": 1,
+          "raw_rows": 400,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105757_f827eb3e-acf3-4713-b55f-.csv",
+          "windows": 1,
+          "raw_rows": 497,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105759_06c584d1-14d0-49a3-a71a-.csv",
+          "windows": 1,
+          "raw_rows": 461,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105802_27c3e587-d803-4996-ae16-.csv",
+          "windows": 1,
+          "raw_rows": 389,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105805_bcd41f39-bda3-4b35-9b43-.csv",
+          "windows": 1,
+          "raw_rows": 522,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105808_b000d81a-b85d-4ba2-9d80-.csv",
+          "windows": 1,
+          "raw_rows": 468,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105810_3969b77e-9136-463f-835d-.csv",
+          "windows": 1,
+          "raw_rows": 429,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105815_90f01a31-580c-476a-9a12-.csv",
+          "windows": 1,
+          "raw_rows": 693,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105817_4838b8f4-3448-4906-a798-.csv",
+          "windows": 1,
+          "raw_rows": 536,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/shape_trace/shape_trace_20260817_105820_00bfda42-98dd-4c59-8d33-.csv",
+          "windows": 1,
+          "raw_rows": 506,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_105124_23c7cb15-479c-481f-a40b-.csv",
+          "windows": 1,
+          "raw_rows": 1125,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_105647_5a93ca0b-8d30-4e74-99ca-.csv",
+          "windows": 1,
+          "raw_rows": 865,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_105652_70ee57c3-4fa6-4c1e-b10e-.csv",
+          "windows": 1,
+          "raw_rows": 878,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_105657_0e1247f0-1938-498e-9adb-.csv",
+          "windows": 1,
+          "raw_rows": 1190,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_105702_03878869-5b91-4bb4-8672-.csv",
+          "windows": 1,
+          "raw_rows": 1075,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110454_1ee44856-fa3f-4224-bbe7-.csv",
+          "windows": 1,
+          "raw_rows": 806,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110458_7bbcf43e-a94d-4d25-99b8-.csv",
+          "windows": 1,
+          "raw_rows": 937,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110502_6c67c452-ba81-4bc1-be25-.csv",
+          "windows": 1,
+          "raw_rows": 1285,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110506_d0a32dea-ebed-4361-9e8b-.csv",
+          "windows": 1,
+          "raw_rows": 832,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110510_09154a71-5b27-444f-9cb9-.csv",
+          "windows": 1,
+          "raw_rows": 903,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110513_9f31f652-830b-4792-86a5-.csv",
+          "windows": 1,
+          "raw_rows": 760,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110518_0433a7f9-9bc0-4847-9e0c-.csv",
+          "windows": 1,
+          "raw_rows": 1005,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110523_c834e6f1-cad7-4791-83b5-.csv",
+          "windows": 1,
+          "raw_rows": 1189,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/spiral_trace/spiral_trace_20260817_110529_4a66ae98-3937-43d7-988c-.csv",
+          "windows": 1,
+          "raw_rows": 934,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105134_2b67bf68-9ee1-47a0-9592-.csv",
+          "windows": 1,
+          "raw_rows": 1302,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105527_a0181f78-d964-4264-8f57-.csv",
+          "windows": 1,
+          "raw_rows": 907,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105530_e76416b2-66fb-4757-9312-.csv",
+          "windows": 1,
+          "raw_rows": 1122,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105533_3c39d0e5-6871-4087-8fe1-.csv",
+          "windows": 1,
+          "raw_rows": 1121,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105535_27c70ef3-9f10-410d-8378-.csv",
+          "windows": 1,
+          "raw_rows": 680,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105623_a70c0baf-f7ec-4f40-b1a7-.csv",
+          "windows": 1,
+          "raw_rows": 1203,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105627_ed57498f-375b-4d10-b35d-.csv",
+          "windows": 1,
+          "raw_rows": 1144,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105632_d30bbd99-fa3c-4fc5-be41-.csv",
+          "windows": 1,
+          "raw_rows": 1116,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105636_b35e4315-b841-4aeb-9fec-.csv",
+          "windows": 1,
+          "raw_rows": 1108,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/target_hunt/target_hunt_20260817_105639_4f2330ac-0d7f-473d-8a15-.csv",
+          "windows": 1,
+          "raw_rows": 733,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105146_8de6cc08-101b-4b8c-a723-.csv",
+          "windows": 1,
+          "raw_rows": 1379,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105154_d03b6e5d-eaab-4ee1-aba4-.csv",
+          "windows": 1,
+          "raw_rows": 1002,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105213_d083fde4-55b8-4ca4-bcf2-.csv",
+          "windows": 1,
+          "raw_rows": 1368,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105253_244bddc8-501e-4fdf-a3d0-.csv",
+          "windows": 1,
+          "raw_rows": 1114,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105256_c030fb65-4f77-409d-a41b-.csv",
+          "windows": 1,
+          "raw_rows": 922,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105710_6171011d-84c8-4a40-b311-.csv",
+          "windows": 1,
+          "raw_rows": 1010,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105713_201c51e4-4f9a-401f-9125-.csv",
+          "windows": 1,
+          "raw_rows": 1259,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105717_50807806-a61f-4658-9eb8-.csv",
+          "windows": 1,
+          "raw_rows": 1305,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105725_bff43179-6748-4c83-8839-.csv",
+          "windows": 1,
+          "raw_rows": 1046,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/zigzag_trace/zigzag_trace_20260817_105729_cd1ea627-8fa9-44be-8202-.csv",
+          "windows": 1,
+          "raw_rows": 1222,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        }
+      ]
+    },
+    "dashboard_archive_generic": {
+      "label": "human_dashboard_archive (no spec, not for challenge-feature training)",
+      "feature_names": [
+        "straightness_index",
+        "velocity_mean",
+        "velocity_std",
+        "velocity_max",
+        "acceleration_mean",
+        "acceleration_std",
+        "jerk_mean",
+        "angle_change_mean",
+        "angle_change_std",
+        "jitter_ratio",
+        "idle_ratio",
+        "avg_click_dwell_ms"
+      ],
+      "totals": {
+        "files": 52,
+        "raw_rows": 57804,
+        "windows": 52,
+        "afk_splits": 0,
+        "errors": 0,
+        "empty_files": 0,
+        "truncated_files": 0
+      },
+      "by_subtype": {
+        "button_sequence": {
+          "files": 2,
+          "raw_rows": 1955,
+          "windows": 2,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "connect_dots": {
+          "files": 1,
+          "raw_rows": 1998,
+          "windows": 1,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "hazard_run": {
+          "files": 1,
+          "raw_rows": 1376,
+          "windows": 1,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "maze_navigate": {
+          "files": 1,
+          "raw_rows": 4275,
+          "windows": 1,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "path_gates": {
+          "files": 4,
+          "raw_rows": 6499,
+          "windows": 4,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "pin_entry": {
+          "files": 7,
+          "raw_rows": 7245,
+          "windows": 7,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "shape_trace": {
+          "files": 13,
+          "raw_rows": 6892,
+          "windows": 13,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "spiral_trace": {
+          "files": 4,
+          "raw_rows": 5275,
+          "windows": 4,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "target_hunt": {
+          "files": 16,
+          "raw_rows": 18173,
+          "windows": 16,
+          "afk_splits": 0,
+          "errors": 0
+        },
+        "zigzag_trace": {
+          "files": 3,
+          "raw_rows": 4116,
+          "windows": 3,
+          "afk_splits": 0,
+          "errors": 0
+        }
+      },
+      "files": [
+        {
+          "file": "human/challenges/_archive_no_spec/button_sequence/button_sequence_20260817_094710_60fe0083-4759-4d55-8769-.csv",
+          "windows": 1,
+          "raw_rows": 25,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/button_sequence/button_sequence_20260817_103446_e5147bac-f3f9-4e3b-966a-.csv",
+          "windows": 1,
+          "raw_rows": 1930,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/connect_dots/connect_dots_20260817_103818_fdc6cd6f-1bac-4a37-9799-.csv",
+          "windows": 1,
+          "raw_rows": 1998,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/hazard_run/hazard_run_20260817_103532_39ce9c84-052b-4b2e-883d-.csv",
+          "windows": 1,
+          "raw_rows": 1376,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/maze_navigate/maze_navigate_20260817_103800_f11fbad3-4b6d-4ad3-82ed-.csv",
+          "windows": 1,
+          "raw_rows": 4275,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/path_gates/path_gates_20260817_103452_e7e044af-d76c-470c-9c83-.csv",
+          "windows": 1,
+          "raw_rows": 1597,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/path_gates/path_gates_20260817_103508_c7a97353-6984-40e6-9357-.csv",
+          "windows": 1,
+          "raw_rows": 1589,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/path_gates/path_gates_20260817_103521_8ac952f9-8dba-4daf-9745-.csv",
+          "windows": 1,
+          "raw_rows": 1694,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/path_gates/path_gates_20260817_103555_2bec51d2-d3df-4e52-b42a-.csv",
+          "windows": 1,
+          "raw_rows": 1619,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/pin_entry/pin_entry_20260817_103840_e53de67e-8a4c-4a15-b5af-.csv",
+          "windows": 1,
+          "raw_rows": 817,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/pin_entry/pin_entry_20260817_103849_a877bd5c-1f2f-4838-9eaa-.csv",
+          "windows": 1,
+          "raw_rows": 1292,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/pin_entry/pin_entry_20260817_103906_6a351096-40da-4187-b638-.csv",
+          "windows": 1,
+          "raw_rows": 1026,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/pin_entry/pin_entry_20260817_103914_af892019-845c-430b-a217-.csv",
+          "windows": 1,
+          "raw_rows": 1077,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/pin_entry/pin_entry_20260817_104200_b5bc2cb4-6258-4095-8c7d-.csv",
+          "windows": 1,
+          "raw_rows": 945,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/pin_entry/pin_entry_20260817_104207_ca5d6f10-0959-4cd5-9bb6-.csv",
+          "windows": 1,
+          "raw_rows": 1053,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/pin_entry/pin_entry_20260817_104216_2c645b94-37fe-46e2-be7c-.csv",
+          "windows": 1,
+          "raw_rows": 1035,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_103606_6595369b-492e-48eb-993b-.csv",
+          "windows": 1,
+          "raw_rows": 573,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_103615_d7eae260-0aa3-4854-ba4d-.csv",
+          "windows": 1,
+          "raw_rows": 614,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104235_31778bcd-75cf-4c0c-8422-.csv",
+          "windows": 1,
+          "raw_rows": 364,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104239_4f29dfd5-e300-45d4-afb6-.csv",
+          "windows": 1,
+          "raw_rows": 543,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104248_0fbe58f1-37ab-42b5-bba1-.csv",
+          "windows": 1,
+          "raw_rows": 572,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104252_e023361f-3669-4b2d-9cd0-.csv",
+          "windows": 1,
+          "raw_rows": 438,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104255_3e5e92a1-4b85-444f-a5b8-.csv",
+          "windows": 1,
+          "raw_rows": 348,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104258_19cc3da5-cf9e-450f-9ac8-.csv",
+          "windows": 1,
+          "raw_rows": 603,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104302_156cd859-67af-4212-885c-.csv",
+          "windows": 1,
+          "raw_rows": 695,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104305_405f0bc5-ed42-4549-8728-.csv",
+          "windows": 1,
+          "raw_rows": 477,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104308_544d59ef-4064-4cec-ab69-.csv",
+          "windows": 1,
+          "raw_rows": 389,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104314_882b0643-e16b-4ab2-b7a1-.csv",
+          "windows": 1,
+          "raw_rows": 740,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/shape_trace/shape_trace_20260817_104318_3d1570b6-f918-4814-b667-.csv",
+          "windows": 1,
+          "raw_rows": 536,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/spiral_trace/spiral_trace_20260817_103440_b2e8c176-fa11-4683-90c6-.csv",
+          "windows": 1,
+          "raw_rows": 1197,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/spiral_trace/spiral_trace_20260817_103516_78cface2-80cd-456f-9b0d-.csv",
+          "windows": 1,
+          "raw_rows": 1339,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/spiral_trace/spiral_trace_20260817_103549_64c2d88d-6aa2-4858-8891-.csv",
+          "windows": 1,
+          "raw_rows": 1721,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/spiral_trace/spiral_trace_20260817_103611_fdb98295-243c-40c8-8c60-.csv",
+          "windows": 1,
+          "raw_rows": 1018,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_103526_5190fe64-3231-4155-ad03-.csv",
+          "windows": 1,
+          "raw_rows": 1519,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_103538_3c361d11-822f-46d7-9bd2-.csv",
+          "windows": 1,
+          "raw_rows": 962,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_103824_ee1b1eac-3e41-4a60-b939-.csv",
+          "windows": 1,
+          "raw_rows": 1658,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104333_5403bc47-71ab-40c0-818c-.csv",
+          "windows": 1,
+          "raw_rows": 1015,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104336_b2c40f46-59f6-49d0-beb4-.csv",
+          "windows": 1,
+          "raw_rows": 988,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104339_d825e609-5f30-4bbe-8f26-.csv",
+          "windows": 1,
+          "raw_rows": 959,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104342_badc0159-f6f5-4f8c-a080-.csv",
+          "windows": 1,
+          "raw_rows": 1257,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104346_ec85359a-ff81-479b-bfec-.csv",
+          "windows": 1,
+          "raw_rows": 1061,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104349_b7a7bb68-ad28-4553-a369-.csv",
+          "windows": 1,
+          "raw_rows": 857,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104353_60c564dc-1fa2-4d45-975f-.csv",
+          "windows": 1,
+          "raw_rows": 1100,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104355_ef38ca06-de32-473d-8de9-.csv",
+          "windows": 1,
+          "raw_rows": 1083,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104358_362f3210-1e47-4ef1-b5e5-.csv",
+          "windows": 1,
+          "raw_rows": 1281,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104401_153ef713-375b-40e9-9e36-.csv",
+          "windows": 1,
+          "raw_rows": 999,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104403_ba9c513a-195a-493c-8270-.csv",
+          "windows": 1,
+          "raw_rows": 888,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104406_7585f9b3-cdc4-43d5-95ac-.csv",
+          "windows": 1,
+          "raw_rows": 982,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/target_hunt/target_hunt_20260817_104412_f7ae16d1-734f-4dec-8db6-.csv",
+          "windows": 1,
+          "raw_rows": 1564,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/zigzag_trace/zigzag_trace_20260817_103428_15939528-b253-40fa-9dbe-.csv",
+          "windows": 1,
+          "raw_rows": 1534,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/zigzag_trace/zigzag_trace_20260817_103504_8711872b-b9e4-4d75-9aef-.csv",
+          "windows": 1,
+          "raw_rows": 1087,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "human/challenges/_archive_no_spec/zigzag_trace/zigzag_trace_20260817_103601_df01ea3c-f5d0-4f9b-8a02-.csv",
+          "windows": 1,
+          "raw_rows": 1495,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        }
+      ]
+    }
+  },
+  "bot": {
+    "bot_challenge": {
+      "label": "bot_challenge",
+      "feature_names": [
+        "straightness_index",
+        "velocity_mean",
+        "velocity_std",
+        "velocity_max",
+        "acceleration_mean",
+        "acceleration_std",
+        "jerk_mean",
+        "angle_change_mean",
+        "angle_change_std",
+        "jitter_ratio",
+        "idle_ratio",
+        "avg_click_dwell_ms"
+      ],
+      "totals": {
+        "files": 7,
+        "raw_rows": 6197055,
+        "windows": 40340,
+        "afk_splits": 2443,
+        "errors": 0,
+        "empty_files": 0,
+        "truncated_files": 0
+      },
+      "by_subtype": {
+        "bot_challenge": {
+          "files": 7,
+          "raw_rows": 6197055,
+          "windows": 40340,
+          "afk_splits": 2443,
+          "errors": 0
+        }
+      },
+      "files": [
+        {
+          "file": "bot_challenge/challenge_bot_001.csv",
+          "windows": 6463,
+          "raw_rows": 992858,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge/challenge_bot_002.csv",
+          "windows": 4843,
+          "raw_rows": 757478,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge/challenge_bot_003.csv",
+          "windows": 4975,
+          "raw_rows": 776537,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge/challenge_bot_004.csv",
+          "windows": 7152,
+          "raw_rows": 1061798,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge/challenge_bot_005.csv",
+          "windows": 5615,
+          "raw_rows": 865884,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge/challenge_bot_006.csv",
+          "windows": 5113,
+          "raw_rows": 796305,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge/challenge_bot_007.csv",
+          "windows": 6179,
+          "raw_rows": 946195,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        }
+      ]
+    },
+    "bot_challenge_tiers": {
+      "label": "bot_challenge_tiers",
+      "feature_names": [
+        "straightness_index",
+        "velocity_mean",
+        "velocity_std",
+        "velocity_max",
+        "acceleration_mean",
+        "acceleration_std",
+        "jerk_mean",
+        "angle_change_mean",
+        "angle_change_std",
+        "jitter_ratio",
+        "idle_ratio",
+        "avg_click_dwell_ms"
+      ],
+      "totals": {
+        "files": 158,
+        "raw_rows": 11338194,
+        "windows": 55186,
+        "afk_splits": 25042,
+        "errors": 0,
+        "empty_files": 0,
+        "truncated_files": 0
+      },
+      "by_subtype": {
+        "bot_challenge_tiers": {
+          "files": 158,
+          "raw_rows": 11338194,
+          "windows": 55186,
+          "afk_splits": 25042,
+          "errors": 0
+        }
+      },
+      "files": [
+        {
+          "file": "bot_challenge_tiers/tier_bezier_fast.csv",
+          "windows": 286,
+          "raw_rows": 75548,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bezier_timed.csv",
+          "windows": 348,
+          "raw_rows": 105786,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_011.csv",
+          "windows": 1224,
+          "raw_rows": 211921,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_012.csv",
+          "windows": 1136,
+          "raw_rows": 211838,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_013.csv",
+          "windows": 1331,
+          "raw_rows": 239363,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_014.csv",
+          "windows": 1331,
+          "raw_rows": 240612,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_015.csv",
+          "windows": 1852,
+          "raw_rows": 310471,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_016.csv",
+          "windows": 1157,
+          "raw_rows": 216208,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_017.csv",
+          "windows": 1231,
+          "raw_rows": 222530,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_018.csv",
+          "windows": 1618,
+          "raw_rows": 278710,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_019.csv",
+          "windows": 1082,
+          "raw_rows": 213761,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_020.csv",
+          "windows": 807,
+          "raw_rows": 170953,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_021.csv",
+          "windows": 1040,
+          "raw_rows": 200138,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_022.csv",
+          "windows": 1107,
+          "raw_rows": 200049,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_023.csv",
+          "windows": 1044,
+          "raw_rows": 202216,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_024.csv",
+          "windows": 978,
+          "raw_rows": 198196,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_025.csv",
+          "windows": 1814,
+          "raw_rows": 307706,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_026.csv",
+          "windows": 1310,
+          "raw_rows": 230772,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_027.csv",
+          "windows": 893,
+          "raw_rows": 189322,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_028.csv",
+          "windows": 1511,
+          "raw_rows": 262569,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_029.csv",
+          "windows": 1144,
+          "raw_rows": 203398,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_030.csv",
+          "windows": 772,
+          "raw_rows": 163755,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_031.csv",
+          "windows": 747,
+          "raw_rows": 160588,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_032.csv",
+          "windows": 1370,
+          "raw_rows": 241909,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_033.csv",
+          "windows": 912,
+          "raw_rows": 188994,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_034.csv",
+          "windows": 932,
+          "raw_rows": 185860,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_035.csv",
+          "windows": 1404,
+          "raw_rows": 257236,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_036.csv",
+          "windows": 2095,
+          "raw_rows": 335808,
+          "afk_splits": 399,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_037.csv",
+          "windows": 114,
+          "raw_rows": 29061,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_038.csv",
+          "windows": 203,
+          "raw_rows": 47349,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_039.csv",
+          "windows": 162,
+          "raw_rows": 38018,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_040.csv",
+          "windows": 119,
+          "raw_rows": 31642,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_041.csv",
+          "windows": 179,
+          "raw_rows": 40087,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_042.csv",
+          "windows": 194,
+          "raw_rows": 44482,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_043.csv",
+          "windows": 212,
+          "raw_rows": 47978,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_044.csv",
+          "windows": 114,
+          "raw_rows": 34750,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_045.csv",
+          "windows": 98,
+          "raw_rows": 27309,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_046.csv",
+          "windows": 131,
+          "raw_rows": 33864,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_047.csv",
+          "windows": 217,
+          "raw_rows": 42938,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_048.csv",
+          "windows": 103,
+          "raw_rows": 29602,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_049.csv",
+          "windows": 207,
+          "raw_rows": 43495,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_050.csv",
+          "windows": 104,
+          "raw_rows": 30060,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_051.csv",
+          "windows": 152,
+          "raw_rows": 32713,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_052.csv",
+          "windows": 261,
+          "raw_rows": 48826,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_053.csv",
+          "windows": 138,
+          "raw_rows": 31459,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_054.csv",
+          "windows": 200,
+          "raw_rows": 35555,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_055.csv",
+          "windows": 177,
+          "raw_rows": 39079,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_056.csv",
+          "windows": 102,
+          "raw_rows": 30975,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_057.csv",
+          "windows": 166,
+          "raw_rows": 37537,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_058.csv",
+          "windows": 126,
+          "raw_rows": 31466,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_059.csv",
+          "windows": 129,
+          "raw_rows": 35033,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_060.csv",
+          "windows": 156,
+          "raw_rows": 31120,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_061.csv",
+          "windows": 147,
+          "raw_rows": 33802,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_062.csv",
+          "windows": 143,
+          "raw_rows": 34351,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_063.csv",
+          "windows": 170,
+          "raw_rows": 35412,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_064.csv",
+          "windows": 121,
+          "raw_rows": 32599,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_065.csv",
+          "windows": 174,
+          "raw_rows": 36556,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_066.csv",
+          "windows": 170,
+          "raw_rows": 41035,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_067.csv",
+          "windows": 226,
+          "raw_rows": 46273,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_068.csv",
+          "windows": 136,
+          "raw_rows": 34239,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_069.csv",
+          "windows": 117,
+          "raw_rows": 30063,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_070.csv",
+          "windows": 182,
+          "raw_rows": 38745,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_071.csv",
+          "windows": 160,
+          "raw_rows": 32786,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_072.csv",
+          "windows": 106,
+          "raw_rows": 33035,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_073.csv",
+          "windows": 112,
+          "raw_rows": 34484,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_074.csv",
+          "windows": 204,
+          "raw_rows": 44429,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_075.csv",
+          "windows": 157,
+          "raw_rows": 36679,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_076.csv",
+          "windows": 234,
+          "raw_rows": 49806,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_077.csv",
+          "windows": 128,
+          "raw_rows": 36077,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_078.csv",
+          "windows": 134,
+          "raw_rows": 34898,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_079.csv",
+          "windows": 203,
+          "raw_rows": 44519,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_080.csv",
+          "windows": 169,
+          "raw_rows": 34499,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_081.csv",
+          "windows": 136,
+          "raw_rows": 33415,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_082.csv",
+          "windows": 187,
+          "raw_rows": 36124,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_083.csv",
+          "windows": 144,
+          "raw_rows": 34685,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_084.csv",
+          "windows": 183,
+          "raw_rows": 39540,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_085.csv",
+          "windows": 148,
+          "raw_rows": 37274,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_086.csv",
+          "windows": 212,
+          "raw_rows": 47373,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_087.csv",
+          "windows": 228,
+          "raw_rows": 48044,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_088.csv",
+          "windows": 104,
+          "raw_rows": 31400,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_089.csv",
+          "windows": 237,
+          "raw_rows": 48983,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_090.csv",
+          "windows": 173,
+          "raw_rows": 34963,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_091.csv",
+          "windows": 149,
+          "raw_rows": 33908,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_092.csv",
+          "windows": 166,
+          "raw_rows": 34613,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_093.csv",
+          "windows": 113,
+          "raw_rows": 32346,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_094.csv",
+          "windows": 162,
+          "raw_rows": 39308,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_095.csv",
+          "windows": 208,
+          "raw_rows": 46758,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_096.csv",
+          "windows": 203,
+          "raw_rows": 45414,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_097.csv",
+          "windows": 155,
+          "raw_rows": 36291,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_098.csv",
+          "windows": 189,
+          "raw_rows": 42217,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_099.csv",
+          "windows": 131,
+          "raw_rows": 31736,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_100.csv",
+          "windows": 127,
+          "raw_rows": 33764,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_101.csv",
+          "windows": 176,
+          "raw_rows": 40378,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_102.csv",
+          "windows": 172,
+          "raw_rows": 39342,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_103.csv",
+          "windows": 174,
+          "raw_rows": 41104,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_104.csv",
+          "windows": 169,
+          "raw_rows": 37248,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_105.csv",
+          "windows": 118,
+          "raw_rows": 28722,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_106.csv",
+          "windows": 161,
+          "raw_rows": 41075,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_107.csv",
+          "windows": 166,
+          "raw_rows": 38667,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_108.csv",
+          "windows": 165,
+          "raw_rows": 39010,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_109.csv",
+          "windows": 137,
+          "raw_rows": 39847,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_110.csv",
+          "windows": 155,
+          "raw_rows": 38656,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_111.csv",
+          "windows": 110,
+          "raw_rows": 31062,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_112.csv",
+          "windows": 143,
+          "raw_rows": 42868,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_113.csv",
+          "windows": 105,
+          "raw_rows": 29202,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_114.csv",
+          "windows": 106,
+          "raw_rows": 32639,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_115.csv",
+          "windows": 115,
+          "raw_rows": 28020,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_116.csv",
+          "windows": 141,
+          "raw_rows": 34085,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_117.csv",
+          "windows": 145,
+          "raw_rows": 37424,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_118.csv",
+          "windows": 164,
+          "raw_rows": 36951,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_119.csv",
+          "windows": 113,
+          "raw_rows": 28580,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_120.csv",
+          "windows": 220,
+          "raw_rows": 44306,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_121.csv",
+          "windows": 180,
+          "raw_rows": 40502,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_122.csv",
+          "windows": 190,
+          "raw_rows": 40547,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_123.csv",
+          "windows": 197,
+          "raw_rows": 43301,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_124.csv",
+          "windows": 146,
+          "raw_rows": 33849,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_125.csv",
+          "windows": 141,
+          "raw_rows": 34009,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_126.csv",
+          "windows": 151,
+          "raw_rows": 41315,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_127.csv",
+          "windows": 179,
+          "raw_rows": 37757,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_128.csv",
+          "windows": 190,
+          "raw_rows": 37602,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_129.csv",
+          "windows": 172,
+          "raw_rows": 37561,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_130.csv",
+          "windows": 111,
+          "raw_rows": 31332,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_131.csv",
+          "windows": 117,
+          "raw_rows": 31882,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_132.csv",
+          "windows": 206,
+          "raw_rows": 48385,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_133.csv",
+          "windows": 154,
+          "raw_rows": 34329,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_134.csv",
+          "windows": 139,
+          "raw_rows": 33789,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_135.csv",
+          "windows": 202,
+          "raw_rows": 39833,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_136.csv",
+          "windows": 159,
+          "raw_rows": 37847,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_137.csv",
+          "windows": 138,
+          "raw_rows": 33485,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_138.csv",
+          "windows": 183,
+          "raw_rows": 42351,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_139.csv",
+          "windows": 131,
+          "raw_rows": 36583,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_140.csv",
+          "windows": 211,
+          "raw_rows": 45414,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_141.csv",
+          "windows": 142,
+          "raw_rows": 37098,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_142.csv",
+          "windows": 146,
+          "raw_rows": 34145,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_143.csv",
+          "windows": 206,
+          "raw_rows": 43302,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_144.csv",
+          "windows": 217,
+          "raw_rows": 43238,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_145.csv",
+          "windows": 167,
+          "raw_rows": 39876,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_146.csv",
+          "windows": 191,
+          "raw_rows": 41430,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_147.csv",
+          "windows": 113,
+          "raw_rows": 24622,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_148.csv",
+          "windows": 162,
+          "raw_rows": 35855,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_149.csv",
+          "windows": 191,
+          "raw_rows": 40735,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_150.csv",
+          "windows": 145,
+          "raw_rows": 35545,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_151.csv",
+          "windows": 120,
+          "raw_rows": 32369,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_152.csv",
+          "windows": 91,
+          "raw_rows": 29592,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_153.csv",
+          "windows": 114,
+          "raw_rows": 29075,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_154.csv",
+          "windows": 146,
+          "raw_rows": 37128,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_155.csv",
+          "windows": 157,
+          "raw_rows": 33921,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_156.csv",
+          "windows": 145,
+          "raw_rows": 34695,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_157.csv",
+          "windows": 202,
+          "raw_rows": 42947,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_158.csv",
+          "windows": 139,
+          "raw_rows": 32621,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_159.csv",
+          "windows": 181,
+          "raw_rows": 36672,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_160.csv",
+          "windows": 204,
+          "raw_rows": 42248,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_bot_161.csv",
+          "windows": 124,
+          "raw_rows": 29210,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_humanoid_fast.csv",
+          "windows": 288,
+          "raw_rows": 82342,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_humanoid_simulated.csv",
+          "windows": 1853,
+          "raw_rows": 370734,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_linear_fast.csv",
+          "windows": 64,
+          "raw_rows": 45710,
+          "afk_splits": 199,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_linear_timed.csv",
+          "windows": 349,
+          "raw_rows": 91182,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_challenge_tiers/tier_naive.csv",
+          "windows": 289,
+          "raw_rows": 87985,
+          "afk_splits": 349,
+          "error": null,
+          "truncated": false
+        }
+      ]
+    },
+    "bot_evasion": {
+      "label": "bot_evasion",
+      "feature_names": [
+        "straightness_index",
+        "velocity_mean",
+        "velocity_std",
+        "velocity_max",
+        "acceleration_mean",
+        "acceleration_std",
+        "jerk_mean",
+        "angle_change_mean",
+        "angle_change_std",
+        "jitter_ratio",
+        "idle_ratio",
+        "avg_click_dwell_ms"
+      ],
+      "totals": {
+        "files": 7,
+        "raw_rows": 128903,
+        "windows": 671,
+        "afk_splits": 275,
+        "errors": 0,
+        "empty_files": 0,
+        "truncated_files": 0
+      },
+      "by_subtype": {
+        "bot_evasion": {
+          "files": 7,
+          "raw_rows": 128903,
+          "windows": 671,
+          "afk_splits": 275,
+          "errors": 0
+        }
+      },
+      "files": [
+        {
+          "file": "bot_evasion/evasion_cycle_001.csv",
+          "windows": 489,
+          "raw_rows": 90069,
+          "afk_splits": 99,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_evasion/evasion_cycle_002.csv",
+          "windows": 8,
+          "raw_rows": 2385,
+          "afk_splits": 7,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_evasion/evasion_cycle_003.csv",
+          "windows": 15,
+          "raw_rows": 3298,
+          "afk_splits": 14,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_evasion/evasion_cycle_004.csv",
+          "windows": 15,
+          "raw_rows": 1874,
+          "afk_splits": 14,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_evasion/evasion_cycle_005.csv",
+          "windows": 48,
+          "raw_rows": 7958,
+          "afk_splits": 47,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_evasion/evasion_cycle_006.csv",
+          "windows": 48,
+          "raw_rows": 11645,
+          "afk_splits": 47,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_evasion/evasion_cycle_007.csv",
+          "windows": 48,
+          "raw_rows": 11674,
+          "afk_splits": 47,
+          "error": null,
+          "truncated": false
+        }
+      ]
+    },
+    "bot_legacy": {
+      "label": "bot_legacy",
+      "feature_names": [
+        "straightness_index",
+        "velocity_mean",
+        "velocity_std",
+        "velocity_max",
+        "acceleration_mean",
+        "acceleration_std",
+        "jerk_mean",
+        "angle_change_mean",
+        "angle_change_std",
+        "jitter_ratio",
+        "idle_ratio",
+        "avg_click_dwell_ms"
+      ],
+      "totals": {
+        "files": 4,
+        "raw_rows": 1691,
+        "windows": 3,
+        "afk_splits": 0,
+        "errors": 0,
+        "empty_files": 1,
+        "truncated_files": 0
+      },
+      "by_subtype": {
+        "bot": {
+          "files": 4,
+          "raw_rows": 1691,
+          "windows": 3,
+          "afk_splits": 0,
+          "errors": 0
+        }
+      },
+      "files": [
+        {
+          "file": "bot/bot_bezier_bot.csv",
+          "windows": 1,
+          "raw_rows": 470,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot/bot_humanoid_fitts_bot.csv",
+          "windows": 1,
+          "raw_rows": 821,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot/bot_linear_bot.csv",
+          "windows": 1,
+          "raw_rows": 370,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot/bot_naive_bot.csv",
+          "windows": 0,
+          "raw_rows": 30,
+          "afk_splits": 0,
+          "error": null,
+          "truncated": false
+        }
+      ]
+    },
+    "bot_humanlike": {
+      "label": "bot_humanlike",
+      "feature_names": [
+        "straightness_index",
+        "velocity_mean",
+        "velocity_std",
+        "velocity_max",
+        "acceleration_mean",
+        "acceleration_std",
+        "jerk_mean",
+        "angle_change_mean",
+        "angle_change_std",
+        "jitter_ratio",
+        "idle_ratio",
+        "avg_click_dwell_ms"
+      ],
+      "totals": {
+        "files": 6,
+        "raw_rows": 3939461,
+        "windows": 11329,
+        "afk_splits": 11323,
+        "errors": 0,
+        "empty_files": 0,
+        "truncated_files": 0
+      },
+      "by_subtype": {
+        "bot_humanlike": {
+          "files": 6,
+          "raw_rows": 3939461,
+          "windows": 11329,
+          "afk_splits": 11323,
+          "errors": 0
+        }
+      },
+      "files": [
+        {
+          "file": "bot_humanlike/humanlike_bot_01.csv",
+          "windows": 1889,
+          "raw_rows": 659053,
+          "afk_splits": 1888,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_humanlike/humanlike_bot_02.csv",
+          "windows": 1889,
+          "raw_rows": 651783,
+          "afk_splits": 1888,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_humanlike/humanlike_bot_03.csv",
+          "windows": 1889,
+          "raw_rows": 654329,
+          "afk_splits": 1888,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_humanlike/humanlike_bot_04.csv",
+          "windows": 1889,
+          "raw_rows": 658166,
+          "afk_splits": 1888,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_humanlike/humanlike_bot_05.csv",
+          "windows": 1889,
+          "raw_rows": 659697,
+          "afk_splits": 1888,
+          "error": null,
+          "truncated": false
+        },
+        {
+          "file": "bot_humanlike/humanlike_bot_06.csv",
+          "windows": 1884,
+          "raw_rows": 656433,
+          "afk_splits": 1883,
+          "error": null,
+          "truncated": false
+        }
+      ]
+    }
+  },
+  "summary": {
+    "human_training_windows": 10179,
+    "human_os_recording_windows": 10053,
+    "human_dashboard_live_windows": 126,
+    "human_dashboard_archive_windows_excluded_from_primary": 52,
+    "bot_training_windows": 107529,
+    "bot_by_source": {
+      "bot_challenge": 40340,
+      "bot_challenge_tiers": 55186,
+      "bot_evasion": 671,
+      "bot_legacy": 3,
+      "bot_humanlike": 11329
+    },
+    "balanced_pair_limit": 10179
+  }
+}

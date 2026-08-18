@@ -1,0 +1,31 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "ca5d6f10-0959-4cd5-9bb6-b9099a1f2eb4",
+  "challenge_type": "pin_entry",
+  "seed": 1460806361,
+  "task_passed": true,
+  "event_count": 1053,
+  "features": {
+    "event_count": 1053,
+    "duration_ms": 5285.2,
+    "total_distance_px": 1133.82,
+    "euclidean_distance_px": 248.36,
+    "straightness_index": 0.2191,
+    "velocity_mean": 0.6783,
+    "velocity_std": 0.4274,
+    "velocity_max": 3.1944,
+    "acceleration_mean": 0.26912,
+    "acceleration_std": 0.355975,
+    "acceleration_max": 3.942286,
+    "jerk_mean": 0.23744136,
+    "angle_change_mean": 0.791,
+    "angle_change_std": 0.691,
+    "jitter_ratio": 0.3853,
+    "idle_ratio": 0.3653,
+    "avg_click_dwell_ms": 69.22
+  },
+  "csv": "pin_entry_20260817_104207_ca5d6f10-0959-4cd5-9bb6-.csv",
+  "relative_dir": "challenges/pin_entry",
+  "saved_at": "2026-08-17T10:42:07.402413+00:00"
+}

@@ -1,0 +1,31 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "4f29dfd5-e300-45d4-afb6-3cf42ccd1163",
+  "challenge_type": "shape_trace",
+  "seed": 897403650,
+  "task_passed": true,
+  "event_count": 543,
+  "features": {
+    "event_count": 543,
+    "duration_ms": 2126.1,
+    "total_distance_px": 555.8,
+    "euclidean_distance_px": 4.47,
+    "straightness_index": 0.008,
+    "velocity_mean": 0.4997,
+    "velocity_std": 0.3148,
+    "velocity_max": 1.5713,
+    "acceleration_mean": 0.188223,
+    "acceleration_std": 0.252574,
+    "acceleration_max": 1.563793,
+    "jerk_mean": 0.16007864,
+    "angle_change_mean": 0.1655,
+    "angle_change_std": 0.4479,
+    "jitter_ratio": 0.0795,
+    "idle_ratio": 0.171,
+    "avg_click_dwell_ms": 2126.1
+  },
+  "csv": "shape_trace_20260817_104239_4f29dfd5-e300-45d4-afb6-.csv",
+  "relative_dir": "challenges/shape_trace",
+  "saved_at": "2026-08-17T10:42:39.230542+00:00"
+}

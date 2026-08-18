@@ -18,6 +18,11 @@
         <div class="top-actions">
             <span class="status-pill" id="backend-status">Connecting...</span>
             <div class="model-select-wrap">
+                <select id="challenge-type" aria-label="Challenge type">
+                    <option value="random">Random challenge</option>
+                </select>
+            </div>
+            <div class="model-select-wrap">
                 <select id="active-model" aria-label="Active detection model"></select>
             </div>
             <button class="btn btn-primary" id="btn-new-challenge" type="button">New Challenge</button>
@@ -36,7 +41,7 @@
                 <button class="btn btn-bot" type="button" data-bot="linear">Linear</button>
                 <button class="btn btn-bot" type="button" data-bot="bezier">Bezier</button>
                 <button class="btn btn-bot" type="button" data-bot="humanoid">Humanoid</button>
-                <button class="btn" id="btn-submit" type="button">Submit Human Attempt</button>
+                <button class="btn" id="btn-submit" type="button">Submit Attempt</button>
             </div>
 
             <div class="arena-wrap">
@@ -47,7 +52,11 @@
                         <h3 id="overlay-title">Result</h3>
                         <p id="overlay-message"></p>
                         <div class="result-grid" id="result-grid"></div>
-                        <button class="btn btn-primary" id="btn-next" type="button">Next Challenge</button>
+                        <p class="overlay-save-status" id="overlay-save-status"></p>
+                        <div class="overlay-actions">
+                            <button class="btn btn-human hidden" id="btn-save-human" type="button">Keep as human data & next</button>
+                            <button class="btn btn-primary" id="btn-next" type="button">Next Challenge</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,10 +64,16 @@
 
         <aside class="sidebar">
             <div class="card confidence-card">
-                <h3>Human Confidence</h3>
+                <h3>Model confidence</h3>
                 <div class="confidence-value" id="human-confidence">—%</div>
                 <div class="decision-badge badge-neutral" id="decision-badge">READY</div>
                 <p class="model-line" id="model-line">Select a model and start a challenge</p>
+            </div>
+            <div class="card">
+                <h3>Challenge catalog</h3>
+                <ul class="challenge-catalog" id="challenge-catalog">
+                    <li class="flag idle">Loading…</li>
+                </ul>
             </div>
             <div class="card">
                 <h3>Session</h3>
@@ -66,8 +81,14 @@
                     <div><dt>Type</dt><dd id="meta-type">—</dd></div>
                     <div><dt>Seed</dt><dd id="meta-seed">—</dd></div>
                     <div><dt>Events</dt><dd id="meta-events">0</dd></div>
+                    <div><dt>Cursor Hz</dt><dd id="meta-cursor-hz">—</dd></div>
+                    <div><dt>Stream Hz</dt><dd id="meta-stream-hz">—</dd></div>
                     <div><dt>Participant</dt><dd id="meta-participant">—</dd></div>
                 </dl>
+                <label class="hz-scale-toggle">
+                    <input type="checkbox" id="scale-900hz">
+                    Scale stream to 900 Hz
+                </label>
             </div>
             <div class="card">
                 <h3>Task Result</h3>

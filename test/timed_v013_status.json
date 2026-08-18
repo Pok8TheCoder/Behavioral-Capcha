@@ -1,0 +1,17 @@
+{
+  "model": "qmodel_v0.13",
+  "attempts": 138,
+  "elapsed_s": 1021.0,
+  "best_model_human": 0.7621,
+  "best_bot_prob": 0.2379,
+  "best_family": "smooth_low_jit",
+  "last_model_human": 0.7621,
+  "last_family": "smooth_low_jit",
+  "target": 0.7,
+  "family_best": {
+    "burst_hi_vel": 0.5945,
+    "smooth_low_jit": 0.7621,
+    "wide_low_jerk": 0.356,
+    "crawl_low_vel": 0.0020000000000000018
+  }
+}

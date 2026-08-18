@@ -1,0 +1,31 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "78cface2-80cd-456f-9b0d-b27ab7060191",
+  "challenge_type": "spiral_trace",
+  "seed": 663616068,
+  "task_passed": true,
+  "event_count": 1339,
+  "features": {
+    "event_count": 1339,
+    "duration_ms": 4517.5,
+    "total_distance_px": 1024.3,
+    "euclidean_distance_px": 114.0,
+    "straightness_index": 0.1113,
+    "velocity_mean": 0.3676,
+    "velocity_std": 0.355,
+    "velocity_max": 1.5713,
+    "acceleration_mean": 0.258871,
+    "acceleration_std": 0.327098,
+    "acceleration_max": 2.040816,
+    "jerk_mean": 0.1900436,
+    "angle_change_mean": 1.0433,
+    "angle_change_std": 1.0276,
+    "jitter_ratio": 0.5206,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": 4517.5
+  },
+  "csv": "spiral_trace_20260817_103516_78cface2-80cd-456f-9b0d-.csv",
+  "relative_dir": "challenges/spiral_trace",
+  "saved_at": "2026-08-17T10:35:16.440003+00:00"
+}

@@ -1,0 +1,122 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "a0181f78-d964-4264-8f57-5a77681f2fd2",
+  "challenge_type": "target_hunt",
+  "seed": 1902721767,
+  "task_passed": true,
+  "event_count": 907,
+  "features": {
+    "event_count": 907,
+    "duration_ms": 1620.0,
+    "total_distance_px": 1264.8,
+    "euclidean_distance_px": 476.72,
+    "straightness_index": 0.3769,
+    "velocity_mean": 1.2065,
+    "velocity_std": 0.7998,
+    "velocity_max": 7.0711,
+    "acceleration_mean": 0.512916,
+    "acceleration_std": 1.26364,
+    "acceleration_max": 35.355339,
+    "jerk_mean": 0.56297989,
+    "angle_change_mean": 0.4724,
+    "angle_change_std": 0.5634,
+    "jitter_ratio": 0.1646,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": 62.3
+  },
+  "challenge_features": {
+    "click_count": 5,
+    "avg_click_dwell_ms": 62.3,
+    "median_click_dwell_ms": 64.6,
+    "inter_click_mean_ms": 278.25,
+    "inter_click_min_ms": 194.3,
+    "inter_click_max_ms": 389.7,
+    "target_count": 5,
+    "hits": 5,
+    "click_offset_mean_px": 20.598,
+    "click_offset_min_px": 9.95,
+    "click_offset_max_px": 39.45,
+    "mean_offset_over_radius": 0.7812,
+    "clicks": [
+      {
+        "t": 174180.9,
+        "target_id": 4,
+        "offset_px": 17.66,
+        "offset_over_radius": 0.6541,
+        "inside": true
+      },
+      {
+        "t": 174491.8,
+        "target_id": 1,
+        "offset_px": 39.45,
+        "offset_over_radius": 1.4612,
+        "inside": true
+      },
+      {
+        "t": 174881.5,
+        "target_id": 3,
+        "offset_px": 18.73,
+        "offset_over_radius": 0.7205,
+        "inside": true
+      },
+      {
+        "t": 175075.8,
+        "target_id": 5,
+        "offset_px": 17.2,
+        "offset_over_radius": 0.6372,
+        "inside": true
+      },
+      {
+        "t": 175293.9,
+        "target_id": 2,
+        "offset_px": 9.95,
+        "offset_over_radius": 0.4328,
+        "inside": true
+      }
+    ]
+  },
+  "spec": {
+    "targets": [
+      {
+        "id": 1,
+        "x": 504.8,
+        "y": 406.7,
+        "radius": 27,
+        "color": "#22d3ee"
+      },
+      {
+        "id": 2,
+        "x": 830.2,
+        "y": 328.2,
+        "radius": 23,
+        "color": "#a855f7"
+      },
+      {
+        "id": 3,
+        "x": 591.9,
+        "y": 394.7,
+        "radius": 26,
+        "color": "#f59e0b"
+      },
+      {
+        "id": 4,
+        "x": 225.5,
+        "y": 238.7,
+        "radius": 27,
+        "color": "#10b981"
+      },
+      {
+        "id": 5,
+        "x": 612.4,
+        "y": 319.1,
+        "radius": 27,
+        "color": "#f43f5e"
+      }
+    ],
+    "click_tolerance_px": 30
+  },
+  "csv": "target_hunt_20260817_105527_a0181f78-d964-4264-8f57-.csv",
+  "relative_dir": "challenges/target_hunt",
+  "saved_at": "2026-08-17T10:55:27.920669+00:00"
+}

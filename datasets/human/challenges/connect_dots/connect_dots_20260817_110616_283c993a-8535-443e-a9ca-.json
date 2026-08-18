@@ -1,0 +1,160 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "283c993a-8535-443e-a9ca-707737344512",
+  "challenge_type": "connect_dots",
+  "seed": 40189090,
+  "task_passed": true,
+  "event_count": 2197,
+  "features": {
+    "event_count": 2197,
+    "duration_ms": 7943.6,
+    "total_distance_px": 2812.15,
+    "euclidean_distance_px": 173.42,
+    "straightness_index": 0.0617,
+    "velocity_mean": 1.0547,
+    "velocity_std": 0.6069,
+    "velocity_max": 3.75,
+    "acceleration_mean": 0.388628,
+    "acceleration_std": 0.419197,
+    "acceleration_max": 3.214361,
+    "jerk_mean": 0.29728461,
+    "angle_change_mean": 0.4525,
+    "angle_change_std": 0.5625,
+    "jitter_ratio": 0.1462,
+    "idle_ratio": 0.5023,
+    "avg_click_dwell_ms": 7943.6
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 7943.6,
+    "median_click_dwell_ms": 7943.6,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "expected_sequence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "dot_order": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "sequence_ok": true,
+    "mean_distance_to_nearest_dot_px": 71.2428,
+    "stroke_points": 2197
+  },
+  "spec": {
+    "dots": [
+      {
+        "id": 1,
+        "x": 545.9,
+        "y": 215.2,
+        "radius": 24
+      },
+      {
+        "id": 2,
+        "x": 190.5,
+        "y": 324.9,
+        "radius": 24
+      },
+      {
+        "id": 3,
+        "x": 157.1,
+        "y": 441.6,
+        "radius": 24
+      },
+      {
+        "id": 4,
+        "x": 777.2,
+        "y": 255.8,
+        "radius": 24
+      },
+      {
+        "id": 5,
+        "x": 343.6,
+        "y": 285.9,
+        "radius": 24
+      },
+      {
+        "id": 6,
+        "x": 696.6,
+        "y": 386.1,
+        "radius": 24
+      },
+      {
+        "id": 7,
+        "x": 262.3,
+        "y": 284.3,
+        "radius": 24
+      },
+      {
+        "id": 8,
+        "x": 374.5,
+        "y": 216.1,
+        "radius": 24
+      }
+    ],
+    "sequence": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "guide_points": [
+      [
+        545.9,
+        215.2
+      ],
+      [
+        190.5,
+        324.9
+      ],
+      [
+        157.1,
+        441.6
+      ],
+      [
+        777.2,
+        255.8
+      ],
+      [
+        343.6,
+        285.9
+      ],
+      [
+        696.6,
+        386.1
+      ],
+      [
+        262.3,
+        284.3
+      ],
+      [
+        374.5,
+        216.1
+      ]
+    ],
+    "dot_tolerance_px": 32,
+    "min_stroke_points": 18
+  },
+  "csv": "connect_dots_20260817_110616_283c993a-8535-443e-a9ca-.csv",
+  "relative_dir": "challenges/connect_dots",
+  "saved_at": "2026-08-17T11:06:16.427908+00:00"
+}

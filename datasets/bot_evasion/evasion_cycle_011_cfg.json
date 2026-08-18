@@ -1,0 +1,8 @@
+{
+  "families": [
+    "idle_correct",
+    "wide_arc",
+    "mid_str"
+  ],
+  "episodes_per_family": 16
+}

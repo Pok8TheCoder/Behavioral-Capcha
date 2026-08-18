@@ -28,7 +28,9 @@ from sklearn.preprocessing import StandardScaler
 
 sys.path.insert(0, os.path.dirname(__file__))
 
+from backend.active_window import DEFAULT_ACTIVE_WINDOW_CONFIG, segment_episode_into_windows
 from backend.feature_extractor import extract_features, feature_dict_to_vector
+from backend.hz60 import downsample_events_to_hz
 
 
 ROOT_DIR = os.path.dirname(__file__)
@@ -37,12 +39,12 @@ BOT_DIR = os.path.join(ROOT_DIR, "datasets", "bot")
 MODEL_PATH = os.path.join(ROOT_DIR, "backend", "behavioral_iforest_model.joblib")
 METADATA_PATH = os.path.join(ROOT_DIR, "backend", "behavioral_iforest_metadata.json")
 
-AFK_GAP_MS = 5_000.0
-WINDOW_MS = 3_000.0
-STRIDE_MS = 1_500.0
-MIN_EVENTS_PER_WINDOW = 12
-MIN_WINDOW_DISTANCE_PX = 20.0
-MOVEMENT_EPSILON_PX = 0.5
+AFK_GAP_MS = DEFAULT_ACTIVE_WINDOW_CONFIG.afk_gap_ms
+WINDOW_MS = DEFAULT_ACTIVE_WINDOW_CONFIG.fallback_window_ms
+STRIDE_MS = DEFAULT_ACTIVE_WINDOW_CONFIG.fallback_stride_ms
+MIN_EVENTS_PER_WINDOW = DEFAULT_ACTIVE_WINDOW_CONFIG.min_events_per_window
+MIN_WINDOW_DISTANCE_PX = DEFAULT_ACTIVE_WINDOW_CONFIG.min_window_distance_px
+MOVEMENT_EPSILON_PX = DEFAULT_ACTIVE_WINDOW_CONFIG.movement_epsilon_px
 CHUNKSIZE = 200_000
 MAX_WINDOWS_PER_HUMAN_FILE = 6_000
 RANDOM_STATE = 42
@@ -96,27 +98,21 @@ def _event_distance(events: Sequence[Dict[str, Any]]) -> float:
     return float(np.sum(np.hypot(np.diff(xs), np.diff(ys))))
 
 
-def _window_episode(events: List[Dict[str, Any]], source_file: str) -> List[WindowSample]:
+def _window_episode(
+    events: List[Dict[str, Any]],
+    source_file: str,
+    target_hz: Optional[float] = None,
+) -> List[WindowSample]:
+    if target_hz:
+        events = downsample_events_to_hz(events, float(target_hz))
     if len(events) < MIN_EVENTS_PER_WINDOW:
         return []
 
-    events = sorted(events, key=lambda event: event["t"])
-    start_t = events[0]["t"]
-    end_t = events[-1]["t"]
     samples: List[WindowSample] = []
-
-    if end_t - start_t <= WINDOW_MS:
-        if _event_distance(events) >= MIN_WINDOW_DISTANCE_PX:
-            samples.append(WindowSample(feature_dict_to_vector(extract_features(events)), source_file))
-        return samples
-
-    cur_t = start_t
-    while cur_t + WINDOW_MS <= end_t:
-        window = [e for e in events if cur_t <= e["t"] < cur_t + WINDOW_MS]
-        if len(window) >= MIN_EVENTS_PER_WINDOW and _event_distance(window) >= MIN_WINDOW_DISTANCE_PX:
-            samples.append(WindowSample(feature_dict_to_vector(extract_features(window)), source_file))
-        cur_t += STRIDE_MS
-
+    for window in segment_episode_into_windows(events, DEFAULT_ACTIVE_WINDOW_CONFIG):
+        samples.append(
+            WindowSample(feature_dict_to_vector(extract_features(window)), source_file)
+        )
     return samples
 
 
@@ -128,7 +124,11 @@ def _subsample_per_file(samples: List[WindowSample], max_windows: int) -> List[W
     return [samples[int(i)] for i in indices]
 
 
-def extract_active_windows_from_csv(file_path: str, max_windows: int = MAX_WINDOWS_PER_HUMAN_FILE) -> Tuple[List[WindowSample], Dict[str, Any]]:
+def extract_active_windows_from_csv(
+    file_path: str,
+    max_windows: int = MAX_WINDOWS_PER_HUMAN_FILE,
+    target_hz: Optional[float] = None,
+) -> Tuple[List[WindowSample], Dict[str, Any]]:
     samples: List[WindowSample] = []
     episode: List[Dict[str, Any]] = []
     last_active_t: Optional[float] = None
@@ -197,7 +197,7 @@ def extract_active_windows_from_csv(file_path: str, max_windows: int = MAX_WINDO
 
             if is_movement:
                 if last_active_t is not None and event["t"] - last_active_t > AFK_GAP_MS:
-                    samples.extend(_window_episode(episode, os.path.basename(file_path)))
+                    samples.extend(_window_episode(episode, os.path.basename(file_path), target_hz=target_hz))
                     episode = []
                     afk_splits += 1
                     if len(samples) >= max_windows:
@@ -217,7 +217,7 @@ def extract_active_windows_from_csv(file_path: str, max_windows: int = MAX_WINDO
         last_x = float(x_values.iloc[-1])
         last_y = float(y_values.iloc[-1])
 
-    samples.extend(_window_episode(episode, os.path.basename(file_path)))
+    samples.extend(_window_episode(episode, os.path.basename(file_path), target_hz=target_hz))
     samples = _subsample_per_file(samples, max_windows)
     return samples, {
         "file": file_path,
@@ -234,7 +234,7 @@ def extract_windows_from_bot_csv(file_path: str) -> List[List[float]]:
 
 
 def load_human_samples() -> Tuple[List[WindowSample], List[Dict[str, Any]]]:
-    human_csvs = sorted(glob.glob(os.path.join(HUMAN_DIR, "*.csv")))
+    human_csvs = sorted(glob.glob(os.path.join(HUMAN_DIR, "**", "*.csv"), recursive=True))
     all_samples: List[WindowSample] = []
     summaries: List[Dict[str, Any]] = []
 
@@ -317,9 +317,12 @@ def main() -> None:
         "contamination": float(contamination),
         "feature_names": FEATURE_NAMES,
         "preprocessing": {
+            "window_mode": "dynamic_active",
             "afk_gap_ms": AFK_GAP_MS,
-            "window_ms": WINDOW_MS,
-            "stride_ms": STRIDE_MS,
+            "pause_gap_ms": DEFAULT_ACTIVE_WINDOW_CONFIG.pause_gap_ms,
+            "max_window_ms": DEFAULT_ACTIVE_WINDOW_CONFIG.max_window_ms,
+            "fallback_window_ms": WINDOW_MS,
+            "fallback_stride_ms": STRIDE_MS,
             "min_events_per_window": MIN_EVENTS_PER_WINDOW,
             "min_window_distance_px": MIN_WINDOW_DISTANCE_PX,
             "movement_epsilon_px": MOVEMENT_EPSILON_PX,

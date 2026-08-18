@@ -22,5 +22,8 @@ def normalize_bot_events(events: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             "y": float(event["y"]),
             "t": float(event.get("t", 0)),
             "type": evt_type,
+            "pid": event.get("pid", event.get("pointer_id")),
+            "pt": event.get("pt", event.get("pointer_type")),
+            "src": event.get("src"),
         })
     return normalized

@@ -140,6 +140,7 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
     width: 100%;
     height: 100%;
     cursor: crosshair;
+    touch-action: none;
 }
 
 .bot-cursor {
@@ -162,7 +163,8 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10;
+    z-index: 20;
+    pointer-events: auto;
 }
 
 .challenge-overlay.hidden { display: none; }
@@ -177,6 +179,27 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
 }
 
 .overlay-card p { color: var(--muted); margin: 8px 0 14px; }
+
+.overlay-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.overlay-save-status {
+    min-height: 1.1em;
+    font-size: 0.78rem;
+    margin: 0 0 10px !important;
+}
+
+.btn-human {
+    background: rgba(16, 185, 129, 0.14);
+    border-color: rgba(16, 185, 129, 0.45);
+    color: #34d399;
+}
+
+.btn-human.hidden { display: none; }
 
 .result-grid {
     display: grid;
@@ -227,6 +250,21 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
 .meta-list dt { color: var(--muted); }
 .meta-list dd { font-family: var(--mono); }
 
+.hz-scale-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+}
+
+.hz-scale-toggle input {
+    accent-color: var(--cyan, #22d3ee);
+}
+
 .confidence-value {
     font-family: var(--mono);
     font-size: 2rem;
@@ -266,6 +304,38 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
 }
 
 .flags-list li.idle { color: var(--muted); font-style: italic; }
+
+.challenge-catalog {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.challenge-catalog li {
+    font-size: 0.74rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid transparent;
+    line-height: 1.35;
+}
+
+.challenge-catalog li.active {
+    border-color: rgba(34, 211, 238, 0.45);
+    background: rgba(34, 211, 238, 0.08);
+}
+
+.challenge-catalog li strong {
+    color: var(--cyan);
+    font-size: 0.78rem;
+}
+
+.challenge-catalog li span {
+    color: var(--muted);
+}
 
 @media (max-width: 960px) {
     .layout { grid-template-columns: 1fr; }

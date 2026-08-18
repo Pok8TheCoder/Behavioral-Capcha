@@ -1,0 +1,86 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "7712d0c4-bd0a-403b-b5f9-eac3903cb6b8",
+  "challenge_type": "zigzag_trace",
+  "seed": 1241242949,
+  "task_passed": true,
+  "event_count": 134,
+  "features": {
+    "event_count": 77,
+    "duration_ms": 1683.9,
+    "total_distance_px": 1122.11,
+    "euclidean_distance_px": 737.21,
+    "straightness_index": 0.657,
+    "velocity_mean": 0.7459,
+    "velocity_std": 0.5083,
+    "velocity_max": 1.9135,
+    "acceleration_mean": 0.012511,
+    "acceleration_std": 0.010316,
+    "acceleration_max": 0.044588,
+    "jerk_mean": 0.00056349,
+    "angle_change_mean": 0.1737,
+    "angle_change_std": 0.2575,
+    "jitter_ratio": 0.04,
+    "idle_ratio": 0.0,
+    "avg_click_dwell_ms": 1683.9
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 1683.9,
+    "median_click_dwell_ms": 1683.9,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": null,
+    "stroke_points": 134,
+    "stroke_length_px": 1128.22,
+    "guide_length_px": 1038.61,
+    "length_ratio": 1.0863,
+    "coverage_ratio": 0.7143,
+    "mean_distance_to_guide_px": 42.4742,
+    "max_distance_to_guide_px": 88.7,
+    "stroke_duration_ms": 1683.9,
+    "tolerance_px": 20.61
+  },
+  "spec": {
+    "guide_points": [
+      [
+        130.0,
+        358.98886162099603
+      ],
+      [
+        253.33333333333331,
+        237.52576092008414
+      ],
+      [
+        376.66666666666663,
+        358.98886162099603
+      ],
+      [
+        500.0,
+        237.52576092008414
+      ],
+      [
+        623.3333333333333,
+        358.98886162099603
+      ],
+      [
+        746.6666666666667,
+        237.52576092008414
+      ],
+      [
+        870.0,
+        358.98886162099603
+      ]
+    ],
+    "tolerance_px": 20.607552943675053,
+    "min_coverage_ratio": 0.58,
+    "min_stroke_points": 20
+  },
+  "csv": "zigzag_trace_20260818_051929_7712d0c4-bd0a-403b-b5f9-.csv",
+  "relative_dir": "challenges/lan/zigzag_trace",
+  "saved_at": "2026-08-18T05:19:29.337104+00:00"
+}

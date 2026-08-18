@@ -1,0 +1,77 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "session_id": "93bfb897-ce5c-49a8-aa53-e80a4d12483e",
+  "challenge_type": "shape_trace",
+  "seed": 1347917250,
+  "task_passed": true,
+  "event_count": 488,
+  "features": {
+    "event_count": 488,
+    "duration_ms": 1222.4,
+    "total_distance_px": 564.59,
+    "euclidean_distance_px": 18.38,
+    "straightness_index": 0.0326,
+    "velocity_mean": 0.9266,
+    "velocity_std": 0.4723,
+    "velocity_max": 2.5,
+    "acceleration_mean": 0.349528,
+    "acceleration_std": 0.376438,
+    "acceleration_max": 1.964085,
+    "jerk_mean": 0.26105171,
+    "angle_change_mean": 0.2217,
+    "angle_change_std": 0.4858,
+    "jitter_ratio": 0.0905,
+    "idle_ratio": 0.1769,
+    "avg_click_dwell_ms": 1222.4
+  },
+  "challenge_features": {
+    "click_count": 1,
+    "avg_click_dwell_ms": 1222.4,
+    "median_click_dwell_ms": 1222.4,
+    "inter_click_mean_ms": null,
+    "inter_click_min_ms": null,
+    "inter_click_max_ms": null,
+    "shape": "square",
+    "stroke_points": 488,
+    "stroke_length_px": 564.59,
+    "guide_length_px": 467.05,
+    "length_ratio": 1.2088,
+    "coverage_ratio": 1.0,
+    "mean_distance_to_guide_px": 27.1969,
+    "max_distance_to_guide_px": 59.76,
+    "stroke_duration_ms": 1222.4,
+    "tolerance_px": 19.69
+  },
+  "spec": {
+    "shape": "square",
+    "guide_points": [
+      [
+        302.36779562023463,
+        148.37617834830803
+      ],
+      [
+        419.1307367583758,
+        148.37617834830803
+      ],
+      [
+        419.1307367583758,
+        265.1391194864492
+      ],
+      [
+        302.36779562023463,
+        265.1391194864492
+      ],
+      [
+        302.36779562023463,
+        148.37617834830803
+      ]
+    ],
+    "tolerance_px": 19.692406088375698,
+    "min_coverage_ratio": 0.55,
+    "min_stroke_points": 20
+  },
+  "csv": "shape_trace_20260817_105258_93bfb897-ce5c-49a8-aa53-.csv",
+  "relative_dir": "challenges/shape_trace",
+  "saved_at": "2026-08-17T10:52:58.798670+00:00"
+}

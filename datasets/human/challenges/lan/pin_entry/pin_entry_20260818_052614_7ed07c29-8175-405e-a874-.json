@@ -1,0 +1,177 @@
+{
+  "label": "human",
+  "source": "dashboard",
+  "origin": "lan",
+  "client_ip": "100.101.106.53",
+  "session_id": "7ed07c29-8175-405e-a874-30faa3a5bad3",
+  "challenge_type": "pin_entry",
+  "seed": 1700923713,
+  "task_passed": true,
+  "event_count": 263,
+  "features": {
+    "event_count": 134,
+    "duration_ms": 4657.9,
+    "total_distance_px": 920.25,
+    "euclidean_distance_px": 431.68,
+    "straightness_index": 0.4691,
+    "velocity_mean": 0.3002,
+    "velocity_std": 0.2495,
+    "velocity_max": 1.6627,
+    "acceleration_mean": 0.004517,
+    "acceleration_std": 0.008326,
+    "acceleration_max": 0.082752,
+    "jerk_mean": 0.00021506,
+    "angle_change_mean": 0.2608,
+    "angle_change_std": 0.4374,
+    "jitter_ratio": 0.0985,
+    "idle_ratio": 0.213,
+    "avg_click_dwell_ms": 79.26
+  },
+  "challenge_features": {
+    "click_count": 5,
+    "avg_click_dwell_ms": 79.26,
+    "median_click_dwell_ms": 81.7,
+    "inter_click_mean_ms": 816.025,
+    "inter_click_min_ms": 191.5,
+    "inter_click_max_ms": 1667.4,
+    "expected_code": [
+      0,
+      0,
+      6,
+      5,
+      2
+    ],
+    "entered": [
+      0,
+      0,
+      6,
+      5,
+      2
+    ],
+    "code_ok": true,
+    "click_offset_mean_px": 10.126,
+    "clicks": [
+      {
+        "t": 593095.5,
+        "target_id": 0,
+        "offset_px": 3.4,
+        "offset_over_radius": 0.1418,
+        "inside": true
+      },
+      {
+        "t": 593287.0,
+        "target_id": 0,
+        "offset_px": 3.4,
+        "offset_over_radius": 0.1418,
+        "inside": true
+      },
+      {
+        "t": 594954.4,
+        "target_id": 6,
+        "offset_px": 21.22,
+        "offset_over_radius": 0.8844,
+        "inside": true
+      },
+      {
+        "t": 595990.3,
+        "target_id": 5,
+        "offset_px": 12.18,
+        "offset_over_radius": 0.5075,
+        "inside": true
+      },
+      {
+        "t": 596359.6,
+        "target_id": 2,
+        "offset_px": 10.43,
+        "offset_over_radius": 0.4346,
+        "inside": true
+      }
+    ]
+  },
+  "spec": {
+    "code": [
+      0,
+      0,
+      6,
+      5,
+      2
+    ],
+    "keys": [
+      {
+        "digit": 0,
+        "x": 630.0,
+        "y": 378.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 1,
+        "x": 630.0,
+        "y": 204.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 2,
+        "x": 692.0,
+        "y": 204.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 3,
+        "x": 568.0,
+        "y": 262.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 4,
+        "x": 630.0,
+        "y": 262.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 5,
+        "x": 692.0,
+        "y": 262.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 6,
+        "x": 568.0,
+        "y": 320.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 7,
+        "x": 630.0,
+        "y": 320.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 8,
+        "x": 692.0,
+        "y": 320.0,
+        "w": 52,
+        "h": 48
+      },
+      {
+        "digit": 9,
+        "x": 568.0,
+        "y": 378.0,
+        "w": 52,
+        "h": 48
+      }
+    ],
+    "click_tolerance_px": 30,
+    "display_code": "00652"
+  },
+  "csv": "pin_entry_20260818_052614_7ed07c29-8175-405e-a874-.csv",
+  "relative_dir": "challenges/lan/pin_entry",
+  "saved_at": "2026-08-18T05:26:14.802984+00:00"
+}
