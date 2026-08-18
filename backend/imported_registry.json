@@ -1,4 +1,41 @@
 {
   "product": "Imported",
-  "versions": []
+  "versions": [
+    {
+      "id": "imported_alex_rf",
+      "label": "Alex Random Forest",
+      "version": "imported",
+      "status": "imported",
+      "description": "Imported joblib from random_forest.joblib",
+      "artifact": "imported_alex_rf.joblib",
+      "original_filename": "random_forest.joblib",
+      "n_features": 11,
+      "trained_at": "2026-08-18",
+      "family": "imported"
+    },
+    {
+      "id": "imported_alex_svm",
+      "label": "Alex SVM-RBF",
+      "version": "imported",
+      "status": "imported",
+      "description": "Imported joblib from svm_rbf.joblib",
+      "artifact": "imported_alex_svm.joblib",
+      "original_filename": "svm_rbf.joblib",
+      "n_features": 11,
+      "trained_at": "2026-08-18",
+      "family": "imported"
+    },
+    {
+      "id": "imported_alex_xgb",
+      "label": "Alex XGBoost",
+      "version": "imported",
+      "status": "imported",
+      "description": "Imported joblib from xgboost.joblib",
+      "artifact": "imported_alex_xgb.joblib",
+      "original_filename": "xgboost.joblib",
+      "n_features": 11,
+      "trained_at": "2026-08-18",
+      "family": "imported"
+    }
+  ]
 }

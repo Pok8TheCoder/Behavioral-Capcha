@@ -34,6 +34,11 @@ def evaluate_events_dynamic(
 ) -> Tuple[Dict[str, Any], Dict[str, Any], int]:
     cfg = DEFAULT_ACTIVE_WINDOW_CONFIG
     normalized = normalize_bot_events(events)
+    meta = classifier.metadata if isinstance(getattr(classifier, "metadata", None), dict) else {}
+    hz = meta.get("target_hz")
+    if hz:
+        from backend.hz60 import downsample_events_to_hz
+        normalized = downsample_events_to_hz(normalized, float(hz))
     sorted_events = sorted(normalized, key=lambda e: float(e["t"]))
     episodes = _split_on_gaps(sorted_events, cfg.afk_gap_ms)
 
@@ -43,14 +48,14 @@ def evaluate_events_dynamic(
     for episode in episodes:
         for window in segment_episode_into_windows(episode, cfg):
             features = extract_features(window)
-            evaluation = classifier.evaluate(features)
+            evaluation = classifier.evaluate_window(window)
             evaluations.append(evaluation)
             if not primary_features or evaluation.get("risk_score", 0) >= primary_features.get("_risk", 0):
                 primary_features = {**features, "_risk": evaluation.get("risk_score", 0)}
 
     if not evaluations:
         features = extract_features(sorted_events)
-        return classifier.evaluate(features), features, 1
+        return classifier.evaluate_window(sorted_events), features, 1
 
     primary_features.pop("_risk", None)
     aggregated = aggregate_window_evaluations(evaluations, strategy="max_risk")

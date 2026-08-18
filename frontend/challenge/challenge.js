@@ -1,6 +1,10 @@
-const API_BASE = window.location.origin.startsWith("http") ? window.location.origin : "http://127.0.0.1:8020";
+const API_BASE = window.location.origin.startsWith("http") ? window.location.origin : "http://127.0.0.1:8010";
 const LOGICAL_WIDTH = 960;
-const LOGICAL_HEIGHT = 640;
+const MIN_MOVE_DT_MS = 1;
+const DRAG_STROKE_TYPES = new Set([
+    "shape_trace", "maze_navigate", "zigzag_trace", "spiral_trace",
+    "connect_dots", "hazard_run", "path_gates",
+]);
 
 let canvas, ctx;
 let challenge = null;
@@ -9,10 +13,6 @@ let isCapturing = false;
 let sequenceProgress = 0;
 let pinProgress = 0;
 let trail = [];
-let liveAckCount = 0;
-let liveQueue = [];
-let liveFlushTimer = null;
-let liveFlushChain = Promise.resolve();
 let clientInteractionStartMs = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,10 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
         startNewChallenge();
     });
 
+    canvas.style.touchAction = "none";
     canvas.addEventListener("pointerdown", onPointerDown);
-    canvas.addEventListener("pointermove", onPointerMove);
+    canvas.addEventListener("pointermove", onPointerMove, { passive: true });
+    canvas.addEventListener("pointerrawupdate", onPointerRawUpdate, { passive: true });
     canvas.addEventListener("pointerup", onPointerUp);
-    canvas.addEventListener("pointerleave", onPointerUp);
     canvas.addEventListener("dblclick", () => submitAttempt());
 
     checkHealth();
@@ -64,8 +65,14 @@ function recordEvent(x, y, t, type, pointerMeta) {
         if (pointerMeta.pt) evt.pt = pointerMeta.pt;
         if (pointerMeta.src) evt.src = pointerMeta.src;
     }
+    if (type === "mousemove") {
+        for (let i = events.length - 1; i >= 0; i--) {
+            if (events[i].type !== "mousemove") continue;
+            if (evt.t - events[i].t < MIN_MOVE_DT_MS) return;
+            break;
+        }
+    }
     events.push(evt);
-    pushLiveEvent(evt);
     document.getElementById("meta-events").textContent = String(events.length);
     if (type === "mousemove") {
         trail.push({ x, y });
@@ -73,79 +80,21 @@ function recordEvent(x, y, t, type, pointerMeta) {
     }
 }
 
-function resetLiveTelemetry() {
-    liveAckCount = 0;
-    liveQueue = [];
-    if (liveFlushTimer) {
-        clearTimeout(liveFlushTimer);
-        liveFlushTimer = null;
+async function sealedVerifyBody() {
+    if (!challenge || !challenge.telemetry_key) {
+        throw new Error("Missing local capture key. Start a new challenge.");
     }
-}
-
-function connectLiveTelemetry() {
-    resetLiveTelemetry();
-}
-
-function pushLiveEvent(evt) {
-    liveQueue.push(evt);
-    if (liveQueue.length >= 48) {
-        flushLiveTelemetry();
-        return;
-    }
-    if (!liveFlushTimer) {
-        liveFlushTimer = setTimeout(() => {
-            liveFlushTimer = null;
-            flushLiveTelemetry();
-        }, 200);
-    }
-}
-
-function flushLiveTelemetry() {
-    liveFlushChain = liveFlushChain.then(sendLiveBatches).catch(() => false);
-    return liveFlushChain;
-}
-
-async function sendLiveBatches() {
-    if (liveFlushTimer) {
-        clearTimeout(liveFlushTimer);
-        liveFlushTimer = null;
-    }
-    while (challenge && liveQueue.length) {
-        const batch = liveQueue.splice(0, 48);
-        const resp = await fetch(`${API_BASE}/api/challenge/live`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                session_id: challenge.session_id,
-                verify_token: challenge.verify_token,
-                events: batch,
-            }),
-        });
-        const data = await resp.json().catch(() => ({}));
-        if (!resp.ok) {
-            liveQueue = batch.concat(liveQueue);
-            throw new Error((data.detail && data.detail.message) || data.detail || "live ingest failed");
-        }
-        if (typeof data.count === "number") liveAckCount = data.count;
-    }
-    return liveAckCount;
-}
-
-async function waitLiveSynced(expected, timeoutMs = 20000) {
-    const start = performance.now();
-    while (performance.now() - start < timeoutMs) {
-        try {
-            await flushLiveTelemetry();
-        } catch (err) {
-            await new Promise(r => setTimeout(r, 40));
-        }
-        if (liveAckCount >= expected && liveQueue.length === 0) return true;
-        await new Promise(r => setTimeout(r, 25));
-    }
-    try {
-        await flushLiveTelemetry();
-    } catch (err) { /* last try */ }
-    return liveAckCount >= expected && liveQueue.length === 0;
+    const sealed = await sealTelemetryEvents(challenge.telemetry_key, events);
+    persistSealedLocally(challenge.session_id, sealed);
+    return {
+        session_id: challenge.session_id,
+        participant: "human",
+        verify_token: challenge.verify_token,
+        client_started_ms: clientInteractionStartMs,
+        client_submitted_ms: performance.now(),
+        source: "dashboard",
+        sealed_telemetry: sealed,
+    };
 }
 
 function onPointerDown(evt) {
@@ -157,21 +106,35 @@ function onPointerDown(evt) {
     drawChallenge();
 }
 
-function onPointerMove(evt) {
-    if (!challenge || !isCapturing) return;
+function recordPointerSamples(evt) {
     const points = typeof evt.getCoalescedEvents === "function" ? evt.getCoalescedEvents() : [evt];
     points.forEach(e => {
         const p = canvasPoint(e);
-        recordEvent(p.x, p.y, e.timeStamp, "mousemove", { pid: e.pointerId, pt: e.pointerType || "mouse", src: "canvas" });
+        recordEvent(p.x, p.y, e.timeStamp || performance.now(), "mousemove", { pid: e.pointerId, pt: e.pointerType || "mouse", src: "canvas" });
     });
+}
+
+function onPointerRawUpdate(evt) {
+    if (!challenge || !isCapturing) return;
+    recordPointerSamples(evt);
+}
+
+function onPointerMove(evt) {
+    if (!challenge || !isCapturing) return;
+    if (!("onpointerrawupdate" in window)) recordPointerSamples(evt);
     drawChallenge();
-    maybeAutoComplete();
+    if (!DRAG_STROKE_TYPES.has(challenge.challenge_type)) maybeAutoComplete();
 }
 
 function onPointerUp(evt) {
     if (!challenge || !isCapturing) return;
     const p = canvasPoint(evt);
-    recordEvent(p.x, p.y, evt.timeStamp, "mouseup", { pid: evt.pointerId, pt: evt.pointerType || "mouse", src: "canvas" });
+    recordEvent(p.x, p.y, evt.timeStamp || performance.now(), "mouseup", { pid: evt.pointerId, pt: evt.pointerType || "mouse", src: "canvas" });
+    if (DRAG_STROKE_TYPES.has(challenge.challenge_type)) {
+        drawChallenge();
+        if (events.length >= 4) submitAttempt();
+        return;
+    }
     handleClick(p.x, p.y);
     drawChallenge();
     maybeAutoComplete();
@@ -270,7 +233,6 @@ function startNewChallenge() {
             challenge = data;
             isCapturing = true;
             clientInteractionStartMs = performance.now();
-            connectLiveTelemetry();
             document.getElementById("challenge-title").textContent = data.title;
             document.getElementById("challenge-instructions").textContent = data.instructions;
             document.getElementById("meta-type").textContent = data.challenge_type;
@@ -445,19 +407,11 @@ function submitAttempt() {
     submitting = true;
     isCapturing = false;
 
-    waitLiveSynced(events.length).then((synced) => {
-        if (!synced) throw new Error("Live canvas stream did not catch up; retry the challenge.");
+    sealedVerifyBody().then((body) => {
         return fetch(`${API_BASE}/api/challenge/verify`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                session_id: challenge.session_id,
-                participant: "human",
-                verify_token: challenge.verify_token,
-                client_started_ms: clientInteractionStartMs,
-                client_submitted_ms: performance.now(),
-                source: "dashboard",
-            }),
+            body: JSON.stringify(body),
         });
     })
         .then(r => r.json())

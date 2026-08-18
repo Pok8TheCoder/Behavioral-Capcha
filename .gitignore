@@ -24,6 +24,8 @@ datasets/bot_challenge_tiers/
 
 # Temporary & Autosave datasets
 temp/
+.tmp/
+.pip-cache/
 *.log
 
 # Workspace & IDE

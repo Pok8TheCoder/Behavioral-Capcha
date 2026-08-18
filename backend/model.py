@@ -1,8 +1,10 @@
+import json
 import os
 import joblib
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
-from backend.feature_extractor import feature_dict_to_vector
+from backend.feature_extractor import extract_features, feature_dict_to_vector
+from backend.alex_features import alex_dict_to_vector, extract_alex_features
 from backend.evasion_heuristics import load_rules, score_dynamic_rules
 from backend.qmodel_registry import (
     catalog_for_api,
@@ -18,6 +20,7 @@ from backend.ymodel_registry import (
     get_ymodel_evasion_rules_path,
     list_ymodel_versions,
 )
+from backend.zmodel_registry import get_zmodel_entry, list_zmodel_versions
 
 IFOREST_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_iforest_model.joblib")
 RF_CHALLENGE_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_rf_challenge_model.joblib")
@@ -39,6 +42,8 @@ def _build_model_registry() -> dict:
     for entry in list_ymodel_versions():
         registry[entry["id"]] = entry["path"]
     for entry in list_imported_versions():
+        registry[entry["id"]] = entry["path"]
+    for entry in list_zmodel_versions():
         registry[entry["id"]] = entry["path"]
     return registry
 
@@ -69,6 +74,9 @@ class BehavioralClassifier:
         self.is_trained = False
         self.evasion_rules_path = None
         self.use_procedural_mimic_heuristic = True
+        self.feature_schema = "native12"
+        self.scaler = None
+        self.use_scaler = False
         requested_model = os.getenv("BEHAVIORAL_MODEL", "").strip()
         if not requested_model:
             catalog = catalog_for_api()
@@ -122,6 +130,15 @@ class BehavioralClassifier:
                 "status": entry.get("status"),
                 "family": "imported",
             }
+        for entry in list_zmodel_versions():
+            out[entry["id"]] = {
+                "available": entry.get("available", False),
+                "path": entry.get("path"),
+                "label": entry.get("label"),
+                "version": entry.get("version"),
+                "status": entry.get("status"),
+                "family": "zmodel",
+            }
         for model_name, model_path in LEGACY_MODEL_REGISTRY.items():
             out[model_name] = {
                 "available": os.path.exists(model_path),
@@ -154,16 +171,34 @@ class BehavioralClassifier:
             print(f"[Model] Model artifact is missing: {model_path}")
             return False
 
+        self.feature_schema = "native12"
+        self.scaler = None
+        self.use_scaler = False
+        self._z_events = None
+        z_entry = get_zmodel_entry(canonical_name) if canonical_name else None
+        if z_entry:
+            return self._load_zmodel(canonical_name, model_path, z_entry)
         try:
             package = joblib.load(model_path)
             self.model = package["model"] if isinstance(package, dict) and "model" in package else package
             self.feature_names = package.get("feature_names", []) if isinstance(package, dict) else []
             self.metadata = package.get("metadata", {}) if isinstance(package, dict) else {}
+            self.scaler = package.get("scaler") if isinstance(package, dict) else None
+            self.feature_schema = (
+                (package.get("feature_schema") if isinstance(package, dict) else None)
+                or self.metadata.get("feature_schema")
+                or "native12"
+            )
+            self.use_scaler = bool(
+                (package.get("use_scaler") if isinstance(package, dict) else False)
+                or self.metadata.get("use_scaler")
+            )
             self.model_type = canonical_name
             entry = (
                 get_qmodel_entry(canonical_name)
                 or get_ymodel_entry(canonical_name)
                 or get_imported_entry(canonical_name)
+                or get_zmodel_entry(canonical_name)
             )
             if entry:
                 self.display_name = entry.get("label", canonical_name)
@@ -172,7 +207,7 @@ class BehavioralClassifier:
                     self.use_procedural_mimic_heuristic = qmodel_procedural_mimic(canonical_name)
                 elif get_imported_entry(canonical_name):
                     self.evasion_rules_path = None
-                    self.use_procedural_mimic_heuristic = True
+                    self.use_procedural_mimic_heuristic = self.feature_schema != "alex11"
                 else:
                     self.evasion_rules_path = get_ymodel_evasion_rules_path(canonical_name)
                     self.use_procedural_mimic_heuristic = bool(entry.get("procedural_mimic_heuristic", True))
@@ -186,6 +221,99 @@ class BehavioralClassifier:
         except Exception as e:
             print(f"[Model] Error loading {canonical_name}: {e}")
             return False
+
+    def _load_zmodel(self, canonical_name: str, model_path: str, entry: dict) -> bool:
+        try:
+            import torch
+            from backend.zmodel_net import ZNetV01
+            from backend.zmodel_seq import SEQ_LEN
+        except ImportError as exc:
+            print(f"[Model] Zmodel requires PyTorch: {exc}")
+            return False
+        try:
+            ckpt = torch.load(model_path, map_location="cpu", weights_only=False)
+            tab_dim = int(ckpt.get("tab_dim", 12))
+            net = ZNetV01(tab_dim=tab_dim)
+            net.load_state_dict(ckpt["state_dict"])
+            net.eval()
+            device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+            net.to(device)
+            self.model = net
+            self._z_device = device
+            self.feature_schema = ckpt.get("feature_schema") or "zmodel_seq"
+            self.feature_names = list(ckpt.get("feature_names") or [])
+            meta_name = entry.get("metadata") or f"{canonical_name}_metadata.json"
+            meta_path = os.path.join(os.path.dirname(model_path), meta_name)
+            metadata = {}
+            if os.path.exists(meta_path):
+                with open(meta_path, "r", encoding="utf-8") as f:
+                    metadata = json.load(f)
+            metadata["target_hz"] = ckpt.get("target_hz") or metadata.get("target_hz") or 60.0
+            metadata["seq_len"] = ckpt.get("seq_len") or SEQ_LEN
+            self.metadata = metadata
+            self.model_type = canonical_name
+            self.display_name = entry.get("label", canonical_name)
+            self.evasion_rules_path = None
+            self.use_procedural_mimic_heuristic = bool(entry.get("procedural_mimic_heuristic", True))
+            self.is_trained = True
+            print(f"[Model] Loaded {self.display_name} ({canonical_name}) from {model_path} on {device}")
+            return True
+        except Exception as exc:
+            print(f"[Model] Error loading Zmodel {canonical_name}: {exc}")
+            return False
+
+    def features_from_events(self, events: list) -> dict:
+        if self.feature_schema == "alex11":
+            return extract_alex_features(events)
+        return extract_features(events)
+
+    def _ml_vector(self, features: dict):
+        if self.feature_schema == "alex11":
+            vec = np.array([alex_dict_to_vector(features)], dtype=float)
+            if self.use_scaler and self.scaler is not None:
+                vec = self.scaler.transform(vec)
+            return vec
+        return [feature_dict_to_vector(features)]
+
+    def _ml_bot_probability(self, features: dict) -> float:
+        if not (self.is_trained and self.model):
+            return 0.5
+        if self.feature_schema == "zmodel_seq":
+            return self._z_bot_probability(features)
+        vec = self._ml_vector(features)
+        if hasattr(self.model, "predict_proba"):
+            try:
+                return float(self.model.predict_proba(vec)[0][1])
+            except Exception:
+                pass
+        if hasattr(self.model, "decision_function"):
+            score = float(np.asarray(self.model.decision_function(vec)).ravel()[0])
+            return float(1.0 / (1.0 + np.exp(-score)))
+        return float(self.model.predict(vec)[0])
+
+    def _z_bot_probability(self, features: dict) -> float:
+        import torch
+        from backend.zmodel_seq import events_to_relative_sequence
+
+        events = getattr(self, "_z_events", None) or []
+        seq, mask = events_to_relative_sequence(events)
+        tab = np.asarray(feature_dict_to_vector(features), dtype=np.float32)
+        device = getattr(self, "_z_device", torch.device("cpu"))
+        self.model.eval()
+        with torch.no_grad():
+            logit = self.model(
+                torch.from_numpy(seq[None, ...]).to(device),
+                torch.from_numpy(mask[None, ...]).to(device),
+                torch.from_numpy(tab[None, ...]).to(device),
+            )
+            return float(torch.sigmoid(logit).detach().cpu().item())
+
+    def evaluate_window(self, events: list) -> dict:
+        self._z_events = events
+        try:
+            return self.evaluate(self.features_from_events(events))
+        finally:
+            self._z_events = None
 
     def import_joblib_bytes(self, raw: bytes, filename: str, activate: bool = True) -> dict:
         """Save a third-party joblib package into the imported-model catalog."""
@@ -418,6 +546,27 @@ class BehavioralClassifier:
         Evaluates biometric features using heuristic checks plus the loaded ML model.
         Returns risk assessment dictionary.
         """
+        if self.feature_schema == "alex11":
+            ml_bot_prob = self._ml_bot_probability(features)
+            is_bot = ml_bot_prob >= 0.5
+            return {
+                "decision": "BLOCKED" if is_bot else "PASSED",
+                "is_bot": is_bot,
+                "risk_score": round(ml_bot_prob, 4),
+                "bot_probability": round(ml_bot_prob, 4),
+                "heuristic_score": 0.0,
+                "model_type": self.model_type,
+                "qmodel_label": self.display_name,
+                "flags": ["Alex 11-feature schema (native heuristics skipped)"],
+                "biometric_summary": {
+                    "straightness": features.get("straightness_index", 0.0),
+                    "velocity_mean": features.get("v_mean", features.get("velocity_mean", 0.0)),
+                    "velocity_variance": features.get("v_std", 0.0),
+                    "jitter_ratio": features.get("micro_jitter_ratio", 0.0),
+                    "click_dwell_ms": features.get("click_rate", 0.0),
+                },
+            }
+
         flags = []
         heuristic_bot_score = 0.0
 
@@ -785,9 +934,8 @@ class BehavioralClassifier:
             return self._evaluate_isolation_forest(features, flags, heuristic_bot_score)
 
         # ML Model Prediction
-        vec = [feature_dict_to_vector(features)]
         if self.is_trained and self.model:
-            ml_bot_prob = float(self.model.predict_proba(vec)[0][1])
+            ml_bot_prob = self._ml_bot_probability(features)
         else:
             ml_bot_prob = 0.5
 
@@ -804,7 +952,11 @@ class BehavioralClassifier:
             "bot_probability": round(ml_bot_prob, 4),
             "heuristic_score": round(min(1.0, heuristic_bot_score), 4),
             "model_type": self.model_type,
-            "qmodel_label": self.display_name if (get_qmodel_entry(self.model_type) or get_ymodel_entry(self.model_type)) else None,
+            "qmodel_label": self.display_name if (
+                get_qmodel_entry(self.model_type)
+                or get_ymodel_entry(self.model_type)
+                or get_zmodel_entry(self.model_type)
+            ) else None,
             "flags": flags,
             "biometric_summary": {
                 "straightness": straightness,

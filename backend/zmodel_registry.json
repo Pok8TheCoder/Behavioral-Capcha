@@ -1,0 +1,20 @@
+{
+  "product": "Zmodel",
+  "description": "Sequence detectors on relative pointer deltas inside dynamic windows.",
+  "latest": "zmodel_v0.1",
+  "versions": [
+    {
+      "id": "zmodel_v0.1",
+      "label": "Zmodel V0.1",
+      "version": "0.1",
+      "status": "latest",
+      "description": "60 Hz relative dx,dy,dt 1D CNN fused with the 12 kinematic features, same dynamic windows as Q/Y.",
+      "artifact": "zmodel_v0.1.pt",
+      "metadata": "zmodel_v0.1_metadata.json",
+      "procedural_mimic_heuristic": true,
+      "trained_at": "2026-08-18",
+      "patch_cycle": 1,
+      "feature_schema": "zmodel_seq"
+    }
+  ]
+}

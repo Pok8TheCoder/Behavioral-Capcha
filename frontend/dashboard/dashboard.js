@@ -9,6 +9,7 @@ const DRAG_STROKE_TYPES = new Set([
     "spiral_trace",
     "connect_dots",
     "hazard_run",
+    "path_gates",
 ]);
 
 const LEGACY_MODEL_LABELS = {
@@ -22,6 +23,7 @@ function modelOptionLabel(name, details) {
     if (details.label) return details.label;
     if (details.family === "qmodel") return name.replace(/^qmodel_/i, "Qmodel ").replace("_", " ");
     if (details.family === "ymodel") return name.replace(/^ymodel_/i, "Ymodel ").replace("_", " ");
+    if (details.family === "zmodel") return name.replace(/^zmodel_/i, "Zmodel ").replace("_", " ");
     return LEGACY_MODEL_LABELS[name] || name.replaceAll("_", " ");
 }
 
@@ -50,20 +52,10 @@ let targetHits = 0;
 let isDrawing = false;
 let submitting = false;
 let lastCompletedEvents = [];
-let liveAckCount = 0;
-let liveQueue = [];
-let liveFlushTimer = null;
-let liveFlushChain = Promise.resolve();
-let liveSocket = null;
-let liveUseWs = false;
-let livePumpQueued = false;
 let canvasRedrawQueued = false;
-const LIVE_BATCH = 48;
-const LIVE_FLUSH_MS = 250;
-const LIVE_WS_BUFFER_MAX = 256000;
-const TARGET_STREAM_HZ = 900;
+const TARGET_CAPTURE_HZ = 1000;
+const MIN_MOVE_DT_MS = 1000 / TARGET_CAPTURE_HZ;
 let clientInteractionStartMs = 0;
-let scaleTo900Hz = false;
 let lastRawMove = null;
 const rawMoveTimes = [];
 
@@ -88,17 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("dashboard-bot").addEventListener("change", () => {
         localStorage.setItem("dashboardBot", document.getElementById("dashboard-bot").value);
     });
-    const hzToggle = document.getElementById("scale-900hz");
-    if (hzToggle) {
-        hzToggle.checked = localStorage.getItem("scaleTo900Hz") === "1";
-        scaleTo900Hz = hzToggle.checked;
-        hzToggle.addEventListener("change", () => {
-            scaleTo900Hz = hzToggle.checked;
-            localStorage.setItem("scaleTo900Hz", scaleTo900Hz ? "1" : "0");
-            updateHzReadout();
-        });
-    }
-
+    canvas.style.touchAction = "none";
     canvas.addEventListener("pointerdown", onPointerDown);
     canvas.addEventListener("pointermove", onPointerMove, { passive: true });
     canvas.addEventListener("pointerrawupdate", onPointerRawUpdate, { passive: true });
@@ -159,51 +141,33 @@ function updateHzReadout() {
     if (!hzEl || !streamEl) return;
     const hz = currentCursorHz();
     hzEl.textContent = hz > 0 ? `${Math.round(hz)}` : "—";
-    if (scaleTo900Hz && hz > 0) {
-        streamEl.textContent = String(TARGET_STREAM_HZ);
-    } else if (hz > 0) {
-        streamEl.textContent = `${Math.round(hz)}`;
+    if (hz > 0) {
+        streamEl.textContent = `${Math.min(TARGET_CAPTURE_HZ, Math.round(hz))}`;
     } else {
         streamEl.textContent = "—";
     }
 }
 
 function emitRecorded(evt, interpolated) {
-    if (!interpolated && evt.type === "mousemove" && events.length) {
-        const prev = events[events.length - 1];
-        if (prev.type === "mousemove" && prev.x === evt.x && prev.y === evt.y && prev.t === evt.t) {
-            return;
+    if (!interpolated && evt.type === "mousemove") {
+        for (let i = events.length - 1; i >= 0; i--) {
+            if (events[i].type !== "mousemove") continue;
+            if (evt.t - events[i].t < MIN_MOVE_DT_MS) return;
+            break;
+        }
+        if (events.length) {
+            const prev = events[events.length - 1];
+            if (prev.type === "mousemove" && prev.x === evt.x && prev.y === evt.y && prev.t === evt.t) {
+                return;
+            }
         }
     }
     events.push(evt);
-    pushLiveEvent(evt);
     if (!interpolated && evt.type === "mousemove" && (events.length & 1) === 0) {
         trail.push({ x: evt.x, y: evt.y, isBot: false });
         if (trail.length > 800) trail.shift();
     }
     scheduleCanvasRedraw();
-}
-
-function emitScaledMoves(fromEvt, toEvt) {
-    const dt = toEvt.t - fromEvt.t;
-    const dist = Math.hypot(toEvt.x - fromEvt.x, toEvt.y - fromEvt.y);
-    if (dt < 1.6 || dist < 0.35) return;
-    const step = 1000 / TARGET_STREAM_HZ;
-    const n = Math.min(40, Math.floor(dt / step) - 1);
-    if (n < 1) return;
-    for (let i = 1; i <= n; i++) {
-        const u = i / (n + 1);
-        const mid = {
-            x: round2(fromEvt.x + (toEvt.x - fromEvt.x) * u),
-            y: round2(fromEvt.y + (toEvt.y - fromEvt.y) * u),
-            t: round2(fromEvt.t + dt * u),
-            type: "mousemove",
-        };
-        if (toEvt.pid != null) mid.pid = toEvt.pid;
-        if (toEvt.pt) mid.pt = toEvt.pt;
-        if (toEvt.src) mid.src = toEvt.src;
-        emitRecorded(mid, true);
-    }
 }
 
 function recordEvent(x, y, t, type, pointerMeta = null) {
@@ -220,9 +184,6 @@ function recordEvent(x, y, t, type, pointerMeta = null) {
     }
     if (type === "mousemove") {
         noteRawMoveHz(evt.t);
-        if (scaleTo900Hz && lastRawMove && lastRawMove.type === "mousemove") {
-            emitScaledMoves(lastRawMove, evt);
-        }
         lastRawMove = evt;
     } else {
         lastRawMove = evt;
@@ -250,151 +211,30 @@ function scheduleCanvasRedraw() {
     });
 }
 
-function liveWsUrl(sessionId, token) {
-    const u = new URL(API_BASE);
-    const proto = u.protocol === "https:" ? "wss:" : "ws:";
-    return `${proto}//${u.host}/ws/challenge/live?session_id=${encodeURIComponent(sessionId)}&verify_token=${encodeURIComponent(token)}`;
+function resetLocalCapture() {
+    events = [];
 }
 
-function resetLiveTelemetry() {
-    liveAckCount = 0;
-    liveQueue = [];
-    liveUseWs = false;
-    if (liveFlushTimer) {
-        clearTimeout(liveFlushTimer);
-        liveFlushTimer = null;
+async function sealedVerifyBody(participant) {
+    if (!challenge || !challenge.telemetry_key) {
+        throw new Error("Missing local capture key. Start a new challenge.");
     }
-    if (liveSocket) {
-        try { liveSocket.close(); } catch (err) { /* ignore */ }
-        liveSocket = null;
-    }
+    const sealed = await sealTelemetryEvents(challenge.telemetry_key, events);
+    persistSealedLocally(challenge.session_id, sealed);
+    return {
+        session_id: challenge.session_id,
+        participant,
+        verify_token: challenge.verify_token,
+        client_started_ms: clientInteractionStartMs,
+        client_submitted_ms: performance.now(),
+        source: "dashboard",
+        sealed_telemetry: sealed,
+    };
 }
 
-function connectLiveTelemetry() {
-    resetLiveTelemetry();
-    if (!challenge) return;
-    try {
-        const socket = new WebSocket(liveWsUrl(challenge.session_id, challenge.verify_token));
-        liveSocket = socket;
-        socket.onopen = () => {
-            if (liveSocket === socket) {
-                liveUseWs = true;
-                pumpLiveQueue();
-            }
-        };
-        socket.onmessage = (msg) => {
-            try {
-                const data = JSON.parse(msg.data);
-                if (typeof data.count === "number") liveAckCount = data.count;
-            } catch (err) { /* ignore */ }
-        };
-        socket.onerror = () => {
-            if (liveSocket === socket) liveUseWs = false;
-        };
-        socket.onclose = () => {
-            if (liveSocket === socket) {
-                liveUseWs = false;
-                liveSocket = null;
-            }
-        };
-    } catch (err) {
-        liveUseWs = false;
-    }
-}
-
-function pushLiveEvent(evt) {
-    liveQueue.push(evt);
-    if (liveUseWs) {
-        pumpLiveQueue();
-        return;
-    }
-    if (liveQueue.length >= LIVE_BATCH) {
-        flushLiveTelemetry();
-        return;
-    }
-    if (!liveFlushTimer) {
-        liveFlushTimer = setTimeout(() => {
-            liveFlushTimer = null;
-            flushLiveTelemetry();
-        }, LIVE_FLUSH_MS);
-    }
-}
-
-function pumpLiveQueue() {
-    if (livePumpQueued) return;
-    livePumpQueued = true;
-    requestAnimationFrame(() => {
-        livePumpQueued = false;
-        if (!liveUseWs || !liveSocket || liveSocket.readyState !== 1) return;
-        while (liveQueue.length && liveSocket.bufferedAmount < LIVE_WS_BUFFER_MAX) {
-            const batch = liveQueue.splice(0, LIVE_BATCH);
-            liveSocket.send(JSON.stringify({ events: batch }));
-        }
-        if (liveQueue.length) pumpLiveQueue();
-    });
-}
-
-function flushLiveTelemetry() {
-    if (liveUseWs && liveSocket && liveSocket.readyState === 1) {
-        pumpLiveQueue();
-        if (liveSocket.readyState === 1) {
-            liveSocket.send(JSON.stringify({ flush: true }));
-        }
-        return liveFlushChain;
-    }
-    liveFlushChain = liveFlushChain.then(sendLiveBatches).catch(() => false);
-    return liveFlushChain;
-}
-
-async function sendLiveBatches() {
-    if (liveFlushTimer) {
-        clearTimeout(liveFlushTimer);
-        liveFlushTimer = null;
-    }
-    while (challenge && liveQueue.length) {
-        const batch = liveQueue.splice(0, LIVE_BATCH);
-        const resp = await fetch(`${API_BASE}/api/challenge/live`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                session_id: challenge.session_id,
-                verify_token: challenge.verify_token,
-                events: batch,
-            }),
-            keepalive: true,
-        });
-        const data = await resp.json().catch(() => ({}));
-        if (!resp.ok) {
-            liveQueue = batch.concat(liveQueue);
-            throw new Error((data.detail && data.detail.message) || data.detail || "live ingest failed");
-        }
-        if (typeof data.count === "number") liveAckCount = data.count;
-    }
-    return liveAckCount;
-}
-
-async function waitLiveSynced(expected, timeoutMs = 20000) {
-    const start = performance.now();
-    while (performance.now() - start < timeoutMs) {
-        if (liveUseWs) {
-            pumpLiveQueue();
-            if (liveSocket && liveSocket.readyState === 1) {
-                liveSocket.send(JSON.stringify({ flush: true }));
-            }
-        } else {
-            try {
-                await flushLiveTelemetry();
-            } catch (err) {
-                await new Promise(r => setTimeout(r, 80));
-            }
-        }
-        if (liveAckCount >= expected && liveQueue.length === 0) return true;
-        await new Promise(r => setTimeout(r, 40));
-    }
-    try {
-        await flushLiveTelemetry();
-    } catch (err) { /* last try */ }
-    return liveAckCount >= expected && liveQueue.length === 0;
+function eventTime(evt) {
+    if (evt && typeof evt.timeStamp === "number" && evt.timeStamp > 0) return evt.timeStamp;
+    return performance.now();
 }
 
 function onPointerDown(evt) {
@@ -403,7 +243,7 @@ function onPointerDown(evt) {
     const p = canvasPoint(evt);
     isDrawing = usesDragStroke();
     const meta = pointerMetaFrom(evt);
-    recordEvent(p.x, p.y, performance.now(), "mousedown", meta);
+    recordEvent(p.x, p.y, eventTime(evt), "mousedown", meta);
 }
 
 function recordPointerSamples(evt) {
@@ -411,19 +251,17 @@ function recordPointerSamples(evt) {
     for (let i = 0; i < points.length; i++) {
         const e = points[i];
         const p = canvasPoint(e);
-        recordEvent(p.x, p.y, e.timeStamp || performance.now(), "mousemove", pointerMetaFrom(e));
+        recordEvent(p.x, p.y, eventTime(e), "mousemove", pointerMetaFrom(e));
     }
 }
 
 function onPointerRawUpdate(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
-    if (usesDragStroke() && !isDrawing) return;
     recordPointerSamples(evt);
 }
 
 function onPointerMove(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
-    if (usesDragStroke() && !isDrawing) return;
     if (!("onpointerrawupdate" in window)) {
         recordPointerSamples(evt);
     }
@@ -440,11 +278,11 @@ function onPointerUp(evt) {
         /* already released */
     }
     const p = canvasPoint(evt);
-    recordEvent(p.x, p.y, evt.timeStamp, "mouseup", pointerMetaFrom(evt));
-    if (usesDragStroke() && isDrawing) {
+    recordEvent(p.x, p.y, eventTime(evt), "mouseup", pointerMetaFrom(evt));
+    if (usesDragStroke()) {
         isDrawing = false;
         drawChallenge();
-        submitAttempt("human");
+        if (events.length >= 4) submitAttempt("human");
         return;
     }
     handleClick(p.x, p.y);
@@ -554,6 +392,9 @@ function updateModelSelector(data) {
     const ymodelIds = Object.entries(models)
         .filter(([, d]) => d.family === "ymodel" && d.available)
         .sort((a, b) => (a[1].version || "").localeCompare(b[1].version || "", undefined, { numeric: true }));
+    const zmodelIds = Object.entries(models)
+        .filter(([, d]) => d.family === "zmodel" && d.available)
+        .sort((a, b) => (a[1].version || "").localeCompare(b[1].version || "", undefined, { numeric: true }));
     const legacyIds = Object.entries(models)
         .filter(([, d]) => d.family === "legacy" && d.available);
 
@@ -577,6 +418,20 @@ function updateModelSelector(data) {
         const group = document.createElement("optgroup");
         group.label = "Ymodel versions";
         ymodelIds.forEach(([name, details]) => {
+            const opt = document.createElement("option");
+            opt.value = name;
+            const status = details.status ? ` · ${details.status}` : "";
+            opt.textContent = `${modelOptionLabel(name, details)}${status}`;
+            opt.selected = name.toLowerCase() === String(data.active_model || "").toLowerCase();
+            group.appendChild(opt);
+        });
+        selector.appendChild(group);
+    }
+
+    if (zmodelIds.length) {
+        const group = document.createElement("optgroup");
+        group.label = "Zmodel versions";
+        zmodelIds.forEach(([name, details]) => {
             const opt = document.createElement("option");
             opt.value = name;
             const status = details.status ? ` · ${details.status}` : "";
@@ -763,7 +618,7 @@ function startNewChallenge() {
             challenge = data;
             isCapturing = true;
             clientInteractionStartMs = performance.now();
-            connectLiveTelemetry();
+            resetLocalCapture();
             document.getElementById("challenge-title").textContent = data.title;
             document.getElementById("challenge-instructions").textContent = data.instructions;
             document.getElementById("meta-type").textContent = data.challenge_type;
@@ -806,21 +661,11 @@ function submitAttempt(participant) {
     isCapturing = false;
     setButtonsDisabled(true);
 
-    waitLiveSynced(events.length).then((synced) => {
-        if (!synced) {
-            throw new Error("Live canvas stream did not catch up; retry the challenge.");
-        }
+    sealedVerifyBody(participant).then((body) => {
         return fetch(`${API_BASE}/api/challenge/verify`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                session_id: challenge.session_id,
-                participant,
-                verify_token: challenge.verify_token,
-                client_started_ms: clientInteractionStartMs,
-                client_submitted_ms: performance.now(),
-                source: "dashboard",
-            }),
+            body: JSON.stringify(body),
         });
     })
         .then(async r => {

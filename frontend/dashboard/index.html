@@ -13,7 +13,7 @@
     <header class="top-bar">
         <div>
             <h1>Behavioral CAPTCHA Dashboard</h1>
-            <p class="subtitle">Random challenges · human attempts · bot tests · live AI scoring</p>
+            <p class="subtitle">Random challenges · human attempts · bot tests · local encrypted capture</p>
         </div>
         <div class="top-actions">
             <span class="status-pill" id="backend-status">Connecting...</span>
@@ -87,13 +87,10 @@
                     <div><dt>Seed</dt><dd id="meta-seed">—</dd></div>
                     <div><dt>Events</dt><dd id="meta-events">0</dd></div>
                     <div><dt>Cursor Hz</dt><dd id="meta-cursor-hz">—</dd></div>
-                    <div><dt>Stream Hz</dt><dd id="meta-stream-hz">—</dd></div>
+                    <div><dt>Capture Hz</dt><dd id="meta-stream-hz">—</dd></div>
                     <div><dt>Participant</dt><dd id="meta-participant">—</dd></div>
                 </dl>
-                <label class="hz-scale-toggle">
-                    <input type="checkbox" id="scale-900hz">
-                    Scale stream to 900 Hz
-                </label>
+                <p class="hz-scale-toggle">Capture capped at 1000 Hz (device polling, no interpolation)</p>
             </div>
             <div class="card">
                 <h3>Task Result</h3>
@@ -108,6 +105,7 @@
         </aside>
     </main>
 
+    <script src="/dashboard/telemetry_seal.js"></script>
     <script src="/dashboard/dashboard.js"></script>
 </body>
 </html>

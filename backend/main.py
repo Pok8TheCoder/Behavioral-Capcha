@@ -11,9 +11,8 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 
-from backend.feature_extractor import extract_features
-from backend.active_window import DEFAULT_ACTIVE_WINDOW_CONFIG, segment_episode_into_windows, _split_on_gaps, aggregate_window_evaluations
 from backend.model import BehavioralClassifier
+from backend.active_window import DEFAULT_ACTIVE_WINDOW_CONFIG, segment_episode_into_windows, _split_on_gaps, aggregate_window_evaluations
 from bots.dashboard_bots import list_dashboard_bots, run_dashboard_bot
 from bots.event_utils import normalize_bot_events
 from challenge_server.generator import CHALLENGE_TYPES, CHALLENGE_CATALOG, generate_challenge, validate_completion
@@ -21,12 +20,14 @@ from backend.challenge_features import extract_challenge_features
 from backend.challenge_security import (
     CAPTCHA_STRICT,
     ingest_live_pointer_events,
+    ingest_sealed_pointer_events,
     is_open_telemetry_blocked,
     live_events_for_session,
     validate_verify_request,
 )
 from backend.human_capture import origin_bucket, sanitize_ip, write_human_capture
 from backend.hz60 import downsample_events_to_hz
+from backend.telemetry_crypto import new_telemetry_key, telemetry_key_to_b64, unseal_events
 
 app = FastAPI(
     title="Behavioral CAPTCHA & Biometric Bot Detection Engine",
@@ -69,6 +70,7 @@ class NewChallengePayload(BaseModel):
 class ChallengeVerifyPayload(BaseModel):
     session_id: str
     events: Optional[List[Dict[str, Any]]] = None
+    sealed_telemetry: Optional[Dict[str, Any]] = None
     participant: str = "human"
     verify_token: Optional[str] = None
     client_started_ms: Optional[float] = None
@@ -119,15 +121,15 @@ def _evaluate_events_dynamic(events: List[Dict[str, Any]]) -> tuple[Dict[str, An
 
     for episode in episodes:
         for window in segment_episode_into_windows(episode, cfg):
-            features = extract_features(window)
-            evaluation = classifier.evaluate(features)
+            features = classifier.features_from_events(window)
+            evaluation = classifier.evaluate_window(window)
             evaluations.append(evaluation)
             if not primary_features or evaluation.get("risk_score", 0) >= primary_features.get("_risk", 0):
                 primary_features = {**features, "_risk": evaluation.get("risk_score", 0)}
 
     if not evaluations:
-        features = extract_features(sorted_events)
-        return classifier.evaluate(features), features, 1
+        features = classifier.features_from_events(sorted_events)
+        return classifier.evaluate_window(sorted_events), features, 1
 
     primary_features.pop("_risk", None)
     aggregated = aggregate_window_evaluations(evaluations, strategy="max_risk")
@@ -356,9 +358,12 @@ def list_challenge_types():
 def create_challenge(payload: NewChallengePayload, request: Request):
     challenge = generate_challenge(seed=payload.seed, challenge_type=payload.challenge_type)
     verify_token = secrets.token_urlsafe(24)
+    telemetry_key = new_telemetry_key()
     session_doc = {
         **challenge,
         "verify_token": verify_token,
+        "telemetry_key": telemetry_key,
+        "capture_mode": "local",
         "created_at": time.time(),
         "verified": False,
         "verify_attempts": 0,
@@ -367,7 +372,12 @@ def create_challenge(payload: NewChallengePayload, request: Request):
     }
     _remember_client(session_doc, _client_ip(request))
     _challenge_sessions[challenge["session_id"]] = session_doc
-    response = {**challenge, "verify_token": verify_token}
+    response = {
+        **challenge,
+        "verify_token": verify_token,
+        "telemetry_key": telemetry_key_to_b64(telemetry_key),
+        "capture_mode": "local_sealed",
+    }
     return response
 
 
@@ -433,23 +443,46 @@ def verify_challenge(payload: ChallengeVerifyPayload, request: Request):
         raise HTTPException(
             status_code=403,
             detail={
-                "message": "Client-supplied telemetry is not accepted. Complete the challenge on the canvas.",
+                "message": "Plaintext telemetry is not accepted. Submit the encrypted local capture.",
                 "security_flags": ["json_event_payload_rejected"],
             },
         )
 
-    live = live_events_for_session(session)
-    if CAPTCHA_STRICT:
-        events_raw = live
-        if len(events_raw) < 4:
+    events_raw: List[Dict[str, Any]] = []
+    if payload.sealed_telemetry:
+        key = session.get("telemetry_key")
+        if not key:
             raise HTTPException(
                 status_code=403,
                 detail={
-                    "message": "No live canvas telemetry. Pointer events must stream from the dashboard canvas.",
-                    "security_flags": ["missing_live_canvas_stream"],
+                    "message": "This session has no local capture key. Start a new challenge.",
+                    "security_flags": ["missing_telemetry_key"],
                 },
             )
+        try:
+            unsealed = unseal_events(key, payload.sealed_telemetry)
+        except ValueError as exc:
+            raise HTTPException(
+                status_code=403,
+                detail={"message": str(exc), "security_flags": ["sealed_telemetry_invalid"]},
+            ) from exc
+        ok_ingest, reason, count = ingest_sealed_pointer_events(session, unsealed)
+        if not ok_ingest:
+            raise HTTPException(
+                status_code=403,
+                detail={"message": reason, "security_flags": ["sealed_telemetry_rejected"], "count": count},
+            )
+        events_raw = live_events_for_session(session)
+    elif CAPTCHA_STRICT:
+        raise HTTPException(
+            status_code=403,
+            detail={
+                "message": "No encrypted local capture. Finish the challenge on the canvas, then submit.",
+                "security_flags": ["missing_sealed_telemetry"],
+            },
+        )
     else:
+        live = live_events_for_session(session)
         events_raw = live if len(live) >= 4 else supplied
 
     if not events_raw:

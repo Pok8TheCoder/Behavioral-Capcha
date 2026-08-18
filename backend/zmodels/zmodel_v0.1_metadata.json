@@ -1,0 +1,68 @@
+{
+  "model_type": "znet_v01",
+  "zmodel_id": "zmodel_v0.1",
+  "zmodel_label": "Zmodel V0.1",
+  "target_hz": 60.0,
+  "seq_len": 192,
+  "feature_schema": "zmodel_seq",
+  "train_seconds": 19.003,
+  "device": "cuda",
+  "epochs": 8,
+  "human_windows": 16246,
+  "bot_windows": 101231,
+  "train_windows": 90785,
+  "test_windows": 26692,
+  "bench": [
+    {
+      "name": "Zmodel V0.1",
+      "roc_auc": 0.998922995527602,
+      "accuracy": 0.9841900194814925,
+      "confusion_matrix": [
+        [
+          849,
+          13
+        ],
+        [
+          409,
+          25421
+        ]
+      ],
+      "ml_human_on_humans": 0.9840310215950012,
+      "ml_human_on_bots": 0.022135257720947266
+    },
+    {
+      "name": "Qmodel V0.16 (same windows)",
+      "roc_auc": 0.3232234591155988,
+      "accuracy": 0.9532818822118987,
+      "confusion_matrix": [
+        [
+          5,
+          857
+        ],
+        [
+          390,
+          25440
+        ]
+      ],
+      "ml_human_on_humans": 0.008385097356232274,
+      "ml_human_on_bots": 0.045841365968833814
+    },
+    {
+      "name": "Ymodel V0.3.2M (same windows)",
+      "roc_auc": 0.9982475547327565,
+      "accuracy": 0.98344073130526,
+      "confusion_matrix": [
+        [
+          847,
+          15
+        ],
+        [
+          427,
+          25403
+        ]
+      ],
+      "ml_human_on_humans": 0.9724791320284163,
+      "ml_human_on_bots": 0.017904643380784013
+    }
+  ]
+}

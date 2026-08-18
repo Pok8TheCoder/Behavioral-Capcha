@@ -298,7 +298,34 @@ def ingest_live_pointer_events(
         if evt is None:
             return False, "Invalid live telemetry event.", len(live)
         live.append(evt)
-        recv.append(now)
+    recv.append(now)
+    return True, "", len(live)
+
+
+def ingest_sealed_pointer_events(
+    session: Dict[str, Any],
+    raw_events: List[Dict[str, Any]],
+) -> Tuple[bool, str, int]:
+    """Accept a full local capture after AES-GCM unseal. No live arrival clock."""
+    from backend.telemetry_crypto import MAX_SEALED_EVENTS
+
+    live: List[Dict[str, Any]] = []
+    if session.get("verified"):
+        return False, "Challenge session already completed.", 0
+    if not isinstance(raw_events, list) or not raw_events:
+        return False, "Empty sealed telemetry.", 0
+    if len(raw_events) > MAX_SEALED_EVENTS:
+        return False, "Sealed telemetry has too many events.", 0
+    for raw in raw_events:
+        if not isinstance(raw, dict):
+            return False, "Invalid sealed telemetry event.", len(live)
+        evt = _sanitize_live_event(raw)
+        if evt is None:
+            return False, "Invalid sealed telemetry event.", len(live)
+        live.append(evt)
+    session["live_events"] = live
+    session["live_recv"] = []
+    session["capture_mode"] = "sealed"
     return True, "", len(live)
 
 
@@ -369,9 +396,10 @@ def validate_verify_request(
         if duration_ms > 0 and session_age_ms < duration_ms * 0.65:
             return False, "Telemetry duration exceeds wall-clock session time (injected stream).", flags
 
-        arrival_ok, arrival_reason = _live_arrival_ok(session, events)
-        if not arrival_ok:
-            return False, arrival_reason, flags
+        if session.get("capture_mode") != "sealed":
+            arrival_ok, arrival_reason = _live_arrival_ok(session, events)
+            if not arrival_ok:
+                return False, arrival_reason, flags
 
         if session_age_ms < MIN_SESSION_AGE_MS:
             return False, "Interaction completed too quickly for a live attempt.", flags

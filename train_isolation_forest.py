@@ -70,6 +70,7 @@ FEATURE_NAMES = [
 class WindowSample:
     vector: List[float]
     source_file: str
+    events: Optional[List[Dict[str, Any]]] = None
 
 
 def _find_col(columns: Sequence[str], candidates: Sequence[str]) -> Optional[str]:
