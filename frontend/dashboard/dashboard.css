@@ -123,7 +123,13 @@ body { display: flex; flex-direction: column; min-height: 100vh; }
     background: rgba(255, 255, 255, 0.02);
 }
 
-.bot-bar-label { font-size: 0.78rem; color: var(--muted); margin-right: 4px; }
+.import-model-btn {
+    display: inline-flex;
+    align-items: center;
+    height: 36px;
+}
+
+.import-model-btn[aria-busy="true"] { opacity: 0.6; pointer-events: none; }
 
 .arena-wrap {
     position: relative;

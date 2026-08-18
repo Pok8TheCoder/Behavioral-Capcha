@@ -80,6 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btn-save-human").addEventListener("click", saveHumanCapture);
     document.getElementById("btn-submit").addEventListener("click", () => submitAttempt("human"));
     document.getElementById("active-model").addEventListener("change", activateModel);
+    document.getElementById("btn-run-bot").addEventListener("click", () => {
+        const botName = document.getElementById("dashboard-bot").value;
+        if (botName) runBot(botName);
+    });
+    document.getElementById("import-model-file").addEventListener("change", importJoblibModel);
+    document.getElementById("dashboard-bot").addEventListener("change", () => {
+        localStorage.setItem("dashboardBot", document.getElementById("dashboard-bot").value);
+    });
     const hzToggle = document.getElementById("scale-900hz");
     if (hzToggle) {
         hzToggle.checked = localStorage.getItem("scaleTo900Hz") === "1";
@@ -91,10 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    document.querySelectorAll("[data-bot]").forEach(btn => {
-        btn.addEventListener("click", () => runBot(btn.dataset.bot));
-    });
-
     canvas.addEventListener("pointerdown", onPointerDown);
     canvas.addEventListener("pointermove", onPointerMove, { passive: true });
     canvas.addEventListener("pointerrawupdate", onPointerRawUpdate, { passive: true });
@@ -102,6 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
     canvas.addEventListener("pointercancel", onPointerUp);
 
     loadModelSelector();
+    loadBotSelector();
     loadChallengeCatalog();
     checkHealth();
     startNewChallenge();
@@ -595,6 +600,21 @@ function updateModelSelector(data) {
         selector.appendChild(group);
     }
 
+    const importedIds = Object.entries(models)
+        .filter(([, d]) => d.family === "imported" && d.available);
+    if (importedIds.length) {
+        const group = document.createElement("optgroup");
+        group.label = "Imported models";
+        importedIds.forEach(([name, details]) => {
+            const opt = document.createElement("option");
+            opt.value = name;
+            opt.textContent = modelOptionLabel(name, details);
+            opt.selected = name.toLowerCase() === String(data.active_model || "").toLowerCase();
+            group.appendChild(opt);
+        });
+        selector.appendChild(group);
+    }
+
     if (!selector.options.length) return;
     document.getElementById("model-line").textContent = `Model: ${formatActiveModelLabel(data)}`;
 }
@@ -621,6 +641,65 @@ function activateModel() {
             alert(err.message || "Could not activate model.");
         })
         .finally(() => { selector.disabled = false; });
+}
+
+function importJoblibModel(evt) {
+    const input = evt.target;
+    const file = input.files && input.files[0];
+    input.value = "";
+    if (!file) return;
+    const body = new FormData();
+    body.append("file", file, file.name);
+    const importBtn = document.querySelector(".import-model-btn");
+    if (importBtn) importBtn.setAttribute("aria-busy", "true");
+    fetch(`${API_BASE}/api/models/import`, { method: "POST", body })
+        .then(async r => {
+            const data = await r.json();
+            if (!r.ok) {
+                const message = data.detail?.message || data.detail || "Import failed.";
+                throw new Error(typeof message === "string" ? message : "Import failed.");
+            }
+            updateModelSelector(data);
+            document.getElementById("model-line").textContent = `Model: ${formatActiveModelLabel(data)}`;
+        })
+        .catch(err => {
+            console.error(err);
+            alert(err.message || "Could not import joblib.");
+        })
+        .finally(() => {
+            if (importBtn) importBtn.removeAttribute("aria-busy");
+        });
+}
+
+function loadBotSelector() {
+    fetch(`${API_BASE}/api/challenge/bots`)
+        .then(r => r.json())
+        .then(data => {
+            const selector = document.getElementById("dashboard-bot");
+            const bots = data.bots || [];
+            const saved = localStorage.getItem("dashboardBot");
+            selector.innerHTML = "";
+            const groups = [];
+            bots.forEach(bot => {
+                if (!groups.includes(bot.group)) groups.push(bot.group);
+            });
+            groups.forEach(groupName => {
+                const group = document.createElement("optgroup");
+                group.label = groupName;
+                bots.filter(b => b.group === groupName).forEach(bot => {
+                    const opt = document.createElement("option");
+                    opt.value = bot.id;
+                    opt.textContent = bot.label;
+                    opt.selected = bot.id === saved;
+                    group.appendChild(opt);
+                });
+                selector.appendChild(group);
+            });
+            if (saved && [...selector.options].some(o => o.value === saved)) {
+                selector.value = saved;
+            }
+        })
+        .catch(() => {});
 }
 
 function loadChallengeCatalog() {
@@ -715,7 +794,10 @@ function resetAssessmentUI(badge, taskText) {
 }
 
 function setButtonsDisabled(disabled) {
-    document.querySelectorAll("[data-bot], #btn-submit").forEach(b => { b.disabled = disabled; });
+    ["btn-submit", "btn-run-bot", "dashboard-bot"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.disabled = disabled;
+    });
 }
 
 function submitAttempt(participant) {

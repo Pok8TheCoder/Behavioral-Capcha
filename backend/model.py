@@ -12,6 +12,7 @@ from backend.qmodel_registry import (
     list_qmodel_versions,
     procedural_mimic_enabled as qmodel_procedural_mimic,
 )
+from backend.imported_registry import get_imported_entry, list_imported_versions
 from backend.ymodel_registry import (
     get_ymodel_entry,
     get_ymodel_evasion_rules_path,
@@ -36,6 +37,8 @@ def _build_model_registry() -> dict:
     for entry in list_qmodel_versions():
         registry[entry["id"]] = entry["path"]
     for entry in list_ymodel_versions():
+        registry[entry["id"]] = entry["path"]
+    for entry in list_imported_versions():
         registry[entry["id"]] = entry["path"]
     return registry
 
@@ -110,6 +113,15 @@ class BehavioralClassifier:
                 "status": entry.get("status"),
                 "family": "ymodel",
             }
+        for entry in list_imported_versions():
+            out[entry["id"]] = {
+                "available": entry.get("available", False),
+                "path": entry.get("path"),
+                "label": entry.get("label"),
+                "version": entry.get("version"),
+                "status": entry.get("status"),
+                "family": "imported",
+            }
         for model_name, model_path in LEGACY_MODEL_REGISTRY.items():
             out[model_name] = {
                 "available": os.path.exists(model_path),
@@ -148,12 +160,19 @@ class BehavioralClassifier:
             self.feature_names = package.get("feature_names", []) if isinstance(package, dict) else []
             self.metadata = package.get("metadata", {}) if isinstance(package, dict) else {}
             self.model_type = canonical_name
-            entry = get_qmodel_entry(canonical_name) or get_ymodel_entry(canonical_name)
+            entry = (
+                get_qmodel_entry(canonical_name)
+                or get_ymodel_entry(canonical_name)
+                or get_imported_entry(canonical_name)
+            )
             if entry:
                 self.display_name = entry.get("label", canonical_name)
                 if get_qmodel_entry(canonical_name):
                     self.evasion_rules_path = get_evasion_rules_path(canonical_name)
                     self.use_procedural_mimic_heuristic = qmodel_procedural_mimic(canonical_name)
+                elif get_imported_entry(canonical_name):
+                    self.evasion_rules_path = None
+                    self.use_procedural_mimic_heuristic = True
                 else:
                     self.evasion_rules_path = get_ymodel_evasion_rules_path(canonical_name)
                     self.use_procedural_mimic_heuristic = bool(entry.get("procedural_mimic_heuristic", True))
@@ -167,6 +186,59 @@ class BehavioralClassifier:
         except Exception as e:
             print(f"[Model] Error loading {canonical_name}: {e}")
             return False
+
+    def import_joblib_bytes(self, raw: bytes, filename: str, activate: bool = True) -> dict:
+        """Save a third-party joblib package into the imported-model catalog."""
+        import io
+        import re
+
+        from backend.imported_registry import IMPORTED_DIR, register_imported
+        from train_isolation_forest import FEATURE_NAMES
+
+        stem = re.sub(r"[^a-zA-Z0-9._-]+", "_", os.path.splitext(os.path.basename(filename))[0])
+        stem = stem.strip("._") or "model"
+        version_id = f"imported_{stem}"[:80]
+        try:
+            package = joblib.load(io.BytesIO(raw))
+        except Exception as exc:
+            raise ValueError(f"Could not unpickle joblib: {exc}") from exc
+
+        if isinstance(package, dict) and "model" in package:
+            estimator = package["model"]
+            feature_names = list(package.get("feature_names") or FEATURE_NAMES)
+            metadata = dict(package.get("metadata") or {})
+        else:
+            estimator = package
+            feature_names = list(FEATURE_NAMES)
+            metadata = {"imported_from": filename}
+
+        if not any(hasattr(estimator, name) for name in ("predict_proba", "predict", "decision_function")):
+            raise ValueError("Joblib payload has no predict / predict_proba / decision_function.")
+
+        metadata["imported_from"] = os.path.basename(filename)
+        label = (
+            metadata.get("ymodel_label")
+            or metadata.get("qmodel_label")
+            or f"Imported {stem}"
+        )
+        metadata["ymodel_label"] = label
+        os.makedirs(IMPORTED_DIR, exist_ok=True)
+        dest = os.path.join(IMPORTED_DIR, f"{version_id}.joblib")
+        joblib.dump({"model": estimator, "feature_names": feature_names, "metadata": metadata}, dest)
+        register_imported(
+            version_id=version_id,
+            label=label,
+            original_filename=os.path.basename(filename),
+            n_features=len(feature_names),
+        )
+        if activate and not self.load_model(version_id):
+            raise ValueError(f"Imported {version_id} but failed to activate it.")
+        return {
+            "model_id": version_id,
+            "label": label,
+            "n_features": len(feature_names),
+            "activated": bool(activate),
+        }
 
     def _load_or_train_model(self):
         """Backward-compatible artifact loading entry point."""

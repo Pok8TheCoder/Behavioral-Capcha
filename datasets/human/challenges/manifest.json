@@ -1,7 +1,7 @@
 {
   "by_challenge": {
     "button_sequence": {
-      "count": 40,
+      "count": 43,
       "files": [
         {
           "csv": "challenges/button_sequence/button_sequence_20260817_105110_4d026427-5283-489b-9750-.csv",
@@ -556,6 +556,51 @@
             "sequence_ok": true,
             "avg_click_dwell_ms": 68.4667
           }
+        },
+        {
+          "csv": "challenges/lan/button_sequence/button_sequence_20260818_060653_a0e54e19-c214-4a9a-8e22-.csv",
+          "meta": "challenges/lan/button_sequence/button_sequence_20260818_060653_a0e54e19-c214-4a9a-8e22-.json",
+          "saved_at": "2026-08-18T06:06:53.938136+00:00",
+          "event_count": 281,
+          "task_passed": true,
+          "seed": 1219824234,
+          "client_ip": "100.101.106.53",
+          "origin": "lan",
+          "challenge_features_summary": {
+            "click_offset_mean_px": 14.196,
+            "sequence_ok": true,
+            "avg_click_dwell_ms": 57.44
+          }
+        },
+        {
+          "csv": "challenges/lan/button_sequence/button_sequence_20260818_060717_25ae4d0e-aa2c-4fed-8a40-.csv",
+          "meta": "challenges/lan/button_sequence/button_sequence_20260818_060717_25ae4d0e-aa2c-4fed-8a40-.json",
+          "saved_at": "2026-08-18T06:07:17.948179+00:00",
+          "event_count": 236,
+          "task_passed": true,
+          "seed": 660887325,
+          "client_ip": "100.101.106.53",
+          "origin": "lan",
+          "challenge_features_summary": {
+            "click_offset_mean_px": 15.7525,
+            "sequence_ok": true,
+            "avg_click_dwell_ms": 67.75
+          }
+        },
+        {
+          "csv": "challenges/lan/button_sequence/button_sequence_20260818_060749_6942c540-f9a1-426e-9f66-.csv",
+          "meta": "challenges/lan/button_sequence/button_sequence_20260818_060749_6942c540-f9a1-426e-9f66-.json",
+          "saved_at": "2026-08-18T06:07:49.278821+00:00",
+          "event_count": 373,
+          "task_passed": false,
+          "seed": 1359274923,
+          "client_ip": "100.101.106.53",
+          "origin": "lan",
+          "challenge_features_summary": {
+            "click_offset_mean_px": 19.8457,
+            "sequence_ok": false,
+            "avg_click_dwell_ms": 45.8714
+          }
         }
       ]
     },
@@ -1017,7 +1062,7 @@
       ]
     },
     "spiral_trace": {
-      "count": 40,
+      "count": 41,
       "files": [
         {
           "csv": "challenges/spiral_trace/spiral_trace_20260817_105124_23c7cb15-479c-481f-a40b-.csv",
@@ -1607,6 +1652,22 @@
             "mean_distance_to_guide_px": 7.0059,
             "shape": null,
             "avg_click_dwell_ms": 3977.0
+          }
+        },
+        {
+          "csv": "challenges/lan/spiral_trace/spiral_trace_20260818_060726_908339d1-34c2-4033-8544-.csv",
+          "meta": "challenges/lan/spiral_trace/spiral_trace_20260818_060726_908339d1-34c2-4033-8544-.json",
+          "saved_at": "2026-08-18T06:07:26.289557+00:00",
+          "event_count": 285,
+          "task_passed": true,
+          "seed": 1930448263,
+          "client_ip": "100.101.106.53",
+          "origin": "lan",
+          "challenge_features_summary": {
+            "coverage_ratio": 0.9804,
+            "mean_distance_to_guide_px": 12.252,
+            "shape": null,
+            "avg_click_dwell_ms": 3377.7
           }
         }
       ]
@@ -2222,7 +2283,7 @@
       ]
     },
     "target_hunt": {
-      "count": 32,
+      "count": 33,
       "files": [
         {
           "csv": "challenges/target_hunt/target_hunt_20260817_105134_2b67bf68-9ee1-47a0-9592-.csv",
@@ -2665,11 +2726,26 @@
             "hits": 5,
             "avg_click_dwell_ms": 77.72
           }
+        },
+        {
+          "csv": "challenges/lan/target_hunt/target_hunt_20260818_060712_699e566e-0178-41eb-99a6-.csv",
+          "meta": "challenges/lan/target_hunt/target_hunt_20260818_060712_699e566e-0178-41eb-99a6-.json",
+          "saved_at": "2026-08-18T06:07:12.023731+00:00",
+          "event_count": 245,
+          "task_passed": true,
+          "seed": 1414394651,
+          "client_ip": "100.101.106.53",
+          "origin": "lan",
+          "challenge_features_summary": {
+            "click_offset_mean_px": 21.8,
+            "hits": 5,
+            "avg_click_dwell_ms": 62.95
+          }
         }
       ]
     },
     "pin_entry": {
-      "count": 25,
+      "count": 26,
       "files": [
         {
           "csv": "challenges/pin_entry/pin_entry_20260817_105141_440bb950-a635-4c1a-ba94-.csv",
@@ -2989,6 +3065,20 @@
           "challenge_features_summary": {
             "click_offset_mean_px": 12.695,
             "avg_click_dwell_ms": 82.55
+          }
+        },
+        {
+          "csv": "challenges/lan/pin_entry/pin_entry_20260818_060647_b77c789f-d38a-4db1-b84e-.csv",
+          "meta": "challenges/lan/pin_entry/pin_entry_20260818_060647_b77c789f-d38a-4db1-b84e-.json",
+          "saved_at": "2026-08-18T06:06:47.322731+00:00",
+          "event_count": 317,
+          "task_passed": true,
+          "seed": 780430179,
+          "client_ip": "100.101.106.53",
+          "origin": "lan",
+          "challenge_features_summary": {
+            "click_offset_mean_px": 7.4625,
+            "avg_click_dwell_ms": 62.85
           }
         }
       ]
@@ -3583,7 +3673,7 @@
       ]
     },
     "maze_navigate": {
-      "count": 29,
+      "count": 30,
       "files": [
         {
           "csv": "challenges/maze_navigate/maze_navigate_20260817_105221_1eb8510c-aed5-43f6-8db6-.csv",
@@ -3934,6 +4024,19 @@
           "origin": "lan",
           "challenge_features_summary": {
             "avg_click_dwell_ms": 8295.0
+          }
+        },
+        {
+          "csv": "challenges/lan/maze_navigate/maze_navigate_20260818_060705_8a31b656-07df-4143-96c2-.csv",
+          "meta": "challenges/lan/maze_navigate/maze_navigate_20260818_060705_8a31b656-07df-4143-96c2-.json",
+          "saved_at": "2026-08-18T06:07:05.740964+00:00",
+          "event_count": 691,
+          "task_passed": true,
+          "seed": 202782641,
+          "client_ip": "100.101.106.53",
+          "origin": "lan",
+          "challenge_features_summary": {
+            "avg_click_dwell_ms": 8456.5
           }
         }
       ]
@@ -4464,7 +4567,7 @@
       ]
     },
     "shape_trace": {
-      "count": 46,
+      "count": 47,
       "files": [
         {
           "csv": "challenges/shape_trace/shape_trace_20260817_105258_93bfb897-ce5c-49a8-aa53-.csv",
@@ -5139,9 +5242,25 @@
             "shape": "square",
             "avg_click_dwell_ms": 2267.8
           }
+        },
+        {
+          "csv": "challenges/lan/shape_trace/shape_trace_20260818_060639_768a33a7-013d-4af4-a4e9-.csv",
+          "meta": "challenges/lan/shape_trace/shape_trace_20260818_060639_768a33a7-013d-4af4-a4e9-.json",
+          "saved_at": "2026-08-18T06:06:39.399762+00:00",
+          "event_count": 156,
+          "task_passed": true,
+          "seed": 1512928489,
+          "client_ip": "100.101.106.53",
+          "origin": "lan",
+          "challenge_features_summary": {
+            "coverage_ratio": 1.0,
+            "mean_distance_to_guide_px": 9.7244,
+            "shape": "circle",
+            "avg_click_dwell_ms": 1804.1
+          }
         }
       ]
     }
   },
-  "updated_at": "2026-08-18T05:53:36.403700+00:00"
+  "updated_at": "2026-08-18T06:07:49.278821+00:00"
 }

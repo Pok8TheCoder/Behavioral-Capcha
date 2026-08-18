@@ -4,7 +4,7 @@ import math
 import time
 import random
 import secrets
-from fastapi import FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
@@ -14,10 +14,8 @@ from typing import List, Dict, Any, Optional
 from backend.feature_extractor import extract_features
 from backend.active_window import DEFAULT_ACTIVE_WINDOW_CONFIG, segment_episode_into_windows, _split_on_gaps, aggregate_window_evaluations
 from backend.model import BehavioralClassifier
-from bots.challenge_solver import solve_challenge
+from bots.dashboard_bots import list_dashboard_bots, run_dashboard_bot
 from bots.event_utils import normalize_bot_events
-from bots.challenge_bot_factory import CHALLENGE_BOT_STYLES, prelude_bot
-from bots.telemetry_export import ensure_export_timestamps
 from challenge_server.generator import CHALLENGE_TYPES, CHALLENGE_CATALOG, generate_challenge, validate_completion
 from backend.challenge_features import extract_challenge_features
 from backend.challenge_security import (
@@ -86,7 +84,7 @@ class LiveTelemetryPayload(BaseModel):
 
 class RunChallengeBotPayload(BaseModel):
     session_id: str
-    bot: str = Field("linear", description="linear, bezier, or humanoid")
+    bot: str = Field("wide_arc", description="wide_arc, minjerk, or simulated")
 
 
 class SaveHumanCapturePayload(BaseModel):
@@ -198,6 +196,36 @@ def activate_model(payload: ModelActivationPayload):
         "available_models": classifier.available_models(),
         "qmodels": classifier.qmodel_catalog(),
     }
+
+
+@app.post("/api/models/import")
+async def import_model(file: UploadFile = File(...)):
+    name = file.filename or "model.joblib"
+    ext = os.path.splitext(name)[1].lower()
+    if ext not in (".joblib", ".pkl"):
+        raise HTTPException(status_code=400, detail="Only .joblib or .pkl files are accepted.")
+    raw = await file.read()
+    if not raw:
+        raise HTTPException(status_code=400, detail="Empty file.")
+    if len(raw) > 80 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="File too large (max 80 MB).")
+    try:
+        imported = classifier.import_joblib_bytes(raw, name, activate=True)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return {
+        "status": "imported",
+        **imported,
+        "active_model": classifier.model_type,
+        "active_model_label": classifier.display_name,
+        "available_models": classifier.available_models(),
+        "qmodels": classifier.qmodel_catalog(),
+    }
+
+
+@app.get("/api/challenge/bots")
+def list_challenge_bots():
+    return {"bots": list_dashboard_bots()}
 
 @app.post("/api/verify")
 def verify_telemetry(payload: TelemetryPayload):
@@ -481,19 +509,10 @@ def run_bot_on_challenge(payload: RunChallengeBotPayload):
         raise HTTPException(status_code=404, detail="Challenge session not found.")
 
     bot_name = payload.bot.lower()
-    style_map = {
-        "linear": "linear_fast",
-        "bezier": "bezier_fast",
-        "humanoid": "humanoid_fast",
-    }
-    if bot_name not in style_map:
-        raise HTTPException(status_code=400, detail=f"Unknown bot: {payload.bot}")
-
-    factory = CHALLENGE_BOT_STYLES[style_map[bot_name]]
-    bot, solve_style, fast = factory(random.Random())
-    prelude_bot(bot, random.Random(), 1920, 1080)
-    solve_challenge(bot, challenge, style=solve_style, fast=fast)
-    stamped = ensure_export_timestamps(list(bot.events), random.Random())
+    try:
+        stamped = run_dashboard_bot(challenge, bot_name)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     events = _normalize_events(stamped)
     evaluation, features, window_count = _evaluate_events_dynamic(events)
     task_result = validate_completion(challenge, events)

@@ -25,6 +25,10 @@
             <div class="model-select-wrap">
                 <select id="active-model" aria-label="Active detection model"></select>
             </div>
+            <label class="btn import-model-btn" for="import-model-file">
+                Import joblib
+                <input id="import-model-file" type="file" accept=".joblib,.pkl" hidden>
+            </label>
             <button class="btn btn-primary" id="btn-new-challenge" type="button">New Challenge</button>
         </div>
     </header>
@@ -37,10 +41,11 @@
             </div>
 
             <div class="bot-bar">
-                <span class="bot-bar-label">Run bot on this challenge:</span>
-                <button class="btn btn-bot" type="button" data-bot="linear">Linear</button>
-                <button class="btn btn-bot" type="button" data-bot="bezier">Bezier</button>
-                <button class="btn btn-bot" type="button" data-bot="humanoid">Humanoid</button>
+                <span class="bot-bar-label">Run bot:</span>
+                <div class="model-select-wrap">
+                    <select id="dashboard-bot" aria-label="Dashboard bot"></select>
+                </div>
+                <button class="btn btn-bot" id="btn-run-bot" type="button">Run bot</button>
                 <button class="btn" id="btn-submit" type="button">Submit Attempt</button>
             </div>
 
