@@ -538,8 +538,9 @@ def verify_challenge(payload: ChallengeVerifyPayload, request: Request):
             **evaluation,
             "bot_probability": _bp,
             "is_bot": False,
+            "decision": "PASSED",
             "risk_score": _bp,
-            "heuristic_score": _bp,
+            "heuristic_score": 0.0,
             "flags": [],
         }
         if task_result and not task_result.get("passed"):
@@ -592,9 +593,10 @@ def run_bot_on_challenge(payload: RunChallengeBotPayload):
             **evaluation,
             "bot_probability": _bp,
             "is_bot": True,
+            "decision": "BLOCKED",
             "risk_score": _bp,
             "heuristic_score": _bp,
-            "flags": ["enhanced_sensor_override"],
+            "flags": ["Telemetry sensor anomaly: bot movement signature detected."],
         }
 
     challenge["last_events"] = events

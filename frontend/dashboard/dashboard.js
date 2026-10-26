@@ -1081,10 +1081,11 @@ function showResults(data) {
     document.getElementById("meta-participant").textContent = data.participant || "—";
 
     const badge = document.getElementById("decision-badge");
-    if (evalData.is_bot) {
+    const isBot = evalData.is_bot === true && (humanPct == null || humanPct < 50);
+    if (isBot) {
         badge.textContent = "BLOCKED: BOT";
         badge.className = "decision-badge badge-blocked";
-    } else if (evalData.is_bot === false) {
+    } else if (evalData.is_bot === false || (humanPct != null && humanPct >= 50)) {
         badge.textContent = "PASSED: HUMAN";
         badge.className = "decision-badge badge-passed";
     } else {

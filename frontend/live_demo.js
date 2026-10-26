@@ -248,7 +248,7 @@ function applyEvaluationResult(data) {
     let statusText = "PASSED: HUMAN";
     let statusClass = "badge-passed";
 
-    if (evalData.is_bot) {
+    if (evalData.is_bot && (humanPct == null || humanPct < 50)) {
         statusText = "BLOCKED: BOT";
         statusClass = "badge-blocked";
     }
