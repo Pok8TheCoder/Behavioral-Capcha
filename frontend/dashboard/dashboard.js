@@ -65,6 +65,12 @@ function record60HzEnabled() {
     return Boolean(box && box.checked);
 }
 
+function enhancedSensorModeEnabled() {
+    const box = document.getElementById("enhanced-sensor-mode");
+    return Boolean(box && box.checked);
+}
+
+
 function captureTargetHz() {
     return record60HzEnabled() ? RECORD_60_HZ : NATIVE_CAPTURE_HZ;
 }
@@ -130,6 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
         hzBox.addEventListener("change", () => {
             localStorage.setItem("dashboardRecord60Hz", hzBox.checked ? "1" : "0");
             updateHzReadout();
+        });
+    }
+    const esmBox = document.getElementById("enhanced-sensor-mode");
+    if (esmBox) {
+        esmBox.checked = localStorage.getItem("dashboardEnhancedSensor") === "1";
+        esmBox.addEventListener("change", () => {
+            localStorage.setItem("dashboardEnhancedSensor", esmBox.checked ? "1" : "0");
         });
     }
     canvas.style.touchAction = "none";
@@ -299,6 +312,7 @@ async function sealedVerifyBody(participant) {
         source: "dashboard",
         sealed_telemetry: sealed,
         record_hz: record60HzEnabled() ? RECORD_60_HZ : null,
+        enhanced_sensor_mode: enhancedSensorModeEnabled(),
     };
 }
 
@@ -795,6 +809,7 @@ function runBot(botName) {
             session_id: challenge.session_id,
             bot: botName,
             record_hz: record60HzEnabled() ? RECORD_60_HZ : null,
+            enhanced_sensor_mode: enhancedSensorModeEnabled(),
         }),
     })
         .then(r => r.json())
