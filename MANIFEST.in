@@ -1,0 +1,13 @@
+include README.md
+include LICENSE
+include requirements.txt
+include package.json
+recursive-include backend *.joblib *.json *.py
+recursive-include backend/qmodels *
+recursive-include backend/xmodels *
+recursive-include backend/ymodels *
+recursive-include backend/zmodels *
+recursive-include backend/imported *
+recursive-include frontend *
+recursive-include bots *
+recursive-include challenge_server *

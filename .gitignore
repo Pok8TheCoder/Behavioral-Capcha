@@ -6,6 +6,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.joblib
+*.egg-info/
+*.egg
 
 # Node & Frontend
 node_modules/
@@ -21,6 +23,11 @@ datasets/human/challenges/
 datasets/bot_humanlike/
 datasets/bot_challenge/
 datasets/bot_challenge_tiers/
+datasets/bot_xmodel_60hz/
+
+# Binary & PDF documents
+*.pdf
+
 
 # Temporary & Autosave datasets
 temp/

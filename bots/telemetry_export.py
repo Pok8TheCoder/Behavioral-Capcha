@@ -30,3 +30,22 @@ def ensure_export_timestamps(
         stamped.append({**event, "t": round(t, 3)})
         t += rng.uniform(min_step_ms, max_step_ms)
     return stamped
+
+
+def ensure_60hz_export_events(
+    events: List[Dict[str, Any]],
+    rng: random.Random,
+    *,
+    min_step_ms: float = 14.0,
+    max_step_ms: float = 18.0,
+) -> List[Dict[str, Any]]:
+    """Spread collapsed bot timestamps, then downsample to 60 Hz for Xmodel training."""
+    from backend.hz60 import downsample_events_to_hz
+
+    stamped = ensure_export_timestamps(
+        events,
+        rng,
+        min_step_ms=min_step_ms,
+        max_step_ms=max_step_ms,
+    )
+    return downsample_events_to_hz(stamped, 60.0)

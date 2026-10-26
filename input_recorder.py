@@ -440,7 +440,7 @@ def handle_signal(sig, frame):
 signal.signal(signal.SIGINT, handle_signal)
 signal.signal(signal.SIGTERM, handle_signal)
 
-if __name__ == "__main__":
+def main():
     if "--clean-temp" in sys.argv:
         clean_temp_autosaves()
         sys.exit(0)
@@ -497,3 +497,7 @@ if __name__ == "__main__":
         mouse_listener.stop()
         key_listener.stop()
         flush_ram_to_csv()
+
+if __name__ == "__main__":
+    main()
+

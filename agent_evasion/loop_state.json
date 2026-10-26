@@ -1,0 +1,996 @@
+{
+  "running": false,
+  "paused": true,
+  "phase": "stopped",
+  "model_id": "xmodel_v0.3z.EA.03",
+  "iteration": 2,
+  "windows_cycle": 0,
+  "windows_target": 5000,
+  "windows_total": 132,
+  "attempts": 56537,
+  "beats": 132,
+  "marks": 17,
+  "workers": 64,
+  "workers_per_family": 4,
+  "worker_safe": 64,
+  "worker_max": 128,
+  "in_flight": 0,
+  "last_win_at": 1787415002.979439,
+  "stall_sec": 1800,
+  "started_at": "2026-08-22T16:01:16.401171+00:00",
+  "stop_reason": "trained xmodel_v0.3z.EA.02 from 132 windows",
+  "families": [
+    {
+      "id": "wide_arc",
+      "label": "Wide Arc",
+      "group": "Latest families",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "idle_correct",
+      "label": "Idle Correct",
+      "group": "Latest families",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "wobble_mid",
+      "label": "Wobble Mid",
+      "group": "Latest families",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "hi_jit",
+      "label": "Hi Jitter",
+      "group": "Latest families",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "minjerk",
+      "label": "Min-jerk",
+      "group": "Latest families",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "dense_smooth",
+      "label": "Dense Smooth",
+      "group": "Latest families",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "sparse_irregular",
+      "label": "Sparse Irregular",
+      "group": "Hop / dart",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "hop",
+      "label": "Playwright Hop",
+      "group": "Hop / dart",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "fast_direct",
+      "label": "Dart Hop",
+      "group": "Hop / dart",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "mid_dense",
+      "label": "Mid Dense",
+      "group": "Hop / dart",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "fitts",
+      "label": "Fitts Motor",
+      "group": "Fitts / humanoid",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "simulated",
+      "label": "Simulated Humanoid",
+      "group": "Fitts / humanoid",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "humanoid_fast",
+      "label": "Humanoid Fitts",
+      "group": "Fitts / humanoid",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "linear_fast",
+      "label": "Linear",
+      "group": "Baseline",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "bezier_fast",
+      "label": "Bezier",
+      "group": "Baseline",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    },
+    {
+      "id": "naive",
+      "label": "Naive",
+      "group": "Baseline",
+      "best_hc": 0.0,
+      "attempts": 0,
+      "wins": 0,
+      "marks": 0,
+      "expanded": false,
+      "phase": "attacking",
+      "expand_left": 0,
+      "expand_done": 0,
+      "workers": 0,
+      "recent_ctypes": []
+    }
+  ],
+  "iterations": [
+    {
+      "from_model": "xmodel_v0.3z.EA.01",
+      "to_model": "xmodel_v0.3z.EA.02",
+      "windows": 132,
+      "winning_families": [
+        "minjerk",
+        "dense_smooth",
+        "fast_direct",
+        "mid_dense",
+        "humanoid_fast",
+        "linear_fast",
+        "bezier_fast",
+        "naive"
+      ]
+    }
+  ],
+  "last_attempt": {
+    "bot": "simulated",
+    "challenge_type": "spiral_trace",
+    "seed": 545286414,
+    "human_confidence": 0.0,
+    "task_passed": true,
+    "event_count": 28893,
+    "windows": 487,
+    "win": false,
+    "mark": false
+  },
+  "expand": null,
+  "probe": null,
+  "selected_model_id": "xmodel_v0.3z.EA.03",
+  "log_tail": [
+    "[23:19:48] Testing full dataset Cycle 1 harvest (1108 episodes) vs xmodel_v0.3z.EA.03",
+    "[23:19:48] Dataset probe 50/1108",
+    "[23:19:49] Dataset probe 100/1108",
+    "[23:19:49] Dataset probe 150/1108",
+    "[23:19:49] Dataset probe 200/1108",
+    "[23:19:50] Dataset probe 250/1108",
+    "[23:19:50] Dataset probe 300/1108",
+    "[23:19:50] Dataset probe 350/1108",
+    "[23:19:51] Dataset probe 400/1108",
+    "[23:19:51] Dataset probe 450/1108",
+    "[23:19:51] Dataset probe 500/1108",
+    "[23:19:52] Dataset probe 550/1108",
+    "[23:19:52] Dataset probe 600/1108",
+    "[23:19:53] Dataset probe 650/1108",
+    "[23:19:53] Dataset probe 700/1108",
+    "[23:19:53] Dataset probe 750/1108",
+    "[23:19:54] Dataset probe 800/1108",
+    "[23:19:54] Dataset probe 850/1108",
+    "[23:19:54] Dataset probe 900/1108",
+    "[23:19:55] Dataset probe 950/1108",
+    "[23:19:55] Dataset probe 1000/1108",
+    "[23:19:56] Dataset probe 1050/1108",
+    "[23:19:56] Dataset probe 1100/1108",
+    "[23:19:56] Dataset Cycle 1 harvest vs xmodel_v0.3z.EA.03: 121 windows still beat / 987 caught (1108 windows)",
+    "[23:20:02] Retraining xmodel_v0.3z.EA.03 on 121 failed windows (121 episodes) from loop_i01_win",
+    "[23:20:02] Retraining xmodel_v0.3z.EA.04 from xmodel_v0.3z.EA.03 (0 winning windows)",
+    "[23:23:22] Trained xmodel_v0.3z.EA.04",
+    "[23:23:22] Loading 64 model copies of xmodel_v0.3z.EA.04",
+    "[23:23:23] Loaded 64 model copies of xmodel_v0.3z.EA.04",
+    "[23:23:23] Activated Xmodel V0.3z.EA.04",
+    "[00:45:21] Testing full dataset Cycle 1 harvest (1108 episodes) vs xmodel_v0.3z.EA.04",
+    "[00:45:22] Dataset probe 50/1108",
+    "[00:45:22] Dataset probe 100/1108",
+    "[00:45:23] Dataset probe 150/1108",
+    "[00:45:23] Dataset probe 200/1108",
+    "[00:45:24] Dataset probe 250/1108",
+    "[00:45:24] Dataset probe 300/1108",
+    "[00:45:25] Dataset probe 350/1108",
+    "[00:45:26] Dataset probe 400/1108",
+    "[00:45:26] Dataset probe 450/1108",
+    "[00:45:27] Dataset probe 500/1108",
+    "[00:45:27] Dataset probe 550/1108",
+    "[00:45:28] Dataset probe 600/1108",
+    "[00:45:28] Dataset probe 650/1108",
+    "[00:45:29] Dataset probe 700/1108",
+    "[00:45:29] Dataset probe 750/1108",
+    "[00:45:30] Dataset probe 800/1108",
+    "[00:45:30] Dataset probe 850/1108",
+    "[00:45:31] Dataset probe 900/1108",
+    "[00:45:31] Dataset probe 950/1108",
+    "[00:45:32] Dataset probe 1000/1108",
+    "[00:45:32] Dataset probe 1050/1108",
+    "[00:45:33] Dataset probe 1100/1108",
+    "[00:45:33] Dataset Cycle 1 harvest vs xmodel_v0.3z.EA.04: 268 windows still beat / 840 caught (1108 windows)",
+    "[00:45:42] Activated Xmodel V0.3z.EA.03",
+    "[00:45:42] Target model set to xmodel_v0.3z.EA.03",
+    "[00:45:45] Testing full dataset Cycle 1 harvest (1108 episodes) vs xmodel_v0.3z.EA.03",
+    "[00:45:45] Dataset probe 50/1108",
+    "[00:45:45] Dataset probe 100/1108",
+    "[00:45:45] Dataset probe 150/1108",
+    "[00:45:46] Dataset probe 200/1108",
+    "[00:45:46] Dataset probe 250/1108",
+    "[00:45:46] Dataset probe 300/1108",
+    "[00:45:46] Dataset probe 350/1108",
+    "[00:45:47] Dataset probe 400/1108",
+    "[00:45:47] Dataset probe 450/1108",
+    "[00:45:47] Dataset probe 500/1108",
+    "[00:45:47] Dataset probe 550/1108",
+    "[00:45:47] Dataset probe 600/1108",
+    "[00:45:48] Dataset probe 650/1108",
+    "[00:45:48] Dataset probe 700/1108",
+    "[00:45:48] Dataset probe 750/1108",
+    "[00:45:48] Dataset probe 800/1108",
+    "[00:45:49] Dataset probe 850/1108",
+    "[00:45:49] Dataset probe 900/1108",
+    "[00:45:49] Dataset probe 950/1108",
+    "[00:45:49] Dataset probe 1000/1108",
+    "[00:45:49] Dataset probe 1050/1108",
+    "[00:45:50] Dataset probe 1100/1108",
+    "[00:45:50] Dataset Cycle 1 harvest vs xmodel_v0.3z.EA.03: 121 windows still beat / 987 caught (1108 windows)"
+  ],
+  "expanding": [],
+  "dataset_probe": {
+    "tested": 1108,
+    "datasets": 1108,
+    "passed": 121,
+    "failed": 987,
+    "pass_means": "window still beats the detector (>=65% HC)",
+    "model_id": "xmodel_v0.3z.EA.03",
+    "dataset_id": "loop_i01_win",
+    "dataset_label": "Cycle 1 harvest",
+    "episodes": [],
+    "leaks": [
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_134632_443088_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_134632_443088_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_134918_529695_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_134918_529695_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_140522_428900_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_140522_428900_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_140542_524036_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_140542_524036_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_140722_376856_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_140722_376856_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_140816_863874_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_140816_863874_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_hop_win_20260822_140843_477929_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_hop_win_20260822_140843_477929_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_141701_445400_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_141701_445400_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_141755_403259_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_141755_403259_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_141916_831707_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_141916_831707_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_141943_247517_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_141943_247517_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_142046_364788_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_142046_364788_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_142120_877688_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_142120_877688_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_142140_626859_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_142140_626859_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_142222_383602_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_142222_383602_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_142242_877806_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_142242_877806_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_142515_560461_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_142515_560461_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_142517_572996_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_142517_572996_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_142532_180557_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_142532_180557_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_142539_623454_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_142539_623454_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_142633_669819_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_142633_669819_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_142707_271881_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_142707_271881_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_142707_792605_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_142707_792605_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_142749_418995_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_142749_418995_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_142845_963372_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_142845_963372_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_142849_825316_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_142849_825316_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_142919_057129_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_142919_057129_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_143043_121945_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_143043_121945_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_143058_657891_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_143058_657891_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_143108_935570_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_143108_935570_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_143110_283744_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_143110_283744_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_143112_681157_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_143112_681157_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_143141_214777_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_143141_214777_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_143150_442907_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_143150_442907_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_143233_241863_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_143233_241863_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_143249_591427_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_143249_591427_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_143258_748313_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_143258_748313_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_143300_096700_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_143300_096700_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_143319_102777_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_143319_102777_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_143349_462518_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_143349_462518_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_143538_090382_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_143538_090382_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_143615_927477_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_143615_927477_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_143617_205447_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_143617_205447_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_143639_608671_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_143639_608671_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_143912_268450_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_143912_268450_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_143920_711698_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_143920_711698_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_143922_810729_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_143922_810729_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_144048_965059_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_144048_965059_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_144159_137604_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_144159_137604_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_144207_378617_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_144207_378617_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_144222_626690_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_144222_626690_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_144230_943173_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_144230_943173_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_144248_502626_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_144248_502626_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_144312_428359_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_144312_428359_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_144429_070478_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_144429_070478_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_144435_500979_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_144435_500979_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_144441_924379_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_144441_924379_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_144536_685768_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_144536_685768_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_144753_429055_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_144753_429055_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_144758_510515_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_144758_510515_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_144825_578299_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_144825_578299_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_144904_219858_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_144904_219858_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_144914_710653_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_144914_710653_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_145001_626626_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_145001_626626_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_145003_482555_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_145003_482555_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_145141_500817_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_145141_500817_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_145147_096056_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_145147_096056_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_145149_691411_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_145149_691411_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_145215_453701_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_145215_453701_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_145223_463637_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_145223_463637_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_145244_151226_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_145244_151226_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_145303_405120_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_145303_405120_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_145306_252791_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_145306_252791_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_145325_968165_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_145325_968165_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_145423_056692_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_145423_056692_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_145719_079681_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_145719_079681_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_145728_304224_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_145728_304224_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_145904_105492_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_145904_105492_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_150056_127409_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_150056_127409_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_150137_415432_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_150137_415432_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_150143_195088_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_150143_195088_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_150300_887123_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_150300_887123_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_150340_908769_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_150340_908769_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_150408_796584_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_150408_796584_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_150424_584709_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_150424_584709_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_150456_860983_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_150456_860983_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_150533_156276_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_150533_156276_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_hop_win_20260822_150541_283492_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_hop_win_20260822_150541_283492_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_150553_235723_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_150553_235723_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_150638_854315_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_150638_854315_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_150713_894744_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_150713_894744_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_150833_378300_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_150833_378300_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_150937_094926_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_150937_094926_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_150942_233280_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_150942_233280_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_hop_win_20260822_151103_938133_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_hop_win_20260822_151103_938133_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_151112_254023_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_151112_254023_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_151204_019325_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_151204_019325_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_151322_985933_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_151322_985933_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_151410_878985_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_151410_878985_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_151425_049582_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_151425_049582_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_151449_869964_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_151449_869964_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_151548_588743_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_151548_588743_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_151556_507947_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_151556_507947_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_naive_win_20260822_151605_126198_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_naive_win_20260822_151605_126198_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_151607_544532_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_151607_544532_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_151659_830457_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_151659_830457_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_151713_207427_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_151713_207427_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_151733_866103_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_151733_866103_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_151747_567820_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_151747_567820_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_humanoid_fast_win_20260822_151750_393121_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_humanoid_fast_win_20260822_151750_393121_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_151804_770481_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_151804_770481_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_linear_fast_win_20260822_151836_308056_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_linear_fast_win_20260822_151836_308056_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_160310_228264_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_160310_228264_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_160334_922138_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_160334_922138_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_bezier_fast_win_20260822_160353_350874_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_bezier_fast_win_20260822_160353_350874_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_fast_direct_win_20260822_160441_004547_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_fast_direct_win_20260822_160441_004547_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_160507_715169_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_160507_715169_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_160715_538270_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_160715_538270_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_160730_288004_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_160730_288004_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_160836_489847_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_160836_489847_60hz.csv"
+      },
+      {
+        "path": "datasets/bot_xmodel_60hz/loop_winners/loop_i01_minjerk_win_20260822_160925_022665_60hz.csv",
+        "windows_passed": 1,
+        "filename": "loop_i01_minjerk_win_20260822_160925_022665_60hz.csv"
+      }
+    ]
+  }
+}

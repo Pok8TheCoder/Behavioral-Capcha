@@ -4,9 +4,12 @@
   "description": "Behavioral Biometrics CAPTCHA and Bot Detection System",
   "main": "frontend/index.html",
   "scripts": {
-    "start": "python -m backend.main",
+    "setup": "python start.py --install-only",
+    "start": "python start.py",
+    "dev": "python start.py --reload",
     "dev:backend": "python -m uvicorn backend.main:app --reload --host 127.0.0.1 --port 8010",
     "dev:frontend": "python -m http.server 3000 --directory frontend",
+    "docker": "docker compose up --build",
     "benchmark:challenges": "python challenge_bot_runner.py --runs 1"
   },
   "keywords": [
@@ -16,6 +19,6 @@
     "machine-learning",
     "security"
   ],
-  "author": "",
+  "author": "Pok8TheCoder",
   "license": "MIT"
 }

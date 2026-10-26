@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 import random
+import secrets
 import sys
 from typing import Any, Callable, Dict, List, Tuple
 
@@ -39,11 +40,12 @@ TravelFn = Callable[..., Tuple[float, Point]]
 ClickFn = Callable[..., float]
 
 
-def _start_pos(challenge: Dict[str, Any]) -> Point:
+def _start_pos(challenge: Dict[str, Any], rng: random.Random | None = None) -> Point:
+    roll = rng or random
     area = challenge.get("area") or {"x": 80, "y": 120, "width": 840, "height": 480}
     return (
-        float(area["x"]) + random.uniform(40.0, 160.0),
-        float(area["y"]) + random.uniform(40.0, 160.0),
+        float(area["x"]) + roll.uniform(40.0, 160.0),
+        float(area["y"]) + roll.uniform(40.0, 160.0),
     )
 
 
@@ -100,9 +102,10 @@ def generate_family_events(
     cfg: Any,
 ) -> List[Dict[str, Any]]:
     mode, targets = _motion_plan(challenge)
+    rng = random.Random(int(challenge.get("seed") or 0) ^ secrets.randbits(32))
     events: List[Dict[str, Any]] = []
-    t = random.uniform(40.0, 90.0)
-    pos = _start_pos(challenge)
+    t = rng.uniform(40.0, 90.0)
+    pos = _start_pos(challenge, rng)
     t = _append(events, pos[0], pos[1], t, "mousemove")
     pause = getattr(cfg, "pause_ms", (80.0, 180.0))
 
@@ -113,25 +116,25 @@ def generate_family_events(
         t = _append(events, pos[0], pos[1], t, "mousedown")
         for target in targets[1:]:
             t, pos = travel_along(events, pos, target, t, cfg)
-        t = _append(events, pos[0], pos[1], t + random.uniform(20.0, 60.0), "mouseup")
+        t = _append(events, pos[0], pos[1], t + rng.uniform(20.0, 60.0), "mouseup")
         return events
 
     if mode == "fly":
         for target in targets:
             t, pos = travel_along(events, pos, target, t, cfg)
-            t += random.uniform(*pause)
+            t += rng.uniform(*pause)
         return events
 
     for target in targets:
         t, pos = travel_along(events, pos, target, t, cfg)
         t = click_at(events, target[0], target[1], t, cfg)
         pos = target
-        t += random.uniform(*pause)
+        t += rng.uniform(*pause)
     return events
 
 
 def _run_style_bot(challenge: Dict[str, Any], style_id: str) -> List[Dict[str, Any]]:
-    rng = random.Random()
+    rng = random.Random(int(challenge.get("seed") or 0) ^ secrets.randbits(32))
     bot, solve_style, fast = CHALLENGE_BOT_STYLES[style_id](rng)
     prelude_bot(bot, rng, 1920, 1080)
     solve_challenge(bot, challenge, style=solve_style, fast=fast)

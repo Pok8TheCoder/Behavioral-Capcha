@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xmodel Evasion Arena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/arena.css?v=20260822n">
+</head>
+<body class="drawer-open">
+    <div class="scanlines"></div>
+    <header>
+        <div>
+            <p class="kicker">Closed-loop red team</p>
+            <h1>Xmodel Evasion Arena</h1>
+        </div>
+        <div class="controls">
+            <select id="model-select" aria-label="Target model"></select>
+            <select id="watch-bot" aria-label="Watch bot family"></select>
+            <label class="worker-field" title="Equal split across 16 families. Leftover workers go to whoever is expanding.">
+                Workers
+                <input id="worker-count" type="number" min="1" max="128" step="1" value="32">
+            </label>
+            <label class="check">
+                <input type="checkbox" id="scroll-all" checked>
+                Scroll all bots
+            </label>
+            <button class="btn go" id="btn-start" type="button">Start loop</button>
+            <button class="btn" id="btn-pause" type="button" disabled>Pause</button>
+            <button class="btn" id="btn-resume" type="button" disabled>Resume</button>
+            <button class="btn stop" id="btn-stop" type="button" disabled>Stop</button>
+            <button class="btn warn" id="btn-train-now" type="button">Train now</button>
+            <button class="btn" id="btn-probe" type="button">Test last 2</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="stage">
+            <div class="stage-meta">
+                <span id="phase-pill" class="pill">idle</span>
+                <span id="model-pill" class="pill dim">no model</span>
+                <span id="workers-pill" class="pill dim">1 worker</span>
+                <span id="challenge-label">waiting</span>
+                <span id="bot-label"></span>
+            </div>
+            <div class="canvas-wrap">
+                <canvas id="arena" width="960" height="640"></canvas>
+                <div class="gauge">
+                    <div class="gauge-value" id="hc-value">—%</div>
+                    <div class="gauge-sub" id="hc-sub">human confidence</div>
+                </div>
+            </div>
+            <div class="progress-block">
+                <div class="progress-label">
+                    <span>Winning windows this cycle</span>
+                    <label class="worker-field" title="Change the auto-retrain threshold without resetting harvested windows">
+                        Target
+                        <input id="window-target" type="number" min="1" max="1000000" step="100" value="5000">
+                    </label>
+                    <span id="window-counts">0 / 5000</span>
+                </div>
+                <div class="bar"><div id="window-bar"></div></div>
+            </div>
+        </section>
+
+        <aside>
+            <div class="stat-grid">
+                <div><b id="stat-iter">1</b><span>iteration</span></div>
+                <div><b id="stat-attempts">0</b><span>attempts</span></div>
+                <div><b id="stat-beats">0</b><span>≥65% wins</span></div>
+                <div><b id="stat-marks">0</b><span>≥60% marks</span></div>
+            </div>
+            <div class="card">
+                <h3>Last-2 winner probe</h3>
+                <p class="probe-score" id="probe-score">Not run yet</p>
+                <div id="probe-list" class="probe-list"></div>
+            </div>
+            <div class="card">
+                <h3>Families</h3>
+                <div id="family-grid" class="family-grid"></div>
+            </div>
+            <div class="card">
+                <h3>Live log</h3>
+                <pre id="log"></pre>
+            </div>
+            <p class="hint" id="worker-hint">32 recommended · 64 safe · 128 max</p>
+            <p class="hint" id="stop-reason"></p>
+        </aside>
+    </main>
+    <button type="button" class="drawer-tab" id="dataset-tab" aria-expanded="true">Datasets</button>
+    <aside id="dataset-drawer" class="dataset-drawer open" aria-label="Dataset tester">
+        <div class="drawer-head">
+            <div>
+                <p class="kicker">Probe sets</p>
+                <h2>Datasets</h2>
+            </div>
+            <button class="btn" id="dataset-close" type="button">Hide</button>
+        </div>
+        <div id="dataset-list" class="dataset-list"></div>
+        <button class="btn go" id="btn-test-dataset" type="button">Test entire dataset</button>
+        <button class="btn warn" id="btn-train-fails" type="button" disabled title="Retrain on windows the last dataset test still missed (HC ≥ 65%). Does not reset the harvest.">Train on failed windows</button>
+        <p class="probe-score" id="dataset-score">Select a dataset, then test it on the selected model.</p>
+        <div id="dataset-results" class="probe-list"></div>
+    </aside>
+    <script src="/static/arena.js?v=20260822n"></script>
+</body>
+</html>

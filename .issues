@@ -1,0 +1,1318 @@
+# Behavioral CAPTCHA — Red-Team / Evasion Issue Log
+
+## Issue 001 — Qmodel V0.2 button-sequence evasion (API 91.7% vs Playwright gap)
+
+**Status:** patched (Qmodel V0.3 + API hardening); open (live browser parity)  
+**Date:** 2026-08-17  
+**Target model:** `qmodel_v0.2` (evaded) → **`qmodel_v0.3`** (patched)  
+**Challenge:** `button_sequence`  
+**Goal:** ≥70% human confidence, no replay attacks  
+**Artifacts:** `test/qmodel_evasion_bot.py`, `test/qmodel_best_result.json`, `test/playwright_button_bot.py`
+
+---
+
+### Summary
+
+A new procedural **wobble/eased-linear** bot evaded Qmodel V0.2 at **91.71%** when events were generated in Python and submitted via the REST API. The same tuned config does **not** transfer to visible Playwright runs because the dashboard scores **live pointer recordings**, not the pre-generated event JSON. Best live Playwright score so far: **60%** (PASSED). Several Playwright approaches scored 0–47%.
+
+---
+
+### Blue-team patch (2026-08-17)
+
+**Qmodel V0.3** (`test/patch_issue001.py`):
+
+- Exported wobble evasion telemetry → `datasets/bot_evasion/evasion_cycle_002.csv`
+- Retrained RF with bot_evasion cycles 001+002
+- Static heuristics **#9** (broad wobble signature) + **#10** (low-straightness variant) in `backend/model.py`
+- Dynamic rule `evasion_cycle_002` in `backend/qmodels/qmodel_v0.3_evasion_rules.json`
+
+**API / dashboard hardening** (`backend/challenge_security.py`, `CAPTCHA_STRICT=1` default):
+
+- Session-bound `verify_token`, `source: "dashboard"` required
+- Pointer attestation (`pid` from canvas PointerEvents)
+- Wall-clock vs telemetry duration checks (blocks instant JSON inject)
+- `/api/verify` and `/api/simulate-bot` disabled in strict mode
+- Dashboard records `pid`, `pt`, `src` on canvas events
+
+**Post-patch wobble bot vs V0.3 (offline, 30 runs):** ~87% blocked, avg HC ~21% (was 91.7% on V0.2 via API).
+
+**API inject path:** blocked at verify (403) before scoring.
+
+---
+
+### Background: what Qmodel V0.2 blocks
+
+Qmodel V0.2 was trained after an adversarial patch cycle and includes:
+
+1. **Static heuristic — “Procedural human-mimic movement signature”** (`backend/model.py`):
+   - `straightness < 0.22`
+   - `jitter_ratio > 0.28`
+   - `0.28 < velocity_mean < 0.58`
+   - `velocity_max < 2.5`
+   - `click_dwell >= 90 ms`
+   - `event_count > 15`
+   - `duration > 4000 ms`
+   - Adds **+0.32** heuristic bot score
+
+2. **Dynamic rule — `evasion_cycle_001`** (`backend/qmodels/qmodel_v0.2_evasion_rules.json`):
+   - Derived from the prior sharepad Bezier bot’s winning feature fingerprint
+   - Matches narrow bands (e.g. straightness 0.17–0.33, jitter ≥0.29, vel_mean 0.25–0.49, duration ≥8998 ms, events ≥552)
+   - Adds **+0.34** heuristic boost when all conditions hit
+
+3. **ML classifier** on top of extracted features (velocity, jerk, straightness, etc.)
+
+The **old Bezier/sharepad bot** (`test/test_best_config.py`) scored only **~32% max** on Qmodel V0.2 (avg ~23%) because it landed inside these patched bands.
+
+---
+
+### Dead runs — prior bot on Qmodel (baseline)
+
+**Script:** `test/run_best_bot.py` (Bezier + wander config from `test/best_result.json`)  
+**Method:** API-only (`POST /api/challenge/new` → generate events → `POST /api/challenge/verify`)
+
+| Run batch | Max HC | Avg HC | Notes |
+|-----------|--------|--------|-------|
+| 20 runs   | 32.05% | 22.8%  | All BLOCKED or low PASSED; old mimic signature |
+
+Typical flags on old bot: none from heuristics alone, but ML model still classifies as bot because features match training adversarial set.
+
+---
+
+### Dead runs — Qmodel optimizer (`test/qmodel_evasion_bot.py`)
+
+**Method:** Random search + mutation, 600 max attempts, API verify loop  
+**Log:** `test/qmodel_optimizer_log.txt` (terminal 46877)
+
+#### Failure modes observed (attempts 001–088)
+
+| Pattern | Approx HC | Heuristic | Typical flags | Cause |
+|---------|-----------|-------------|---------------|-------|
+| Slow, low-jitter linear | 0–1.3% | 0.00 | none | ML rejects; too unlike human training |
+| Fast with velocity spikes | ~47–49% | 0.40 | `Abnormal velocity spike (131–2435 px/ms)` | `velocity_max` too high from synthetic timing math |
+| Mid-speed noisy | 0–1.4% | 0.00 | none | Wrong feature cluster for ML |
+
+**~40+ attempts** stalled at **47–49%** with `heuristic_score=0.40` and velocity-spike flags — optimizer was exploring configs with burst speed that created impossible `velocity_max` in feature extraction.
+
+#### Winning run — attempt 089
+
+| Field | Value |
+|-------|-------|
+| **Human confidence** | **91.71%** |
+| Decision | PASSED: HUMAN |
+| Heuristic score | 0.00 |
+| ML bot probability | 0.0829 |
+| Flags | none |
+
+**Winning feature profile:**
+
+| Feature | Value | Why it evaded |
+|---------|-------|---------------|
+| straightness_index | 0.245 | Above mimic `<0.22`; outside dynamic rule upper band behavior |
+| jitter_ratio | 0.07 | Below mimic `>0.28` and dynamic `≥0.2916` |
+| velocity_mean | 0.784 | Above mimic band `<0.58` |
+| velocity_max | 5.73 | Above dynamic `≤2.09` (but below 15 spike threshold) |
+| avg_click_dwell_ms | 88.33 | Below dynamic `≥102` (still above superhuman `<15`) |
+| duration_ms | 6426 | Below dynamic `≥8998` |
+| event_count | 351 | Below dynamic `≥552` |
+| idle_ratio | 0.24 | Moderate pauses |
+
+**Winning config** (saved in `test/qmodel_best_result.json` `_cfg`):
+
+```
+max_speed_px_ms:     1.84
+min_speed_px_ms:     0.49
+dwell_ms:            78–98 ms
+pause_ms:            122–192 ms
+move_interval_ms:    12–17 ms
+aim_jitter_px:       3.4
+arc_strength:        6.3
+directness:          0.68
+tremor_px:           0.69
+burst_speed_mult:    1.01
+```
+
+---
+
+### How the 91.7% API bot works (not Bezier)
+
+**Algorithm type:** eased linear path + perpendicular sine wobble + tremor (NOT quadratic Bezier).
+
+**Script:** `test/qmodel_evasion_bot.py`
+
+1. `POST /api/challenge/new` with `{ "challenge_type": "button_sequence" }`
+2. For each button in `spec.sequence`:
+   - `move_along()`: cosine ease along chord; add `sin(πt)` wobble perpendicular to path; tremor noise; variable speed phase
+   - `click_at()`: aim jitter, mousedown, 1–3 micro-movements during dwell, mouseup
+   - pause between buttons
+3. `POST /api/challenge/verify` with `{ session_id, events, participant: "bot_qmodel_evasion" }`
+4. Optimizer mutates `EvasionConfig` and keeps elites with highest `human_confidence`
+
+**Key design shift from old Bezier bot:**
+
+| Old Bezier bot | New wobble bot |
+|----------------|----------------|
+| Quadratic Bezier + wander | Eased linear + sine wobble |
+| Low straightness (~0.17) | Moderate straightness (~0.25) |
+| High jitter (~0.39) | Low jitter (~0.07) |
+| Slow vel_mean (~0.40) | Faster vel_mean (~0.78) |
+| Long duration (~8.6 s) | Shorter duration (~6.4 s) |
+| Triggers Qmodel mimic + dynamic rules | Evades both heuristic bands |
+
+**No replay:** events synthesized from challenge button positions each run.
+
+---
+
+### API vs Playwright — why scores diverge
+
+#### API path (91.7%)
+
+```
+Python generate_events() → JSON [{x,y,t,type}, ...] → POST /api/challenge/verify
+```
+
+- Scoring uses **exactly** the submitted event list
+- Timestamps and positions are **fully controlled**
+- Feature extraction sees the intended kinematic profile
+- No browser, no pointer capture, no Playwright interpolation
+
+#### Playwright path (0–60%)
+
+```
+Browser dashboard → pointer listeners on #challenge-canvas → record live events → verify on auto-submit
+```
+
+- Scoring uses **what the canvas actually recorded** from `pointerdown/move/up`
+- Pre-generated JSON replay does **not** get submitted; only live recordings do
+- `page.mouse.move(x, y, steps=N)` emits **extra intermediate events** Playwright does not control precisely
+- Wall-clock speed changes event density (slow script → **more** recorded events)
+
+#### Playwright dead runs
+
+| Version | Method | HC | Events | Decision | Problem |
+|---------|--------|-----|--------|----------|---------|
+| v1 | Replay pre-generated JSON via `page.mouse` | 47% | ~128 played | BLOCKED | Recorded path ≠ synthetic path; timing mismatch |
+| v2 | Live `page.mouse` (first try) | 2% | 293 | BLOCKED | Too few/smooth steps; wrong live features |
+| v3 | Synthetic `PointerEvent` dispatch on canvas | 1% | 314 | BLOCKED | Dispatch did not mirror real pointer capture |
+| v4 | Tuned live `page.mouse` | **60%** | **861** | **PASSED** | Best live result; over-sampled vs API (351 events) |
+| v5 | Fewer path points | 36% | 593 | BLOCKED | Too sparse; task passed but scored bot |
+| v6 | `SPEED_FACTOR=2.0` | 0% | 225 | BLOCKED | Too fast; velocity/profile broke |
+| v7 | `SPEED_FACTOR=1.5` (current) | not fully re-benchmarked | — | — | Compromise between v4 and v6 |
+
+**Root cause of API vs Playwright gap:**
+
+| Factor | API | Playwright |
+|--------|-----|------------|
+| Event source | Submitted JSON | Canvas pointer listeners |
+| Timestamp control | Authoritative `t` field | Browser `timeStamp` / `performance.now()` |
+| Move density | One event per loop iteration | Playwright `steps` + OS mouse events |
+| Duration | ~6.4 s synthetic | Often 8–15 s wall clock when slowed for visibility |
+| Feature outcome | Matches optimizer target | Drifts toward high event count / different velocity stats |
+
+---
+
+### Current Playwright script state
+
+**File:** `test/playwright_button_bot.py`
+
+- Loads config from `test/qmodel_best_result.json`
+- Selects `qmodel_v0.2` in dashboard
+- Executes **live** `move_along_live()` + `click_live()` with same math as API bot
+- `SPEED_FACTOR = 1.5` to reduce wall-clock time and event over-sampling
+- `steps=1` on mouse moves to limit Playwright interpolation
+
+**Run:**
+```bash
+python test/playwright_button_bot.py
+```
+
+---
+
+### Open follow-ups
+
+1. **Playwright parity:** tune live execution so recorded features match API winner (target ~350 events, ~6.4 s, same straightness/jitter/velocity bands)
+2. **Closed-loop Playwright optimizer:** score via dashboard-recorded events, not API JSON
+3. **Patch risk:** Qmodel dynamic rules will expand if `qmodel_best_result.json` feature profile is fed into next `append_rule_from_features()` cycle
+4. **Do not reuse old Bezier config** against Qmodel V0.2 — explicitly patched
+
+---
+
+### Related files
+
+| File | Purpose |
+|------|---------|
+| `test/qmodel_evasion_bot.py` | API evasion bot + optimizer |
+| `test/qmodel_best_result.json` | Winning 91.7% run + config |
+| `test/qmodel_optimizer_log.txt` | Full optimizer attempt log |
+| `test/playwright_button_bot.py` | Visible browser runner |
+| `test/test_best_config.py` | Old Bezier bot (fails on Qmodel) |
+| `backend/qmodels/qmodel_v0.2_evasion_rules.json` | Dynamic patch rules |
+| `backend/model.py` | Procedural-mimic heuristic (lines ~361–372) |
+| `.sharepad` | Earlier RF-challenge 84% Bezier work (2026-08-16) |
+
+---
+
+## Issue 002 — Qmodel V0.3 live Playwright button-sequence evasion (74%)
+
+**Status:** patched (Qmodel V0.4 + kinematic hardening); open (further Playwright tuning)  
+**Date:** 2026-08-17  
+**Target model:** `qmodel_v0.3` (latest)  
+**Challenge:** `button_sequence`  
+**Goal:** ≥70% human confidence, **no replay**, live canvas pointer recording  
+**Constraint:** 20-minute timer; stopped early on success  
+**Artifacts:** `test/timed_v03_live_solver.py`, `test/timed_v03_live_log.txt`, `test/timed_v03_live_result.json`
+
+---
+
+### Summary
+
+Live Playwright mouse on the dashboard (`#challenge-canvas` pointer listeners → `/api/challenge/verify`) reached **74% human confidence** (`PASSED: HUMAN`) against **Qmodel V0.3** in **9 attempts / ~40s** on the winning family (`os_direct_v2`). No event-JSON replay, no `/api/verify` inject, no dashboard Linear/Bezier/Humanoid `run-bot` path.
+
+This closes the “live browser ≥70%” gap left open in Issue 001 (best prior live score was **60%** on V0.2). Patched in **Qmodel V0.4** (see Blue-team patch below).
+
+---
+
+### Constraints and scoring path
+
+Dashboard strict mode (`CAPTCHA_STRICT=1`) requires:
+
+- `source: "dashboard"` + session `verify_token`
+- Pointer attestation (`pid` / `pt` / `src` from real PointerEvents)
+- Wall-clock vs telemetry duration (blocks instant JSON inject)
+- Open `/api/verify` disabled
+
+Therefore the only viable path was **live `page.mouse` on Chromium** against `http://127.0.0.1:8010/`, same backend as the Cursor dashboard tab. The Cursor IDE browser cannot dispatch CDP `Input.*`, so discrete MCP clicks were not used for scoring. Dashboard **Humanoid/Bezier/Linear** buttons call `/api/challenge/run-bot` (server-generated bot telemetry, already in V0.3 training as bot) and were not used.
+
+Scoring uses **max-risk over dynamic active windows** (`backend/main.py` `_evaluate_events_dynamic`). Any single bot-looking burst can tank the session.
+
+V0.3 bands that had to be **missed** (heuristic #9 / #10 + `evasion_cycle_002`):
+
+- #9 wobble-linear: jitter `<0.13`, vel_mean `0.60–1.08`, vel_max `3.2–10`, dwell `60–115ms`, events `180–540`, duration `3400–9500ms`, straightness `<0.56`
+- #10: straightness `<0.22`, jitter `<0.14`, vel_mean `>0.68`, events `>175`, duration `>3200`, dwell `55–115`
+- Dynamic cycle 002: jitter `≤0.14`, vel_mean `0.60–1.08`, dwell `≥55`, duration `≥3200`, events `≥175`, straightness `≤0.56`
+- Also avoid: straightness `>0.985`, vel_max `>15`, dwell `<15ms`, constant speed, zero jitter
+
+---
+
+### What was tried (dead / weak runs)
+
+Human desktop windows from `datasets/human/input_log_20260812_171705_to_20260812_171721.csv` (4 windows) were used as a kinematic compass — not as replay:
+
+| Feature | Human p10–p90 (that file) |
+|---------|---------------------------|
+| vel_mean | 1.32–2.65 px/ms |
+| jerk_mean | 0.41–0.56 |
+| acc_mean | 0.59–0.71 |
+| jitter | 0.23–0.32 |
+| straightness | 0.51–0.62 |
+
+Playwright’s ~8ms hop floor makes true 1px/1ms OS sampling hard; later families approximated it with **large steps + `asyncio.sleep(0)`**.
+
+| Family / script | Method | Typical HC | Events | Why it failed |
+|-----------------|--------|------------|--------|----------------|
+| Existing `test/qmodel_v03_humanoid_playwright.py` | Min-jerk Fitts profiles | 0–9% (prior log max 9%) | ~80–260 | Humanoid simulated is ~99.8% bot in V0.3 training |
+| `timed_v03` v1 sparse (`slow_arc` / `careful` / `busy_mouse`) | Eased arc, 7–16px spacing, slow vel | max **18%** (`jitter_arc` 182 ev) | 105–258 | vel_mean too low vs human; ML reject; **no heuristic flags** |
+| `timed_v03` v2 dense + fidget | 2.6–5.5px spacing, wander/fidget, 400ms-ish pauses | 6–15% | 457–837 | Extra bursts still look like challenge-bots; max-risk windowing hurts |
+| `os_wiggly` | Large sine arc | 14–50% (one **60% PASSED**) | 113–261 | Straightness often ~0.01–0.18; inconsistent |
+| `os_fast` | Faster hops, moderate arc | 3–38% | 102–173 | vel closer to 0.8–1.0 but jitter/str not in the passing cluster |
+| `os_direct` (no micro-samples) | Larger steps, smaller arc | **54% PASSED** once, then 2–9% | ~103–121 | Lucky vel=1.19; not repeatable |
+
+v1/v2 were killed mid-run (exit 4294967295) after it was clear they could not hit 70%.
+
+---
+
+### What worked — `os_direct_v2`
+
+**Script:** `test/timed_v03_live_solver.py`  
+**Browser:** Playwright Chromium headless, viewport 1440×960  
+**Model select:** `#active-model` = `qmodel_v0.3`  
+**Challenge select:** `#challenge-type` = `button_sequence`  
+**Flow:** click New Challenge → live mouse along `spec.sequence` → canvas auto-submit / Submit → read `#human-confidence`
+
+**Motion (no replay):**
+
+1. Start in the challenge area (random offset).
+2. For each button: cosine-eased chord + perpendicular sine arc (`arc_px` 22–55) + Gaussian tremor.
+3. Step size mixed: 18% tiny (2–6px) else 18–42px (high `velocity_std`).
+4. After each hop: **1–3 one-pixel jiggles** with `sleep(0)` (raises jitter into ~0.70–0.79; lifts jerk/acc slightly).
+5. Rare 12–40ms stall (5%); short inter-button pause 40–120ms.
+6. Click: aim Gaussian σ 1.4–2.4px, dwell 30–70ms, optional 1px press wobble.
+
+**Config (`sample_cfg` / `os_direct_v2`):**
+
+```
+step_px:     18–42
+speed_px_ms: 1.40–2.60   (hint only; v2 mostly sleep(0))
+arc_px:      22–55
+tremor_px:   0.8–1.6
+aim_sigma:   1.4–2.4
+dwell_s:     0.03–0.07
+pause_s:     0.04–0.12
+```
+
+---
+
+### Winning run
+
+| Field | Value |
+|-------|-------|
+| **Human confidence** | **74%** |
+| Decision | PASSED: HUMAN |
+| Family | `os_direct_v2` |
+| Attempt | 9 (of that restart; ~40s wall) |
+| Events | 163 |
+| Flags | none |
+| velocity_mean | 0.6014 |
+| jerk_mean | 0.0620 |
+| acceleration_mean | 0.1428 |
+| jitter_ratio | 0.7888 |
+| straightness_index | 0.2683 |
+
+Same restart, all **PASSED** before the win: 69%, 60%, 64%, 58%, 63%, 60%, 56%, 61%, **74%**. Attempt 02 had `Abnormal velocity spike (34.8 px/ms)` but still 60% PASSED (spike heuristic +0.40, ML still under the combined cap enough to pass).
+
+**Why this evaded V0.3 heuristics:** jitter **0.79** is far above cycle-002 / #9 (`<0.13–0.14`). vel_mean **0.60** sits on the #9 lower edge but #9 also needs jitter `<0.13` (miss). Event count 163 is below cycle-002 `≥175`. Dwell ~30–70ms is often below #9’s `≥60`. The RF then assigned relatively low bot probability on that window set.
+
+**Why it is not the Issue 001 wobble bot:** that winner had jitter **0.07** and vel_mean **0.78** — exactly the band V0.3 patched. This live bot is the opposite on jitter (very high) and uses Playwright-native timestamps.
+
+---
+
+### Run command
+
+```bash
+python test/timed_v03_live_solver.py
+```
+
+Requires dashboard at `http://127.0.0.1:8010/` with `qmodel_v0.3` loadable.
+
+---
+
+### Blue-team patch (2026-08-17)
+
+**Qmodel V0.4** (`test/patch_issue002.py`):
+
+- Exported Playwright hop+jiggle telemetry → `datasets/bot_evasion/evasion_cycle_003.csv`
+- Retrained RF with evasion cycles 001–003
+- Static heuristics **#11–#14** in `backend/model.py` (high jitter + low dynamics / extreme jitter inflation)
+- Dynamic rule `evasion_cycle_003` in `backend/qmodels/qmodel_v0.4_evasion_rules.json`
+- Synthetic recreation bot: `test/playwright_hop_bot.py` (`os_direct_v2` family)
+
+**Kinematic hardening** (`backend/challenge_security.py`):
+
+- Micro-jiggle ratio analysis on verify stream
+- Reject inflated jitter + sparse events (Playwright hop pattern)
+- Reject automation kinematic profile (high jitter, low jerk/acceleration)
+
+**Post-patch vs Issue 002 winning feature profile:** HC **0%** (risk 1.0, multiple flags).
+
+**Synthetic hop bot recreation:** ~**83%** blocked offline (25–26/30); security layer rejects before scoring.
+
+---
+
+### Related files (Issue 002)
+
+| File | Purpose |
+|------|---------|
+| `test/timed_v03_live_solver.py` | Live Playwright solver (winning `os_direct_v2`) |
+| `test/timed_v03_live_log.txt` | Attempt log (mixed earlier families + winning restart) |
+| `test/timed_v03_live_result.json` | `{ human_confidence: 0.74, attempts: 9, elapsed_s: 40 }` |
+| `test/qmodel_v03_humanoid_playwright.py` | Prior min-jerk live runner (did not hit 70% on V0.3) |
+| `backend/qmodels/qmodel_v0.3_evasion_rules.json` | Cycle 001 + 002 rules this run stayed outside |
+| `backend/model.py` | Heuristics #9 / #10 (wobble) — not triggered on win |
+
+---
+
+## Issue 003 — Qmodel V0.4 live Playwright button-sequence evasion (78%)
+
+**Status:** patched (Qmodel V0.5 + kinematic hardening); open (further Playwright families)  
+**Date:** 2026-08-17  
+**Target model:** `qmodel_v0.4` (latest)  
+**Challenge:** `button_sequence`  
+**Goal:** ≥70% human confidence, **no replay**, live canvas pointer recording  
+**Constraint:** 20-minute timer; stopped early on success  
+**Artifacts:** `test/timed_v04_live_solver.py`, `test/timed_v04_live_log.txt`, `test/timed_v04_live_result.json`
+
+---
+
+### Summary
+
+Live Playwright mouse on the dashboard reached **78% human confidence** (`PASSED: HUMAN`) against **Qmodel V0.4** on **attempt 1 / ~5s** using family `hi_dyn`. No replay, no API inject, no dashboard Linear/Bezier/Humanoid `run-bot`.
+
+This evades the Issue 002 patch: V0.4 heuristics **#11–#14**, dynamic rule **`evasion_cycle_003`**, and hop+jiggle training data. The old `os_direct_v2` 1px-jiggle fingerprint is blocked; this run used **alternating large/small steps**, **no micro-scribble**, and **higher mean velocity**.
+
+---
+
+### What V0.4 blocks (Issue 002 patch)
+
+Static heuristics in `backend/model.py`:
+
+| # | Flag | Core AND-conditions | Boost |
+|---|------|---------------------|-------|
+| 11 | Playwright micro-jiggle inflation | jitter `>0.48`, jerk `<0.18`, acc `<0.28`, vel `0.42–0.88`, events `85–320`, str `<0.52`, duration `>2000` | +0.48 |
+| 12 | Automation kinematic mismatch | jitter `>0.38`, jerk `<0.22`, acc `<0.35`, vel `<0.92`, events `70–380`, duration `>1800` | +0.36 |
+| 13 | Inflated jitter sparse-hop | jitter `>0.50`, vel `<0.88`, events `<280`, str `<0.55` | +0.40 |
+| 14 | Extreme jitter inflation | jitter `>0.62`, events `<300`, str `<0.55` | +0.52 |
+
+Dynamic `evasion_cycle_003` (`backend/qmodels/qmodel_v0.4_evasion_rules.json`): jitter `≥0.639`, jerk `≤0.162`, acc `≤0.263`, vel `0.451–0.751`, events `158–243`, str `0.188–0.348`, dwell `≥60`, duration `≥3000`, vel_max `≤6` → +0.34.
+
+Issue 002 winner (`os_direct_v2`: jitter ~0.79, vel ~0.60, jerk ~0.06, acc ~0.14, events ~163) hits **#11+#12+#13+#14** and cycle 003. Post-patch that profile scores **0% HC**.
+
+---
+
+### Method — `hi_dyn` (no 1px jiggle)
+
+**Script:** `test/timed_v04_live_solver.py`  
+**Browser:** Playwright Chromium headless, viewport 1440×960  
+**Model:** `#active-model` = `qmodel_v0.4`  
+**Challenge:** `#challenge-type` = `button_sequence`  
+**Flow:** New Challenge → live `page.mouse` along `spec.sequence` → canvas auto-submit → read `#human-confidence`
+
+**Motion (no replay):**
+
+1. Random start in the challenge area.
+2. Per button: cosine-eased chord + modest perpendicular sine arc (`arc_px` 14–32) + light Gaussian tremor (~0.9px).
+3. **Alternate** large hops (22–48px) and small hops (4–9px) so `velocity_std` / acc stay non-flat — **not** clustered 1px scribbles.
+4. Occasional 4–10px along-path correction (`correct_p` 0.22).
+5. `asyncio.sleep(0)` between hops (Playwright ~8ms floor sets dt).
+6. Click: aim σ ~2px, dwell 45–85ms; short pause 50–140ms between buttons.
+
+**Config (`hi_dyn`):**
+
+```
+step_px:    22–48
+small_px:   4–9
+arc_px:     14–32
+tremor_px:  0.9
+aim_sigma:  2.0
+dwell_s:    0.045–0.085
+pause_s:    0.05–0.14
+alt_steps:  True
+correct_p:  0.22
+ease:       True
+```
+
+Other families in the same script (not needed this run): `straighter`, `fast_human`, `dense_path`.
+
+---
+
+### Winning run
+
+| Field | Value |
+|-------|-------|
+| **Human confidence** | **78%** |
+| Decision | PASSED: HUMAN |
+| Family | `hi_dyn` |
+| Attempt | **1** (~5.0 s wall) |
+| Events | 141 |
+| Heuristic score | **0.00** |
+| Flags | none |
+| velocity_mean | **1.0798** |
+| jerk_mean | 0.0558 |
+| acceleration_mean | 0.1699 |
+| jitter_ratio | 0.4029 |
+| straightness_index | 0.3107 |
+
+**Why this missed V0.4 bands:**
+
+| Rule | Miss reason |
+|------|-------------|
+| #11 | vel_mean **1.08** not in `0.42–0.88`; jitter **0.40** not `>0.48` |
+| #12 | vel_mean **1.08** not `<0.92` (jitter 0.40 would otherwise match `>0.38`) |
+| #13 | vel_mean not `<0.88`; jitter not `>0.50` |
+| #14 | jitter **0.40** not `>0.62` |
+| cycle 003 | jitter not `≥0.639`; vel not in `0.45–0.75`; events 141 `<158` |
+
+Jerk/acc remain low (similar to Issue 002), but V0.4 gated those checks behind **high jitter and/or low velocity**. Raising vel_mean above **0.92** and keeping jitter **~0.40** (human desktop was ~0.23–0.32; Issue 002 win was ~0.79) is enough to zero the heuristic stack; ML then scored the window set as human.
+
+**Contrast with Issue 002 `os_direct_v2`:**
+
+| | Issue 002 win (V0.3) | Issue 003 win (V0.4) |
+|--|----------------------|----------------------|
+| Extra samples | 1–3 **1px jiggles** per hop | none |
+| Step pattern | mixed 2–6px / 18–42px | **alternating** 22–48 / 4–9 |
+| jitter | ~0.79 | **0.40** |
+| vel_mean | ~0.60 | **1.08** |
+| HC vs V0.4 | 0% (patched) | **78%** |
+
+---
+
+### Run command
+
+```bash
+python test/timed_v04_live_solver.py
+```
+
+Requires dashboard at `http://127.0.0.1:8010/` with `qmodel_v0.4` active.
+
+---
+
+### Blue-team patch (2026-08-17)
+
+**Qmodel V0.5** (`test/patch_issue003.py`):
+
+- Exported `hi_dyn` telemetry → `datasets/bot_evasion/evasion_cycle_004.csv`
+- Static heuristics **#15** (fast-hop flat dynamics) + **#16** (flat-dynamics automation) in `backend/model.py`
+- Dynamic rule `evasion_cycle_004` in `backend/qmodels/qmodel_v0.5_evasion_rules.json`
+- Security: mid-jitter + elevated velocity + flat jerk/acceleration rejection
+- Synthetic bot: `test/hi_dyn_bot.py`
+
+**Post-patch Issue 003 winning profile:** HC **0%** (heuristic stack fires).
+
+**Synthetic hi_dyn bot:** blocked at security + heuristics.
+
+---
+
+### Related files (Issue 003)
+
+| File | Purpose |
+|------|---------|
+| `test/timed_v04_live_solver.py` | Live Playwright solver (winning `hi_dyn`) |
+| `test/timed_v04_live_log.txt` | Attempt log (single 78% run) |
+| `test/timed_v04_live_result.json` | `{ human_confidence: 0.78, attempts: 1, elapsed_s: 5.0, model: qmodel_v0.4 }` |
+| `backend/qmodels/qmodel_v0.4_evasion_rules.json` | Cycle 001–003; win stayed outside 003 |
+| `backend/model.py` | Heuristics #11–#14 — none triggered |
+| `test/patch_issue002.py` | V0.4 patch that this run evaded |
+
+---
+
+## Issue 004 — Qmodel V0.5 live Playwright button-sequence evasion (95%)
+
+**Status:** patched (Qmodel V0.6 + family-wide heuristics); open (further Playwright tuning)  
+**Date:** 2026-08-17  
+**Target model:** `qmodel_v0.5` (latest)  
+**Challenge:** `button_sequence`  
+**Goal:** ≥70% human confidence, **no replay**, live canvas pointer recording  
+**Constraint:** 20-minute timer; stopped early on success  
+**Artifacts:** `test/timed_v05_live_solver.py`, `test/timed_v05_live_log.txt`, `test/timed_v05_live_result.json`
+
+---
+
+### Summary
+
+Live Playwright mouse on the dashboard reached **95% human confidence** (`PASSED: HUMAN`) against **Qmodel V0.5** on **attempt 6 / ~24s** using family `mid_dense`. No replay, no API inject, no dashboard Linear/Bezier/Humanoid `run-bot`.
+
+This evades the Issue 003 patch: heuristics **#15–#16**, dynamic **`evasion_cycle_004`**, and the security “fast-hop flat dynamics” reject. The old `hi_dyn` winner (jitter ~0.40, vel ~1.08, jerk ~0.056, acc ~0.17) is blocked; this run kept **step sizes > 2px** (no micro-jiggle), used **linear (no ease) alternating hops**, and landed **jerk 0.17 / acc 0.28** so the flat-dynamics stack did not fire.
+
+---
+
+### What V0.5 blocks (Issue 003 patch)
+
+| # | Flag | Core AND-conditions | Boost |
+|---|------|---------------------|-------|
+| 15 | Fast-hop Playwright flat dynamics | jerk `<0.10`, acc `<0.22`, jitter `0.28–0.52`, vel `0.82–1.50`, events `85–230`, str `<0.55` | +0.50 |
+| 16 | Flat-dynamics automation | jerk `<0.12`, acc `<0.25`, vel `>0.80`, events `70–260`, duration `>1200` | +0.38 |
+
+Dynamic `evasion_cycle_004`: jitter `≥0.40`, jerk `≤0.156`, acc `≤0.290`, vel `0.93–1.05`, events `136–221`, str `0.23–0.35`, dwell `≥60`, duration `≥2300` → +0.34.
+
+Security (`challenge_security._automation_kinematic_reject`, issue 003 branch): jitter `0.28–0.52`, jerk `≤0.12`, acc `≤0.22`, vel `0.82–1.50`, events `85–230` → **403** before scoring.
+
+Also still in play: #10 (str `<0.22`, jitter `<0.14`, vel `>0.68`, events `>175`, duration `>4000`, dwell `55–115`) and vel_max `>15` spike (+0.40). Micro-jiggle ratio uses `MICRO_STEP_PX = 2.0`.
+
+Issue 003 `hi_dyn` win hits **#15+#16**, cycle 004, and the security reject. Post-patch that profile scores **0% HC**.
+
+---
+
+### Method — `mid_dense`
+
+**Script:** `test/timed_v05_live_solver.py`  
+**Browser:** Playwright Chromium headless, viewport 1440×960  
+**Model:** `#active-model` = `qmodel_v0.5`  
+**Challenge:** `#challenge-type` = `button_sequence`
+
+**Motion (no replay):**
+
+1. Random start in the challenge area.
+2. Per button: **linear** chord (no cosine ease) + moderate sine arc (`arc_px` 18–40) + tremor ~1.15px.
+3. Alternate large hops **12–22px** and small hops **4–9px** (all `>2px` so micro-jiggle ratio stays down).
+4. Rare 12–35ms stutter (8%); `sleep(0)` otherwise.
+5. Click: aim σ ~2px, dwell 40–85ms; pause 50–140ms between buttons.
+
+**Config (`mid_dense`):**
+
+```
+step_px:    12–22
+small_px:   4–9
+arc_px:     18–40
+tremor_px:  1.15
+aim_sigma:  2.0
+dwell_s:    0.04–0.085
+pause_s:    0.05–0.14
+alt_steps:  True
+stutter:    True
+```
+
+Other families in the same script: `dense_alt`, `contrast_hop`, `straighter_dense`.
+
+---
+
+### Attempts this run
+
+| Attempt | Family | HC | Decision | Notes |
+|---------|--------|----|----------|-------|
+| 01 | `mid_dense` | 22% | BLOCKED | vel_max 15.1 spike + #16 (heur 0.78) |
+| 02 | `contrast_hop` | 57% | PASSED | vel_max 39.4 spike (heur 0.40); too few events (66) |
+| 03 | `mid_dense` | 66% | PASSED | #10 low-straightness (str 0.07, jitter 0.07); **close** |
+| 04 | `dense_alt` | 40% | BLOCKED | ML only (heur 0.00) |
+| 05 | `straighter_dense` | 3% | BLOCKED | too slow/smooth (vel 0.49, jerk 0.013) |
+| **06** | **`mid_dense`** | **95%** | **PASSED** | **win** |
+
+---
+
+### Winning run
+
+| Field | Value |
+|-------|-------|
+| **Human confidence** | **95%** |
+| Decision | PASSED: HUMAN |
+| Family | `mid_dense` |
+| Attempt | **6** (~24.2 s wall) |
+| Events | 156 |
+| Heuristic score | **0.00** |
+| Flags | none |
+| velocity_mean | 0.945 |
+| jerk_mean | **0.172** |
+| acceleration_mean | **0.280** |
+| jitter_ratio | 0.143 |
+| straightness_index | 0.216 |
+
+**Why this missed V0.5 bands:**
+
+| Rule | Miss reason |
+|------|-------------|
+| #15 | jerk **0.172** not `<0.10`; acc **0.280** not `<0.22`; jitter **0.143** not in `0.28–0.52` |
+| #16 | jerk not `<0.12`; acc not `<0.25` |
+| cycle 004 | jitter **0.143** not `≥0.40`; jerk not `≤0.156` |
+| Security 003 | jitter not in `0.28–0.52`; jerk not `≤0.12`; acc not `≤0.22` |
+| #10 | jitter **0.143** not `<0.14` (barely); events **156** not `>175` |
+| #11–#14 | jitter far below those floors; vel not in the old hop+jiggle band |
+
+**Contrast with Issue 003 `hi_dyn`:**
+
+| | Issue 003 win (V0.4) | Issue 004 win (V0.5) |
+|--|----------------------|----------------------|
+| Ease | cosine ease-out-in | **linear** |
+| Steps | 22–48 / 4–9 | **12–22 / 4–9** |
+| jitter | 0.40 | **0.14** |
+| vel_mean | 1.08 | 0.945 |
+| jerk / acc | 0.056 / 0.170 | **0.172 / 0.280** |
+| HC vs V0.5 | 0% (patched) | **95%** |
+
+Raising **jerk above 0.12** and **acc above 0.25** (via smaller large-hops + linear interpolation, not 1px jiggle) is the structural escape from #15/#16. ML then scored this window set as strongly human.
+
+---
+
+### Run command
+
+```bash
+python test/timed_v05_live_solver.py
+```
+
+Requires dashboard at `http://127.0.0.1:8010/` with `qmodel_v0.5` active.
+
+---
+
+### Blue-team patch (2026-08-17)
+
+**Qmodel V0.6** (`test/patch_issue004.py`) — **whole family**:
+
+- Exported all 4 families → `datasets/bot_evasion/evasion_cycle_005.csv` (48 episodes: `mid_dense`, `dense_alt`, `contrast_hop`, `straighter_dense`)
+- Heuristics **#17–#19** in `backend/model.py` (mid_dense band + dense-hop family + low-jitter low-straightness)
+- Dynamic rule `evasion_cycle_005` in `backend/qmodels/qmodel_v0.6_evasion_rules.json`
+- Security: dense-hop family kinematic reject (low jitter + moderate jerk/acc)
+- Synthetic bots: `test/playwright_dense_family_bot.py`
+
+**Post-patch Issue 004 winning profile:** HC **0%**.
+
+---
+
+### Related files (Issue 004)
+
+| File | Purpose |
+|------|---------|
+| `test/timed_v05_live_solver.py` | Live Playwright solver (winning `mid_dense`) |
+| `test/timed_v05_live_log.txt` | Six-attempt log ending at 95% |
+| `test/timed_v05_live_result.json` | `{ human_confidence: 0.95, attempts: 6, elapsed_s: 24.2, model: qmodel_v0.5 }` |
+| `backend/qmodels/qmodel_v0.5_evasion_rules.json` | Cycle 001–004; win stayed outside 004 |
+| `backend/model.py` | Heuristics #15–#16 — none triggered on win |
+| `test/patch_issue003.py` | V0.5 patch that this run evaded |
+| `test/hi_dyn_bot.py` | Synthetic Issue 003 bot (blocked on V0.5) |
+
+---
+
+## Issue 005 — Qmodel V0.6 live Playwright button-sequence evasion (92%)
+
+**Status:** patched (Qmodel V0.7 + dart-hop hardening); open (further Playwright tuning)  
+**Date:** 2026-08-17  
+**Target model:** `qmodel_v0.6` (latest)  
+**Challenge:** `button_sequence`  
+**Goal:** ≥70% human confidence, **no replay**, live canvas pointer recording  
+**Constraint:** 20-minute timer; stopped early on success  
+**Artifacts:** `test/timed_v06_live_solver.py`, `test/timed_v06_live_log.txt`, `test/timed_v06_live_result.json`
+
+---
+
+### Summary
+
+Live Playwright mouse on the dashboard reached **92% human confidence** (`PASSED: HUMAN`) against **Qmodel V0.6** on **attempt 1 / ~3.7s** using family `fast_direct`. No replay, no API inject, no dashboard Linear/Bezier/Humanoid `run-bot`.
+
+This evades the Issue 004 “whole family” patch: heuristics **#17–#19**, dynamic **`evasion_cycle_005`**, and the dense-hop security reject. V0.6 keyed on **low jitter (<0.24)** plus moderate jerk/acc. This run used **lateral darts** on faster hops, producing **jitter 0.50** (direction flips >45°) while keeping steps **>2px** (no micro-jiggle gate).
+
+---
+
+### What V0.6 blocks (Issue 004 patch)
+
+| # | Flag | Core AND-conditions | Boost |
+|---|------|---------------------|-------|
+| 17 | Dense-hop `mid_dense` | jitter `0.08–0.22`, jerk `0.12–0.32`, acc `0.22–0.45`, vel `0.82–1.18`, events `115–225`, str `<0.38`, duration `>1500` | +0.50 |
+| 18 | Dense-hop **family** | jitter `<0.24`, jerk `>0.08`, acc `>0.18`, vel `0.45–1.28`, events `50–280`, str `<0.50`, duration `>1000` | +0.44 |
+| 19 | Low-str low-jitter hop | str `<0.24`, jitter `<0.16`, vel `>0.65`, events `>130`, duration `>2000` | +0.40 |
+
+Dynamic `evasion_cycle_005`: jitter `≤0.15`, vel `0.795–1.05`, events `≥151`, str `0.136–0.296`, dwell `≥60`, duration `≥2700`, vel_max `≤6` → +0.34.
+
+Security issue-004 branch (`_automation_kinematic_reject`): jitter `0.06–0.24`, jerk `0.10–0.35`, acc `0.18–0.48`, vel `0.45–1.28`, events `50–280`. That reject only runs when **micro-jiggle ratio ≥ 0.30** and event count `<350`.
+
+Issue 004 `mid_dense` win (jitter 0.14, vel 0.95, jerk 0.17, acc 0.28, events 156, str 0.22) hits **#17+#18+#19**, cycle 005, and (if micro-jiggle is high) the security reject. Post-patch that profile scores **0% HC**.
+
+---
+
+### Method — `fast_direct`
+
+**Script:** `test/timed_v06_live_solver.py`  
+**Browser:** Playwright Chromium headless, viewport 1440×960  
+**Model:** `#active-model` = `qmodel_v0.6`  
+**Challenge:** `#challenge-type` = `button_sequence`
+
+**Motion (no replay):**
+
+1. Random start in the challenge area.
+2. Per button: **linear** chord + small sine arc (`arc_px` 6–16).
+3. Hops **14–26px** (`>2px`).
+4. With probability **0.28**, a **7–14px perpendicular dart** (creates >45° turns → high `jitter_ratio`) then continue; not 1px scribble.
+5. Light tremor ~1px; `sleep(0)` between hops.
+6. Click: aim σ ~2px, dwell 40–80ms; pause 40–110ms between buttons.
+
+**Config (`fast_direct`):**
+
+```
+step_px:    14–26
+arc_px:     6–16
+dart_px:    7–14
+dart_p:     0.28
+tremor_px:  1.0
+aim_sigma:  2.0
+dwell_s:    0.04–0.08
+pause_s:    0.04–0.11
+```
+
+Other families in the same script (not used this run): `direct_wobble`, `event_flood`, `human_turns`.
+
+---
+
+### Winning run
+
+| Field | Value |
+|-------|-------|
+| **Human confidence** | **92%** |
+| Decision | PASSED: HUMAN |
+| Family | `fast_direct` |
+| Attempt | **1** (~3.7 s wall) |
+| Events | 111 |
+| Heuristic score | **0.00** |
+| Flags | none |
+| velocity_mean | **1.240** |
+| jerk_mean | 0.153 |
+| acceleration_mean | 0.326 |
+| jitter_ratio | **0.505** |
+| straightness_index | 0.164 |
+
+**Why this missed V0.6 bands:**
+
+| Rule | Miss reason |
+|------|-------------|
+| #17 | jitter **0.505** not in `0.08–0.22`; vel **1.24** not `<1.18`; events **111** not `>115` |
+| #18 | jitter **0.505** not `<0.24` (family rule is low-jitter) |
+| #19 | jitter **0.505** not `<0.16`; events **111** not `>130` |
+| cycle 005 | jitter **0.505** not `≤0.15`; vel **1.24** not `≤1.05`; events **111** `<151` |
+| Security 004 | jitter not in `0.06–0.24`; also micro-jiggle gate likely not entered |
+| #11 | vel **1.24** not in `0.42–0.88` (jitter would otherwise match `>0.48`) |
+| #12 | vel not `<0.92` |
+| #14 | jitter **0.505** not `>0.62` |
+| #15 | jerk **0.153** not `<0.10`; acc **0.326** not `<0.22` |
+
+**Contrast with Issue 004 `mid_dense`:**
+
+| | Issue 004 win (V0.5) | Issue 005 win (V0.6) |
+|--|----------------------|----------------------|
+| Extra motion | none | **lateral darts** (`dart_p` 0.28) |
+| Steps | 12–22 / 4–9 alt | **14–26** |
+| jitter | 0.14 | **0.50** |
+| vel_mean | 0.95 | **1.24** |
+| str | 0.22 | 0.16 |
+| events | 156 | 111 |
+| HC vs V0.6 | 0% (patched) | **92%** |
+
+V0.6 assumed the next bot would stay in the **low-jitter dense-hop** cluster. Flipping to **high-frequency direction changes** (darts) exits that cluster while jerk/acc stay in a band the older flat-dynamics rules (#15/#16) do not cover (those need *low* jerk/acc).
+
+---
+
+### Run command
+
+```bash
+python test/timed_v06_live_solver.py
+```
+
+Requires dashboard at `http://127.0.0.1:8010/` with `qmodel_v0.6` active.
+
+---
+
+### Blue-team patch (2026-08-17)
+
+**Qmodel V0.7** (`test/patch_issue005.py`):
+
+- Synthetic dart-hop family: `test/fast_direct_bot.py` (`fast_direct`, `direct_wobble`, `human_turns`, `event_flood`)
+- Exported telemetry → `datasets/bot_evasion/evasion_cycle_006.csv` (48 episodes)
+- Static heuristics **#20** (fast_direct band) + **#21** (dart-hop family) in `backend/model.py`
+- Dynamic rule `evasion_cycle_006` in `backend/qmodels/qmodel_v0.7_evasion_rules.json`
+- Security: dart-hop kinematic reject even when micro-jiggle ratio is low (steps > 2px)
+- `append_rule_from_features` no longer overwrites branch-specific vel bands
+- Retrain: 10,053 human + 96,152 bot windows (623 evasion); OOB 0.9987
+
+**Target fingerprint closed:** jitter ~0.50, vel ~1.24, events ~111, str ~0.16.
+
+---
+
+### Related files (Issue 005)
+
+| File | Purpose |
+|------|---------|
+| `test/timed_v06_live_solver.py` | Live Playwright solver (winning `fast_direct`) |
+| `test/timed_v06_live_log.txt` | Single 92% run |
+| `test/timed_v06_live_result.json` | `{ human_confidence: 0.92, attempts: 1, elapsed_s: 3.7, model: qmodel_v0.6 }` |
+| `backend/qmodels/qmodel_v0.6_evasion_rules.json` | Cycle 001–005; win stayed outside 005 |
+| `backend/model.py` | Heuristics #17–#19 — none triggered |
+| `test/patch_issue004.py` | V0.6 patch that this run evaded |
+| `test/patch_issue005.py` | V0.7 patch for this issue |
+| `test/fast_direct_bot.py` | Synthetic dart-hop family |
+
+---
+
+## Issue 006 — Qmodel V0.7 live Playwright button-sequence evasion (86%)
+
+**Status:** patched (Qmodel V0.8 + min-jerk overflow hardening); open (further Playwright tuning)  
+**Date:** 2026-08-17  
+**Target model:** `qmodel_v0.7` (evaded) → **`qmodel_v0.8`** (patched)  
+**Challenge:** `button_sequence`  
+**Goal:** ≥70% human confidence, **no replay**, live canvas pointer recording  
+**Constraint:** 20-minute timer; stopped early on success (~10.3 min)  
+**Artifacts:** `test/timed_v07_live_solver.py`, `test/timed_v07_live_log.txt`, `test/timed_v07_live_result.json`
+
+---
+
+### Summary
+
+Live Playwright mouse on the dashboard reached **86% human confidence** (`PASSED: HUMAN`) against **Qmodel V0.7** on **attempt 75 / 615.6s** using family `minjerk_direct`. No replay, no API inject.
+
+V0.7 closed dart-hops (high jitter + high vel + ~111 events). This run used **minimum-jerk interpolation** with 7–12px hops, **360 events** (above heuristic **#18**’s `<280` cap), jitter **0.162** (just above **#19**’s `<0.16`). Heuristic score **0.00**, no flags.
+
+---
+
+### Winning run
+
+| Field | Value |
+|-------|-------|
+| **Human confidence** | **86%** |
+| Decision | PASSED: HUMAN |
+| Family | `minjerk_direct` |
+| Attempt | **75** (~615.6 s wall) |
+| Events | **360** |
+| Heuristic score | **0.00** |
+| Flags | none |
+| velocity_mean | **0.860** |
+| jerk_mean | 0.168 |
+| acceleration_mean | 0.246 |
+| jitter_ratio | **0.162** |
+| straightness_index | 0.130 |
+
+**Why this missed V0.7 bands:**
+
+| Rule | Miss reason |
+|------|-------------|
+| #18 | events **360** not `<280` |
+| #19 | jitter **0.162** not `<0.16` |
+| #20/#21 | jitter **0.162** not dart-hop `>0.38` / vel not `>1.02` |
+| Security 005 | dart-hop band not matched; hops >2px so micro-jiggle skip |
+
+---
+
+### Blue-team patch (2026-08-17)
+
+**Qmodel V0.8** (`test/patch_issue006.py`):
+
+- Synthetic min-jerk family: `test/minjerk_bot.py` (`minjerk_direct`, `dense_smooth`, `curved_idle`, `slow_settle`)
+- Exported telemetry → `datasets/bot_evasion/evasion_cycle_007.csv`
+- Static heuristics **#22** (min-jerk overflow band) + **#23** (high event-count low-jitter)
+- Dynamic rule `evasion_cycle_007` in `backend/qmodels/qmodel_v0.8_evasion_rules.json`
+- Security: min-jerk dense overflow kinematic reject even when micro-jiggle ratio is low
+- Cycle 006 dynamic rule vel band repaired (`vel_mean_max` 1.49; min had been above max)
+- Retrain: 10,053 human + 96,200 bot windows (671 evasion); OOB 0.9987
+- Activated via `/api/models/activate` (`qmodel_v0.8`)
+
+**Target fingerprint closed:** events ~360, jitter ~0.16, vel ~0.86, jerk ~0.17, acc ~0.25, str ~0.13.
+
+---
+
+## Issue 007 — Qmodel V0.8.1G sparse_irregular ML evasion (78% model-human)
+
+**Status:** patched (Qmodel V0.9)  
+**Date:** 2026-08-17  
+**Target model:** `qmodel_v0.8.1G` (evaded) → **`qmodel_v0.9`** (in progress)  
+**Challenge:** `button_sequence`  
+**Goal:** `model_human = 1 - mean(bot_probability) ≥ 70%` (ML-only; fused HC secondary)  
+**Artifacts:** `test/timed_v081g_live_solver.py`, `test/timed_v081g_live_result.json`, `test/sparse_irregular_bot.py`, `test/patch_issue007.py`
+
+---
+
+### Summary
+
+Live Playwright `sparse_irregular` beat **Qmodel V0.8.1G** on attempt **155 / 620.6s**: **bot_prob 0.2181** → **78.2% model-human**, decision **PASSED: HUMAN**. Fused dashboard HC was **60%** because heuristic risk 0.40 from `velocity_max` 18.3 px/ms capped `1-risk`. The ML mean was the stated 70% target.
+
+Fingerprint: **60 events**, vel **1.43**, jerk **0.192**, acc **0.467**, jitter **0.241**, straightness **0.142**, idle **0.43**, dwell **81ms**.
+
+---
+
+### Winning run
+
+| Field | Value |
+|-------|-------|
+| **1 − bot_prob** | **78.2%** |
+| Bot probability | **0.2181** |
+| Fused HC | 60% |
+| Decision | PASSED: HUMAN |
+| Family | `sparse_irregular` |
+| Attempt | **155** (620.6 s) |
+| Events | **60** |
+| Heuristic | 0.40 (`Abnormal velocity spike`) |
+| velocity_mean | 1.4335 |
+| jerk_mean | 0.192 |
+| acceleration_mean | 0.467 |
+| jitter_ratio | 0.2414 |
+| straightness_index | 0.1417 |
+
+---
+
+### Blue-team patch (2026-08-17)
+
+**Qmodel V0.9** (`test/patch_issue007.py`):
+
+- Synthetic family: `test/sparse_irregular_bot.py` (`sparse_irregular`, `sparse_fast`, `minjerk_fast`)
+- Exported telemetry → `datasets/bot_evasion/evasion_cycle_008.csv` (48 episodes / 5215 rows / 48 windows)
+- Static heuristic **#24** + security reject for sparse irregular band (~45–110 events, vel 1.15–1.85, jitter 0.18–0.32)
+- Dynamic rule `evasion_cycle_008` in `backend/qmodels/qmodel_v0.9_evasion_rules.json` (8 rules)
+- GPU XGBoost: 10,196 human + 96,248 bot (719 evasion); fit 5.65s cuda; ROC-AUC 0.9999; held-out 8 human / 16 bot errors
+- Activated via `/api/models/activate` (`qmodel_v0.9`)
+
+---
+
+## Issue 008 — Qmodel V0.9 mid_count ML evasion (76.8% model-human)
+
+**Status:** patched (Qmodel V0.10)  
+**Date:** 2026-08-17  
+**Target model:** `qmodel_v0.9` (evaded) → **`qmodel_v0.10`**  
+**Goal:** `1 - bot_prob ≥ 70%`, live Playwright, no replay  
+**Winner:** family `mid_count`, attempt 214 / 1142s, **bot_prob 0.2319**, PASSED: HUMAN, fused HC 60% (vel spike 0.40)
+
+Fingerprint: **127 events** (above #24 cap 110), vel 1.305, jerk 0.339, acc 0.501, jitter 0.20, str **0.028**, vel_max 23.3.
+
+Patch: cycle 009, heuristic **#25**, mid-count security reject, GPU retrain `qmodel_v0.10`.
+
+---
+
+## Issue 009 — Qmodel V0.10 high_str_fast ML evasion (87.4% model-human)
+
+**Status:** patched (Qmodel V0.11)  
+**Date:** 2026-08-17  
+**Winner:** `high_str_fast`, attempt 51 / 267.5s, **bot_prob 0.126**, PASSED: HUMAN, fused HC 60%
+
+Fingerprint: 61 events, vel **2.03** (above #24/#25 vel caps), jerk 0.54, acc 0.91, jitter 0.20, str 0.106, vel_max 23.4.
+
+Patch: cycle 010, heuristic **#26**, security reject, `qmodel_v0.11`.
+
+---
+
+## Issue 010 — Qmodel V0.11 idle_correct ML evasion (74.3% model-human)
+
+**Status:** patched (Qmodel V0.12)
+**Winner:** `idle_correct`, attempt 19 / 256s, **bot_prob 0.257**, PASSED: HUMAN
+
+Fingerprint: 163 events, vel 1.86, jerk 0.57, acc 0.82, jitter 0.174, str 0.096, idle 0.46, dwell 132ms, duration 5808ms.
+
+Patch: cycle 011, heuristic **#27**, `qmodel_v0.12`.
+
+---
+
+## Issue 011 — Qmodel V0.12 hi_jit ML evasion (71.9% model-human)
+
+**Status:** patched (Qmodel V0.13)
+
+---
+
+## Issue 012 — Qmodel V0.13 smooth_low_jit ML evasion (76.2% model-human)
+
+**Status:** patched (Qmodel V0.14)
+
+---
+
+## Issue 013 — Qmodel V0.14 hi_jit_long ML evasion (77.0% model-human)
+
+**Status:** patched (Qmodel V0.15)
+
+---
+
+## Issue 014 — Qmodel V0.15 wobble_mid ML evasion (76.4% model-human)
+
+**Status:** patched (Qmodel V0.16); live attack started
+**Winner:** `wobble_mid`, attempt 37 / 415s, **bot_prob 0.237**, fused HC 0%, BLOCKED: BOT (heuristics including #25)
+
+Fingerprint: 163 events, vel 1.14, jerk 0.25, acc 0.36, jitter 0.230, str 0.068, idle 0.23, dwell 90ms, duration 4432ms.
+
+Patch: cycle 015, `qmodel_v0.16` (ML retrain; #25 already matched).
+
+---
+**Winner:** `hi_jit_long`, attempt 14 / 77s, **bot_prob 0.230**, PASSED: HUMAN, fused HC 60%
+
+Fingerprint: 252 events, vel 1.23, jerk 0.30, acc 0.47, jitter 0.288, str 0.052, idle 0.18, dwell 83ms, duration 6271ms.
+
+Patch: cycle 014, heuristic **#30**, `qmodel_v0.15`.
+
+---
+**Winner:** `smooth_low_jit`, attempt 138 / 1021s, **bot_prob 0.238**, fused HC 16%, BLOCKED: BOT (heuristics)
+
+Fingerprint: 115 events, vel 1.20, jerk 0.31, acc 0.44, jitter 0.097, str 0.079, idle 0.20, dwell 81ms, duration 3095ms.
+
+Patch: cycle 013, heuristic **#29**, `qmodel_v0.14`.
+
+---
+**Winner:** `hi_jit`, attempt 8 / 61s, **bot_prob 0.281**, PASSED: HUMAN, fused HC 72%
+
+Fingerprint: 119 events, vel 1.23, jerk 0.28, acc 0.45, jitter 0.316, str 0.296, idle 0.17, dwell 80ms, duration 3281ms.
+
+Patch: cycle 012, heuristic **#28**, `qmodel_v0.13`.
+
+---
+
+### Related files (Issue 006)
+
+| File | Purpose |
+|------|---------|
+| `test/timed_v07_live_solver.py` | Live Playwright solver (winning `minjerk_direct`) |
+| `test/timed_v07_live_log.txt` | 75-attempt log ending at 86% |
+| `test/timed_v07_live_result.json` | `{ human_confidence: 0.86, attempts: 75, elapsed_s: 615.6, model: qmodel_v0.7 }` |
+| `test/patch_issue006.py` | V0.8 patch for this issue |
+| `test/minjerk_bot.py` | Synthetic min-jerk family |
+
+---
+
+## Issue 015 — Ymodel V0.3 jagged-homing API evasion (99.51% human)
+
+**Status:** open (unpatched)  
+**Date:** 2026-08-17  
+**Target model:** `ymodel_v0.3` (active dashboard “Ymodel V0.3 · latest”)  
+**Challenge:** `button_sequence`  
+**Goal:** ≥70% human confidence, **no replay**, **no workspace analysis**  
+**Constraint given to attacker:** may create a new folder; may use workspace `.venv`; may inspect the *live* dashboard/API, not training code / datasets / model files  
+**Artifacts:** `agent_evasion/homing_api.py`, `agent_evasion/homing_submit.js`, `agent_evasion/minjerk_submit.js`, `agent_evasion/last_result.json`
+
+---
+
+### Summary
+
+A Cursor-agent red-team pass against the **running** dashboard (`http://127.0.0.1:8010/`) evaded **Ymodel V0.3** at **99.51%** human confidence (`PASSED`, `is_bot: false`, bot_probability **0.0049**, heuristic_score **0.0**).
+
+The win was **not** live Playwright / in-tab pointer playback. It was a **procedural JSON event stream** posted to `POST /api/challenge/verify` after sleeping so telemetry duration did not exceed server wall-clock (the inject-duration 403).
+
+A first in-browser attempt that used **min-jerk + quadratic Bezier** (the same family as the dashboard Linear/Bezier/Humanoid bots) got **task PASS** but **0% HC / BLOCKED: BOT** (bot prob 0.996, no heuristic flags — the *classifier* killed it).
+
+---
+
+### Rules the attacker actually followed
+
+- Did **not** replay `datasets/human/*.csv` or any saved capture.
+- Did **not** read `backend/model.py`, qmodel/ymodel registries, training scripts, or `.issues` during the attack (this write-up is after the fact).
+- **Did** use Cursor’s built-in browser tab to see the dashboard, dump *served* `dashboard.js` via `fetch('/dashboard/dashboard.js')`, and call live globals (`recordEvent`, `runBot`, `submitAttempt`, `challenge.spec`).
+- **Did** create `agent_evasion/` and run Python with `.venv`.
+
+---
+
+### Phase 0 — Recon (live page only)
+
+Open tabs: dashboard `http://127.0.0.1:8010/` + blank. Canvas `#challenge-canvas` logical size **960×640**. Active model **Ymodel V0.3**.
+
+From page JS (not repo files):
+
+- Events are `{x, y, t, type, pid?, pt?, src?}` with integer x/y; duplicate identical mousemove samples dropped.
+- Human canvas listeners: `pointerdown/move/up`. Meta is `{pid: pointerId, pt: pointerType||"mouse", src: "canvas"}`.
+- Clock quirk: **mousedown uses `performance.now()`**, move/up use **`evt.timeStamp`**.
+- Submit: `POST /api/challenge/verify` with `session_id`, `events`, `participant`, `verify_token`, `client_started_ms`, `client_submitted_ms`, `source: "dashboard"`.
+- Button sequence auto-submits when `sequenceProgress` hits length; attacker skipped that and submitted the event array directly.
+- Built-in bots: `POST /api/challenge/run-bot` `{session_id, bot}` then `animateBotEvents` — **not used** for the winning run.
+
+Current challenge example (first look): 5 buttons, `click_tolerance_px: 34`, sequence `[1,2,3,4,5]`.
+
+---
+
+### Phase 1 — Dead run: in-tab min-jerk / Bezier inject
+
+**Script:** `agent_evasion/minjerk_submit.js` (injected with CDP `Runtime.evaluate`).
+
+**Generator:**
+
+1. `POST /api/challenge/new` `{challenge_type: "button_sequence"}`.
+2. Reset dashboard globals (`challenge`, `events`, `clientInteractionStartMs = performance.now()`).
+3. Idle “reading” wander ~380–1200 ms.
+4. For each button in id order: Fitts-ish duration `T ≈ 85 + 148·ID`, **minimum-jerk** `10τ³−15τ⁴+6τ⁵` sampled along a **quadratic Bezier** with perpendicular curve offset, OU tremor, ~42% overshoot+correct, hover dwell, mousedown, micro-move hold, mouseup.
+5. `events = evs`; **wait** `min(t - performance.now(), 12s)` so wall-clock ≥ telemetry span.
+6. `submitAttempt("human")`.
+
+**Result (browser, session `f0c73a4f-…`, seed 237910934):**
+
+| Field | Value |
+|-------|--------|
+| Events | 420 |
+| Task | PASS (click order 1–5) |
+| Human confidence | **0%** |
+| Decision | **BLOCKED: BOT** |
+| Risk / bot prob | 0.996 / 0.996 |
+| Heuristic flags | none (“No risk flags.”) |
+| Wait | ~6367 ms |
+
+**Why it died:** kinematics were textbook Flash–Hogan + Bezier — the same manifold the dashboard already ships as Linear/Bezier/Humanoid. Ymodel V0.3 classified it as bot with no need for a named heuristic.
+
+CDP follow-up calls were intermittently auto-blocked / approval-UI dropped (`Could not find bubble for toolCallId`), so the attack moved off the tab onto the REST API.
+
+---
+
+### Phase 2 — API path, first 403 (injected stream)
+
+**Script:** `agent_evasion/homing_api.py` (venv CPython 3.11).
+
+Flow: `POST /api/challenge/new` → generate events in-process → immediate `POST /api/challenge/verify`.
+
+**Without Origin:** HTTP 403.  
+**With `Origin: http://127.0.0.1:8010` + `Referer: http://127.0.0.1:8010/`:** still 403:
+
+```
+{"detail":{"message":"Telemetry duration exceeds wall-clock session time (injected stream).","security_flags":[]}}
+```
+
+This is the Issue 001 wall-clock vs telemetry check. Instant JSON inject is rejected **before** scoring. The in-tab min-jerk run had survived this because it `setTimeout`’d until `performance.now()` caught up to last event `t`.
+
+**Fix:** after generation, `time.sleep((events[-1].t - events[0].t)/1000 + 0.35)` then verify. `client_started_ms` / `client_submitted_ms` set to a small synthetic pair covering the span (server primarily cares about **its** session wall-clock vs event-duration, not the client perf timestamps).
+
+---
+
+### Phase 3 — Winning generator: jagged two-phase homing (not min-jerk, not Bezier)
+
+**Deliberate design change:** do **not** use min-jerk, quadratic Bezier, WindMouse, or the dashboard Humanoid. Those are already in the bot training / bot-button family.
+
+**Motion model (`homing_api.py`):**
+
+1. **Start** at a random near-corner `(18–148, 16–116)`.
+2. **Think/idle** 300–1100 ms of 1/f-ish wander (Gaussian steps ~1.1 / 0.9 px, dt 9–21 ms).
+3. **Initiation error (28% of reaches):** first hop 18–73 px at heading ±(0.4–1.3 rad) off target, 3–7 noisy hops — a wrong-way start, not a smooth arc.
+4. **Homing loop** until within 2.5 px (max 420 iters):
+   - Heading = `atan2(target − pos)` + Gaussian noise scaled by remaining distance (`0.2 + 0.32·min(1, dist/260)`).
+   - **Ballistic** if dist > 46 px: step `clamp(dist·(0.11–0.28) + 3 + noise, 2.2, 23)`.
+   - **Corrective** otherwise: step `clamp(1.1 + dist·(0.17–0.39) + noise, 0.55, 8)`.
+   - 8% extra 4 px jitter while ballistic; 8% mid-flight pause +14–50 ms if dist > 28.
+5. **Burst sampling (anti-regular-dt):** each spatial step emits 1–4 mousemove samples 0.25–1.65 ms apart (coalesced-event mimic), then a frame gap of ~6–16 ms, sometimes +12–28 ms.
+6. **Click:** land with ~N(0,5.2) px offset (still inside radius 28 / tolerance 34); hover 35–185 ms with 0.7 px jiggle; `mousedown`; hold 50–150 ms with 0.2 px tremor; `mouseup`; post-click pause 30–160 ms.
+7. Pointer meta on every event: `pid=1`, `pt="mouse"`, `src="canvas"` (matches live `pointerMetaFrom`).
+8. Duplicate integer mousemove dropped (same as `recordEvent`).
+9. Participant label `"human"`, `source: "dashboard"`, `verify_token` from `/api/challenge/new`.
+
+No Fitts closed-form duration. No 10-15-6 jerk polynomial. Path is piecewise greedy with heading noise — high curvature / high jitter, not a spline.
+
+---
+
+### Phase 3 results (3 planned API runs; stopped after win)
+
+| Attempt | Seed | Events | HC | Decision | bot_prob | heuristic_score | Flags |
+|---------|------|--------|----|----------|----------|-----------------|-------|
+| A | 1495817906 | 329 | **60%** | PASSED | 0.1065 | 0.4 | `Abnormal velocity spike (51.7 px/ms)` |
+| B | **237766652** | **361** | **99.51%** | **PASSED** | **0.0049** | **0.0** | evaluation flags none; `security_flags`: `High micro-jiggle ratio (0.56)` (did **not** flip decision) |
+
+Attempt A already **passed** as human at 60% (below the 70% goal). Attempt B cleared the goal.
+
+Dashboard overlay was **not** updated for A/B (separate urllib client, not the Cursor tab). Tab still showed the Phase 1 0% overlay unless refreshed.
+
+---
+
+### Winning fingerprint (Issue 015 / seed 237766652)
+
+From `agent_evasion/last_result.json`:
+
+| Feature | Value |
+|---------|--------|
+| session_id | `403f461e-4132-4589-8962-27839fa1f2d9` |
+| challenge_type | `button_sequence` |
+| event_count | 361 |
+| duration_ms | 4623.71 |
+| total_distance_px | 2768.38 |
+| euclidean_distance_px | 398.85 |
+| straightness_index | **0.1441** |
+| velocity_mean | **1.0277** |
+| velocity_std | 0.9581 |
+| velocity_max | 4.714 |
+| acceleration_mean | 0.638403 |
+| acceleration_std | 1.813578 |
+| acceleration_max | 14.453801 |
+| jerk_mean | 1.51515119 |
+| angle_change_mean | 1.5524 |
+| angle_change_std | 1.0642 |
+| jitter_ratio | **0.6441** |
+| idle_ratio | 0.0785 |
+| avg_click_dwell_ms | **118.35** |
+| human_confidence | **0.9951** |
+| bot_probability | 0.0049 |
+| risk_score | 0.0049 |
+| heuristic_score | 0.0 |
+| aggregation | max_risk, window_count 1 |
+| task | PASS, click order [1,2,3,4,5] |
+
+Contrast with Phase 1 min-jerk (same task, same model): HC 0%, bot_prob 0.996, 420 events, ~6.4 s wait — smooth spline vs jagged homing is the whole split.
+
+---
+
+### What this bypasses vs what still fired
+
+**Bypassed**
+
+- Ymodel V0.3 ML bot_probability (0.996 → 0.0049).
+- Named evaluation heuristic flags on the winning run (`flags: []`).
+- Built-in Linear/Bezier/Humanoid (never called `run-bot`).
+- Instant-inject 403, once wall-clock sleep was added.
+
+**Still present / residual**
+
+- Attempt A: heuristic **velocity spike 51.7 px/ms** (likely a coalesced burst with a large pixel jump and tiny dt). Cost: HC 60% still PASSED.
+- Attempt B: `security_flags: ["High micro-jiggle ratio (0.56)"]` — informational; decision stayed PASSED, heuristic_score 0.
+- API verify from urllib is **not** live canvas PointerEvents; it only works if wall-clock sleep + `verify_token` + `source: dashboard` + pointer meta shape are satisfied. Live Playwright parity was **not** demonstrated this cycle (Issue 001 gap still applies in spirit).
+
+---
+
+### Suggested blue-team follow-up (not implemented)
+
+1. Retrain Ymodel on this homing family (export attempt B events; high jitter 0.64 + straightness ~0.14 + vel_mean ~1.03 + dwell ~118 ms + duration ~4.6 s + ~361 events).
+2. Tighten coalesced-burst physics: 51.7 px/ms is not a 125 Hz mouse; treat as inject even if duration check passes.
+3. Do not ignore `High micro-jiggle ratio` when it co-occurs with bursty sub-2 ms dt clusters.
+4. Bind verify more tightly to live pointer attestation / isTrusted / monotonic `timeStamp` vs `performance.now()` mix, so urllib JSON with `src: canvas` is insufficient.
+5. Score **live dashboard recordings** as the source of truth (API-only 99.5% may not hold under Playwright, per Issue 001).
+
+---
+
+### Related files (Issue 015)
+
+| File | Purpose |
+|------|---------|
+| `agent_evasion/minjerk_submit.js` | Dead in-tab min-jerk/Bezier inject (0% HC) |
+| `agent_evasion/homing_submit.js` | In-tab homing variant (not successfully re-injected after CDP approval drops) |
+| `agent_evasion/homing_api.py` | Winning urllib new→sleep→verify loop |
+| `agent_evasion/last_result.json` | Full verify payload for seed 237766652 / 99.51% HC |

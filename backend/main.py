@@ -25,6 +25,7 @@ from backend.challenge_security import (
     live_events_for_session,
     validate_verify_request,
 )
+from backend.xmodel_registry import catalog_for_api as xmodel_catalog_for_api
 from backend.human_capture import origin_bucket, sanitize_ip, write_human_capture
 from backend.hz60 import downsample_events_to_hz
 from backend.telemetry_crypto import new_telemetry_key, telemetry_key_to_b64, unseal_events
@@ -179,6 +180,11 @@ def list_qmodels():
     return classifier.qmodel_catalog()
 
 
+@app.get("/api/xmodels")
+def list_xmodels():
+    return xmodel_catalog_for_api()
+
+
 @app.get("/api/models")
 def list_models():
     return {
@@ -186,6 +192,7 @@ def list_models():
         "active_model_label": classifier.display_name,
         "available_models": classifier.available_models(),
         "qmodels": classifier.qmodel_catalog(),
+        "xmodels": xmodel_catalog_for_api(),
     }
 
 
@@ -673,7 +680,7 @@ if os.path.exists(frontend_path):
     def read_dashboard_asset(asset_name: str):
         target = os.path.join(dashboard_path, asset_name)
         if os.path.exists(target) and os.path.isfile(target):
-            return FileResponse(target)
+            return FileResponse(target, headers={"Cache-Control": "no-cache"})
         raise HTTPException(status_code=404, detail="File not found")
 
     @app.get("/{file_name}")
@@ -688,19 +695,45 @@ if os.path.exists(frontend_path):
             return FileResponse(target)
         raise HTTPException(status_code=404, detail="File not found")
 
-if __name__ == "__main__":
+def run(host: Optional[str] = None, port: Optional[int] = None, reload: Optional[bool] = None, open_browser: bool = False):
     import uvicorn
+    import webbrowser
+    import threading
 
-    host = os.getenv("BEHAVIORAL_HOST", "0.0.0.0")
-    port = int(os.getenv("BEHAVIORAL_PORT", "8010"))
-    # Reload on Windows wedges the dashboard when two watchers share 8010 or
-    # StatReload respawns while a request is in flight. Opt in with BEHAVIORAL_RELOAD=1.
-    use_reload = os.getenv("BEHAVIORAL_RELOAD", "0") == "1"
+    bind_host = host or os.getenv("BEHAVIORAL_HOST", "0.0.0.0")
+    bind_port = port if port is not None else int(os.getenv("BEHAVIORAL_PORT", "8010"))
+    if reload is None:
+        reload = os.getenv("BEHAVIORAL_RELOAD", "0") == "1"
     backend_dir = os.path.dirname(os.path.abspath(__file__))
+
+    if open_browser:
+        target_url = f"http://localhost:{bind_port}" if bind_host in ("0.0.0.0", "127.0.0.1") else f"http://{bind_host}:{bind_port}"
+        def _launch_browser():
+            time.sleep(1.2)
+            try:
+                webbrowser.open(target_url)
+            except Exception:
+                pass
+        threading.Thread(target=_launch_browser, daemon=True).start()
+
     uvicorn.run(
         "backend.main:app",
-        host=host,
-        port=port,
-        reload=use_reload,
-        reload_dirs=[backend_dir] if use_reload else None,
+        host=bind_host,
+        port=bind_port,
+        reload=reload,
+        reload_dirs=[backend_dir] if reload else None,
     )
+
+def cli():
+    import argparse
+    parser = argparse.ArgumentParser(description="Behavioral CAPTCHA & Biometric Bot Detection Engine")
+    parser.add_argument("--host", default=os.getenv("BEHAVIORAL_HOST", "0.0.0.0"), help="Host IP to bind (default: 0.0.0.0)")
+    parser.add_argument("--port", type=int, default=int(os.getenv("BEHAVIORAL_PORT", "8010")), help="Port to bind (default: 8010)")
+    parser.add_argument("--reload", action="store_true", help="Enable hot reload")
+    parser.add_argument("--no-browser", action="store_true", help="Do not automatically open web browser")
+    args = parser.parse_args()
+    run(host=args.host, port=args.port, reload=args.reload, open_browser=not args.no_browser)
+
+if __name__ == "__main__":
+    cli()
+

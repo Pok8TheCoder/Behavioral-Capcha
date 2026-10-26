@@ -1,0 +1,99 @@
+{
+  "summary": {
+    "challenge_type": "button_sequence",
+    "seed": 237766652,
+    "n_events": 361,
+    "human_confidence": 0.9951,
+    "evaluation": {
+      "decision": "PASSED",
+      "is_bot": false,
+      "risk_score": 0.0049,
+      "bot_probability": 0.0049,
+      "heuristic_score": 0.0,
+      "model_type": "ymodel_v0.3",
+      "qmodel_label": "Ymodel V0.3",
+      "flags": [],
+      "biometric_summary": {
+        "straightness": 0.1441,
+        "velocity_mean": 1.0277,
+        "velocity_variance": 0.9581,
+        "jitter_ratio": 0.6441,
+        "click_dwell_ms": 118.35
+      },
+      "window_count": 1,
+      "aggregation": "max_risk"
+    },
+    "task_result": {
+      "passed": true,
+      "reason": "Click order [1, 2, 3, 4, 5], expected [1, 2, 3, 4, 5]",
+      "click_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "participant": "human"
+  },
+  "raw": {
+    "timestamp": 1786991488.3082263,
+    "session_id": "403f461e-4132-4589-8962-27839fa1f2d9",
+    "participant": "human",
+    "challenge_type": "button_sequence",
+    "task_result": {
+      "passed": true,
+      "reason": "Click order [1, 2, 3, 4, 5], expected [1, 2, 3, 4, 5]",
+      "click_order": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "features": {
+      "event_count": 361,
+      "duration_ms": 4623.71,
+      "total_distance_px": 2768.38,
+      "euclidean_distance_px": 398.85,
+      "straightness_index": 0.1441,
+      "velocity_mean": 1.0277,
+      "velocity_std": 0.9581,
+      "velocity_max": 4.714,
+      "acceleration_mean": 0.638403,
+      "acceleration_std": 1.813578,
+      "acceleration_max": 14.453801,
+      "jerk_mean": 1.51515119,
+      "angle_change_mean": 1.5524,
+      "angle_change_std": 1.0642,
+      "jitter_ratio": 0.6441,
+      "idle_ratio": 0.0785,
+      "avg_click_dwell_ms": 118.35
+    },
+    "evaluation": {
+      "decision": "PASSED",
+      "is_bot": false,
+      "risk_score": 0.0049,
+      "bot_probability": 0.0049,
+      "heuristic_score": 0.0,
+      "model_type": "ymodel_v0.3",
+      "qmodel_label": "Ymodel V0.3",
+      "flags": [],
+      "biometric_summary": {
+        "straightness": 0.1441,
+        "velocity_mean": 1.0277,
+        "velocity_variance": 0.9581,
+        "jitter_ratio": 0.6441,
+        "click_dwell_ms": 118.35
+      },
+      "window_count": 1,
+      "aggregation": "max_risk"
+    },
+    "active_windows_scored": 1,
+    "human_confidence": 0.9951,
+    "security_flags": [
+      "High micro-jiggle ratio (0.56)"
+    ]
+  }
+}

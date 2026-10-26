@@ -4,9 +4,59 @@ A real-time bot detection engine and high-speed telemetry recorder built using *
 
 ---
 
+## ⚡ Single-Command Quick Install (Any Device)
+
+Run the single command corresponding to your operating system or preferred tool:
+
+### 🪟 Windows (Command Prompt / PowerShell)
+Double-click `install.bat` or run:
+```cmd
+install.bat
+```
+*Or via PowerShell:*
+```powershell
+powershell -ExecutionPolicy Bypass -File install.ps1
+```
+
+### 🍎 Linux & macOS (Bash / Zsh)
+```bash
+./install.sh
+# Or run with bash directly:
+bash install.sh
+```
+
+### 🐍 Cross-Platform Universal Python (Any OS)
+If you have Python 3.9+ installed:
+```bash
+python start.py
+```
+*(Automatically sets up `.venv`, verifies and installs all dependencies, and launches the web interface at `http://localhost:8010`)*
+
+### 🐳 Docker (Zero Setup, Any Architecture)
+```bash
+docker compose up --build
+```
+*Or build and run standalone:*
+```bash
+docker build -t behavioral-captcha . && docker run -p 8010:8010 behavioral-captcha
+```
+
+### 📦 Pip Package Installation (CLI Tool)
+```bash
+pip install -e .
+```
+Once installed, launch the application anytime with:
+```bash
+behavioral-captcha
+# or short alias:
+bcap
+```
+
+---
+
 ## 🌟 Key Features
 
-1. **High-Speed Input Telemetry Recorder (`input_recorder.py`)**:
+1. **High-Speed Input Telemetry Recorder (`input_recorder.py` / `behavioral-recorder`)**:
    - **Microsecond Precision Timestamping**: 64-bit `uint64` microsecond resolution (`0.001ms`).
    - **1ms Win32 Timer**: Low-level hardware timer initialization (`winmm.timeBeginPeriod(1)`) supporting up to $1000\text{Hz}+$ mouse polling rates.
    - **Dual Scroll & Button Telemetry**: Tracks $X, Y$, horizontal/vertical scroll deltas ($dx, dy$), and all mouse buttons (Left, Right, Middle, Side/Gaming buttons $X1, X2$).
@@ -16,8 +66,8 @@ A real-time bot detection engine and high-speed telemetry recorder built using *
 
 2. **Machine Learning Bot Classifier & API (`backend/`)**:
    - **FastAPI REST API**: Real-time telemetry verification endpoints (`/api/verify` & `/api/simulate-bot`).
-   - **Feature Extraction**: Computes 12 spatial-temporal biometric parameters (Straightness Index $S_{\text{ratio}}$, mean/std velocity, acceleration, jerk, angular variance, micro-jitter ratio, click dwell time).
-   - **Scikit-Learn Random Forest Model**: Combined heuristic rule checks and trained Random Forest model.
+   - **Feature Extraction**: Computes spatial-temporal biometric parameters (Straightness Index $S_{\text{ratio}}$, mean/std velocity, acceleration, jerk, angular variance, micro-jitter ratio, click dwell time).
+   - **Trained Model Registry**: Loaded with production-tested models (Qmodel family, Random Forest challenge models, Isolation Forest anomaly detectors).
 
 3. **Interactive Visualizer & Bot Simulator (`frontend/`)**:
    - Live trajectory canvas colored by speed gradient.
@@ -26,35 +76,34 @@ A real-time bot detection engine and high-speed telemetry recorder built using *
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Usage & Commands
 
-### 1. Installation
-```powershell
-# Clone the repository
-git clone https://github.com/Pok8TheCoder/Behavioral-Capcha.git
-cd Behavioral-Capcha
-
-# Setup Python virtual environment & dependencies
-python -m venv .venv
-.venv\Scripts\pip install -r requirements.txt
+### 1. Launch Web Dashboard & API
+```bash
+python start.py
+# Options:
+#   --port 8010       Custom port
+#   --reload          Hot reload on file changes
+#   --no-browser      Headless / do not open browser
 ```
+- Web Application: [http://localhost:8010/](http://localhost:8010/)
+- Live Demo: [http://localhost:8010/live_demo.html](http://localhost:8010/live_demo.html)
+- API Documentation: [http://localhost:8010/docs](http://localhost:8010/docs)
 
 ### 2. Run High-Speed Input Telemetry Recorder
-```powershell
-.venv\Scripts\python.exe input_recorder.py
+```bash
+behavioral-recorder
+# Or directly:
+python input_recorder.py
 ```
-Press `Ctrl+C` to exit. Data will automatically export to `.csv` and `.bin` in `datasets/`.
+Press `Ctrl+C` to exit. Data will automatically export to `.csv` and `.bin` in `datasets/human/`.
 
-### 3. Run Backend API Server
-```powershell
-.venv\Scripts\python.exe -m backend.main
+### 3. Run Bot Simulation Benchmarks
+```bash
+python challenge_bot_runner.py --runs 1
 ```
-FastAPI server runs on `http://127.0.0.1:8000`.
-
-### 4. Run Interactive Frontend Visualizer
-Open `frontend/index.html` in your browser.
 
 ---
 
 ## 📜 License
-MIT License
+[MIT License](LICENSE)

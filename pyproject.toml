@@ -1,0 +1,72 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "behavioral-captcha"
+version = "1.0.0"
+description = "Real-time behavioral biometric CAPTCHA, mouse dynamics telemetry, and ML bot detection engine"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Pok8TheCoder" }
+]
+keywords = [
+    "captcha",
+    "biometrics",
+    "behavioral-analysis",
+    "bot-detection",
+    "machine-learning",
+    "fastapi",
+    "security"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Security",
+]
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.28.0",
+    "websockets>=12.0",
+    "scikit-learn>=1.4.0",
+    "numpy>=1.26.0",
+    "pandas>=2.2.0",
+    "joblib>=1.3.0",
+    "xgboost>=2.0.0",
+    "pydantic>=2.6.0",
+    "python-multipart>=0.0.9",
+    "cryptography>=42.0.0",
+    "pynput>=1.7.6",
+]
+
+[project.optional-dependencies]
+torch = [
+    "torch>=2.0.0",
+]
+
+[project.scripts]
+behavioral-captcha = "backend.main:cli"
+bcap = "backend.main:cli"
+behavioral-recorder = "input_recorder:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["backend*", "bots*", "challenge_server*"]
+
+[tool.setuptools.package-data]
+backend = [
+    "*.joblib",
+    "*.json",
+    "qmodels/**/*",
+    "xmodels/**/*",
+    "ymodels/**/*",
+    "zmodels/**/*",
+    "imported/**/*"
+]

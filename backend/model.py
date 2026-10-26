@@ -2,6 +2,8 @@ import json
 import os
 import joblib
 import numpy as np
+from typing import Optional
+
 from sklearn.ensemble import RandomForestClassifier
 from backend.feature_extractor import extract_features, feature_dict_to_vector
 from backend.alex_features import alex_dict_to_vector, extract_alex_features
@@ -21,6 +23,11 @@ from backend.ymodel_registry import (
     list_ymodel_versions,
 )
 from backend.zmodel_registry import get_zmodel_entry, list_zmodel_versions
+from backend.xmodel_registry import (
+    get_xmodel_entry,
+    get_xmodel_evasion_rules_path,
+    list_xmodel_versions,
+)
 
 IFOREST_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_iforest_model.joblib")
 RF_CHALLENGE_MODEL_PATH = os.path.join(os.path.dirname(__file__), "behavioral_rf_challenge_model.joblib")
@@ -45,6 +52,8 @@ def _build_model_registry() -> dict:
         registry[entry["id"]] = entry["path"]
     for entry in list_zmodel_versions():
         registry[entry["id"]] = entry["path"]
+    for entry in list_xmodel_versions():
+        registry[entry["id"]] = entry["path"]
     return registry
 
 
@@ -65,7 +74,7 @@ def _canonical_model_id(model_name: str, registry: dict) -> str | None:
 MODEL_REGISTRY = _build_model_registry()
 
 class BehavioralClassifier:
-    def __init__(self):
+    def __init__(self, model_name: Optional[str] = None, *, autoload: bool = True):
         self.model = None
         self.model_type = "unloaded"
         self.display_name = "unloaded"
@@ -77,14 +86,18 @@ class BehavioralClassifier:
         self.feature_schema = "native12"
         self.scaler = None
         self.use_scaler = False
-        requested_model = os.getenv("BEHAVIORAL_MODEL", "").strip()
+        self._z_events = None
+        self._z_device = None
+        if not autoload:
+            return
+        requested_model = (model_name or os.getenv("BEHAVIORAL_MODEL", "")).strip()
         if not requested_model:
             catalog = catalog_for_api()
             requested_model = catalog.get("latest") or "random_forest_challenge"
         if not self.load_model(requested_model):
             print(f"[Model] Could not load requested model '{requested_model}'; trying fallbacks.")
-            for model_name in self._fallback_order():
-                if self.load_model(model_name):
+            for fallback_name in self._fallback_order():
+                if self.load_model(fallback_name):
                     return
             self.train_synthetic_model()
 
@@ -139,6 +152,15 @@ class BehavioralClassifier:
                 "status": entry.get("status"),
                 "family": "zmodel",
             }
+        for entry in list_xmodel_versions():
+            out[entry["id"]] = {
+                "available": entry.get("available", False),
+                "path": entry.get("path"),
+                "label": entry.get("label"),
+                "version": entry.get("version"),
+                "status": entry.get("status"),
+                "family": "xmodel",
+            }
         for model_name, model_path in LEGACY_MODEL_REGISTRY.items():
             out[model_name] = {
                 "available": os.path.exists(model_path),
@@ -176,8 +198,14 @@ class BehavioralClassifier:
         self.use_scaler = False
         self._z_events = None
         z_entry = get_zmodel_entry(canonical_name) if canonical_name else None
+        x_entry = get_xmodel_entry(canonical_name) if canonical_name else None
         if z_entry:
             return self._load_zmodel(canonical_name, model_path, z_entry)
+        if x_entry and (
+            str(model_path).lower().endswith(".pt")
+            or x_entry.get("feature_schema") == "zmodel_seq"
+        ):
+            return self._load_zmodel(canonical_name, model_path, x_entry)
         try:
             package = joblib.load(model_path)
             self.model = package["model"] if isinstance(package, dict) and "model" in package else package
@@ -197,6 +225,7 @@ class BehavioralClassifier:
             entry = (
                 get_qmodel_entry(canonical_name)
                 or get_ymodel_entry(canonical_name)
+                or get_xmodel_entry(canonical_name)
                 or get_imported_entry(canonical_name)
                 or get_zmodel_entry(canonical_name)
             )
@@ -208,11 +237,19 @@ class BehavioralClassifier:
                 elif get_imported_entry(canonical_name):
                     self.evasion_rules_path = None
                     self.use_procedural_mimic_heuristic = self.feature_schema != "alex11"
+                elif get_xmodel_entry(canonical_name):
+                    self.evasion_rules_path = get_xmodel_evasion_rules_path(canonical_name)
+                    self.use_procedural_mimic_heuristic = bool(entry.get("procedural_mimic_heuristic", False))
                 else:
                     self.evasion_rules_path = get_ymodel_evasion_rules_path(canonical_name)
                     self.use_procedural_mimic_heuristic = bool(entry.get("procedural_mimic_heuristic", True))
             else:
-                self.display_name = self.metadata.get("qmodel_label") or canonical_name.replace("_", " ")
+                self.display_name = (
+                    self.metadata.get("xmodel_label")
+                    or self.metadata.get("qmodel_label")
+                    or self.metadata.get("ymodel_label")
+                    or canonical_name.replace("_", " ")
+                )
                 self.evasion_rules_path = None
                 self.use_procedural_mimic_heuristic = True
             self.is_trained = True
@@ -530,7 +567,11 @@ class BehavioralClassifier:
             "isolation_forest_score": round(decision_score, 6),
             "heuristic_score": round(min(1.0, heuristic_bot_score), 4),
             "model_type": self.model_type,
-            "qmodel_label": self.display_name if (get_qmodel_entry(self.model_type) or get_ymodel_entry(self.model_type)) else None,
+            "qmodel_label": self.display_name if (
+                get_qmodel_entry(self.model_type)
+                or get_ymodel_entry(self.model_type)
+                or get_xmodel_entry(self.model_type)
+            ) else None,
             "flags": flags,
             "biometric_summary": {
                 "straightness": features.get("straightness_index", 0.0),
@@ -975,6 +1016,7 @@ class BehavioralClassifier:
             "qmodel_label": self.display_name if (
                 get_qmodel_entry(self.model_type)
                 or get_ymodel_entry(self.model_type)
+                or get_xmodel_entry(self.model_type)
                 or get_zmodel_entry(self.model_type)
             ) else None,
             "flags": flags,

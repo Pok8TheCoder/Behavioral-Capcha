@@ -1,0 +1,34 @@
+{
+  "primary": {
+    "label": "primary",
+    "files": 16,
+    "raw_rows": 17915966,
+    "active_events": 15611382,
+    "afk_splits": 2930,
+    "duration_s": 210862.89958900004,
+    "files_60hz": 6,
+    "raw_rows_60hz": 587148,
+    "active_events_60hz": 408287,
+    "duration_s_60hz": 61135.56282399999,
+    "files_legacy": 10,
+    "raw_rows_legacy": 17328818,
+    "active_events_legacy": 15203095,
+    "duration_s_legacy": 149727.33676500001
+  },
+  "recovered": {
+    "label": "recovered",
+    "files": 12,
+    "raw_rows": 13813198,
+    "active_events": 12096071,
+    "afk_splits": 2349,
+    "duration_s": 170909.168417,
+    "files_60hz": 0,
+    "raw_rows_60hz": 0,
+    "active_events_60hz": 0,
+    "duration_s_60hz": 0,
+    "files_legacy": 12,
+    "raw_rows_legacy": 13813198,
+    "active_events_legacy": 12096071,
+    "duration_s_legacy": 170909.168417
+  }
+}

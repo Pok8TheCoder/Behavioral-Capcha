@@ -1,0 +1,323 @@
+{
+  "model_type": "xgboost_gpu",
+  "xmodel_id": "xmodel_v0.1",
+  "xmodel_label": "Xmodel V0.1",
+  "xmodel_version": "0.1",
+  "target_hz": 60.0,
+  "trainer": "xgboost",
+  "device": "cuda",
+  "balanced": false,
+  "human_filter": "60hz_filename_only",
+  "human_sources": {
+    "os_recordings_60hz": 4479
+  },
+  "bot_data_root": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz",
+  "bot_generation_summary": {
+    "target_hz": 60.0,
+    "human_60hz_windows": 4479,
+    "challenge_target_windows": 8958,
+    "random_state": 20260822,
+    "output_root": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz",
+    "challenge": {
+      "dir": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge",
+      "files": 2,
+      "episodes": 700,
+      "rows": 878436,
+      "windows": 12912,
+      "seconds": 25.34
+    },
+    "tiers": {
+      "dir": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers",
+      "files": 7,
+      "episodes": 1280,
+      "rows": 128670,
+      "windows": 1221,
+      "windows_per_style": {
+        "linear_fast": 73,
+        "linear_timed": 230,
+        "bezier_fast": 67,
+        "bezier_timed": 203,
+        "humanoid_fast": 64,
+        "humanoid_simulated": 464,
+        "naive": 120
+      },
+      "seconds": 3.21
+    },
+    "families": {
+      "dir": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families",
+      "files": 1,
+      "episodes": 438,
+      "rows": 53962,
+      "windows": 438
+    },
+    "humanlike": {
+      "dir": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\humanlike",
+      "files": 1,
+      "episodes": 4000,
+      "rows": 636184,
+      "windows": 4000
+    },
+    "total_bot_windows": 18571
+  },
+  "train_seconds": 1.256,
+  "xgb_params": {
+    "n_estimators": 600,
+    "max_depth": 16,
+    "min_child_weight": 4,
+    "subsample": 0.8,
+    "colsample_bytree": 0.35,
+    "learning_rate": 0.05,
+    "tree_method": "hist",
+    "device": "cuda",
+    "eval_metric": "logloss",
+    "random_state": 42,
+    "n_jobs": 1
+  },
+  "feature_names": [
+    "straightness_index",
+    "velocity_mean",
+    "velocity_std",
+    "velocity_max",
+    "acceleration_mean",
+    "acceleration_std",
+    "jerk_mean",
+    "angle_change_mean",
+    "angle_change_std",
+    "jitter_ratio",
+    "idle_ratio",
+    "avg_click_dwell_ms"
+  ],
+  "human_windows_loaded": 4479,
+  "bot_windows_loaded": 18571,
+  "bot_windows_by_source": {
+    "bot_xmodel_challenge": 12912,
+    "bot_xmodel_tiers": 1221,
+    "bot_xmodel_families": 438,
+    "bot_xmodel_humanlike": 4000
+  },
+  "train_windows": 8693,
+  "test_windows": 14357,
+  "confusion_matrix": [
+    [
+      1191,
+      51
+    ],
+    [
+      21,
+      13094
+    ]
+  ],
+  "roc_auc": 0.9974662084385436,
+  "accuracy": 0.9949850247266142,
+  "classification_report": "              precision    recall  f1-score   support\n\n       Human       0.98      0.96      0.97      1242\n         Bot       1.00      1.00      1.00     13115\n\n    accuracy                           0.99     14357\n   macro avg       0.99      0.98      0.98     14357\nweighted avg       0.99      0.99      0.99     14357\n",
+  "feature_importances": [
+    {
+      "feature": "idle_ratio",
+      "importance": 0.20324379205703735
+    },
+    {
+      "feature": "jerk_mean",
+      "importance": 0.17315351963043213
+    },
+    {
+      "feature": "acceleration_mean",
+      "importance": 0.15290950238704681
+    },
+    {
+      "feature": "acceleration_std",
+      "importance": 0.08817649632692337
+    },
+    {
+      "feature": "velocity_std",
+      "importance": 0.07844875007867813
+    },
+    {
+      "feature": "velocity_max",
+      "importance": 0.0783027857542038
+    },
+    {
+      "feature": "avg_click_dwell_ms",
+      "importance": 0.06822748482227325
+    },
+    {
+      "feature": "jitter_ratio",
+      "importance": 0.05168137699365616
+    },
+    {
+      "feature": "angle_change_mean",
+      "importance": 0.02924702875316143
+    },
+    {
+      "feature": "velocity_mean",
+      "importance": 0.028521498665213585
+    },
+    {
+      "feature": "straightness_index",
+      "importance": 0.02564702369272709
+    },
+    {
+      "feature": "angle_change_std",
+      "importance": 0.02244073897600174
+    }
+  ],
+  "bot_style_eval": {
+    "linear_fast": {
+      "bot_detection_rate": 0.7,
+      "windows_scored": 10,
+      "windows_flagged_bot": 7
+    },
+    "linear_timed": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 7,
+      "windows_flagged_bot": 7
+    },
+    "bezier_fast": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 7,
+      "windows_flagged_bot": 7
+    },
+    "bezier_timed": {
+      "bot_detection_rate": 0.8889,
+      "windows_scored": 9,
+      "windows_flagged_bot": 8
+    },
+    "humanoid_fast": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 9,
+      "windows_flagged_bot": 9
+    },
+    "humanoid_simulated": {
+      "bot_detection_rate": 0.9592,
+      "windows_scored": 49,
+      "windows_flagged_bot": 47
+    },
+    "naive": {
+      "bot_detection_rate": 0.9,
+      "windows_scored": 10,
+      "windows_flagged_bot": 9
+    }
+  },
+  "human_files": [
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260818_223558_to_20260819_000518_60hz.csv",
+      "raw_rows": 7031,
+      "windows": 69,
+      "afk_splits": 28,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260819_194020_to_20260819_234601_60hz.csv",
+      "raw_rows": 58908,
+      "windows": 602,
+      "afk_splits": 270,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260819_200659_to_20260819_202447_60hz.csv",
+      "raw_rows": 16755,
+      "windows": 156,
+      "afk_splits": 30,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260820_180106_to_20260820_202100_60hz.csv",
+      "raw_rows": 230507,
+      "windows": 1486,
+      "afk_splits": 127,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260821_183034_to_20260822_012243_60hz.csv",
+      "raw_rows": 133928,
+      "windows": 1242,
+      "afk_splits": 444,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260821_202311_to_20260821_221714_60hz.csv",
+      "raw_rows": 140019,
+      "windows": 924,
+      "afk_splits": 114,
+      "truncated": false
+    }
+  ],
+  "bot_files": [
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_001_60hz.csv",
+      "raw_rows": 427012,
+      "windows": 6175,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_002_60hz.csv",
+      "raw_rows": 451424,
+      "windows": 6737,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_60hz.csv",
+      "raw_rows": 7791,
+      "windows": 67,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_60hz.csv",
+      "raw_rows": 23645,
+      "windows": 203,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_60hz.csv",
+      "raw_rows": 8943,
+      "windows": 64,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_60hz.csv",
+      "raw_rows": 42310,
+      "windows": 464,
+      "afk_splits": 79,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_60hz.csv",
+      "raw_rows": 6637,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_60hz.csv",
+      "raw_rows": 27238,
+      "windows": 230,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_60hz.csv",
+      "raw_rows": 12106,
+      "windows": 120,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families\\xmodel_families_60hz.csv",
+      "raw_rows": 53962,
+      "windows": 438,
+      "afk_splits": 437,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\humanlike\\humanlike_bot_60hz.csv",
+      "raw_rows": 636184,
+      "windows": 4000,
+      "afk_splits": 3999,
+      "truncated": false
+    }
+  ]
+}

@@ -1,0 +1,674 @@
+[11:55:49] ========================================================================
+[11:55:49] XMODEL TIMED ATTACK — target=xmodel_v0.3 hc>=60% duration=1200s
+[11:55:49] Families: 16  per-family budget=90s
+[11:55:49] ========================================================================
+[11:55:49] Activated Xmodel V0.3 (xmodel_v0.3)
+[11:55:49] === Round 1: 16 families remaining ===
+[11:55:49] --- Attacking family: Wide Arc (wide_arc) [Latest families] ---
+[11:55:49]   #   1 miss hc=0.1% task=PASS type=spiral_trace events=566 bot_prob=0.9986
+[11:55:49]   #   2 miss hc=0.0% task=PASS type=zigzag_trace events=141 bot_prob=1.0
+[11:55:49]   #   3 miss hc=0.1% task=PASS type=connect_dots events=173 bot_prob=0.9993
+[11:55:49]   #   4 miss hc=0.0% task=FAIL type=hazard_run events=115 bot_prob=1.0
+[11:55:50]   #   5 miss hc=2.8% task=PASS type=maze_navigate events=504 bot_prob=0.9716
+[11:55:51]   #  50 miss hc=0.0% task=FAIL type=hazard_run events=101 bot_prob=0.9999
+[11:55:52]   # 100 miss hc=0.1% task=PASS type=target_hunt events=124 bot_prob=0.9995
+[11:55:54]   # 150 miss hc=0.0% task=PASS type=hazard_run events=94 bot_prob=0.9999
+[11:55:56]   # 200 miss hc=0.0% task=PASS type=zigzag_trace events=142 bot_prob=1.0
+[11:55:57]   # 250 miss hc=0.0% task=PASS type=pin_entry events=77 bot_prob=0.9997
+[11:55:59]   # 300 miss hc=0.1% task=PASS type=connect_dots events=128 bot_prob=0.9993
+[11:56:01]   # 350 miss hc=0.1% task=PASS type=connect_dots events=100 bot_prob=0.9993
+[11:56:03]   # 400 miss hc=0.0% task=PASS type=hazard_run events=122 bot_prob=1.0
+[11:56:04]   # 450 miss hc=0.0% task=PASS type=pin_entry events=87 bot_prob=0.9998
+[11:56:05]   # 500 miss hc=0.0% task=PASS type=shape_trace events=491 bot_prob=1.0
+[11:56:07]   # 550 miss hc=0.2% task=PASS type=spiral_trace events=734 bot_prob=0.9975
+[11:56:09]   # 600 miss hc=0.1% task=PASS type=connect_dots events=103 bot_prob=0.9986
+[11:56:10]   # 650 miss hc=0.0% task=PASS type=zigzag_trace events=131 bot_prob=1.0
+[11:56:12]   # 700 miss hc=0.1% task=PASS type=spiral_trace events=647 bot_prob=0.9989
+[11:56:13]   # 750 miss hc=0.2% task=PASS type=pin_entry events=68 bot_prob=0.9984
+[11:56:15]   # 800 miss hc=0.0% task=PASS type=zigzag_trace events=121 bot_prob=1.0
+[11:56:17]   # 850 miss hc=0.2% task=PASS type=target_hunt events=143 bot_prob=0.9984
+[11:56:18]   # 900 miss hc=0.0% task=PASS type=hazard_run events=105 bot_prob=0.9996
+[11:56:20]   # 950 miss hc=0.1% task=PASS type=connect_dots events=108 bot_prob=0.9989
+[11:56:21]   #1000 miss hc=0.2% task=PASS type=connect_dots events=126 bot_prob=0.9978
+[11:56:23]   #1050 miss hc=0.0% task=PASS type=connect_dots events=140 bot_prob=0.9998
+[11:56:24]   #1100 miss hc=0.0% task=PASS type=zigzag_trace events=131 bot_prob=1.0
+[11:56:26]   #1150 miss hc=0.3% task=PASS type=button_sequence events=162 bot_prob=0.9972
+[11:56:28]   #1200 miss hc=0.0% task=PASS type=pin_entry events=87 bot_prob=0.9997
+[11:56:30]   #1250 miss hc=0.1% task=PASS type=connect_dots events=135 bot_prob=0.9993
+[11:56:31]   #1300 miss hc=0.0% task=PASS type=pin_entry events=80 bot_prob=0.9998
+[11:56:33]   #1350 miss hc=0.0% task=PASS type=hazard_run events=89 bot_prob=0.9999
+[11:56:35]   #1400 miss hc=0.0% task=PASS type=zigzag_trace events=137 bot_prob=1.0
+[11:56:36]   #1450 miss hc=3.9% task=PASS type=maze_navigate events=645 bot_prob=0.9615
+[11:56:38]   #1500 miss hc=0.4% task=PASS type=spiral_trace events=532 bot_prob=0.9961
+[11:56:39]   #1550 miss hc=0.0% task=PASS type=shape_trace events=63 bot_prob=1.0
+[11:56:41]   #1600 miss hc=5.4% task=PASS type=maze_navigate events=712 bot_prob=0.9461
+[11:56:43]   #1650 miss hc=0.0% task=PASS type=button_sequence events=114 bot_prob=0.9999
+[11:56:44]   #1700 miss hc=0.0% task=PASS type=shape_trace events=70 bot_prob=0.9996
+[11:56:46]   #1750 miss hc=0.0% task=PASS type=path_gates events=83 bot_prob=0.9996
+[11:56:47]   #1800 miss hc=0.1% task=PASS type=shape_trace events=64 bot_prob=0.9994
+[11:56:49]   #1850 miss hc=0.0% task=PASS type=connect_dots events=120 bot_prob=1.0
+[11:56:50]   #1900 miss hc=0.0% task=PASS type=button_sequence events=147 bot_prob=1.0
+[11:56:52]   #1950 miss hc=0.0% task=PASS type=shape_trace events=60 bot_prob=1.0
+[11:56:54]   #2000 miss hc=0.0% task=PASS type=path_gates events=98 bot_prob=0.9999
+[11:56:55]   #2050 miss hc=0.0% task=PASS type=maze_navigate events=474 bot_prob=0.9999
+[11:56:57]   #2100 miss hc=0.0% task=PASS type=target_hunt events=150 bot_prob=0.9999
+[11:56:58]   #2150 miss hc=0.1% task=PASS type=connect_dots events=113 bot_prob=0.9993
+[11:57:00]   #2200 miss hc=0.1% task=PASS type=connect_dots events=116 bot_prob=0.9994
+[11:57:01]   #2250 miss hc=0.2% task=PASS type=pin_entry events=68 bot_prob=0.9984
+[11:57:03]   #2300 miss hc=0.0% task=PASS type=connect_dots events=200 bot_prob=0.9999
+[11:57:05]   #2350 miss hc=0.0% task=PASS type=path_gates events=103 bot_prob=0.9999
+[11:57:06]   #2400 miss hc=0.0% task=PASS type=pin_entry events=73 bot_prob=0.9996
+[11:57:08]   #2450 miss hc=0.0% task=PASS type=button_sequence events=83 bot_prob=1.0
+[11:57:09]   #2500 miss hc=0.0% task=PASS type=target_hunt events=190 bot_prob=0.9999
+[11:57:11]   #2550 miss hc=0.2% task=PASS type=spiral_trace events=735 bot_prob=0.9977
+[11:57:13]   #2600 miss hc=0.0% task=PASS type=target_hunt events=110 bot_prob=0.9998
+[11:57:14]   #2650 miss hc=0.0% task=PASS type=zigzag_trace events=122 bot_prob=1.0
+[11:57:16]   #2700 miss hc=0.0% task=PASS type=connect_dots events=90 bot_prob=0.9999
+[11:57:17]   #2750 miss hc=8.2% task=PASS type=maze_navigate events=589 bot_prob=0.9182
+[11:57:19]   #2800 miss hc=0.5% task=PASS type=pin_entry events=78 bot_prob=0.9951
+[11:57:19] Family NOT beaten: Wide Arc (best 28.5% in 2813 attempts)
+[11:57:19] --- Attacking family: Idle Correct (idle_correct) [Latest families] ---
+[11:57:19]   #   1 miss hc=0.0% task=PASS type=hazard_run events=77 bot_prob=0.9996
+[11:57:19]   #   2 miss hc=0.0% task=PASS type=hazard_run events=74 bot_prob=0.9999
+[11:57:19]   #   3 miss hc=0.1% task=PASS type=path_gates events=65 bot_prob=0.9995
+[11:57:19]   #   4 miss hc=0.1% task=PASS type=target_hunt events=135 bot_prob=0.9992
+[11:57:19]   #   5 miss hc=0.0% task=FAIL type=hazard_run events=89 bot_prob=0.9999
+[11:57:21]   #  50 miss hc=0.0% task=FAIL type=hazard_run events=75 bot_prob=1.0
+[11:57:22]   # 100 miss hc=0.0% task=PASS type=path_gates events=68 bot_prob=0.9999
+[11:57:24]   # 150 miss hc=0.1% task=PASS type=button_sequence events=114 bot_prob=0.9994
+[11:57:25]   # 200 miss hc=0.1% task=PASS type=target_hunt events=94 bot_prob=0.9995
+[11:57:26]   # 250 miss hc=0.0% task=PASS type=path_gates events=77 bot_prob=0.9996
+[11:57:27]   # 300 miss hc=0.0% task=FAIL type=hazard_run events=105 bot_prob=1.0
+[11:57:28]   # 350 miss hc=0.0% task=PASS type=hazard_run events=89 bot_prob=0.9999
+[11:57:30]   # 400 miss hc=0.0% task=PASS type=zigzag_trace events=110 bot_prob=1.0
+[11:57:31]   # 450 miss hc=0.1% task=PASS type=path_gates events=67 bot_prob=0.9994
+[11:57:32]   # 500 miss hc=0.0% task=PASS type=hazard_run events=87 bot_prob=1.0
+[11:57:34]   # 550 miss hc=0.0% task=FAIL type=hazard_run events=91 bot_prob=1.0
+[11:57:35]   # 600 miss hc=0.0% task=PASS type=shape_trace events=104 bot_prob=1.0
+[11:57:36]   # 650 miss hc=0.0% task=PASS type=path_gates events=75 bot_prob=1.0
+[11:57:38]   # 700 miss hc=0.0% task=PASS type=hazard_run events=92 bot_prob=0.9998
+[11:57:39]   # 750 miss hc=0.0% task=PASS type=hazard_run events=82 bot_prob=1.0
+[11:57:41]   # 800 miss hc=0.0% task=PASS type=target_hunt events=118 bot_prob=0.9996
+[11:57:42]   # 850 miss hc=0.0% task=PASS type=shape_trace events=57 bot_prob=1.0
+[11:57:44]   # 900 miss hc=0.0% task=PASS type=spiral_trace events=392 bot_prob=1.0
+[11:57:45]   # 950 miss hc=0.0% task=PASS type=maze_navigate events=397 bot_prob=1.0
+[11:57:47]   #1000 miss hc=3.9% task=PASS type=button_sequence events=95 bot_prob=0.9608
+[11:57:48]   #1050 miss hc=0.4% task=PASS type=button_sequence events=119 bot_prob=0.9962
+[11:57:50]   #1100 miss hc=0.0% task=PASS type=maze_navigate events=489 bot_prob=1.0
+[11:57:51]   #1150 miss hc=0.0% task=PASS type=path_gates events=85 bot_prob=0.9998
+[11:57:53]   #1200 miss hc=1.2% task=PASS type=maze_navigate events=526 bot_prob=0.9881
+[11:57:54]   #1250 miss hc=0.9% task=PASS type=pin_entry events=76 bot_prob=0.9906
+[11:57:55]   #1300 miss hc=0.0% task=PASS type=zigzag_trace events=82 bot_prob=0.9999
+[11:57:57]   #1350 miss hc=2.2% task=PASS type=pin_entry events=63 bot_prob=0.9779
+[11:57:58]   #1400 miss hc=0.0% task=PASS type=zigzag_trace events=130 bot_prob=1.0
+[11:57:59]   #1450 miss hc=0.0% task=PASS type=hazard_run events=64 bot_prob=0.9999
+[11:58:01]   #1500 miss hc=0.0% task=PASS type=connect_dots events=107 bot_prob=1.0
+[11:58:02]   #1550 miss hc=3.9% task=PASS type=pin_entry events=56 bot_prob=0.961
+[11:58:03]   #1600 miss hc=0.0% task=PASS type=hazard_run events=75 bot_prob=1.0
+[11:58:04]   #1650 miss hc=0.0% task=PASS type=shape_trace events=109 bot_prob=1.0
+[11:58:05]   #1700 miss hc=0.0% task=PASS type=hazard_run events=67 bot_prob=0.9998
+[11:58:07]   #1750 miss hc=3.2% task=PASS type=pin_entry events=80 bot_prob=0.968
+[11:58:08]   #1800 miss hc=3.1% task=PASS type=pin_entry events=57 bot_prob=0.9685
+[11:58:10]   #1850 miss hc=0.0% task=PASS type=path_gates events=65 bot_prob=0.9998
+[11:58:11]   #1900 miss hc=0.2% task=PASS type=target_hunt events=138 bot_prob=0.998
+[11:58:13]   #1950 miss hc=0.0% task=FAIL type=hazard_run events=68 bot_prob=0.9999
+[11:58:14]   #2000 miss hc=0.0% task=PASS type=maze_navigate events=459 bot_prob=1.0
+[11:58:16]   #2050 miss hc=0.0% task=PASS type=zigzag_trace events=99 bot_prob=1.0
+[11:58:18]   #2100 miss hc=0.1% task=PASS type=target_hunt events=151 bot_prob=0.9992
+[11:58:19]   #2150 miss hc=1.6% task=PASS type=maze_navigate events=505 bot_prob=0.9842
+[11:58:21]   #2200 miss hc=0.1% task=PASS type=pin_entry events=68 bot_prob=0.9987
+[11:58:22]   #2250 miss hc=1.9% task=PASS type=pin_entry events=76 bot_prob=0.9812
+[11:58:24]   #2300 miss hc=0.0% task=PASS type=path_gates events=81 bot_prob=0.9999
+[11:58:25]   #2350 miss hc=0.0% task=PASS type=path_gates events=72 bot_prob=0.9999
+[11:58:26]   #2400 miss hc=0.0% task=PASS type=path_gates events=69 bot_prob=0.9999
+[11:58:28]   #2450 miss hc=0.1% task=PASS type=button_sequence events=106 bot_prob=0.9993
+[11:58:29]   #2500 miss hc=0.1% task=PASS type=path_gates events=58 bot_prob=0.9995
+[11:58:30]   #2550 miss hc=0.0% task=PASS type=connect_dots events=114 bot_prob=1.0
+[11:58:32]   #2600 miss hc=0.0% task=PASS type=shape_trace events=317 bot_prob=1.0
+[11:58:33]   #2650 miss hc=0.1% task=PASS type=target_hunt events=134 bot_prob=0.9993
+[11:58:35]   #2700 miss hc=0.1% task=PASS type=button_sequence events=70 bot_prob=0.9988
+[11:58:36]   #2750 miss hc=25.4% task=PASS type=pin_entry events=57 bot_prob=0.7455
+[11:58:38]   #2800 miss hc=0.2% task=PASS type=button_sequence events=107 bot_prob=0.9983
+[11:58:39]   #2844 BEAT hc=67.4% task=PASS type=pin_entry events=54 bot_prob=0.3261
+[11:58:39] *** FAMILY BEATEN: Idle Correct at 67.4% on attempt 2844 ***
+[11:58:39] --- Attacking family: Wobble Mid (wobble_mid) [Latest families] ---
+[11:58:39]   #   1 miss hc=0.0% task=PASS type=shape_trace events=120 bot_prob=1.0
+[11:58:39]   #   2 miss hc=0.0% task=PASS type=target_hunt events=134 bot_prob=1.0
+[11:58:39]   #   3 miss hc=0.0% task=PASS type=pin_entry events=84 bot_prob=0.9998
+[11:58:39]   #   4 miss hc=0.0% task=PASS type=connect_dots events=138 bot_prob=1.0
+[11:58:39]   #   5 miss hc=0.0% task=PASS type=path_gates events=102 bot_prob=0.9999
+[11:58:41]   #  50 miss hc=1.8% task=PASS type=pin_entry events=75 bot_prob=0.9819
+[11:58:42]   # 100 miss hc=0.0% task=PASS type=connect_dots events=135 bot_prob=1.0
+[11:58:43]   # 150 miss hc=0.4% task=FAIL type=hazard_run events=81 bot_prob=0.9958
+[11:58:44]   # 200 miss hc=0.1% task=PASS type=pin_entry events=72 bot_prob=0.9991
+[11:58:45]   # 250 miss hc=0.0% task=FAIL type=hazard_run events=71 bot_prob=0.9998
+[11:58:47]   # 300 miss hc=0.0% task=PASS type=connect_dots events=109 bot_prob=0.9999
+[11:58:47]   # 350 miss hc=0.0% task=PASS type=path_gates events=73 bot_prob=0.9999
+[11:58:49]   # 400 miss hc=0.0% task=PASS type=shape_trace events=326 bot_prob=1.0
+[11:58:50]   # 450 miss hc=0.0% task=PASS type=maze_navigate events=410 bot_prob=1.0
+[11:58:51]   # 500 miss hc=0.0% task=PASS type=pin_entry events=75 bot_prob=0.9999
+[11:58:53]   # 550 miss hc=0.0% task=PASS type=maze_navigate events=391 bot_prob=1.0
+[11:58:54]   # 600 miss hc=0.0% task=PASS type=path_gates events=83 bot_prob=0.9999
+[11:58:56]   # 650 miss hc=0.0% task=FAIL type=hazard_run events=96 bot_prob=0.9999
+[11:58:57]   # 700 miss hc=0.3% task=PASS type=spiral_trace events=621 bot_prob=0.9974
+[11:58:59]   # 750 miss hc=0.0% task=PASS type=zigzag_trace events=129 bot_prob=1.0
+[11:59:00]   # 800 miss hc=0.0% task=PASS type=shape_trace events=365 bot_prob=1.0
+[11:59:01]   # 850 miss hc=0.0% task=PASS type=zigzag_trace events=132 bot_prob=0.9999
+[11:59:03]   # 900 miss hc=0.0% task=PASS type=button_sequence events=94 bot_prob=1.0
+[11:59:04]   # 950 miss hc=0.0% task=PASS type=maze_navigate events=217 bot_prob=1.0
+[11:59:06]   #1000 miss hc=0.0% task=PASS type=button_sequence events=124 bot_prob=1.0
+[11:59:07]   #1050 miss hc=0.0% task=PASS type=connect_dots events=115 bot_prob=1.0
+[11:59:08]   #1100 miss hc=0.0% task=PASS type=maze_navigate events=485 bot_prob=1.0
+[11:59:10]   #1150 miss hc=0.0% task=PASS type=maze_navigate events=450 bot_prob=1.0
+[11:59:11]   #1200 miss hc=0.0% task=PASS type=target_hunt events=114 bot_prob=1.0
+[11:59:13]   #1250 miss hc=0.1% task=PASS type=pin_entry events=78 bot_prob=0.9988
+[11:59:14]   #1300 miss hc=0.0% task=PASS type=path_gates events=79 bot_prob=0.9999
+[11:59:15]   #1350 miss hc=0.0% task=PASS type=target_hunt events=121 bot_prob=0.9999
+[11:59:17]   #1400 miss hc=0.3% task=PASS type=shape_trace events=66 bot_prob=0.9971
+[11:59:18]   #1450 miss hc=0.0% task=PASS type=pin_entry events=75 bot_prob=0.9999
+[11:59:19]   #1500 miss hc=0.0% task=PASS type=zigzag_trace events=89 bot_prob=1.0
+[11:59:21]   #1550 miss hc=0.0% task=PASS type=target_hunt events=79 bot_prob=1.0
+[11:59:22]   #1600 miss hc=0.2% task=PASS type=spiral_trace events=513 bot_prob=0.9977
+[11:59:23]   #1650 miss hc=0.0% task=PASS type=path_gates events=94 bot_prob=0.9999
+[11:59:25]   #1700 miss hc=0.0% task=PASS type=maze_navigate events=239 bot_prob=1.0
+[11:59:26]   #1750 miss hc=0.0% task=PASS type=zigzag_trace events=123 bot_prob=0.9999
+[11:59:27]   #1800 miss hc=0.0% task=PASS type=button_sequence events=99 bot_prob=1.0
+[11:59:29]   #1850 miss hc=0.0% task=PASS type=target_hunt events=99 bot_prob=1.0
+[11:59:30]   #1900 miss hc=0.0% task=PASS type=connect_dots events=79 bot_prob=1.0
+[11:59:32]   #1950 miss hc=0.0% task=PASS type=path_gates events=80 bot_prob=0.9999
+[11:59:33]   #2000 miss hc=0.0% task=PASS type=connect_dots events=189 bot_prob=0.9999
+[11:59:34]   #2050 miss hc=0.0% task=PASS type=path_gates events=89 bot_prob=0.9997
+[11:59:35]   #2100 miss hc=0.0% task=PASS type=path_gates events=81 bot_prob=0.9999
+[11:59:37]   #2150 miss hc=0.0% task=FAIL type=hazard_run events=100 bot_prob=1.0
+[11:59:38]   #2200 miss hc=0.0% task=PASS type=zigzag_trace events=114 bot_prob=1.0
+[11:59:39]   #2250 miss hc=0.0% task=PASS type=path_gates events=97 bot_prob=0.9999
+[11:59:41]   #2300 miss hc=0.0% task=PASS type=zigzag_trace events=96 bot_prob=1.0
+[11:59:42]   #2350 miss hc=0.0% task=PASS type=maze_navigate events=396 bot_prob=1.0
+[11:59:43]   #2400 miss hc=0.0% task=PASS type=button_sequence events=102 bot_prob=0.9999
+[11:59:45]   #2450 miss hc=0.3% task=PASS type=spiral_trace events=642 bot_prob=0.9973
+[11:59:46]   #2500 miss hc=0.0% task=PASS type=button_sequence events=113 bot_prob=0.9998
+[11:59:48]   #2550 miss hc=0.0% task=PASS type=path_gates events=85 bot_prob=0.9999
+[11:59:49]   #2600 miss hc=0.0% task=PASS type=connect_dots events=119 bot_prob=0.9999
+[11:59:51]   #2650 miss hc=0.0% task=PASS type=zigzag_trace events=94 bot_prob=1.0
+[11:59:52]   #2700 miss hc=0.0% task=PASS type=maze_navigate events=286 bot_prob=1.0
+[11:59:53]   #2750 miss hc=0.0% task=PASS type=pin_entry events=67 bot_prob=0.9999
+[11:59:55]   #2800 miss hc=0.0% task=PASS type=connect_dots events=116 bot_prob=1.0
+[11:59:56]   #2850 miss hc=0.0% task=PASS type=connect_dots events=143 bot_prob=1.0
+[11:59:58]   #2900 miss hc=0.0% task=PASS type=shape_trace events=124 bot_prob=1.0
+[11:59:59]   #2950 miss hc=0.0% task=PASS type=zigzag_trace events=92 bot_prob=0.9999
+[12:00:01]   #3000 miss hc=0.3% task=PASS type=button_sequence events=65 bot_prob=0.9966
+[12:00:02]   #3050 miss hc=0.0% task=FAIL type=hazard_run events=106 bot_prob=1.0
+[12:00:03]   #3100 miss hc=0.0% task=PASS type=target_hunt events=132 bot_prob=1.0
+[12:00:05]   #3150 miss hc=0.0% task=PASS type=connect_dots events=167 bot_prob=1.0
+[12:00:06]   #3200 miss hc=0.0% task=PASS type=connect_dots events=144 bot_prob=1.0
+[12:00:07]   #3250 miss hc=0.1% task=PASS type=target_hunt events=181 bot_prob=0.9987
+[12:00:08]   #3300 miss hc=0.0% task=PASS type=target_hunt events=128 bot_prob=1.0
+[12:00:09] Family NOT beaten: Wobble Mid (best 18.0% in 3322 attempts)
+[12:00:09] --- Attacking family: Hi Jitter (hi_jit) [Latest families] ---
+[12:00:09]   #   1 miss hc=0.0% task=PASS type=pin_entry events=84 bot_prob=0.9999
+[12:00:09]   #   2 miss hc=0.0% task=PASS type=path_gates events=85 bot_prob=1.0
+[12:00:09]   #   3 miss hc=0.0% task=PASS type=maze_navigate events=268 bot_prob=1.0
+[12:00:09]   #   4 miss hc=0.0% task=PASS type=spiral_trace events=479 bot_prob=1.0
+[12:00:09]   #   5 miss hc=0.0% task=PASS type=maze_navigate events=318 bot_prob=1.0
+[12:00:11]   #  50 miss hc=0.2% task=PASS type=spiral_trace events=645 bot_prob=0.9975
+[12:00:12]   # 100 miss hc=0.0% task=PASS type=path_gates events=93 bot_prob=1.0
+[12:00:13]   # 150 miss hc=0.0% task=PASS type=path_gates events=78 bot_prob=1.0
+[12:00:15]   # 200 miss hc=0.0% task=PASS type=zigzag_trace events=118 bot_prob=1.0
+[12:00:16]   # 250 miss hc=0.0% task=FAIL type=hazard_run events=102 bot_prob=1.0
+[12:00:17]   # 300 miss hc=0.0% task=PASS type=maze_navigate events=363 bot_prob=1.0
+[12:00:19]   # 350 miss hc=0.0% task=PASS type=hazard_run events=85 bot_prob=1.0
+[12:00:20]   # 400 miss hc=0.0% task=PASS type=shape_trace events=69 bot_prob=1.0
+[12:00:21]   # 450 miss hc=0.4% task=PASS type=spiral_trace events=536 bot_prob=0.9964
+[12:00:22]   # 500 miss hc=0.0% task=PASS type=hazard_run events=83 bot_prob=1.0
+[12:00:23]   # 550 miss hc=0.3% task=PASS type=button_sequence events=94 bot_prob=0.9974
+[12:00:25]   # 600 miss hc=0.0% task=PASS type=shape_trace events=303 bot_prob=1.0
+[12:00:26]   # 650 miss hc=0.0% task=PASS type=zigzag_trace events=76 bot_prob=1.0
+[12:00:28]   # 700 miss hc=0.0% task=PASS type=pin_entry events=66 bot_prob=0.9996
+[12:00:30]   # 750 miss hc=0.0% task=PASS type=button_sequence events=113 bot_prob=1.0
+[12:00:31]   # 800 miss hc=0.0% task=PASS type=pin_entry events=84 bot_prob=1.0
+[12:00:32]   # 850 miss hc=0.0% task=PASS type=maze_navigate events=476 bot_prob=1.0
+[12:00:35]   # 900 miss hc=0.0% task=PASS type=zigzag_trace events=100 bot_prob=1.0
+[12:00:37]   # 950 miss hc=0.0% task=PASS type=connect_dots events=140 bot_prob=1.0
+[12:00:39]   #1000 miss hc=0.0% task=PASS type=pin_entry events=76 bot_prob=0.9998
+[12:00:41]   #1050 miss hc=0.1% task=PASS type=spiral_trace events=500 bot_prob=0.9985
+[12:00:43]   #1100 miss hc=0.0% task=PASS type=connect_dots events=159 bot_prob=1.0
+[12:00:47]   #1150 miss hc=0.0% task=FAIL type=hazard_run events=99 bot_prob=1.0
+[12:00:50]   #1200 miss hc=0.0% task=PASS type=shape_trace events=69 bot_prob=1.0
+[12:00:55]   #1250 miss hc=0.0% task=FAIL type=hazard_run events=81 bot_prob=1.0
+[12:00:59]   #1300 miss hc=0.0% task=PASS type=button_sequence events=72 bot_prob=1.0
+[12:01:03]   #1350 miss hc=0.0% task=PASS type=zigzag_trace events=115 bot_prob=1.0
+[12:01:08]   #1400 miss hc=0.0% task=PASS type=zigzag_trace events=133 bot_prob=1.0
+[12:01:12]   #1450 miss hc=0.0% task=PASS type=shape_trace events=398 bot_prob=1.0
+[12:01:16]   #1500 miss hc=0.1% task=PASS type=pin_entry events=63 bot_prob=0.9994
+[12:01:21]   #1550 miss hc=0.2% task=PASS type=spiral_trace events=562 bot_prob=0.9976
+[12:01:24]   #1600 miss hc=0.0% task=PASS type=hazard_run events=87 bot_prob=1.0
+[12:01:28]   #1650 miss hc=0.0% task=PASS type=target_hunt events=146 bot_prob=1.0
+[12:01:32]   #1700 miss hc=0.0% task=PASS type=zigzag_trace events=90 bot_prob=1.0
+[12:01:36]   #1750 miss hc=0.0% task=PASS type=target_hunt events=110 bot_prob=1.0
+[12:01:39] Family NOT beaten: Hi Jitter (best 1.3% in 1786 attempts)
+[12:01:39] --- Attacking family: Min-jerk (minjerk) [Latest families] ---
+[12:01:39]   #   1 miss hc=0.2% task=PASS type=path_gates events=73 bot_prob=0.9982
+[12:01:39]   #   2 miss hc=0.2% task=PASS type=button_sequence events=82 bot_prob=0.9984
+[12:01:39]   #   3 miss hc=1.2% task=PASS type=target_hunt events=113 bot_prob=0.9884
+[12:01:39]   #   4 miss hc=0.0% task=PASS type=zigzag_trace events=98 bot_prob=0.9998
+[12:01:39]   #   5 miss hc=0.7% task=PASS type=connect_dots events=109 bot_prob=0.9928
+[12:01:41]   #  38 BEAT hc=79.0% task=PASS type=button_sequence events=96 bot_prob=0.2097
+[12:01:41] *** FAMILY BEATEN: Min-jerk at 79.0% on attempt 38 ***
+[12:01:41] --- Attacking family: Dense Smooth (dense_smooth) [Latest families] ---
+[12:01:41]   #   1 miss hc=0.1% task=PASS type=zigzag_trace events=196 bot_prob=0.9987
+[12:01:42]   #   2 miss hc=0.0% task=PASS type=shape_trace events=568 bot_prob=1.0
+[12:01:42]   #   3 miss hc=16.0% task=PASS type=button_sequence events=235 bot_prob=0.8404
+[12:01:42]   #   4 miss hc=0.1% task=PASS type=target_hunt events=160 bot_prob=0.9993
+[12:01:42]   #   5 miss hc=0.2% task=PASS type=connect_dots events=208 bot_prob=0.9977
+[12:01:46]   #  39 BEAT hc=85.8% task=PASS type=pin_entry events=65 bot_prob=0.142
+[12:01:46] *** FAMILY BEATEN: Dense Smooth at 85.8% on attempt 39 ***
+[12:01:46] --- Attacking family: Sparse Irregular (sparse_irregular) [Hop / dart] ---
+[12:01:46]   #   1 miss hc=0.0% task=PASS type=hazard_run events=65 bot_prob=0.9999
+[12:01:46]   #   2 miss hc=0.0% task=PASS type=maze_navigate events=301 bot_prob=1.0
+[12:01:46]   #   3 miss hc=0.0% task=PASS type=zigzag_trace events=76 bot_prob=1.0
+[12:01:46]   #   4 miss hc=0.0% task=PASS type=target_hunt events=96 bot_prob=0.9998
+[12:01:46]   #   5 miss hc=0.1% task=PASS type=button_sequence events=62 bot_prob=0.9995
+[12:01:49]   #  50 miss hc=0.0% task=PASS type=hazard_run events=74 bot_prob=0.9999
+[12:01:52]   # 100 miss hc=0.0% task=PASS type=target_hunt events=94 bot_prob=0.9999
+[12:01:55]   # 150 miss hc=1.4% task=PASS type=button_sequence events=100 bot_prob=0.9858
+[12:01:58]   # 200 miss hc=0.0% task=PASS type=zigzag_trace events=77 bot_prob=1.0
+[12:02:01]   # 250 miss hc=0.0% task=PASS type=spiral_trace events=368 bot_prob=1.0
+[12:02:04]   # 300 miss hc=0.0% task=PASS type=zigzag_trace events=80 bot_prob=1.0
+[12:02:07]   # 350 miss hc=0.0% task=FAIL type=hazard_run events=81 bot_prob=1.0
+[12:02:10]   # 400 miss hc=0.0% task=PASS type=spiral_trace events=431 bot_prob=1.0
+[12:02:13]   # 450 miss hc=0.0% task=PASS type=zigzag_trace events=73 bot_prob=1.0
+[12:02:16]   # 500 miss hc=0.1% task=PASS type=button_sequence events=81 bot_prob=0.9991
+[12:02:19]   # 550 miss hc=0.0% task=PASS type=target_hunt events=98 bot_prob=1.0
+[12:02:22]   # 600 miss hc=0.0% task=PASS type=hazard_run events=62 bot_prob=0.9999
+[12:02:25]   # 650 miss hc=1.0% task=PASS type=pin_entry events=55 bot_prob=0.9903
+[12:02:28]   # 700 miss hc=0.0% task=PASS type=zigzag_trace events=89 bot_prob=1.0
+[12:02:31]   # 750 miss hc=0.1% task=PASS type=pin_entry events=64 bot_prob=0.9995
+[12:02:34]   # 800 miss hc=0.0% task=PASS type=connect_dots events=80 bot_prob=1.0
+[12:02:37]   # 850 miss hc=0.0% task=PASS type=spiral_trace events=378 bot_prob=1.0
+[12:02:40]   # 900 miss hc=0.0% task=PASS type=connect_dots events=67 bot_prob=1.0
+[12:02:43]   # 950 miss hc=0.1% task=PASS type=pin_entry events=63 bot_prob=0.9989
+[12:02:46]   #1000 miss hc=0.0% task=PASS type=button_sequence events=60 bot_prob=0.9997
+[12:02:50]   #1050 miss hc=0.1% task=PASS type=path_gates events=56 bot_prob=0.9992
+[12:02:53]   #1100 miss hc=0.0% task=PASS type=maze_navigate events=463 bot_prob=1.0
+[12:02:56]   #1150 miss hc=0.0% task=PASS type=spiral_trace events=367 bot_prob=1.0
+[12:02:57]   #1200 miss hc=0.0% task=PASS type=maze_navigate events=247 bot_prob=1.0
+[12:03:00]   #1250 miss hc=0.0% task=PASS type=shape_trace events=269 bot_prob=1.0
+[12:03:01]   #1300 miss hc=0.0% task=PASS type=connect_dots events=65 bot_prob=0.9999
+[12:03:03]   #1350 miss hc=0.0% task=PASS type=hazard_run events=77 bot_prob=0.9999
+[12:03:05]   #1400 miss hc=0.0% task=PASS type=path_gates events=76 bot_prob=1.0
+[12:03:08]   #1450 miss hc=0.0% task=FAIL type=hazard_run events=72 bot_prob=0.9999
+[12:03:12]   #1500 miss hc=0.1% task=PASS type=pin_entry events=53 bot_prob=0.999
+[12:03:14]   #1550 miss hc=0.0% task=FAIL type=hazard_run events=53 bot_prob=0.9998
+[12:03:16] Family NOT beaten: Sparse Irregular (best 36.4% in 1587 attempts)
+[12:03:16] --- Attacking family: Playwright Hop (hop) [Hop / dart] ---
+[12:03:16]   #   1 miss hc=0.0% task=PASS type=connect_dots events=117 bot_prob=1.0
+[12:03:16]   #   2 miss hc=0.3% task=PASS type=target_hunt events=104 bot_prob=0.9966
+[12:03:16]   #   3 miss hc=0.1% task=PASS type=maze_navigate events=247 bot_prob=0.9991
+[12:03:16]   #   4 miss hc=0.1% task=PASS type=target_hunt events=76 bot_prob=0.9995
+[12:03:16]   #   5 miss hc=0.0% task=PASS type=zigzag_trace events=79 bot_prob=1.0
+[12:03:19]   #  50 miss hc=0.0% task=PASS type=zigzag_trace events=89 bot_prob=1.0
+[12:03:22]   # 100 miss hc=0.0% task=PASS type=path_gates events=52 bot_prob=1.0
+[12:03:25]   # 150 miss hc=0.0% task=PASS type=zigzag_trace events=93 bot_prob=1.0
+[12:03:29]   # 200 miss hc=1.2% task=PASS type=pin_entry events=56 bot_prob=0.988
+[12:03:32]   # 250 miss hc=0.1% task=PASS type=button_sequence events=92 bot_prob=0.9995
+[12:03:34]   # 300 miss hc=0.0% task=PASS type=hazard_run events=65 bot_prob=1.0
+[12:03:37]   # 350 miss hc=0.0% task=PASS type=maze_navigate events=178 bot_prob=1.0
+[12:03:39]   # 400 miss hc=0.0% task=PASS type=connect_dots events=81 bot_prob=1.0
+[12:03:41]   # 450 miss hc=0.0% task=PASS type=zigzag_trace events=64 bot_prob=1.0
+[12:03:45]   # 500 miss hc=42.5% task=PASS type=pin_entry events=47 bot_prob=0.5751
+[12:03:48]   # 550 miss hc=0.0% task=PASS type=zigzag_trace events=76 bot_prob=1.0
+[12:03:51]   # 600 miss hc=0.1% task=PASS type=pin_entry events=52 bot_prob=0.9987
+[12:03:53]   # 650 miss hc=0.1% task=PASS type=maze_navigate events=303 bot_prob=0.9993
+[12:03:56]   # 700 miss hc=0.0% task=PASS type=spiral_trace events=162 bot_prob=1.0
+[12:03:59]   # 750 miss hc=0.0% task=PASS type=button_sequence events=109 bot_prob=0.9997
+[12:04:01]   # 800 miss hc=0.1% task=PASS type=connect_dots events=99 bot_prob=0.9993
+[12:04:04]   # 850 miss hc=0.0% task=PASS type=shape_trace events=59 bot_prob=1.0
+[12:04:06]   # 900 miss hc=0.0% task=PASS type=spiral_trace events=156 bot_prob=1.0
+[12:04:08]   # 950 miss hc=2.5% task=PASS type=pin_entry events=54 bot_prob=0.9749
+[12:04:10]   #1000 miss hc=0.1% task=PASS type=pin_entry events=53 bot_prob=0.9993
+[12:04:12]   #1050 miss hc=0.0% task=PASS type=spiral_trace events=140 bot_prob=1.0
+[12:04:15]   #1100 miss hc=0.0% task=PASS type=path_gates events=54 bot_prob=1.0
+[12:04:17]   #1150 miss hc=0.0% task=PASS type=connect_dots events=76 bot_prob=1.0
+[12:04:19]   #1200 miss hc=0.0% task=PASS type=zigzag_trace events=75 bot_prob=1.0
+[12:04:21]   #1250 miss hc=0.1% task=PASS type=button_sequence events=67 bot_prob=0.999
+[12:04:24]   #1300 miss hc=0.0% task=PASS type=spiral_trace events=168 bot_prob=1.0
+[12:04:27]   #1350 miss hc=0.0% task=FAIL type=hazard_run events=71 bot_prob=1.0
+[12:04:29]   #1400 miss hc=0.3% task=PASS type=target_hunt events=98 bot_prob=0.9969
+[12:04:33]   #1450 miss hc=0.0% task=PASS type=shape_trace events=85 bot_prob=1.0
+[12:04:36]   #1500 miss hc=0.0% task=PASS type=spiral_trace events=133 bot_prob=1.0
+[12:04:38]   #1550 miss hc=0.0% task=PASS type=connect_dots events=90 bot_prob=1.0
+[12:04:41]   #1600 miss hc=0.0% task=PASS type=shape_trace events=106 bot_prob=1.0
+[12:04:44]   #1650 miss hc=0.0% task=PASS type=shape_trace events=39 bot_prob=1.0
+[12:04:46] Family NOT beaten: Playwright Hop (best 42.5% in 1690 attempts)
+[12:04:46] --- Attacking family: Dart Hop (fast_direct) [Hop / dart] ---
+[12:04:46]   #   1 miss hc=0.0% task=FAIL type=shape_trace events=16 bot_prob=1.0
+[12:04:46]   #   2 miss hc=0.0% task=PASS type=spiral_trace events=79 bot_prob=0.9999
+[12:04:46]   #   3 miss hc=0.0% task=PASS type=zigzag_trace events=54 bot_prob=1.0
+[12:04:46]   #   4 miss hc=0.0% task=PASS type=connect_dots events=54 bot_prob=1.0
+[12:04:46]   #   5 miss hc=0.7% task=FAIL type=hazard_run events=38 bot_prob=0.9933
+[12:04:48]   #  50 miss hc=0.0% task=PASS type=zigzag_trace events=43 bot_prob=0.9997
+[12:04:51]   # 100 miss hc=0.0% task=PASS type=zigzag_trace events=47 bot_prob=0.9999
+[12:04:53]   # 150 miss hc=0.0% task=PASS type=maze_navigate events=100 bot_prob=1.0
+[12:04:56]   # 200 miss hc=0.0% task=FAIL type=hazard_run events=36 bot_prob=0.9997
+[12:04:56]   # 203 BEAT hc=64.8% task=PASS type=path_gates events=37 bot_prob=0.3524
+[12:04:56] *** FAMILY BEATEN: Dart Hop at 64.8% on attempt 203 ***
+[12:04:56] --- Attacking family: Mid Dense (mid_dense) [Hop / dart] ---
+[12:04:56]   #   1 miss hc=0.0% task=PASS type=shape_trace events=53 bot_prob=1.0
+[12:04:56]   #   2 miss hc=0.0% task=PASS type=maze_navigate events=127 bot_prob=1.0
+[12:04:56]   #   3 miss hc=7.6% task=PASS type=button_sequence events=71 bot_prob=0.9244
+[12:04:56]   #   4 miss hc=0.0% task=PASS type=zigzag_trace events=59 bot_prob=1.0
+[12:04:56]   #   5 miss hc=0.0% task=PASS type=spiral_trace events=103 bot_prob=1.0
+[12:04:59]   #  50 miss hc=6.9% task=PASS type=shape_trace events=48 bot_prob=0.9306
+[12:05:00]   #  80 BEAT hc=61.2% task=PASS type=button_sequence events=77 bot_prob=0.3876
+[12:05:00] *** FAMILY BEATEN: Mid Dense at 61.2% on attempt 80 ***
+[12:05:00] --- Attacking family: Fitts Motor (fitts) [Fitts / humanoid] ---
+[12:05:00]   #   1 miss hc=0.0% task=PASS type=shape_trace events=113 bot_prob=1.0
+[12:05:00]   #   2 miss hc=0.0% task=PASS type=connect_dots events=191 bot_prob=1.0
+[12:05:00]   #   3 miss hc=0.0% task=PASS type=shape_trace events=286 bot_prob=1.0
+[12:05:01]   #   4 miss hc=0.3% task=PASS type=spiral_trace events=922 bot_prob=0.9972
+[12:05:01]   #   5 miss hc=0.0% task=PASS type=maze_navigate events=1157 bot_prob=1.0
+[12:05:10]   #  50 miss hc=0.0% task=PASS type=button_sequence events=323 bot_prob=1.0
+[12:05:18]   # 100 miss hc=0.0% task=PASS type=path_gates events=225 bot_prob=1.0
+[12:05:26]   # 150 miss hc=0.0% task=PASS type=target_hunt events=272 bot_prob=1.0
+[12:05:31]   # 200 miss hc=0.0% task=PASS type=zigzag_trace events=344 bot_prob=1.0
+[12:05:39]   # 250 miss hc=0.0% task=PASS type=zigzag_trace events=310 bot_prob=1.0
+[12:05:46]   # 300 miss hc=0.0% task=PASS type=target_hunt events=307 bot_prob=1.0
+[12:05:54]   # 350 miss hc=0.0% task=PASS type=path_gates events=235 bot_prob=1.0
+[12:06:01]   # 400 miss hc=0.0% task=PASS type=shape_trace events=831 bot_prob=0.9999
+[12:06:06]   # 450 miss hc=0.0% task=FAIL type=hazard_run events=205 bot_prob=1.0
+[12:06:15]   # 500 miss hc=0.0% task=PASS type=target_hunt events=280 bot_prob=1.0
+[12:06:22]   # 550 miss hc=0.0% task=FAIL type=hazard_run events=225 bot_prob=1.0
+[12:06:30] Family NOT beaten: Fitts Motor (best 3.9% in 586 attempts)
+[12:06:30] --- Attacking family: Simulated Humanoid (simulated) [Fitts / humanoid] ---
+[12:06:30]   #   1 miss hc=0.2% task=PASS type=shape_trace events=454 bot_prob=0.9977
+[12:06:30]   #   2 miss hc=0.0% task=PASS type=connect_dots events=328 bot_prob=1.0
+[12:06:30]   #   3 miss hc=0.0% task=PASS type=path_gates events=160 bot_prob=1.0
+[12:06:31]   #   4 miss hc=0.0% task=PASS type=maze_navigate events=1516 bot_prob=1.0
+[12:06:31]   #   5 miss hc=0.0% task=PASS type=shape_trace events=214 bot_prob=1.0
+[12:06:39]   #  36 BEAT hc=74.9% task=PASS type=pin_entry events=62 bot_prob=0.2511
+[12:06:39] *** FAMILY BEATEN: Simulated Humanoid at 74.9% on attempt 36 ***
+[12:06:39] --- Attacking family: Humanoid Fitts (humanoid_fast) [Fitts / humanoid] ---
+[12:06:39]   #   1 miss hc=0.0% task=PASS type=maze_navigate events=290 bot_prob=1.0
+[12:06:39]   #   2 miss hc=0.0% task=PASS type=button_sequence events=42 bot_prob=1.0
+[12:06:39]   #   3 miss hc=0.0% task=PASS type=path_gates events=41 bot_prob=1.0
+[12:06:39]   #   4 miss hc=0.0% task=PASS type=maze_navigate events=329 bot_prob=0.9997
+[12:06:39]   #   5 miss hc=0.0% task=PASS type=path_gates events=37 bot_prob=1.0
+[12:06:41]   #  50 miss hc=0.0% task=PASS type=pin_entry events=28 bot_prob=1.0
+[12:06:43]   # 100 miss hc=0.0% task=PASS type=shape_trace events=38 bot_prob=0.9999
+[12:06:45]   # 150 miss hc=0.0% task=PASS type=path_gates events=32 bot_prob=0.9999
+[12:06:48]   # 200 miss hc=0.0% task=PASS type=spiral_trace events=178 bot_prob=1.0
+[12:06:50]   # 250 miss hc=0.0% task=PASS type=target_hunt events=45 bot_prob=1.0
+[12:06:52]   # 300 miss hc=0.0% task=PASS type=button_sequence events=44 bot_prob=1.0
+[12:06:54]   # 350 miss hc=0.0% task=PASS type=target_hunt events=48 bot_prob=1.0
+[12:06:56]   # 395 BEAT hc=60.2% task=PASS type=pin_entry events=29 bot_prob=0.3978
+[12:06:56] *** FAMILY BEATEN: Humanoid Fitts at 60.2% on attempt 395 ***
+[12:06:56] --- Attacking family: Linear (linear_fast) [Baseline] ---
+[12:06:56]   #   1 miss hc=0.1% task=PASS type=target_hunt events=36 bot_prob=0.9985
+[12:06:57]   #   2 miss hc=0.0% task=PASS type=target_hunt events=37 bot_prob=1.0
+[12:06:57]   #   3 miss hc=0.0% task=PASS type=maze_navigate events=312 bot_prob=1.0
+[12:06:57]   #   4 miss hc=0.0% task=PASS type=spiral_trace events=162 bot_prob=1.0
+[12:06:57]   #   5 miss hc=0.0% task=PASS type=target_hunt events=45 bot_prob=1.0
+[12:06:59]   #  50 miss hc=0.0% task=PASS type=zigzag_trace events=30 bot_prob=1.0
+[12:07:01]   # 100 miss hc=0.0% task=PASS type=spiral_trace events=159 bot_prob=1.0
+[12:07:03]   # 150 miss hc=0.0% task=PASS type=hazard_run events=121 bot_prob=1.0
+[12:07:05]   # 200 miss hc=0.1% task=FAIL type=shape_trace events=14 bot_prob=0.9991
+[12:07:08]   # 250 miss hc=0.0% task=PASS type=maze_navigate events=328 bot_prob=1.0
+[12:07:10]   # 300 miss hc=0.0% task=PASS type=target_hunt events=34 bot_prob=1.0
+[12:07:12]   # 350 miss hc=7.9% task=PASS type=pin_entry events=39 bot_prob=0.9207
+[12:07:14]   # 400 miss hc=0.0% task=PASS type=path_gates events=31 bot_prob=0.9999
+[12:07:16]   # 450 miss hc=0.0% task=PASS type=path_gates events=39 bot_prob=1.0
+[12:07:19]   # 500 miss hc=0.0% task=PASS type=hazard_run events=86 bot_prob=1.0
+[12:07:21]   # 550 miss hc=0.0% task=PASS type=shape_trace events=33 bot_prob=0.9999
+[12:07:23]   # 600 miss hc=0.1% task=FAIL type=shape_trace events=12 bot_prob=0.9992
+[12:07:24]   # 650 miss hc=0.0% task=PASS type=maze_navigate events=120 bot_prob=1.0
+[12:07:26]   # 700 miss hc=0.0% task=PASS type=hazard_run events=106 bot_prob=1.0
+[12:07:28]   # 750 miss hc=0.0% task=PASS type=maze_navigate events=183 bot_prob=1.0
+[12:07:30]   # 800 miss hc=0.0% task=PASS type=connect_dots events=57 bot_prob=0.9996
+[12:07:32]   # 850 miss hc=1.7% task=PASS type=target_hunt events=35 bot_prob=0.9827
+[12:07:34]   # 900 miss hc=0.0% task=PASS type=spiral_trace events=216 bot_prob=1.0
+[12:07:36]   # 950 miss hc=0.0% task=PASS type=pin_entry events=28 bot_prob=1.0
+[12:07:38]   #1000 miss hc=0.0% task=FAIL type=hazard_run events=112 bot_prob=1.0
+[12:07:41]   #1050 miss hc=0.0% task=PASS type=button_sequence events=42 bot_prob=1.0
+[12:07:44]   #1100 miss hc=0.0% task=PASS type=hazard_run events=86 bot_prob=1.0
+[12:07:47]   #1150 miss hc=0.0% task=PASS type=button_sequence events=40 bot_prob=1.0
+[12:07:50]   #1200 miss hc=0.0% task=PASS type=maze_navigate events=238 bot_prob=1.0
+[12:07:52]   #1250 miss hc=0.0% task=PASS type=hazard_run events=77 bot_prob=1.0
+[12:07:54]   #1300 miss hc=0.0% task=PASS type=pin_entry events=36 bot_prob=0.9996
+[12:07:56]   #1350 miss hc=0.0% task=PASS type=connect_dots events=57 bot_prob=1.0
+[12:07:57]   #1400 miss hc=0.0% task=PASS type=target_hunt events=49 bot_prob=1.0
+[12:07:59]   #1450 miss hc=0.0% task=PASS type=pin_entry events=31 bot_prob=1.0
+[12:08:01]   #1500 miss hc=0.0% task=PASS type=button_sequence events=31 bot_prob=1.0
+[12:08:02]   #1550 miss hc=0.0% task=FAIL type=shape_trace events=13 bot_prob=0.9999
+[12:08:04]   #1600 miss hc=0.6% task=PASS type=connect_dots events=48 bot_prob=0.9938
+[12:08:06]   #1650 miss hc=0.0% task=FAIL type=hazard_run events=71 bot_prob=1.0
+[12:08:08]   #1700 miss hc=0.1% task=FAIL type=zigzag_trace events=27 bot_prob=0.9993
+[12:08:11]   #1750 miss hc=0.0% task=PASS type=hazard_run events=99 bot_prob=1.0
+[12:08:12]   #1800 miss hc=0.1% task=PASS type=zigzag_trace events=27 bot_prob=0.9995
+[12:08:14]   #1850 miss hc=0.0% task=PASS type=target_hunt events=46 bot_prob=1.0
+[12:08:16]   #1900 miss hc=0.0% task=PASS type=button_sequence events=41 bot_prob=1.0
+[12:08:18]   #1950 miss hc=0.1% task=FAIL type=shape_trace events=15 bot_prob=0.999
+[12:08:20]   #2000 miss hc=0.0% task=PASS type=target_hunt events=34 bot_prob=1.0
+[12:08:22]   #2050 miss hc=0.0% task=PASS type=target_hunt events=36 bot_prob=1.0
+[12:08:24]   #2100 miss hc=0.0% task=PASS type=button_sequence events=43 bot_prob=0.9996
+[12:08:26]   #2150 miss hc=0.0% task=PASS type=hazard_run events=90 bot_prob=1.0
+[12:08:26] Family NOT beaten: Linear (best 42.8% in 2166 attempts)
+[12:08:26] --- Attacking family: Bezier (bezier_fast) [Baseline] ---
+[12:08:26]   #   1 miss hc=0.2% task=FAIL type=shape_trace events=13 bot_prob=0.9979
+[12:08:27]   #   2 miss hc=0.0% task=PASS type=path_gates events=33 bot_prob=1.0
+[12:08:27]   #   3 miss hc=0.0% task=PASS type=path_gates events=39 bot_prob=1.0
+[12:08:27]   #   4 miss hc=0.0% task=PASS type=path_gates events=33 bot_prob=0.9999
+[12:08:27]   #   5 miss hc=0.0% task=PASS type=hazard_run events=74 bot_prob=1.0
+[12:08:28]   #  50 miss hc=0.0% task=FAIL type=connect_dots events=43 bot_prob=1.0
+[12:08:30]   # 100 miss hc=0.0% task=PASS type=connect_dots events=33 bot_prob=0.9999
+[12:08:31]   # 150 miss hc=0.0% task=PASS type=button_sequence events=46 bot_prob=0.9999
+[12:08:33]   # 200 miss hc=0.0% task=PASS type=maze_navigate events=324 bot_prob=1.0
+[12:08:35]   # 250 miss hc=0.1% task=PASS type=path_gates events=33 bot_prob=0.9987
+[12:08:37]   # 300 miss hc=0.0% task=PASS type=zigzag_trace events=39 bot_prob=1.0
+[12:08:39]   # 350 miss hc=0.0% task=PASS type=hazard_run events=73 bot_prob=1.0
+[12:08:40]   # 400 miss hc=0.0% task=PASS type=hazard_run events=74 bot_prob=0.9999
+[12:08:42]   # 450 miss hc=0.0% task=PASS type=target_hunt events=50 bot_prob=1.0
+[12:08:44]   # 500 miss hc=0.0% task=PASS type=spiral_trace events=187 bot_prob=1.0
+[12:08:45]   # 532 BEAT hc=76.0% task=PASS type=pin_entry events=30 bot_prob=0.2402
+[12:08:45] *** FAMILY BEATEN: Bezier at 76.0% on attempt 532 ***
+[12:08:45] --- Attacking family: Naive (naive) [Baseline] ---
+[12:08:45]   #   1 miss hc=0.0% task=PASS type=path_gates events=44 bot_prob=1.0
+[12:08:45]   #   2 miss hc=0.0% task=PASS type=button_sequence events=37 bot_prob=1.0
+[12:08:45]   #   3 miss hc=0.0% task=PASS type=maze_navigate events=141 bot_prob=1.0
+[12:08:45]   #   4 miss hc=0.0% task=PASS type=connect_dots events=56 bot_prob=1.0
+[12:08:45]   #   5 miss hc=0.0% task=PASS type=path_gates events=35 bot_prob=1.0
+[12:08:47]   #  50 miss hc=0.0% task=PASS type=maze_navigate events=290 bot_prob=1.0
+[12:08:49]   # 100 miss hc=0.4% task=FAIL type=shape_trace events=17 bot_prob=0.9964
+[12:08:51]   # 150 miss hc=0.0% task=PASS type=maze_navigate events=219 bot_prob=1.0
+[12:08:53]   # 200 miss hc=0.0% task=PASS type=path_gates events=33 bot_prob=1.0
+[12:08:55]   # 250 miss hc=0.0% task=PASS type=button_sequence events=43 bot_prob=0.9999
+[12:08:57]   # 300 miss hc=0.0% task=PASS type=zigzag_trace events=32 bot_prob=1.0
+[12:08:59]   # 350 miss hc=0.0% task=PASS type=spiral_trace events=219 bot_prob=1.0
+[12:09:01]   # 400 miss hc=0.0% task=PASS type=maze_navigate events=170 bot_prob=1.0
+[12:09:03]   # 450 miss hc=0.0% task=PASS type=spiral_trace events=187 bot_prob=1.0
+[12:09:04]   # 462 BEAT hc=78.9% task=PASS type=pin_entry events=28 bot_prob=0.211
+[12:09:04] *** FAMILY BEATEN: Naive at 78.9% on attempt 462 ***
+[12:09:04] === Round 2: 7 families remaining ===
+[12:09:04] --- Attacking family: Wide Arc (wide_arc) [Latest families] ---
+[12:09:04]   #2814 miss hc=0.0% task=PASS type=shape_trace events=126 bot_prob=1.0
+[12:09:04]   #2815 miss hc=0.0% task=PASS type=zigzag_trace events=111 bot_prob=1.0
+[12:09:04]   #2816 miss hc=1.4% task=PASS type=button_sequence events=114 bot_prob=0.9861
+[12:09:04]   #2817 miss hc=0.0% task=PASS type=maze_navigate events=384 bot_prob=1.0
+[12:09:05]   #2818 miss hc=0.1% task=PASS type=spiral_trace events=568 bot_prob=0.9986
+[12:09:08]   #2863 miss hc=0.0% task=PASS type=target_hunt events=112 bot_prob=0.9998
+[12:09:12]   #2913 miss hc=0.2% task=PASS type=spiral_trace events=537 bot_prob=0.9982
+[12:09:17]   #2963 miss hc=0.5% task=PASS type=spiral_trace events=633 bot_prob=0.9951
+[12:09:22]   #3013 miss hc=3.2% task=PASS type=maze_navigate events=820 bot_prob=0.9683
+[12:09:26]   #3063 miss hc=0.0% task=PASS type=shape_trace events=65 bot_prob=0.9996
+[12:09:30]   #3113 miss hc=2.8% task=PASS type=maze_navigate events=620 bot_prob=0.972
+[12:09:34]   #3163 miss hc=0.0% task=FAIL type=hazard_run events=93 bot_prob=0.9999
+[12:09:37]   #3213 miss hc=0.0% task=FAIL type=hazard_run events=92 bot_prob=1.0
+[12:09:41]   #3263 miss hc=0.0% task=FAIL type=hazard_run events=124 bot_prob=1.0
+[12:09:44]   #3313 miss hc=1.2% task=PASS type=pin_entry events=63 bot_prob=0.9876
+[12:09:48]   #3363 miss hc=0.0% task=PASS type=shape_trace events=145 bot_prob=0.9997
+[12:09:51]   #3413 miss hc=0.0% task=PASS type=path_gates events=90 bot_prob=0.9999
+[12:09:52]   #3423 BEAT hc=84.6% task=PASS type=pin_entry events=88 bot_prob=0.154
+[12:09:52] *** FAMILY BEATEN: Wide Arc at 84.6% on attempt 3423 ***
+[12:09:52] --- Attacking family: Wobble Mid (wobble_mid) [Latest families] ---
+[12:09:52]   #3323 miss hc=0.0% task=PASS type=connect_dots events=115 bot_prob=1.0
+[12:09:52]   #3324 miss hc=0.0% task=PASS type=zigzag_trace events=95 bot_prob=1.0
+[12:09:52]   #3325 miss hc=0.1% task=PASS type=pin_entry events=71 bot_prob=0.9994
+[12:09:52]   #3326 miss hc=0.5% task=PASS type=spiral_trace events=549 bot_prob=0.9946
+[12:09:53]   #3327 miss hc=0.0% task=PASS type=target_hunt events=153 bot_prob=1.0
+[12:09:56]   #3372 miss hc=0.5% task=PASS type=spiral_trace events=649 bot_prob=0.9952
+[12:09:59]   #3422 miss hc=0.0% task=FAIL type=hazard_run events=110 bot_prob=1.0
+[12:10:01]   #3472 miss hc=0.0% task=PASS type=path_gates events=85 bot_prob=1.0
+[12:10:05]   #3522 miss hc=1.2% task=PASS type=maze_navigate events=558 bot_prob=0.9875
+[12:10:08]   #3572 miss hc=0.0% task=PASS type=connect_dots events=96 bot_prob=0.9999
+[12:10:11]   #3622 miss hc=0.0% task=PASS type=connect_dots events=129 bot_prob=1.0
+[12:10:14]   #3672 miss hc=0.0% task=PASS type=zigzag_trace events=109 bot_prob=1.0
+[12:10:16]   #3722 miss hc=0.0% task=PASS type=shape_trace events=67 bot_prob=1.0
+[12:10:19]   #3772 miss hc=0.0% task=PASS type=maze_navigate events=251 bot_prob=1.0
+[12:10:21]   #3822 miss hc=0.0% task=PASS type=connect_dots events=107 bot_prob=1.0
+[12:10:24]   #3872 miss hc=0.0% task=PASS type=pin_entry events=53 bot_prob=0.9996
+[12:10:27]   #3922 miss hc=0.0% task=FAIL type=hazard_run events=93 bot_prob=0.9998
+[12:10:29]   #3972 miss hc=0.0% task=PASS type=target_hunt events=124 bot_prob=0.9999
+[12:10:31]   #4022 miss hc=0.0% task=PASS type=shape_trace events=53 bot_prob=1.0
+[12:10:35]   #4072 miss hc=0.0% task=PASS type=path_gates events=95 bot_prob=0.9999
+[12:10:38]   #4122 miss hc=0.0% task=PASS type=maze_navigate events=303 bot_prob=1.0
+[12:10:41]   #4172 miss hc=0.0% task=PASS type=path_gates events=83 bot_prob=0.9998
+[12:10:44]   #4222 miss hc=0.0% task=PASS type=pin_entry events=59 bot_prob=0.9997
+[12:10:47]   #4272 miss hc=0.0% task=FAIL type=hazard_run events=98 bot_prob=0.9999
+[12:10:49]   #4322 miss hc=1.2% task=PASS type=pin_entry events=69 bot_prob=0.9879
+[12:10:52]   #4372 miss hc=0.0% task=PASS type=shape_trace events=116 bot_prob=1.0
+[12:10:56]   #4422 miss hc=0.8% task=PASS type=maze_navigate events=712 bot_prob=0.9917
+[12:10:59]   #4472 miss hc=0.0% task=PASS type=connect_dots events=105 bot_prob=1.0
+[12:11:02]   #4522 miss hc=0.1% task=PASS type=target_hunt events=194 bot_prob=0.9993
+[12:11:05]   #4572 miss hc=0.0% task=PASS type=maze_navigate events=381 bot_prob=1.0
+[12:11:09]   #4622 miss hc=0.0% task=PASS type=zigzag_trace events=146 bot_prob=1.0
+[12:11:12]   #4672 miss hc=0.0% task=PASS type=path_gates events=86 bot_prob=1.0
+[12:11:15]   #4722 miss hc=0.0% task=PASS type=target_hunt events=120 bot_prob=1.0
+[12:11:18]   #4772 miss hc=0.0% task=FAIL type=hazard_run events=97 bot_prob=1.0
+[12:11:20]   #4822 miss hc=0.0% task=PASS type=connect_dots events=88 bot_prob=0.9999
+[12:11:22] Family NOT beaten: Wobble Mid (best 18.0% in 4847 attempts)
+[12:11:22] --- Attacking family: Hi Jitter (hi_jit) [Latest families] ---
+[12:11:22]   #1787 miss hc=0.0% task=PASS type=target_hunt events=138 bot_prob=1.0
+[12:11:22]   #1788 miss hc=0.1% task=PASS type=pin_entry events=72 bot_prob=0.9987
+[12:11:22]   #1789 miss hc=0.2% task=PASS type=spiral_trace events=647 bot_prob=0.9979
+[12:11:22]   #1790 miss hc=0.1% task=PASS type=pin_entry events=67 bot_prob=0.9991
+[12:11:23]   #1791 miss hc=0.0% task=PASS type=path_gates events=79 bot_prob=1.0
+[12:11:26]   #1836 miss hc=0.0% task=PASS type=hazard_run events=92 bot_prob=1.0
+[12:11:28]   #1886 miss hc=0.0% task=PASS type=zigzag_trace events=156 bot_prob=1.0
+[12:11:31]   #1936 miss hc=0.0% task=PASS type=connect_dots events=171 bot_prob=1.0
+[12:11:34]   #1986 miss hc=0.0% task=PASS type=target_hunt events=147 bot_prob=0.9999
+[12:11:38]   #2036 miss hc=0.4% task=PASS type=spiral_trace events=659 bot_prob=0.9962
+[12:11:41]   #2086 miss hc=0.0% task=PASS type=target_hunt events=159 bot_prob=1.0
+[12:11:45]   #2136 miss hc=0.0% task=PASS type=path_gates events=77 bot_prob=0.9999
+[12:11:49]   #2186 miss hc=0.0% task=PASS type=connect_dots events=113 bot_prob=1.0
+[12:11:52]   #2236 miss hc=0.0% task=PASS type=shape_trace events=64 bot_prob=0.9998
+[12:11:56]   #2286 miss hc=0.0% task=PASS type=zigzag_trace events=133 bot_prob=1.0
+[12:12:00]   #2336 miss hc=0.0% task=PASS type=connect_dots events=142 bot_prob=1.0
+[12:12:04]   #2386 miss hc=0.0% task=PASS type=target_hunt events=137 bot_prob=1.0
+[12:12:07]   #2436 miss hc=0.0% task=PASS type=hazard_run events=74 bot_prob=1.0
+[12:12:11]   #2486 miss hc=0.0% task=PASS type=connect_dots events=112 bot_prob=1.0
+[12:12:15]   #2536 miss hc=0.0% task=PASS type=connect_dots events=123 bot_prob=1.0
+[12:12:18]   #2586 miss hc=0.0% task=PASS type=shape_trace events=382 bot_prob=1.0
+[12:12:21]   #2636 miss hc=0.0% task=PASS type=button_sequence events=139 bot_prob=0.9999
+[12:12:24]   #2686 miss hc=0.0% task=PASS type=zigzag_trace events=99 bot_prob=1.0
+[12:12:26]   #2736 miss hc=0.0% task=PASS type=pin_entry events=58 bot_prob=0.9999
+[12:12:30]   #2786 miss hc=0.3% task=PASS type=spiral_trace events=640 bot_prob=0.9973
+[12:12:33]   #2836 miss hc=0.0% task=PASS type=path_gates events=91 bot_prob=0.9996
+[12:12:37]   #2886 miss hc=0.0% task=PASS type=pin_entry events=76 bot_prob=1.0
+[12:12:41]   #2936 miss hc=0.0% task=PASS type=maze_navigate events=492 bot_prob=1.0
+[12:12:46]   #2986 miss hc=0.2% task=PASS type=pin_entry events=58 bot_prob=0.9977
+[12:12:50]   #3036 miss hc=0.0% task=PASS type=zigzag_trace events=119 bot_prob=1.0
+[12:12:52] Family NOT beaten: Hi Jitter (best 1.6% in 3071 attempts)
+[12:12:52] --- Attacking family: Sparse Irregular (sparse_irregular) [Hop / dart] ---
+[12:12:52]   #1588 miss hc=0.0% task=PASS type=zigzag_trace events=90 bot_prob=1.0
+[12:12:52]   #1589 miss hc=0.0% task=FAIL type=hazard_run events=81 bot_prob=1.0
+[12:12:52]   #1590 miss hc=0.0% task=PASS type=button_sequence events=103 bot_prob=1.0
+[12:12:52]   #1591 miss hc=0.0% task=PASS type=maze_navigate events=309 bot_prob=1.0
+[12:12:53]   #1592 miss hc=0.0% task=PASS type=spiral_trace events=455 bot_prob=1.0
+[12:12:55]   #1637 miss hc=0.0% task=PASS type=target_hunt events=87 bot_prob=0.9997
+[12:12:58]   #1687 miss hc=0.0% task=PASS type=zigzag_trace events=82 bot_prob=1.0
+[12:13:00]   #1737 miss hc=0.0% task=PASS type=target_hunt events=97 bot_prob=1.0
+[12:13:03]   #1787 miss hc=0.0% task=PASS type=zigzag_trace events=81 bot_prob=1.0
+[12:13:06]   #1837 miss hc=0.0% task=PASS type=connect_dots events=106 bot_prob=1.0
+[12:13:08]   #1887 miss hc=3.6% task=PASS type=pin_entry events=41 bot_prob=0.9635
+[12:13:11]   #1937 miss hc=0.0% task=PASS type=hazard_run events=55 bot_prob=0.9998
+[12:13:13]   #1987 miss hc=0.0% task=PASS type=path_gates events=63 bot_prob=1.0
+[12:13:15]   #2037 miss hc=0.0% task=PASS type=spiral_trace events=392 bot_prob=1.0
+[12:13:20]   #2087 miss hc=0.0% task=PASS type=button_sequence events=64 bot_prob=0.9996
+[12:13:23]   #2137 miss hc=0.0% task=PASS type=shape_trace events=309 bot_prob=1.0
+[12:13:26]   #2187 miss hc=0.0% task=PASS type=shape_trace events=35 bot_prob=1.0
+[12:13:29]   #2237 miss hc=0.0% task=PASS type=maze_navigate events=281 bot_prob=1.0
+[12:13:31]   #2287 miss hc=0.0% task=PASS type=connect_dots events=70 bot_prob=1.0
+[12:13:34]   #2337 miss hc=0.1% task=PASS type=path_gates events=54 bot_prob=0.9991
+[12:13:37]   #2387 miss hc=0.0% task=PASS type=maze_navigate events=240 bot_prob=1.0
+[12:13:40]   #2437 miss hc=0.0% task=PASS type=button_sequence events=56 bot_prob=1.0
+[12:13:43]   #2487 miss hc=0.0% task=PASS type=target_hunt events=83 bot_prob=0.9997
+[12:13:45]   #2537 miss hc=0.1% task=PASS type=shape_trace events=42 bot_prob=0.9989
+[12:13:48]   #2587 miss hc=0.7% task=PASS type=target_hunt events=94 bot_prob=0.9931
+[12:13:50]   #2637 miss hc=0.6% task=PASS type=pin_entry events=53 bot_prob=0.9943
+[12:13:53]   #2687 miss hc=8.1% task=PASS type=pin_entry events=46 bot_prob=0.9186
+[12:13:55]   #2737 miss hc=0.0% task=PASS type=zigzag_trace events=72 bot_prob=1.0
+[12:13:58]   #2787 miss hc=0.0% task=PASS type=maze_navigate events=413 bot_prob=1.0
+[12:14:01]   #2837 miss hc=1.2% task=PASS type=connect_dots events=65 bot_prob=0.9882
+[12:14:03]   #2887 miss hc=0.1% task=PASS type=button_sequence events=65 bot_prob=0.9987
+[12:14:06]   #2937 miss hc=0.2% task=PASS type=target_hunt events=81 bot_prob=0.9978
+[12:14:08]   #2987 miss hc=0.1% task=PASS type=pin_entry events=64 bot_prob=0.9995
+[12:14:11]   #3037 miss hc=0.3% task=PASS type=button_sequence events=75 bot_prob=0.9969
+[12:14:13]   #3087 miss hc=0.0% task=PASS type=maze_navigate events=287 bot_prob=1.0
+[12:14:15]   #3137 miss hc=0.0% task=PASS type=zigzag_trace events=78 bot_prob=1.0
+[12:14:18]   #3187 miss hc=0.1% task=PASS type=pin_entry events=64 bot_prob=0.9985
+[12:14:20]   #3237 miss hc=0.1% task=PASS type=pin_entry events=48 bot_prob=0.9987
+[12:14:22] Family NOT beaten: Sparse Irregular (best 36.4% in 3274 attempts)
+[12:14:22] --- Attacking family: Playwright Hop (hop) [Hop / dart] ---
+[12:14:22]   #1691 miss hc=0.0% task=PASS type=spiral_trace events=126 bot_prob=1.0
+[12:14:22]   #1692 miss hc=0.0% task=PASS type=shape_trace events=35 bot_prob=1.0
+[12:14:22]   #1693 miss hc=0.0% task=PASS type=spiral_trace events=143 bot_prob=1.0
+[12:14:23]   #1694 miss hc=0.0% task=PASS type=target_hunt events=115 bot_prob=0.9999
+[12:14:23]   #1695 miss hc=0.0% task=PASS type=shape_trace events=28 bot_prob=1.0
+[12:14:25]   #1740 miss hc=0.7% task=PASS type=pin_entry events=44 bot_prob=0.9935
+[12:14:27]   #1790 miss hc=0.0% task=FAIL type=hazard_run events=65 bot_prob=0.9999
+[12:14:30]   #1840 miss hc=0.0% task=PASS type=spiral_trace events=131 bot_prob=1.0
+[12:14:33]   #1890 miss hc=0.0% task=PASS type=target_hunt events=84 bot_prob=0.9996
+[12:14:35]   #1940 miss hc=0.3% task=PASS type=pin_entry events=54 bot_prob=0.9973
+[12:14:37]   #1990 miss hc=0.0% task=PASS type=maze_navigate events=129 bot_prob=1.0
+[12:14:40]   #2040 miss hc=0.0% task=PASS type=shape_trace events=48 bot_prob=1.0
+[12:14:42]   #2090 miss hc=0.0% task=PASS type=target_hunt events=78 bot_prob=0.9996
+[12:14:45]   #2140 miss hc=0.0% task=FAIL type=hazard_run events=63 bot_prob=1.0
+[12:14:45]   #2156 BEAT hc=83.5% task=PASS type=pin_entry events=50 bot_prob=0.165
+[12:14:45] *** FAMILY BEATEN: Playwright Hop at 83.5% on attempt 2156 ***
+[12:14:45] --- Attacking family: Fitts Motor (fitts) [Fitts / humanoid] ---
+[12:14:46]   # 587 miss hc=0.0% task=PASS type=target_hunt events=305 bot_prob=1.0
+[12:14:46]   # 588 miss hc=0.0% task=PASS type=target_hunt events=273 bot_prob=1.0
+[12:14:46]   # 589 miss hc=0.0% task=PASS type=shape_trace events=140 bot_prob=1.0
+[12:14:46]   # 590 miss hc=0.0% task=PASS type=target_hunt events=224 bot_prob=1.0
+[12:14:46]   # 591 miss hc=0.1% task=PASS type=shape_trace events=771 bot_prob=0.9993
+[12:14:52]   # 636 miss hc=0.0% task=PASS type=button_sequence events=216 bot_prob=1.0
+[12:15:00]   # 686 miss hc=0.0% task=PASS type=hazard_run events=289 bot_prob=1.0
+[12:15:07]   # 736 miss hc=0.0% task=PASS type=path_gates events=284 bot_prob=1.0
+[12:15:15]   # 786 miss hc=0.0% task=PASS type=path_gates events=246 bot_prob=1.0
+[12:15:22]   # 836 miss hc=0.0% task=PASS type=maze_navigate events=1333 bot_prob=1.0
+[12:15:28]   # 886 miss hc=0.0% task=PASS type=shape_trace events=251 bot_prob=1.0
+[12:15:35]   # 936 miss hc=0.0% task=PASS type=connect_dots events=749 bot_prob=0.9999
+[12:15:40]   # 986 miss hc=1.0% task=PASS type=pin_entry events=156 bot_prob=0.9899
+[12:15:46]   #1036 miss hc=0.0% task=FAIL type=hazard_run events=251 bot_prob=1.0
+[12:15:49] Family NOT beaten: Fitts Motor (best 3.9% in 1062 attempts)
+[12:15:49] Global deadline reached.
+[12:15:51] ========================================================================
+[12:15:51] DONE elapsed=1200s attempts=24628
+[12:15:51] BEATEN (11): idle_correct, minjerk, dense_smooth, fast_direct, mid_dense, simulated, humanoid_fast, bezier_fast, naive, wide_arc, hop
+[12:15:51]   idle_correct: 67.4% in 2844 tries
+[12:15:51]   minjerk: 79.0% in 38 tries
+[12:15:51]   dense_smooth: 85.8% in 39 tries
+[12:15:51]   fast_direct: 64.8% in 203 tries
+[12:15:51]   mid_dense: 61.2% in 80 tries
+[12:15:51]   simulated: 74.9% in 36 tries
+[12:15:51]   humanoid_fast: 60.2% in 395 tries
+[12:15:51]   bezier_fast: 76.0% in 532 tries
+[12:15:51]   naive: 78.9% in 462 tries
+[12:15:51]   wide_arc: 84.6% in 3423 tries
+[12:15:51]   hop: 83.5% in 2156 tries
+[12:15:51] NOT BEATEN (5):
+[12:15:51]   linear_fast: best 42.8% (2166 tries)
+[12:15:51]   sparse_irregular: best 36.4% (3274 tries)
+[12:15:51]   wobble_mid: best 18.0% (4847 tries)
+[12:15:51]   fitts: best 3.9% (1062 tries)
+[12:15:51]   hi_jit: best 1.6% (3071 tries)
+[12:15:51] Results: D:\Cursor\Behavioral Captcha\agent_evasion\xmodel_attack_xmodel_v0_3_result.json

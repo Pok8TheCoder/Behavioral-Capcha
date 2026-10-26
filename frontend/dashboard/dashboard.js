@@ -24,6 +24,7 @@ function modelOptionLabel(name, details) {
     if (details.family === "qmodel") return name.replace(/^qmodel_/i, "Qmodel ").replace("_", " ");
     if (details.family === "ymodel") return name.replace(/^ymodel_/i, "Ymodel ").replace("_", " ");
     if (details.family === "zmodel") return name.replace(/^zmodel_/i, "Zmodel ").replace("_", " ");
+    if (details.family === "xmodel") return name.replace(/^xmodel_/i, "Xmodel ").replace("_", " ");
     return LEGACY_MODEL_LABELS[name] || name.replaceAll("_", " ");
 }
 
@@ -147,6 +148,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function usesDragStroke() {
     return challenge && DRAG_STROKE_TYPES.has(challenge.challenge_type);
+}
+
+function beginDragStroke(p, t, meta) {
+    isDrawing = true;
+    events = [];
+    trail = [];
+    lastRawMove = null;
+    rawMoveTimes.length = 0;
+    recordEvent(p.x, p.y, t, "mousedown", meta);
+    drawChallenge();
 }
 
 function nearPathGatesStart(p) {
@@ -298,14 +309,20 @@ function eventTime(evt) {
 
 function onPointerDown(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
-    canvas.setPointerCapture(evt.pointerId);
     const p = canvasPoint(evt);
-    isDrawing = usesDragStroke() && nearPathGatesStart(p);
     const meta = pointerMetaFrom(evt);
+    if (usesDragStroke()) {
+        if (!nearPathGatesStart(p)) return;
+        canvas.setPointerCapture(evt.pointerId);
+        beginDragStroke(p, eventTime(evt), meta);
+        return;
+    }
+    canvas.setPointerCapture(evt.pointerId);
     recordEvent(p.x, p.y, eventTime(evt), "mousedown", meta);
 }
 
 function recordPointerSamples(evt) {
+    if (usesDragStroke() && !isDrawing) return;
     const points = typeof evt.getCoalescedEvents === "function" ? evt.getCoalescedEvents() : [evt];
     for (let i = 0; i < points.length; i++) {
         const e = points[i];
@@ -316,11 +333,13 @@ function recordPointerSamples(evt) {
 
 function onPointerRawUpdate(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
+    if (usesDragStroke() && !isDrawing) return;
     recordPointerSamples(evt);
 }
 
 function onPointerMove(evt) {
     if (!challenge || !isCapturing || isBotRunning) return;
+    if (usesDragStroke() && !isDrawing) return;
     if (!("onpointerrawupdate" in window)) {
         recordPointerSamples(evt);
     }
@@ -336,16 +355,18 @@ function onPointerUp(evt) {
     } catch (err) {
         /* already released */
     }
-    const p = canvasPoint(evt);
-    recordEvent(p.x, p.y, eventTime(evt), "mouseup", pointerMetaFrom(evt));
     if (usesDragStroke()) {
-        const strokeStarted = isDrawing;
+        if (!isDrawing) return;
+        const p = canvasPoint(evt);
+        const meta = pointerMetaFrom(evt);
+        recordEvent(p.x, p.y, eventTime(evt), "mouseup", meta);
         isDrawing = false;
         drawChallenge();
-        if (challenge.challenge_type === "path_gates" && !strokeStarted) return;
         if (events.length >= 4) submitAttempt("human");
         return;
     }
+    const p = canvasPoint(evt);
+    recordEvent(p.x, p.y, eventTime(evt), "mouseup", pointerMetaFrom(evt));
     handleClick(p.x, p.y);
     drawChallenge();
     maybeAutoComplete();
@@ -448,10 +469,27 @@ function updateModelSelector(data) {
     const zmodelIds = Object.entries(models)
         .filter(([, d]) => d.family === "zmodel" && d.available)
         .sort((a, b) => (a[1].version || "").localeCompare(b[1].version || "", undefined, { numeric: true }));
+    const xmodelIds = Object.entries(models)
+        .filter(([, d]) => d.family === "xmodel" && d.available)
+        .sort((a, b) => (a[1].version || "").localeCompare(b[1].version || "", undefined, { numeric: true }));
     const legacyIds = Object.entries(models)
         .filter(([, d]) => d.family === "legacy" && d.available);
 
     selector.innerHTML = "";
+
+    if (xmodelIds.length) {
+        const group = document.createElement("optgroup");
+        group.label = "Xmodel versions";
+        xmodelIds.forEach(([name, details]) => {
+            const opt = document.createElement("option");
+            opt.value = name;
+            const status = details.status ? ` · ${details.status}` : "";
+            opt.textContent = `${modelOptionLabel(name, details)}${status}`;
+            opt.selected = name.toLowerCase() === String(data.active_model || "").toLowerCase();
+            group.appendChild(opt);
+        });
+        selector.appendChild(group);
+    }
 
     if (qmodelIds.length) {
         const group = document.createElement("optgroup");

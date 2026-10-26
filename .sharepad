@@ -112,10 +112,118 @@
   - A simulated linear bot was blocked by the active Random Forest with bot probability `0.6238` and risk score `1.0000` after deterministic trajectory checks.
 - Moved the live-demo model selector from the crowded top navigation into its own always-visible dashboard panel after the user reported that model options were not visible.
 - Fixed an empty model selector reported in the live demo. The browser now renders the known model choices immediately, then probes the current origin and `http://127.0.0.1:8010` for the live model API and uses the successful server for model switching and telemetry verification.
-- Began web-server integration for the balanced Random Forest model.
-- Added a backend model registry with selectable artifacts: `random_forest_humanlike`, `isolation_forest`, and legacy `random_forest`.
-- Default server model is now `random_forest_humanlike`; set `BEHAVIORAL_MODEL` before server start to choose a different available model.
-- Added live model switching API:
-  - `GET /api/models` lists the active model and artifact availability.
-  - `POST /api/models/activate` with JSON `{"model_name":"isolation_forest"}` switches the in-memory active model.
-  - `GET /api/health` now includes the active model and the model registry.
+
+## 2026-08-16
+
+- Goal: score above 80% human confidence on the **Button sequence** challenge using a bot, without replay attacks.
+- Target scoring model: `random_forest_challenge` (Random Forest trained on challenge-bot data).
+- Constraint: no replay of human CSV telemetry; movement must be generated procedurally at runtime.
+- Work was isolated in `test/` so the rest of the workspace was not modified.
+- Baseline built-in dashboard bots on button sequence (via `/api/challenge/run-bot`):
+  - `linear`: ~5% human confidence.
+  - `bezier`: ~4% human confidence.
+  - `humanoid`: ~1% human confidence.
+- Built-in bots failed heuristics for obvious bot tells:
+  - Abnormal velocity spikes (60–300 px/ms).
+  - Superhuman click dwell (4–7 ms).
+  - Very fast overall movement (hundreds of ms for multi-second paths).
+- Approach selected: procedural human-like mouse telemetry generator + parameter search against live `/api/challenge/verify` feature feedback.
+- Fetched live dashboard client from `http://127.0.0.1:8010/dashboard/dashboard.js` into `test/dashboard.js` to understand challenge/event capture without reading the main repo.
+- Key challenge behavior learned from dashboard JS:
+  - Button sequence is click-order, not drag-stroke.
+  - Events are `{x, y, t, type}` with `mousemove`, `mousedown`, `mouseup`.
+  - Logical canvas is 960x640; clicks are validated against button centers + tolerance.
+  - Auto-submit fires when the full sequence is clicked in order.
+- Added `test/button_sequence_bot.py` with first-pass human-like generator:
+  - Bezier-curve paths between targets.
+  - Speed cap, click dwell, pauses, position jitter.
+- Added `test/optimize_button_bot.py` for randomized + mutation-based search over bot parameters.
+- Optimizer improvements:
+  - Pre-click hesitation and wander micro-movements before clicks.
+  - Curved arcs via bezier control-point offset.
+  - Longer dwell times and slower max speed than built-in bots.
+  - Stores best run in `test/best_result.json`.
+- Best tuned config (saved in `test/best_result.json`):
+  - `max_speed_px_ms`: ~0.73.
+  - `dwell_ms`: ~115–256.
+  - `pause_ms`: ~280–532.
+  - `jitter_px`: ~4.5.
+  - `overshoot_px`: ~22.
+  - `pre_click_delay_ms`: ~58–197.
+  - `wander_strength`: ~4.6.
+- Best-run feature profile (example from optimizer):
+  - `velocity_mean`: ~0.40 px/ms.
+  - `velocity_max`: ~1.10 px/ms.
+  - `avg_click_dwell_ms`: ~227.
+  - `straightness_index`: ~0.17.
+  - `jitter_ratio`: ~0.39.
+  - `idle_ratio`: ~0.33.
+  - `duration_ms`: ~8664.
+- Validation on `random_forest_challenge` (`test/run_best_bot.py`, 20 runs):
+  - Max human confidence: **84.29%**.
+  - Average human confidence: **65.31%**.
+  - Scores are stochastic because path/timing randomness changes each attempt.
+- Note: the same config scores much higher on `random_forest_humanlike` (~90%); challenge-bot model is the harder target and the one that matters for this task.
+- Added runners:
+  - `test/run_best_bot.py` — batch API validation.
+  - `test/run_in_browser.js` — injected browser runner (updates dashboard UI, but no visible mouse drawing).
+  - `test/playwright_button_bot.py` — headed Playwright session with visible mouse playback on the canvas.
+- Playwright visible run behavior:
+  - Opens its own Chromium window at `http://127.0.0.1:8010/`.
+  - Selects Button sequence + Challenge Bots model.
+  - Captures `/api/challenge/new` response, generates events, replays them with real `page.mouse` moves.
+  - Maps logical 960x640 coordinates to canvas screen coordinates.
+  - Uses `PLAYBACK_SPEED = 0.3` so the cyan trail is visible.
+  - Example visible Playwright result: **53%** (task passed, lower than API-only best due to playback/timing differences).
+- API-only browser injection example after retune: **82%** on challenge model.
+- How to rerun:
+  - API batch test: `python test/run_best_bot.py`
+  - Parameter search: `python test/optimize_button_bot.py`
+  - Visible demo: `python test/playwright_button_bot.py`
+
+- **Round 1 (~20 min) missed the ML target.** Best `model_human` **1.23%** (`bot_prob` 0.9877, family `trackpad_hesitate` on the slow first generator). Retuned hop families stayed at `bot_prob` ≈ 1.0 (jerk ~0.003 vs live humans ~0.35 / V0.7 minjerk ~0.17). Solver later hung on dashboard `select_option` timeouts.
+- Round 2 starting: dense `dt=0` families (`minjerk_direct`, `minjerk_fast`, `irregular_poly`, `stepped_arc`) to recover V0.7-like jerk/acc, then shift velocity above the V0.8 train band. Still scoring **1 − mean(bot_prob)**, not fused HC.
+
+- **Round 2 (~19 min) missed 70% ML.** Best **model_human 28.3%** (`bot_prob` 0.7165) on `minjerk_fast` (93 events, vel 0.99, jerk 0.075, acc 0.19, jit 0.18). Status file lagged at 6.8% `irregular_poly`. Dashboard later hung: uvicorn `--reload` watched `test/*.py` and restarted mid-attack. Round 3: mutate sparse `minjerk_fast`; restart API with `--reload-dir backend` only.
+
+- **Round 3 TARGET HIT.** Attempt 155 / 620.6s, family `sparse_irregular`: **model_human 78.2%** (`bot_prob` 0.2181), **PASSED: HUMAN**. Fused HC 60% (vel spike heuristic 0.40). Fingerprint: 60 events, vel 1.43, jerk 0.192, acc 0.467, jit 0.241, str 0.142. Issue 007 opened. Patch started: cycle 008 + heuristic #24 + `qmodel_v0.9` GPU retrain (`test/patch_issue007.py`).
+
+- **60-minute outer window closed ~18:44 IST.** Solver already stopped after Issue 007. Best ML result: **78.2% model-human** on `sparse_irregular`. V0.9 patch (cycle 008 + #24 + GPU retrain) was started before the window expired.
+
+- **Qmodel V0.9 trained and activated.** Cycle 008 in training (719 evasion windows). Held-out ROC-AUC 0.9999, accuracy 0.9991. Heuristic #24 + sparse-irregular security reject loaded with backend reload.
+
+- **V0.9 beaten.** `mid_count` 76.8% ML-human (attempt 214). Patching **V0.10** (cycle 009, #25). Then attack V0.10.
+
+- **V0.10 trained and live.** ROC-AUC 0.9999, cycle 009 in training (767 evasion windows). Starting 20-min attack vs V0.10.
+
+- **V0.10 beaten in 4.5 min.** `high_str_fast` 87.4% ML-human (61 events, vel 2.03). Patching **V0.11**.
+
+## 2026-08-17 — Attack Qmodel V0.9; next patches V0.10, V0.11, …
+
+- V0.9 was not live-attacked after training. Starting 20-min Playwright round (`test/timed_v09_live_solver.py`), win = `1 - bot_prob ≥ 70%`. Families leave the Issue 007 security band. If beaten: patch as **qmodel_v0.10** (then 0.11, 0.12). Registry `next_patch_version` now uses integer minors so 0.10 is not parsed as 0.1.
+
+## 2026-08-17 — Qmodel V0.8.1G 60-minute loop (bot_prob target)
+
+- Session start ~17:35 IST. Outer window **60 minutes**. Inner attack rounds ~20 minutes.
+- Target model: **`qmodel_v0.8.1G`** (XGBoost GPU, kinematics only).
+- **Win condition changed:** do not optimize fused human confidence (`1 - max(heuristic, ML)`). Optimize **ML-only** `model_human = 1 - mean(bot_probability)`. Goal **≥70%** (`bot_prob` ≤ 0.30) on live Playwright `button_sequence` (no replay).
+- Why: dashboard HC is risk-capped by heuristics; `bot_probability` is the mean window ML score. V0.8.1G top features are **jerk_mean**, **acceleration_mean**, **jitter_ratio**. Live human button-sequence sidecars sit at vel ~1.12–1.64, acc ~0.47–0.89, jerk ~0.36–0.98, jitter ~0.11–0.22 — not the flat min-jerk family that beat V0.7.
+- Solver: `test/timed_v081g_live_solver.py`. Families: `os_burst`, `os_correct`, `fast_human_click`, `trackpad_hesitate` (Fitts + submovements + overshoot). Logs: `timed_v081g_live_log.txt`, status `timed_v081g_status.json`.
+- If beaten: export new evasion cycle, copy V0.8.1G rules, retrain/register next Qmodel, add heuristic if the ML gap is also a live fingerprint.
+
+## 2026-08-17 — Qmodel red/blue 60-minute loop
+
+- Session start ~13:27 IST. Goal: patch Issue 005 (`fast_direct` 92% vs V0.6), then attack V0.7 in 20-minute rounds inside a 60-minute outer window. Sharepad refresh every ~10 minutes.
+- Prior patch recipe (from `test/patch_issue00*.py` + `train_random_forest_balanced.py`):
+  1. Recreate the winning live family as a synthetic event generator (`test/*_bot.py`).
+  2. Export `datasets/bot_evasion/evasion_cycle_NNN.csv` (AFK gaps 5.5–7.5s between episodes).
+  3. Copy previous Qmodel evasion rules, `append_rule_from_features` for the new cycle.
+  4. Retrain RF with `QMODEL_OUTPUT_ID=qmodel_v0.N` (human windows + challenge bots + all evasion CSVs).
+  5. `register_new_version` → latest; add static heuristics in `backend/model.py`; tighten `challenge_security.py` if the live path skipped scoring.
+- Issue 005 fingerprint to close: jitter ~0.50, vel ~1.24, events ~111, str ~0.16, jerk ~0.15, acc ~0.33, **lateral darts**, steps >2px (micro-jiggle security did not fire).
+- In progress: `test/fast_direct_bot.py`, `test/patch_issue005.py`, heuristics #20–#21, dart-hop security check, cycle 006 → **qmodel_v0.7**.
+- **Patch complete (~13:46 IST):** cycle 006 CSV (48 episodes / 11645 rows), `qmodel_v0.7` trained (OOB 0.9987), registry latest, `/api/models/activate` set to V0.7. Restart the backend process if #20/#21 flags do not appear (code loaded at import). Starting 20-minute live attack with `test/timed_v07_live_solver.py` (min-jerk / idle / dense-smooth — not darts).
+- **Attack vs V0.7 (~13:51–13:56 IST):** live Playwright `timed_v07_live_solver.py`. Best so far **56% PASSED** (`minjerk_direct`, attempts 15–16) with #18 dense-hop family flag (heur 0.44). Several other PASSES at 51–52% without flags (ML ~0.48). `curved_idle` / `slow_settle` stuck at ~9–20%. No ≥70% yet. Dart-hop #20/#21 not the limiter on this family.
+- **Issue 006 found (~14:01 IST):** `minjerk_direct` **86%** live vs V0.7 after 75 attempts / 615.6s. Escape: **360 events** (above #18 `<280`), jitter **0.162** (above #19 `<0.16`). Heur 0.00 / no flags. Ended 20-min attack early.
+- **Patch Issue 006 → V0.8 complete:** cycle 007 CSV (48 episodes / 11674 rows), 7 evasion rules, train ~984s, 10,053 human + 96,200 bot windows (671 evasion), OOB 0.9987. Heuristics #22/#23 + overflow security reject. Cycle 006 vel band repaired (`vel_mean_max` 1.49). `/api/models/activate` set to `qmodel_v0.8`. Outer 60-min window expired during this train; did not start a new 20-min attack vs V0.8. Restart the backend process so #22/#23 and the overflow security check load from disk.
+

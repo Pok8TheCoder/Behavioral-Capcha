@@ -1,0 +1,5783 @@
+{
+  "model_type": "xgboost_gpu",
+  "xmodel_id": "xmodel_v0.3",
+  "xmodel_label": "Xmodel V0.3",
+  "xmodel_version": "0.3",
+  "target_hz": 60.0,
+  "trainer": "xgboost",
+  "device": "cuda",
+  "balanced": false,
+  "human_filter": "60hz_native_only",
+  "bot_filter": "native_60hz_regenerated_plus_attack_winners",
+  "dataset_mix": "v02s_plus_attack_hardening",
+  "parent_model": "xmodel_v0.2S",
+  "attack_export": {
+    "source_attack": "D:\\Cursor\\Behavioral Captcha\\agent_evasion\\xmodel_attack_xmodel_v0_2S_result.json",
+    "target_model": "xmodel_v0.2S",
+    "target_hz": 60.0,
+    "episodes_per_family": 40,
+    "beaten_families": [
+      "wide_arc",
+      "idle_correct",
+      "minjerk",
+      "dense_smooth",
+      "hop",
+      "fast_direct",
+      "mid_dense",
+      "simulated",
+      "bezier_fast",
+      "naive",
+      "wobble_mid"
+    ],
+    "files": [
+      {
+        "bot_id": "wide_arc",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_wide_arc_60hz.csv",
+        "episodes": 40,
+        "rows": 10162,
+        "windows": 103,
+        "winning_hc": 0.6029,
+        "episodes_meta": [
+          {
+            "bot": "wide_arc",
+            "seed": 906691818,
+            "challenge_type": "maze_navigate",
+            "events": 506,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1199499534,
+            "challenge_type": "connect_dots",
+            "events": 198,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1914621747,
+            "challenge_type": "target_hunt",
+            "events": 139,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1344187438,
+            "challenge_type": "maze_navigate",
+            "events": 316,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 60205076,
+            "challenge_type": "maze_navigate",
+            "events": 328,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 376670264,
+            "challenge_type": "path_gates",
+            "events": 105,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 753327610,
+            "challenge_type": "spiral_trace",
+            "events": 590,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1547232260,
+            "challenge_type": "target_hunt",
+            "events": 138,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1491050152,
+            "challenge_type": "path_gates",
+            "events": 100,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 936537756,
+            "challenge_type": "spiral_trace",
+            "events": 689,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 779447499,
+            "challenge_type": "maze_navigate",
+            "events": 424,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1891302138,
+            "challenge_type": "shape_trace",
+            "events": 447,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1718042051,
+            "challenge_type": "path_gates",
+            "events": 90,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1673129020,
+            "challenge_type": "spiral_trace",
+            "events": 581,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1532034074,
+            "challenge_type": "pin_entry",
+            "events": 80,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 271421735,
+            "challenge_type": "connect_dots",
+            "events": 120,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1052015094,
+            "challenge_type": "path_gates",
+            "events": 84,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 386865277,
+            "challenge_type": "spiral_trace",
+            "events": 598,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1555096657,
+            "challenge_type": "connect_dots",
+            "events": 158,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 92168942,
+            "challenge_type": "spiral_trace",
+            "events": 559,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1142001531,
+            "challenge_type": "connect_dots",
+            "events": 165,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1649530333,
+            "challenge_type": "spiral_trace",
+            "events": 598,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1584865965,
+            "challenge_type": "shape_trace",
+            "events": 68,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 295601808,
+            "challenge_type": "path_gates",
+            "events": 81,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 876418029,
+            "challenge_type": "target_hunt",
+            "events": 142,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 73772766,
+            "challenge_type": "button_sequence",
+            "events": 83,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1192068120,
+            "challenge_type": "maze_navigate",
+            "events": 314,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1059090800,
+            "challenge_type": "pin_entry",
+            "events": 77,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 367030897,
+            "challenge_type": "target_hunt",
+            "events": 111,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 42029059,
+            "challenge_type": "spiral_trace",
+            "events": 622,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1142133273,
+            "challenge_type": "target_hunt",
+            "events": 138,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 357578544,
+            "challenge_type": "connect_dots",
+            "events": 102,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1358473738,
+            "challenge_type": "target_hunt",
+            "events": 190,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 349183381,
+            "challenge_type": "shape_trace",
+            "events": 57,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 495479322,
+            "challenge_type": "target_hunt",
+            "events": 152,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1234080718,
+            "challenge_type": "path_gates",
+            "events": 106,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1021429393,
+            "challenge_type": "button_sequence",
+            "events": 104,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 1805394810,
+            "challenge_type": "maze_navigate",
+            "events": 531,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 946979680,
+            "challenge_type": "button_sequence",
+            "events": 135,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wide_arc",
+            "seed": 600874794,
+            "challenge_type": "button_sequence",
+            "events": 136,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "idle_correct",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_idle_correct_60hz.csv",
+        "episodes": 40,
+        "rows": 8638,
+        "windows": 77,
+        "winning_hc": 0.7172,
+        "episodes_meta": [
+          {
+            "bot": "idle_correct",
+            "seed": 1632851273,
+            "challenge_type": "pin_entry",
+            "events": 64,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 270505473,
+            "challenge_type": "spiral_trace",
+            "events": 545,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1872339106,
+            "challenge_type": "spiral_trace",
+            "events": 449,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1789038096,
+            "challenge_type": "connect_dots",
+            "events": 131,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 455938336,
+            "challenge_type": "button_sequence",
+            "events": 114,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1765113002,
+            "challenge_type": "spiral_trace",
+            "events": 555,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1342305636,
+            "challenge_type": "pin_entry",
+            "events": 61,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 110029739,
+            "challenge_type": "shape_trace",
+            "events": 328,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 709408553,
+            "challenge_type": "pin_entry",
+            "events": 54,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 618990577,
+            "challenge_type": "path_gates",
+            "events": 77,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1640288750,
+            "challenge_type": "maze_navigate",
+            "events": 385,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1167658950,
+            "challenge_type": "maze_navigate",
+            "events": 243,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 250106253,
+            "challenge_type": "connect_dots",
+            "events": 166,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 327658848,
+            "challenge_type": "maze_navigate",
+            "events": 312,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1120898860,
+            "challenge_type": "button_sequence",
+            "events": 106,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 481898545,
+            "challenge_type": "pin_entry",
+            "events": 60,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 708681769,
+            "challenge_type": "pin_entry",
+            "events": 71,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 147568416,
+            "challenge_type": "pin_entry",
+            "events": 56,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1902003129,
+            "challenge_type": "pin_entry",
+            "events": 67,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 752758652,
+            "challenge_type": "target_hunt",
+            "events": 115,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1415147706,
+            "challenge_type": "maze_navigate",
+            "events": 535,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 565375153,
+            "challenge_type": "spiral_trace",
+            "events": 504,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1550895740,
+            "challenge_type": "connect_dots",
+            "events": 119,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1152634326,
+            "challenge_type": "connect_dots",
+            "events": 111,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1546636952,
+            "challenge_type": "maze_navigate",
+            "events": 382,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1637711809,
+            "challenge_type": "pin_entry",
+            "events": 68,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1870377568,
+            "challenge_type": "target_hunt",
+            "events": 96,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1344864894,
+            "challenge_type": "button_sequence",
+            "events": 65,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1803085867,
+            "challenge_type": "target_hunt",
+            "events": 137,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1411795286,
+            "challenge_type": "shape_trace",
+            "events": 56,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 650952262,
+            "challenge_type": "maze_navigate",
+            "events": 379,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 362956893,
+            "challenge_type": "target_hunt",
+            "events": 100,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1525971719,
+            "challenge_type": "spiral_trace",
+            "events": 555,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 557717522,
+            "challenge_type": "maze_navigate",
+            "events": 423,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 7871664,
+            "challenge_type": "button_sequence",
+            "events": 116,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 719721351,
+            "challenge_type": "connect_dots",
+            "events": 129,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1646337623,
+            "challenge_type": "target_hunt",
+            "events": 93,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 913954841,
+            "challenge_type": "target_hunt",
+            "events": 91,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 129437441,
+            "challenge_type": "spiral_trace",
+            "events": 549,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "idle_correct",
+            "seed": 1836647044,
+            "challenge_type": "target_hunt",
+            "events": 171,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "minjerk",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_minjerk_60hz.csv",
+        "episodes": 40,
+        "rows": 7595,
+        "windows": 54,
+        "winning_hc": 0.7424,
+        "episodes_meta": [
+          {
+            "bot": "minjerk",
+            "seed": 1729979240,
+            "challenge_type": "shape_trace",
+            "events": 55,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1886251084,
+            "challenge_type": "shape_trace",
+            "events": 58,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 724512065,
+            "challenge_type": "shape_trace",
+            "events": 379,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 484521712,
+            "challenge_type": "shape_trace",
+            "events": 442,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1552041173,
+            "challenge_type": "path_gates",
+            "events": 101,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 931959958,
+            "challenge_type": "connect_dots",
+            "events": 142,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 297807679,
+            "challenge_type": "spiral_trace",
+            "events": 504,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1428193461,
+            "challenge_type": "path_gates",
+            "events": 88,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 148820063,
+            "challenge_type": "button_sequence",
+            "events": 114,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1205819008,
+            "challenge_type": "shape_trace",
+            "events": 330,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1817004634,
+            "challenge_type": "path_gates",
+            "events": 85,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 640839814,
+            "challenge_type": "maze_navigate",
+            "events": 266,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 943660254,
+            "challenge_type": "pin_entry",
+            "events": 63,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 984772113,
+            "challenge_type": "shape_trace",
+            "events": 129,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1369747083,
+            "challenge_type": "target_hunt",
+            "events": 109,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 605460917,
+            "challenge_type": "pin_entry",
+            "events": 76,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1868644064,
+            "challenge_type": "shape_trace",
+            "events": 309,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 660521613,
+            "challenge_type": "maze_navigate",
+            "events": 302,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 444049730,
+            "challenge_type": "connect_dots",
+            "events": 67,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 96202727,
+            "challenge_type": "target_hunt",
+            "events": 80,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 974140528,
+            "challenge_type": "button_sequence",
+            "events": 148,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1110372314,
+            "challenge_type": "path_gates",
+            "events": 76,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 270139560,
+            "challenge_type": "maze_navigate",
+            "events": 440,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 599731557,
+            "challenge_type": "button_sequence",
+            "events": 80,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1341978056,
+            "challenge_type": "path_gates",
+            "events": 75,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1124380655,
+            "challenge_type": "button_sequence",
+            "events": 99,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1911483634,
+            "challenge_type": "target_hunt",
+            "events": 116,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1616021668,
+            "challenge_type": "shape_trace",
+            "events": 49,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 459220768,
+            "challenge_type": "button_sequence",
+            "events": 77,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 251366249,
+            "challenge_type": "button_sequence",
+            "events": 108,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1363965014,
+            "challenge_type": "spiral_trace",
+            "events": 500,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 731319852,
+            "challenge_type": "button_sequence",
+            "events": 135,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1341498322,
+            "challenge_type": "spiral_trace",
+            "events": 678,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 120629581,
+            "challenge_type": "pin_entry",
+            "events": 71,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 407120400,
+            "challenge_type": "pin_entry",
+            "events": 79,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 306285621,
+            "challenge_type": "maze_navigate",
+            "events": 808,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1549938456,
+            "challenge_type": "shape_trace",
+            "events": 58,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1874866221,
+            "challenge_type": "button_sequence",
+            "events": 79,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 1898950012,
+            "challenge_type": "button_sequence",
+            "events": 85,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "minjerk",
+            "seed": 237728716,
+            "challenge_type": "connect_dots",
+            "events": 135,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "dense_smooth",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_dense_smooth_60hz.csv",
+        "episodes": 40,
+        "rows": 19257,
+        "windows": 184,
+        "winning_hc": 0.8923,
+        "episodes_meta": [
+          {
+            "bot": "dense_smooth",
+            "seed": 1933517006,
+            "challenge_type": "pin_entry",
+            "events": 122,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 113277959,
+            "challenge_type": "target_hunt",
+            "events": 146,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1732432457,
+            "challenge_type": "connect_dots",
+            "events": 204,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1521175664,
+            "challenge_type": "spiral_trace",
+            "events": 1079,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1625945108,
+            "challenge_type": "button_sequence",
+            "events": 123,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1334683772,
+            "challenge_type": "maze_navigate",
+            "events": 1135,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 466769015,
+            "challenge_type": "shape_trace",
+            "events": 107,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1164907014,
+            "challenge_type": "maze_navigate",
+            "events": 397,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1232796639,
+            "challenge_type": "maze_navigate",
+            "events": 676,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 503326988,
+            "challenge_type": "button_sequence",
+            "events": 108,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 408593957,
+            "challenge_type": "target_hunt",
+            "events": 176,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 703706031,
+            "challenge_type": "target_hunt",
+            "events": 190,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 594613843,
+            "challenge_type": "button_sequence",
+            "events": 187,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 710571233,
+            "challenge_type": "spiral_trace",
+            "events": 965,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 486029934,
+            "challenge_type": "maze_navigate",
+            "events": 793,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1114048550,
+            "challenge_type": "target_hunt",
+            "events": 233,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 82172717,
+            "challenge_type": "spiral_trace",
+            "events": 888,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 747796440,
+            "challenge_type": "spiral_trace",
+            "events": 1155,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 35791213,
+            "challenge_type": "pin_entry",
+            "events": 121,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 7477572,
+            "challenge_type": "button_sequence",
+            "events": 196,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 877072211,
+            "challenge_type": "button_sequence",
+            "events": 118,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 952069839,
+            "challenge_type": "pin_entry",
+            "events": 124,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 952771344,
+            "challenge_type": "maze_navigate",
+            "events": 879,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1736257669,
+            "challenge_type": "pin_entry",
+            "events": 94,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 783465767,
+            "challenge_type": "maze_navigate",
+            "events": 525,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1515987606,
+            "challenge_type": "target_hunt",
+            "events": 191,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 38411339,
+            "challenge_type": "maze_navigate",
+            "events": 1104,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1439503453,
+            "challenge_type": "connect_dots",
+            "events": 131,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 398900625,
+            "challenge_type": "shape_trace",
+            "events": 82,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1986608841,
+            "challenge_type": "target_hunt",
+            "events": 156,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1185984124,
+            "challenge_type": "spiral_trace",
+            "events": 940,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1587010711,
+            "challenge_type": "maze_navigate",
+            "events": 1117,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1366290756,
+            "challenge_type": "path_gates",
+            "events": 126,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1309706006,
+            "challenge_type": "button_sequence",
+            "events": 93,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1863453930,
+            "challenge_type": "maze_navigate",
+            "events": 935,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 690297917,
+            "challenge_type": "button_sequence",
+            "events": 190,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 257542417,
+            "challenge_type": "maze_navigate",
+            "events": 568,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 998020629,
+            "challenge_type": "maze_navigate",
+            "events": 999,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 116955628,
+            "challenge_type": "spiral_trace",
+            "events": 865,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "dense_smooth",
+            "seed": 1931948685,
+            "challenge_type": "spiral_trace",
+            "events": 1019,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "hop",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_hop_60hz.csv",
+        "episodes": 40,
+        "rows": 3878,
+        "windows": 53,
+        "winning_hc": 0.7928,
+        "episodes_meta": [
+          {
+            "bot": "hop",
+            "seed": 989605570,
+            "challenge_type": "pin_entry",
+            "events": 48,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "hop",
+            "seed": 1086948145,
+            "challenge_type": "button_sequence",
+            "events": 120,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 419848090,
+            "challenge_type": "pin_entry",
+            "events": 53,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1850695878,
+            "challenge_type": "maze_navigate",
+            "events": 201,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 239858070,
+            "challenge_type": "maze_navigate",
+            "events": 192,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1855183342,
+            "challenge_type": "button_sequence",
+            "events": 70,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 463896468,
+            "challenge_type": "target_hunt",
+            "events": 104,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1457171176,
+            "challenge_type": "connect_dots",
+            "events": 96,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 10403104,
+            "challenge_type": "shape_trace",
+            "events": 53,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1916737450,
+            "challenge_type": "maze_navigate",
+            "events": 90,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 374389839,
+            "challenge_type": "connect_dots",
+            "events": 108,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1213057730,
+            "challenge_type": "button_sequence",
+            "events": 95,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 591106512,
+            "challenge_type": "button_sequence",
+            "events": 94,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1882257977,
+            "challenge_type": "pin_entry",
+            "events": 52,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1085241139,
+            "challenge_type": "pin_entry",
+            "events": 54,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1213643738,
+            "challenge_type": "pin_entry",
+            "events": 45,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 841017670,
+            "challenge_type": "pin_entry",
+            "events": 61,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 366734653,
+            "challenge_type": "maze_navigate",
+            "events": 243,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1915489452,
+            "challenge_type": "pin_entry",
+            "events": 46,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1021597046,
+            "challenge_type": "pin_entry",
+            "events": 56,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 794780671,
+            "challenge_type": "shape_trace",
+            "events": 92,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1533494502,
+            "challenge_type": "maze_navigate",
+            "events": 163,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 988689668,
+            "challenge_type": "path_gates",
+            "events": 55,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1161430594,
+            "challenge_type": "target_hunt",
+            "events": 107,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 699860589,
+            "challenge_type": "shape_trace",
+            "events": 63,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1788892724,
+            "challenge_type": "maze_navigate",
+            "events": 215,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 282555095,
+            "challenge_type": "button_sequence",
+            "events": 91,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1678073640,
+            "challenge_type": "button_sequence",
+            "events": 60,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 835139326,
+            "challenge_type": "path_gates",
+            "events": 50,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1300979693,
+            "challenge_type": "pin_entry",
+            "events": 61,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1599852530,
+            "challenge_type": "maze_navigate",
+            "events": 278,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1177779914,
+            "challenge_type": "pin_entry",
+            "events": 64,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 545220187,
+            "challenge_type": "shape_trace",
+            "events": 45,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 482626497,
+            "challenge_type": "shape_trace",
+            "events": 114,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1548776637,
+            "challenge_type": "target_hunt",
+            "events": 94,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 758259300,
+            "challenge_type": "button_sequence",
+            "events": 70,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 985470666,
+            "challenge_type": "spiral_trace",
+            "events": 133,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1586279150,
+            "challenge_type": "shape_trace",
+            "events": 68,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 493736333,
+            "challenge_type": "maze_navigate",
+            "events": 105,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "hop",
+            "seed": 1949290518,
+            "challenge_type": "button_sequence",
+            "events": 69,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "fast_direct",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_fast_direct_60hz.csv",
+        "episodes": 40,
+        "rows": 2387,
+        "windows": 39,
+        "winning_hc": 0.6234,
+        "episodes_meta": [
+          {
+            "bot": "fast_direct",
+            "seed": 1201650462,
+            "challenge_type": "shape_trace",
+            "events": 31,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1334881652,
+            "challenge_type": "maze_navigate",
+            "events": 91,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1800282652,
+            "challenge_type": "pin_entry",
+            "events": 37,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1353534910,
+            "challenge_type": "button_sequence",
+            "events": 48,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1130268702,
+            "challenge_type": "maze_navigate",
+            "events": 70,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 879849382,
+            "challenge_type": "path_gates",
+            "events": 38,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1338397734,
+            "challenge_type": "connect_dots",
+            "events": 58,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 687430737,
+            "challenge_type": "pin_entry",
+            "events": 47,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 896396873,
+            "challenge_type": "path_gates",
+            "events": 34,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1911169695,
+            "challenge_type": "spiral_trace",
+            "events": 58,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1868103089,
+            "challenge_type": "button_sequence",
+            "events": 49,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1467325873,
+            "challenge_type": "shape_trace",
+            "events": 47,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 317052273,
+            "challenge_type": "maze_navigate",
+            "events": 122,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1780285079,
+            "challenge_type": "button_sequence",
+            "events": 55,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1126864882,
+            "challenge_type": "maze_navigate",
+            "events": 72,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 383594060,
+            "challenge_type": "maze_navigate",
+            "events": 111,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 846965825,
+            "challenge_type": "pin_entry",
+            "events": 44,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 577551826,
+            "challenge_type": "maze_navigate",
+            "events": 78,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 109949837,
+            "challenge_type": "shape_trace",
+            "events": 19,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1063377997,
+            "challenge_type": "connect_dots",
+            "events": 52,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 817187010,
+            "challenge_type": "path_gates",
+            "events": 35,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 55830011,
+            "challenge_type": "button_sequence",
+            "events": 42,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 951647390,
+            "challenge_type": "maze_navigate",
+            "events": 73,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 350625275,
+            "challenge_type": "target_hunt",
+            "events": 63,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 511319998,
+            "challenge_type": "pin_entry",
+            "events": 34,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 2690578,
+            "challenge_type": "connect_dots",
+            "events": 85,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1644453604,
+            "challenge_type": "spiral_trace",
+            "events": 57,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1123560549,
+            "challenge_type": "button_sequence",
+            "events": 57,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1591183977,
+            "challenge_type": "pin_entry",
+            "events": 45,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1172129796,
+            "challenge_type": "button_sequence",
+            "events": 74,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1648977319,
+            "challenge_type": "spiral_trace",
+            "events": 71,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1433526536,
+            "challenge_type": "spiral_trace",
+            "events": 82,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 811257888,
+            "challenge_type": "spiral_trace",
+            "events": 67,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1173334150,
+            "challenge_type": "maze_navigate",
+            "events": 81,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 563080057,
+            "challenge_type": "pin_entry",
+            "events": 35,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1751386974,
+            "challenge_type": "pin_entry",
+            "events": 42,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 832989122,
+            "challenge_type": "connect_dots",
+            "events": 92,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1161570151,
+            "challenge_type": "target_hunt",
+            "events": 82,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 435368655,
+            "challenge_type": "shape_trace",
+            "events": 34,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "fast_direct",
+            "seed": 1608752057,
+            "challenge_type": "maze_navigate",
+            "events": 75,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "mid_dense",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_mid_dense_60hz.csv",
+        "episodes": 40,
+        "rows": 3053,
+        "windows": 40,
+        "winning_hc": 0.9484,
+        "episodes_meta": [
+          {
+            "bot": "mid_dense",
+            "seed": 1372189876,
+            "challenge_type": "button_sequence",
+            "events": 88,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1291244682,
+            "challenge_type": "path_gates",
+            "events": 48,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 704685911,
+            "challenge_type": "button_sequence",
+            "events": 104,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 175481881,
+            "challenge_type": "shape_trace",
+            "events": 39,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1685218458,
+            "challenge_type": "connect_dots",
+            "events": 127,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 314317721,
+            "challenge_type": "pin_entry",
+            "events": 54,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1961296835,
+            "challenge_type": "shape_trace",
+            "events": 43,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1702827720,
+            "challenge_type": "target_hunt",
+            "events": 64,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 210793997,
+            "challenge_type": "connect_dots",
+            "events": 101,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1455499230,
+            "challenge_type": "shape_trace",
+            "events": 39,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 16486722,
+            "challenge_type": "maze_navigate",
+            "events": 109,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1908102654,
+            "challenge_type": "maze_navigate",
+            "events": 168,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1711580290,
+            "challenge_type": "connect_dots",
+            "events": 82,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1433991662,
+            "challenge_type": "shape_trace",
+            "events": 59,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1905437752,
+            "challenge_type": "pin_entry",
+            "events": 42,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1628598028,
+            "challenge_type": "maze_navigate",
+            "events": 117,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 106971370,
+            "challenge_type": "button_sequence",
+            "events": 96,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 303009663,
+            "challenge_type": "target_hunt",
+            "events": 85,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 445366016,
+            "challenge_type": "path_gates",
+            "events": 46,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1586581261,
+            "challenge_type": "shape_trace",
+            "events": 29,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1218964950,
+            "challenge_type": "maze_navigate",
+            "events": 116,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 504723093,
+            "challenge_type": "spiral_trace",
+            "events": 77,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 823892752,
+            "challenge_type": "pin_entry",
+            "events": 43,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 60130932,
+            "challenge_type": "path_gates",
+            "events": 46,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1387260692,
+            "challenge_type": "button_sequence",
+            "events": 92,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 58815293,
+            "challenge_type": "connect_dots",
+            "events": 95,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1242968884,
+            "challenge_type": "maze_navigate",
+            "events": 170,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 952174055,
+            "challenge_type": "path_gates",
+            "events": 45,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1168748031,
+            "challenge_type": "target_hunt",
+            "events": 134,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 928413175,
+            "challenge_type": "shape_trace",
+            "events": 47,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 981504195,
+            "challenge_type": "spiral_trace",
+            "events": 83,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1127303871,
+            "challenge_type": "path_gates",
+            "events": 44,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 144885983,
+            "challenge_type": "spiral_trace",
+            "events": 90,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1334500089,
+            "challenge_type": "pin_entry",
+            "events": 53,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1438855646,
+            "challenge_type": "spiral_trace",
+            "events": 94,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1682154272,
+            "challenge_type": "pin_entry",
+            "events": 38,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 476222060,
+            "challenge_type": "connect_dots",
+            "events": 80,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1112621635,
+            "challenge_type": "target_hunt",
+            "events": 81,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1294717603,
+            "challenge_type": "shape_trace",
+            "events": 43,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "mid_dense",
+            "seed": 1651211198,
+            "challenge_type": "pin_entry",
+            "events": 42,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "simulated",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_simulated_60hz.csv",
+        "episodes": 40,
+        "rows": 29913,
+        "windows": 390,
+        "winning_hc": 0.9856,
+        "episodes_meta": [
+          {
+            "bot": "simulated",
+            "seed": 1287574155,
+            "challenge_type": "pin_entry",
+            "events": 353,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "simulated",
+            "seed": 282319786,
+            "challenge_type": "connect_dots",
+            "events": 327,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1225299196,
+            "challenge_type": "maze_navigate",
+            "events": 517,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1662492127,
+            "challenge_type": "button_sequence",
+            "events": 240,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 153850553,
+            "challenge_type": "button_sequence",
+            "events": 111,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 293387983,
+            "challenge_type": "connect_dots",
+            "events": 597,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 798927273,
+            "challenge_type": "connect_dots",
+            "events": 159,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 814786840,
+            "challenge_type": "connect_dots",
+            "events": 298,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 293306727,
+            "challenge_type": "spiral_trace",
+            "events": 1077,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1699358882,
+            "challenge_type": "connect_dots",
+            "events": 205,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 976739160,
+            "challenge_type": "path_gates",
+            "events": 344,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 933779239,
+            "challenge_type": "target_hunt",
+            "events": 439,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1291280045,
+            "challenge_type": "shape_trace",
+            "events": 168,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1771126068,
+            "challenge_type": "pin_entry",
+            "events": 110,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 259175088,
+            "challenge_type": "target_hunt",
+            "events": 3419,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 388715994,
+            "challenge_type": "maze_navigate",
+            "events": 9537,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1605749769,
+            "challenge_type": "target_hunt",
+            "events": 992,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 315290570,
+            "challenge_type": "button_sequence",
+            "events": 268,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 280457237,
+            "challenge_type": "maze_navigate",
+            "events": 387,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1520838832,
+            "challenge_type": "pin_entry",
+            "events": 97,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 366137840,
+            "challenge_type": "connect_dots",
+            "events": 732,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1277575737,
+            "challenge_type": "path_gates",
+            "events": 1714,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1108898964,
+            "challenge_type": "button_sequence",
+            "events": 432,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 722674780,
+            "challenge_type": "maze_navigate",
+            "events": 970,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1278683571,
+            "challenge_type": "connect_dots",
+            "events": 144,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1311125910,
+            "challenge_type": "pin_entry",
+            "events": 115,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1736521173,
+            "challenge_type": "path_gates",
+            "events": 439,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 315732625,
+            "challenge_type": "maze_navigate",
+            "events": 538,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1843697979,
+            "challenge_type": "maze_navigate",
+            "events": 433,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1469888680,
+            "challenge_type": "connect_dots",
+            "events": 223,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1273144302,
+            "challenge_type": "path_gates",
+            "events": 214,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 244008020,
+            "challenge_type": "shape_trace",
+            "events": 234,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 662941345,
+            "challenge_type": "path_gates",
+            "events": 256,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 337549469,
+            "challenge_type": "shape_trace",
+            "events": 132,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1923296075,
+            "challenge_type": "maze_navigate",
+            "events": 1353,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1739779901,
+            "challenge_type": "spiral_trace",
+            "events": 1009,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 618032387,
+            "challenge_type": "button_sequence",
+            "events": 511,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1406219669,
+            "challenge_type": "path_gates",
+            "events": 195,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 1421792450,
+            "challenge_type": "shape_trace",
+            "events": 202,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "simulated",
+            "seed": 126022181,
+            "challenge_type": "connect_dots",
+            "events": 422,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "bezier_fast",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_bezier_fast_60hz.csv",
+        "episodes": 40,
+        "rows": 3270,
+        "windows": 34,
+        "winning_hc": 0.9822,
+        "episodes_meta": [
+          {
+            "bot": "bezier_fast",
+            "seed": 1942577567,
+            "challenge_type": "pin_entry",
+            "events": 29,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 820227757,
+            "challenge_type": "path_gates",
+            "events": 40,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 407339925,
+            "challenge_type": "maze_navigate",
+            "events": 332,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1405814045,
+            "challenge_type": "maze_navigate",
+            "events": 305,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1182951322,
+            "challenge_type": "connect_dots",
+            "events": 57,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 368715957,
+            "challenge_type": "shape_trace",
+            "events": 17,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1763786549,
+            "challenge_type": "connect_dots",
+            "events": 58,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 259802625,
+            "challenge_type": "connect_dots",
+            "events": 35,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1573631279,
+            "challenge_type": "pin_entry",
+            "events": 39,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1156384338,
+            "challenge_type": "connect_dots",
+            "events": 60,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 154593062,
+            "challenge_type": "connect_dots",
+            "events": 57,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1837708343,
+            "challenge_type": "button_sequence",
+            "events": 41,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1772874860,
+            "challenge_type": "path_gates",
+            "events": 40,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 792038850,
+            "challenge_type": "shape_trace",
+            "events": 15,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 582506939,
+            "challenge_type": "path_gates",
+            "events": 30,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1984241073,
+            "challenge_type": "button_sequence",
+            "events": 38,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 841504321,
+            "challenge_type": "connect_dots",
+            "events": 35,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 280486318,
+            "challenge_type": "pin_entry",
+            "events": 37,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 822569063,
+            "challenge_type": "maze_navigate",
+            "events": 245,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 835452815,
+            "challenge_type": "path_gates",
+            "events": 40,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1041812731,
+            "challenge_type": "target_hunt",
+            "events": 38,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1079987476,
+            "challenge_type": "spiral_trace",
+            "events": 196,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 243993331,
+            "challenge_type": "shape_trace",
+            "events": 35,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1483895526,
+            "challenge_type": "target_hunt",
+            "events": 53,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1261207013,
+            "challenge_type": "maze_navigate",
+            "events": 282,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 681772265,
+            "challenge_type": "maze_navigate",
+            "events": 214,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 310021549,
+            "challenge_type": "path_gates",
+            "events": 34,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1004341054,
+            "challenge_type": "connect_dots",
+            "events": 57,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 862876144,
+            "challenge_type": "target_hunt",
+            "events": 37,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1568521106,
+            "challenge_type": "pin_entry",
+            "events": 29,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1185418170,
+            "challenge_type": "connect_dots",
+            "events": 51,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 483845155,
+            "challenge_type": "connect_dots",
+            "events": 54,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1108058964,
+            "challenge_type": "target_hunt",
+            "events": 52,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1478068719,
+            "challenge_type": "pin_entry",
+            "events": 30,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 328231797,
+            "challenge_type": "spiral_trace",
+            "events": 184,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 936468640,
+            "challenge_type": "path_gates",
+            "events": 31,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1816645608,
+            "challenge_type": "connect_dots",
+            "events": 33,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1987525283,
+            "challenge_type": "spiral_trace",
+            "events": 171,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1530021873,
+            "challenge_type": "pin_entry",
+            "events": 28,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "bezier_fast",
+            "seed": 1129871218,
+            "challenge_type": "shape_trace",
+            "events": 111,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "naive",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_naive_60hz.csv",
+        "episodes": 40,
+        "rows": 3098,
+        "windows": 32,
+        "winning_hc": 0.6014,
+        "episodes_meta": [
+          {
+            "bot": "naive",
+            "seed": 1475178223,
+            "challenge_type": "maze_navigate",
+            "events": 325,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "naive",
+            "seed": 1501917907,
+            "challenge_type": "spiral_trace",
+            "events": 186,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1669469558,
+            "challenge_type": "button_sequence",
+            "events": 27,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1040313648,
+            "challenge_type": "path_gates",
+            "events": 37,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 347481451,
+            "challenge_type": "maze_navigate",
+            "events": 344,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1554280736,
+            "challenge_type": "connect_dots",
+            "events": 48,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 729300020,
+            "challenge_type": "pin_entry",
+            "events": 34,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 384263267,
+            "challenge_type": "maze_navigate",
+            "events": 194,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1713301460,
+            "challenge_type": "shape_trace",
+            "events": 36,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 584706436,
+            "challenge_type": "button_sequence",
+            "events": 31,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 479310545,
+            "challenge_type": "connect_dots",
+            "events": 33,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1973238643,
+            "challenge_type": "pin_entry",
+            "events": 31,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 699927128,
+            "challenge_type": "spiral_trace",
+            "events": 162,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 987508832,
+            "challenge_type": "target_hunt",
+            "events": 42,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 415626643,
+            "challenge_type": "pin_entry",
+            "events": 26,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1044075533,
+            "challenge_type": "spiral_trace",
+            "events": 166,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 569786027,
+            "challenge_type": "shape_trace",
+            "events": 16,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 80807603,
+            "challenge_type": "spiral_trace",
+            "events": 157,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 411397913,
+            "challenge_type": "shape_trace",
+            "events": 37,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1926087434,
+            "challenge_type": "maze_navigate",
+            "events": 149,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 566607135,
+            "challenge_type": "shape_trace",
+            "events": 17,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 497656176,
+            "challenge_type": "pin_entry",
+            "events": 29,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 900361763,
+            "challenge_type": "path_gates",
+            "events": 33,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 18737382,
+            "challenge_type": "pin_entry",
+            "events": 30,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1923940345,
+            "challenge_type": "path_gates",
+            "events": 36,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1934300149,
+            "challenge_type": "connect_dots",
+            "events": 42,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 655377852,
+            "challenge_type": "button_sequence",
+            "events": 37,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1666707593,
+            "challenge_type": "path_gates",
+            "events": 34,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 506282628,
+            "challenge_type": "shape_trace",
+            "events": 13,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 4302142,
+            "challenge_type": "button_sequence",
+            "events": 39,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 102655214,
+            "challenge_type": "pin_entry",
+            "events": 33,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1180157644,
+            "challenge_type": "path_gates",
+            "events": 33,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 176943179,
+            "challenge_type": "path_gates",
+            "events": 36,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1677380678,
+            "challenge_type": "spiral_trace",
+            "events": 209,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1081698243,
+            "challenge_type": "button_sequence",
+            "events": 32,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 73623099,
+            "challenge_type": "target_hunt",
+            "events": 47,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1624025352,
+            "challenge_type": "spiral_trace",
+            "events": 196,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 936739908,
+            "challenge_type": "connect_dots",
+            "events": 43,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 796336275,
+            "challenge_type": "path_gates",
+            "events": 40,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "naive",
+            "seed": 1415299103,
+            "challenge_type": "connect_dots",
+            "events": 38,
+            "is_winning_replay": false
+          }
+        ]
+      },
+      {
+        "bot_id": "wobble_mid",
+        "csv": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_wobble_mid_60hz.csv",
+        "episodes": 40,
+        "rows": 7510,
+        "windows": 71,
+        "winning_hc": 0.7709,
+        "episodes_meta": [
+          {
+            "bot": "wobble_mid",
+            "seed": 1322340717,
+            "challenge_type": "pin_entry",
+            "events": 89,
+            "is_winning_replay": true
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 538730072,
+            "challenge_type": "path_gates",
+            "events": 76,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1963102590,
+            "challenge_type": "connect_dots",
+            "events": 134,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1418460439,
+            "challenge_type": "connect_dots",
+            "events": 133,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 713245970,
+            "challenge_type": "path_gates",
+            "events": 68,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1045235148,
+            "challenge_type": "button_sequence",
+            "events": 121,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 652345729,
+            "challenge_type": "target_hunt",
+            "events": 104,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1427009823,
+            "challenge_type": "maze_navigate",
+            "events": 223,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 589172629,
+            "challenge_type": "maze_navigate",
+            "events": 345,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 52199974,
+            "challenge_type": "spiral_trace",
+            "events": 606,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 153199729,
+            "challenge_type": "shape_trace",
+            "events": 119,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 934756005,
+            "challenge_type": "button_sequence",
+            "events": 162,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1950280094,
+            "challenge_type": "button_sequence",
+            "events": 77,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 518995137,
+            "challenge_type": "button_sequence",
+            "events": 90,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1271938417,
+            "challenge_type": "target_hunt",
+            "events": 123,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 609922278,
+            "challenge_type": "button_sequence",
+            "events": 75,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 570681606,
+            "challenge_type": "connect_dots",
+            "events": 154,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1258907529,
+            "challenge_type": "spiral_trace",
+            "events": 551,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 985644142,
+            "challenge_type": "maze_navigate",
+            "events": 439,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1664109295,
+            "challenge_type": "button_sequence",
+            "events": 152,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 949850985,
+            "challenge_type": "shape_trace",
+            "events": 336,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1600209631,
+            "challenge_type": "button_sequence",
+            "events": 86,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 936269188,
+            "challenge_type": "shape_trace",
+            "events": 133,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 230437233,
+            "challenge_type": "button_sequence",
+            "events": 129,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 926493666,
+            "challenge_type": "path_gates",
+            "events": 89,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 3825995,
+            "challenge_type": "target_hunt",
+            "events": 98,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 999350466,
+            "challenge_type": "maze_navigate",
+            "events": 526,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1217996223,
+            "challenge_type": "connect_dots",
+            "events": 98,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1973805358,
+            "challenge_type": "pin_entry",
+            "events": 69,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1354968228,
+            "challenge_type": "path_gates",
+            "events": 78,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 410491951,
+            "challenge_type": "target_hunt",
+            "events": 175,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1377530293,
+            "challenge_type": "maze_navigate",
+            "events": 543,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1885772179,
+            "challenge_type": "button_sequence",
+            "events": 147,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1779666633,
+            "challenge_type": "target_hunt",
+            "events": 133,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1540784136,
+            "challenge_type": "spiral_trace",
+            "events": 512,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 271627908,
+            "challenge_type": "shape_trace",
+            "events": 127,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1230419543,
+            "challenge_type": "pin_entry",
+            "events": 65,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 626093803,
+            "challenge_type": "connect_dots",
+            "events": 94,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1477050531,
+            "challenge_type": "path_gates",
+            "events": 84,
+            "is_winning_replay": false
+          },
+          {
+            "bot": "wobble_mid",
+            "seed": 1795067284,
+            "challenge_type": "connect_dots",
+            "events": 147,
+            "is_winning_replay": false
+          }
+        ]
+      }
+    ],
+    "total_windows": 1077
+  },
+  "human_sources": {
+    "os_recordings_60hz_native": 4479
+  },
+  "bot_data_root": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz",
+  "bot_generation_summary": {
+    "target_hz": 60.0,
+    "ymodel_targets": {
+      "challenge": 40335,
+      "tiers": 55186,
+      "evasion": 1055,
+      "families": 4652
+    },
+    "random_state": 20260822,
+    "output_root": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz",
+    "challenge": {
+      "windows": 40868,
+      "skipped": true
+    },
+    "tiers": {
+      "windows": 57670,
+      "skipped": true
+    },
+    "evasion": {
+      "windows": 1055,
+      "skipped": true
+    },
+    "families": {
+      "dir": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families",
+      "files": 6,
+      "episodes": 2376,
+      "rows": 13635,
+      "windows": 4538,
+      "target": 4652,
+      "file_summaries": [
+        {
+          "file": "xmodel_v01_families_60hz.csv",
+          "windows": 438,
+          "source": "v01_families"
+        },
+        {
+          "file": "xmodel_ymodel_v02_named_hops_60hz.csv",
+          "windows": 800,
+          "source": "v02_families"
+        },
+        {
+          "file": "xmodel_ymodel_v02_grids_60hz.csv",
+          "windows": 312,
+          "source": "v02_families"
+        },
+        {
+          "file": "xmodel_ymodel_v02_legacy_live_families_60hz.csv",
+          "windows": 152,
+          "source": "v02_families"
+        },
+        {
+          "file": "xmodel_ymodel_v02_fitts_all_challenges_60hz.csv",
+          "windows": 2692,
+          "source": "v02_families"
+        },
+        {
+          "file": "xmodel_playwright_sim_60hz.csv",
+          "windows": 144,
+          "episodes": 144,
+          "source": "playwright_sim"
+        }
+      ],
+      "seconds": 10.65
+    },
+    "legacy": {
+      "dir": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\legacy",
+      "files": 4,
+      "windows": 3,
+      "seconds": 0.06
+    },
+    "total_bot_windows": 104134
+  },
+  "train_seconds": 1.768,
+  "xgb_params": {
+    "n_estimators": 600,
+    "max_depth": 16,
+    "min_child_weight": 4,
+    "subsample": 0.8,
+    "colsample_bytree": 0.35,
+    "learning_rate": 0.05,
+    "tree_method": "hist",
+    "device": "cuda",
+    "eval_metric": "logloss",
+    "random_state": 42,
+    "n_jobs": 1
+  },
+  "feature_names": [
+    "straightness_index",
+    "velocity_mean",
+    "velocity_std",
+    "velocity_max",
+    "acceleration_mean",
+    "acceleration_std",
+    "jerk_mean",
+    "angle_change_mean",
+    "angle_change_std",
+    "jitter_ratio",
+    "idle_ratio",
+    "avg_click_dwell_ms"
+  ],
+  "human_windows_loaded": 4479,
+  "bot_windows_loaded": 105649,
+  "bot_windows_by_source": {
+    "bot_xmodel_challenge": 40868,
+    "bot_xmodel_tiers": 57670,
+    "bot_xmodel_evasion": 1055,
+    "bot_xmodel_families": 4976,
+    "bot_xmodel_legacy": 3,
+    "bot_xmodel_attack_winners": 1077
+  },
+  "train_windows": 88382,
+  "test_windows": 21746,
+  "confusion_matrix": [
+    [
+      2025,
+      63
+    ],
+    [
+      11,
+      19647
+    ]
+  ],
+  "roc_auc": 0.9997733878635005,
+  "accuracy": 0.9965970753241975,
+  "classification_report": "              precision    recall  f1-score   support\n\n       Human       0.99      0.97      0.98      2088\n         Bot       1.00      1.00      1.00     19658\n\n    accuracy                           1.00     21746\n   macro avg       1.00      0.98      0.99     21746\nweighted avg       1.00      1.00      1.00     21746\n",
+  "bot_style_eval": {
+    "linear_fast": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 10,
+      "windows_flagged_bot": 10
+    },
+    "linear_timed": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 7,
+      "windows_flagged_bot": 7
+    },
+    "bezier_fast": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 7,
+      "windows_flagged_bot": 7
+    },
+    "bezier_timed": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 9,
+      "windows_flagged_bot": 9
+    },
+    "humanoid_fast": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 9,
+      "windows_flagged_bot": 9
+    },
+    "humanoid_simulated": {
+      "bot_detection_rate": 0.9831,
+      "windows_scored": 59,
+      "windows_flagged_bot": 58
+    },
+    "naive": {
+      "bot_detection_rate": 1.0,
+      "windows_scored": 10,
+      "windows_flagged_bot": 10
+    }
+  },
+  "human_files": [
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260818_223558_to_20260819_000518_60hz.csv",
+      "raw_rows": 7031,
+      "windows": 69,
+      "afk_splits": 28,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260819_194020_to_20260819_234601_60hz.csv",
+      "raw_rows": 58908,
+      "windows": 602,
+      "afk_splits": 270,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260819_200659_to_20260819_202447_60hz.csv",
+      "raw_rows": 16755,
+      "windows": 156,
+      "afk_splits": 30,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260820_180106_to_20260820_202100_60hz.csv",
+      "raw_rows": 230507,
+      "windows": 1486,
+      "afk_splits": 127,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260821_183034_to_20260822_012243_60hz.csv",
+      "raw_rows": 133928,
+      "windows": 1242,
+      "afk_splits": 444,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\human\\input_log_20260821_202311_to_20260821_221714_60hz.csv",
+      "raw_rows": 140019,
+      "windows": 924,
+      "afk_splits": 114,
+      "truncated": false
+    }
+  ],
+  "bot_files": [
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_001_60hz.csv",
+      "raw_rows": 410983,
+      "windows": 5948,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_002_60hz.csv",
+      "raw_rows": 453285,
+      "windows": 6677,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_003_60hz.csv",
+      "raw_rows": 505940,
+      "windows": 7657,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_004_60hz.csv",
+      "raw_rows": 382667,
+      "windows": 5469,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_005_60hz.csv",
+      "raw_rows": 345116,
+      "windows": 4850,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_006_60hz.csv",
+      "raw_rows": 389664,
+      "windows": 5621,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\challenge\\challenge_bot_007_60hz.csv",
+      "raw_rows": 333594,
+      "windows": 4646,
+      "afk_splits": 349,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_001_60hz.csv",
+      "raw_rows": 8263,
+      "windows": 81,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_002_60hz.csv",
+      "raw_rows": 8206,
+      "windows": 68,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_003_60hz.csv",
+      "raw_rows": 8028,
+      "windows": 82,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_004_60hz.csv",
+      "raw_rows": 7998,
+      "windows": 79,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_005_60hz.csv",
+      "raw_rows": 8082,
+      "windows": 88,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_006_60hz.csv",
+      "raw_rows": 8286,
+      "windows": 80,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_007_60hz.csv",
+      "raw_rows": 8411,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_008_60hz.csv",
+      "raw_rows": 7919,
+      "windows": 78,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_009_60hz.csv",
+      "raw_rows": 8102,
+      "windows": 79,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_010_60hz.csv",
+      "raw_rows": 7492,
+      "windows": 67,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_011_60hz.csv",
+      "raw_rows": 7380,
+      "windows": 72,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_012_60hz.csv",
+      "raw_rows": 8157,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_013_60hz.csv",
+      "raw_rows": 7722,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_014_60hz.csv",
+      "raw_rows": 7682,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_015_60hz.csv",
+      "raw_rows": 8098,
+      "windows": 75,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_016_60hz.csv",
+      "raw_rows": 7811,
+      "windows": 84,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_017_60hz.csv",
+      "raw_rows": 7127,
+      "windows": 65,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_018_60hz.csv",
+      "raw_rows": 7761,
+      "windows": 69,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_019_60hz.csv",
+      "raw_rows": 8104,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_020_60hz.csv",
+      "raw_rows": 9488,
+      "windows": 90,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_021_60hz.csv",
+      "raw_rows": 8585,
+      "windows": 78,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_022_60hz.csv",
+      "raw_rows": 7339,
+      "windows": 63,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_023_60hz.csv",
+      "raw_rows": 7198,
+      "windows": 68,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_024_60hz.csv",
+      "raw_rows": 7136,
+      "windows": 61,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_025_60hz.csv",
+      "raw_rows": 7753,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_026_60hz.csv",
+      "raw_rows": 7400,
+      "windows": 66,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_027_60hz.csv",
+      "raw_rows": 7798,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_028_60hz.csv",
+      "raw_rows": 8263,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_029_60hz.csv",
+      "raw_rows": 8505,
+      "windows": 76,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_030_60hz.csv",
+      "raw_rows": 7942,
+      "windows": 81,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_031_60hz.csv",
+      "raw_rows": 7529,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_032_60hz.csv",
+      "raw_rows": 7427,
+      "windows": 60,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_033_60hz.csv",
+      "raw_rows": 8124,
+      "windows": 75,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_034_60hz.csv",
+      "raw_rows": 7674,
+      "windows": 75,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_035_60hz.csv",
+      "raw_rows": 7785,
+      "windows": 75,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_036_60hz.csv",
+      "raw_rows": 7616,
+      "windows": 67,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_037_60hz.csv",
+      "raw_rows": 7737,
+      "windows": 64,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_038_60hz.csv",
+      "raw_rows": 7670,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_039_60hz.csv",
+      "raw_rows": 8084,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_040_60hz.csv",
+      "raw_rows": 7741,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_041_60hz.csv",
+      "raw_rows": 7480,
+      "windows": 66,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_042_60hz.csv",
+      "raw_rows": 7577,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_fast_60hz.csv",
+      "raw_rows": 7791,
+      "windows": 67,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_001_60hz.csv",
+      "raw_rows": 24087,
+      "windows": 215,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_002_60hz.csv",
+      "raw_rows": 23826,
+      "windows": 200,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_003_60hz.csv",
+      "raw_rows": 23796,
+      "windows": 205,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_004_60hz.csv",
+      "raw_rows": 22902,
+      "windows": 188,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_005_60hz.csv",
+      "raw_rows": 22883,
+      "windows": 206,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_006_60hz.csv",
+      "raw_rows": 26168,
+      "windows": 235,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_007_60hz.csv",
+      "raw_rows": 23417,
+      "windows": 199,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_008_60hz.csv",
+      "raw_rows": 22027,
+      "windows": 200,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_009_60hz.csv",
+      "raw_rows": 26642,
+      "windows": 224,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_010_60hz.csv",
+      "raw_rows": 25652,
+      "windows": 242,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_011_60hz.csv",
+      "raw_rows": 26244,
+      "windows": 206,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_012_60hz.csv",
+      "raw_rows": 23338,
+      "windows": 206,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_013_60hz.csv",
+      "raw_rows": 26415,
+      "windows": 206,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_014_60hz.csv",
+      "raw_rows": 20780,
+      "windows": 199,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_015_60hz.csv",
+      "raw_rows": 26823,
+      "windows": 221,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_016_60hz.csv",
+      "raw_rows": 25242,
+      "windows": 226,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_017_60hz.csv",
+      "raw_rows": 23180,
+      "windows": 193,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_018_60hz.csv",
+      "raw_rows": 26062,
+      "windows": 218,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_019_60hz.csv",
+      "raw_rows": 24262,
+      "windows": 215,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_020_60hz.csv",
+      "raw_rows": 24476,
+      "windows": 220,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_021_60hz.csv",
+      "raw_rows": 25507,
+      "windows": 203,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_022_60hz.csv",
+      "raw_rows": 25411,
+      "windows": 231,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_023_60hz.csv",
+      "raw_rows": 26224,
+      "windows": 204,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_024_60hz.csv",
+      "raw_rows": 21764,
+      "windows": 194,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_025_60hz.csv",
+      "raw_rows": 20362,
+      "windows": 188,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_026_60hz.csv",
+      "raw_rows": 23219,
+      "windows": 192,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_027_60hz.csv",
+      "raw_rows": 22785,
+      "windows": 196,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_028_60hz.csv",
+      "raw_rows": 22752,
+      "windows": 203,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_029_60hz.csv",
+      "raw_rows": 24682,
+      "windows": 198,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_030_60hz.csv",
+      "raw_rows": 22863,
+      "windows": 237,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_031_60hz.csv",
+      "raw_rows": 26910,
+      "windows": 228,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_032_60hz.csv",
+      "raw_rows": 23284,
+      "windows": 198,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_033_60hz.csv",
+      "raw_rows": 22868,
+      "windows": 205,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_034_60hz.csv",
+      "raw_rows": 25968,
+      "windows": 217,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_035_60hz.csv",
+      "raw_rows": 23060,
+      "windows": 203,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_036_60hz.csv",
+      "raw_rows": 23020,
+      "windows": 204,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_037_60hz.csv",
+      "raw_rows": 24069,
+      "windows": 222,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_038_60hz.csv",
+      "raw_rows": 23527,
+      "windows": 218,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_039_60hz.csv",
+      "raw_rows": 25735,
+      "windows": 213,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_040_60hz.csv",
+      "raw_rows": 23302,
+      "windows": 214,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_041_60hz.csv",
+      "raw_rows": 22436,
+      "windows": 195,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_042_60hz.csv",
+      "raw_rows": 27672,
+      "windows": 248,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_043_60hz.csv",
+      "raw_rows": 24661,
+      "windows": 235,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_044_60hz.csv",
+      "raw_rows": 21775,
+      "windows": 211,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_bezier_timed_60hz.csv",
+      "raw_rows": 23645,
+      "windows": 203,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_001_60hz.csv",
+      "raw_rows": 8857,
+      "windows": 75,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_002_60hz.csv",
+      "raw_rows": 10366,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_003_60hz.csv",
+      "raw_rows": 9487,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_004_60hz.csv",
+      "raw_rows": 8375,
+      "windows": 66,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_005_60hz.csv",
+      "raw_rows": 10602,
+      "windows": 83,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_006_60hz.csv",
+      "raw_rows": 9666,
+      "windows": 85,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_007_60hz.csv",
+      "raw_rows": 9832,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_008_60hz.csv",
+      "raw_rows": 8299,
+      "windows": 62,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_009_60hz.csv",
+      "raw_rows": 8958,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_010_60hz.csv",
+      "raw_rows": 10013,
+      "windows": 85,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_011_60hz.csv",
+      "raw_rows": 9476,
+      "windows": 80,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_012_60hz.csv",
+      "raw_rows": 8907,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_013_60hz.csv",
+      "raw_rows": 9797,
+      "windows": 80,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_014_60hz.csv",
+      "raw_rows": 8678,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_015_60hz.csv",
+      "raw_rows": 9278,
+      "windows": 68,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_016_60hz.csv",
+      "raw_rows": 10405,
+      "windows": 84,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_017_60hz.csv",
+      "raw_rows": 9376,
+      "windows": 79,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_018_60hz.csv",
+      "raw_rows": 9501,
+      "windows": 69,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_019_60hz.csv",
+      "raw_rows": 8668,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_020_60hz.csv",
+      "raw_rows": 8347,
+      "windows": 63,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_021_60hz.csv",
+      "raw_rows": 8190,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_022_60hz.csv",
+      "raw_rows": 9761,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_023_60hz.csv",
+      "raw_rows": 8808,
+      "windows": 67,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_024_60hz.csv",
+      "raw_rows": 9533,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_025_60hz.csv",
+      "raw_rows": 9186,
+      "windows": 81,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_026_60hz.csv",
+      "raw_rows": 8710,
+      "windows": 66,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_027_60hz.csv",
+      "raw_rows": 9526,
+      "windows": 75,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_028_60hz.csv",
+      "raw_rows": 10808,
+      "windows": 79,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_029_60hz.csv",
+      "raw_rows": 8945,
+      "windows": 66,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_030_60hz.csv",
+      "raw_rows": 9677,
+      "windows": 84,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_031_60hz.csv",
+      "raw_rows": 9458,
+      "windows": 75,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_032_60hz.csv",
+      "raw_rows": 9610,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_033_60hz.csv",
+      "raw_rows": 8777,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_034_60hz.csv",
+      "raw_rows": 9713,
+      "windows": 78,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_035_60hz.csv",
+      "raw_rows": 8394,
+      "windows": 65,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_036_60hz.csv",
+      "raw_rows": 9911,
+      "windows": 94,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_037_60hz.csv",
+      "raw_rows": 10044,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_038_60hz.csv",
+      "raw_rows": 9645,
+      "windows": 82,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_039_60hz.csv",
+      "raw_rows": 9524,
+      "windows": 75,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_fast_60hz.csv",
+      "raw_rows": 8943,
+      "windows": 64,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_001_60hz.csv",
+      "raw_rows": 111577,
+      "windows": 1290,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_002_60hz.csv",
+      "raw_rows": 102821,
+      "windows": 1087,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_003_60hz.csv",
+      "raw_rows": 106654,
+      "windows": 1211,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_004_60hz.csv",
+      "raw_rows": 105457,
+      "windows": 1176,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_005_60hz.csv",
+      "raw_rows": 90539,
+      "windows": 891,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_006_60hz.csv",
+      "raw_rows": 97354,
+      "windows": 1036,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_007_60hz.csv",
+      "raw_rows": 99029,
+      "windows": 1038,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_008_60hz.csv",
+      "raw_rows": 102996,
+      "windows": 1116,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_009_60hz.csv",
+      "raw_rows": 113581,
+      "windows": 1286,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_010_60hz.csv",
+      "raw_rows": 91074,
+      "windows": 893,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_011_60hz.csv",
+      "raw_rows": 108558,
+      "windows": 1246,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_012_60hz.csv",
+      "raw_rows": 102897,
+      "windows": 1123,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_013_60hz.csv",
+      "raw_rows": 104608,
+      "windows": 1150,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_014_60hz.csv",
+      "raw_rows": 99474,
+      "windows": 1061,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_015_60hz.csv",
+      "raw_rows": 103997,
+      "windows": 1162,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_016_60hz.csv",
+      "raw_rows": 113589,
+      "windows": 1311,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_017_60hz.csv",
+      "raw_rows": 105158,
+      "windows": 1166,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_018_60hz.csv",
+      "raw_rows": 95531,
+      "windows": 1031,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_019_60hz.csv",
+      "raw_rows": 124862,
+      "windows": 1583,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_humanoid_simulated_60hz.csv",
+      "raw_rows": 42310,
+      "windows": 464,
+      "afk_splits": 79,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_001_60hz.csv",
+      "raw_rows": 6941,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_002_60hz.csv",
+      "raw_rows": 7566,
+      "windows": 80,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_003_60hz.csv",
+      "raw_rows": 6962,
+      "windows": 76,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_004_60hz.csv",
+      "raw_rows": 5770,
+      "windows": 53,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_005_60hz.csv",
+      "raw_rows": 7143,
+      "windows": 68,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_006_60hz.csv",
+      "raw_rows": 7004,
+      "windows": 68,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_007_60hz.csv",
+      "raw_rows": 6347,
+      "windows": 64,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_008_60hz.csv",
+      "raw_rows": 7406,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_009_60hz.csv",
+      "raw_rows": 6697,
+      "windows": 58,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_010_60hz.csv",
+      "raw_rows": 6733,
+      "windows": 67,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_011_60hz.csv",
+      "raw_rows": 7003,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_012_60hz.csv",
+      "raw_rows": 6821,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_013_60hz.csv",
+      "raw_rows": 6862,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_014_60hz.csv",
+      "raw_rows": 6780,
+      "windows": 56,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_015_60hz.csv",
+      "raw_rows": 7327,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_016_60hz.csv",
+      "raw_rows": 7221,
+      "windows": 69,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_017_60hz.csv",
+      "raw_rows": 7204,
+      "windows": 72,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_018_60hz.csv",
+      "raw_rows": 6682,
+      "windows": 65,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_019_60hz.csv",
+      "raw_rows": 7340,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_020_60hz.csv",
+      "raw_rows": 6811,
+      "windows": 61,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_021_60hz.csv",
+      "raw_rows": 7602,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_022_60hz.csv",
+      "raw_rows": 6461,
+      "windows": 66,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_023_60hz.csv",
+      "raw_rows": 7386,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_024_60hz.csv",
+      "raw_rows": 6557,
+      "windows": 60,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_025_60hz.csv",
+      "raw_rows": 7187,
+      "windows": 72,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_026_60hz.csv",
+      "raw_rows": 6963,
+      "windows": 74,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_027_60hz.csv",
+      "raw_rows": 7462,
+      "windows": 76,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_028_60hz.csv",
+      "raw_rows": 7289,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_029_60hz.csv",
+      "raw_rows": 7940,
+      "windows": 76,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_030_60hz.csv",
+      "raw_rows": 6047,
+      "windows": 53,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_031_60hz.csv",
+      "raw_rows": 7177,
+      "windows": 67,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_032_60hz.csv",
+      "raw_rows": 6958,
+      "windows": 79,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_033_60hz.csv",
+      "raw_rows": 6705,
+      "windows": 70,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_034_60hz.csv",
+      "raw_rows": 8077,
+      "windows": 79,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_035_60hz.csv",
+      "raw_rows": 6835,
+      "windows": 62,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_036_60hz.csv",
+      "raw_rows": 7912,
+      "windows": 79,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_037_60hz.csv",
+      "raw_rows": 7198,
+      "windows": 63,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_038_60hz.csv",
+      "raw_rows": 7448,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_039_60hz.csv",
+      "raw_rows": 6901,
+      "windows": 77,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_040_60hz.csv",
+      "raw_rows": 6703,
+      "windows": 68,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_041_60hz.csv",
+      "raw_rows": 6783,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_042_60hz.csv",
+      "raw_rows": 6528,
+      "windows": 59,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_043_60hz.csv",
+      "raw_rows": 6895,
+      "windows": 69,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_044_60hz.csv",
+      "raw_rows": 7227,
+      "windows": 69,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_045_60hz.csv",
+      "raw_rows": 7421,
+      "windows": 69,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_046_60hz.csv",
+      "raw_rows": 7155,
+      "windows": 71,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_047_60hz.csv",
+      "raw_rows": 6998,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_048_60hz.csv",
+      "raw_rows": 6783,
+      "windows": 78,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_fast_60hz.csv",
+      "raw_rows": 6637,
+      "windows": 73,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_001_60hz.csv",
+      "raw_rows": 25576,
+      "windows": 219,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_002_60hz.csv",
+      "raw_rows": 25383,
+      "windows": 229,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_003_60hz.csv",
+      "raw_rows": 29605,
+      "windows": 241,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_004_60hz.csv",
+      "raw_rows": 27897,
+      "windows": 239,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_005_60hz.csv",
+      "raw_rows": 25361,
+      "windows": 204,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_006_60hz.csv",
+      "raw_rows": 26886,
+      "windows": 231,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_007_60hz.csv",
+      "raw_rows": 29469,
+      "windows": 216,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_008_60hz.csv",
+      "raw_rows": 25632,
+      "windows": 212,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_009_60hz.csv",
+      "raw_rows": 26312,
+      "windows": 225,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_010_60hz.csv",
+      "raw_rows": 27216,
+      "windows": 222,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_011_60hz.csv",
+      "raw_rows": 26425,
+      "windows": 258,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_012_60hz.csv",
+      "raw_rows": 28796,
+      "windows": 244,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_013_60hz.csv",
+      "raw_rows": 26204,
+      "windows": 204,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_014_60hz.csv",
+      "raw_rows": 26964,
+      "windows": 223,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_015_60hz.csv",
+      "raw_rows": 30147,
+      "windows": 247,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_016_60hz.csv",
+      "raw_rows": 26960,
+      "windows": 234,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_017_60hz.csv",
+      "raw_rows": 25826,
+      "windows": 210,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_018_60hz.csv",
+      "raw_rows": 28640,
+      "windows": 227,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_019_60hz.csv",
+      "raw_rows": 26832,
+      "windows": 226,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_020_60hz.csv",
+      "raw_rows": 24959,
+      "windows": 212,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_021_60hz.csv",
+      "raw_rows": 25390,
+      "windows": 231,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_022_60hz.csv",
+      "raw_rows": 26027,
+      "windows": 236,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_023_60hz.csv",
+      "raw_rows": 28172,
+      "windows": 248,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_024_60hz.csv",
+      "raw_rows": 24941,
+      "windows": 234,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_025_60hz.csv",
+      "raw_rows": 27160,
+      "windows": 219,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_026_60hz.csv",
+      "raw_rows": 31864,
+      "windows": 269,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_027_60hz.csv",
+      "raw_rows": 27799,
+      "windows": 237,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_028_60hz.csv",
+      "raw_rows": 29434,
+      "windows": 226,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_029_60hz.csv",
+      "raw_rows": 27887,
+      "windows": 232,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_030_60hz.csv",
+      "raw_rows": 26200,
+      "windows": 214,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_031_60hz.csv",
+      "raw_rows": 27825,
+      "windows": 251,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_032_60hz.csv",
+      "raw_rows": 25794,
+      "windows": 231,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_033_60hz.csv",
+      "raw_rows": 29188,
+      "windows": 277,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_034_60hz.csv",
+      "raw_rows": 25218,
+      "windows": 200,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_035_60hz.csv",
+      "raw_rows": 24938,
+      "windows": 214,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_036_60hz.csv",
+      "raw_rows": 24885,
+      "windows": 227,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_037_60hz.csv",
+      "raw_rows": 26390,
+      "windows": 243,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_038_60hz.csv",
+      "raw_rows": 26197,
+      "windows": 235,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_039_60hz.csv",
+      "raw_rows": 27079,
+      "windows": 210,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_040_60hz.csv",
+      "raw_rows": 23411,
+      "windows": 206,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_041_60hz.csv",
+      "raw_rows": 28827,
+      "windows": 231,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_042_60hz.csv",
+      "raw_rows": 27421,
+      "windows": 231,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_043_60hz.csv",
+      "raw_rows": 27643,
+      "windows": 235,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_044_60hz.csv",
+      "raw_rows": 23084,
+      "windows": 205,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_045_60hz.csv",
+      "raw_rows": 26377,
+      "windows": 234,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_046_60hz.csv",
+      "raw_rows": 27275,
+      "windows": 216,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_linear_timed_60hz.csv",
+      "raw_rows": 27238,
+      "windows": 230,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_001_60hz.csv",
+      "raw_rows": 14734,
+      "windows": 124,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_002_60hz.csv",
+      "raw_rows": 11091,
+      "windows": 115,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_003_60hz.csv",
+      "raw_rows": 12945,
+      "windows": 123,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_004_60hz.csv",
+      "raw_rows": 12691,
+      "windows": 126,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_005_60hz.csv",
+      "raw_rows": 12660,
+      "windows": 119,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_006_60hz.csv",
+      "raw_rows": 13592,
+      "windows": 130,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_007_60hz.csv",
+      "raw_rows": 12673,
+      "windows": 111,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_008_60hz.csv",
+      "raw_rows": 14291,
+      "windows": 107,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_009_60hz.csv",
+      "raw_rows": 15027,
+      "windows": 126,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_010_60hz.csv",
+      "raw_rows": 13852,
+      "windows": 121,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_011_60hz.csv",
+      "raw_rows": 12380,
+      "windows": 122,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_012_60hz.csv",
+      "raw_rows": 14450,
+      "windows": 130,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_013_60hz.csv",
+      "raw_rows": 13359,
+      "windows": 111,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_014_60hz.csv",
+      "raw_rows": 15188,
+      "windows": 123,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_015_60hz.csv",
+      "raw_rows": 13582,
+      "windows": 107,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_016_60hz.csv",
+      "raw_rows": 13197,
+      "windows": 115,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_017_60hz.csv",
+      "raw_rows": 11744,
+      "windows": 106,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_018_60hz.csv",
+      "raw_rows": 13142,
+      "windows": 122,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_019_60hz.csv",
+      "raw_rows": 12802,
+      "windows": 130,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_020_60hz.csv",
+      "raw_rows": 13187,
+      "windows": 118,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_021_60hz.csv",
+      "raw_rows": 14066,
+      "windows": 117,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_022_60hz.csv",
+      "raw_rows": 13559,
+      "windows": 121,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_023_60hz.csv",
+      "raw_rows": 12804,
+      "windows": 111,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_024_60hz.csv",
+      "raw_rows": 14054,
+      "windows": 109,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_025_60hz.csv",
+      "raw_rows": 12425,
+      "windows": 122,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_026_60hz.csv",
+      "raw_rows": 12676,
+      "windows": 107,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_027_60hz.csv",
+      "raw_rows": 14089,
+      "windows": 117,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_028_60hz.csv",
+      "raw_rows": 13602,
+      "windows": 110,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_029_60hz.csv",
+      "raw_rows": 12247,
+      "windows": 117,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_030_60hz.csv",
+      "raw_rows": 12537,
+      "windows": 124,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_031_60hz.csv",
+      "raw_rows": 14621,
+      "windows": 122,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_032_60hz.csv",
+      "raw_rows": 12995,
+      "windows": 112,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_033_60hz.csv",
+      "raw_rows": 13217,
+      "windows": 111,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_034_60hz.csv",
+      "raw_rows": 13681,
+      "windows": 112,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_035_60hz.csv",
+      "raw_rows": 14168,
+      "windows": 126,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_036_60hz.csv",
+      "raw_rows": 13789,
+      "windows": 129,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_037_60hz.csv",
+      "raw_rows": 14831,
+      "windows": 127,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_038_60hz.csv",
+      "raw_rows": 13466,
+      "windows": 119,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_039_60hz.csv",
+      "raw_rows": 13726,
+      "windows": 133,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_040_60hz.csv",
+      "raw_rows": 13906,
+      "windows": 125,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_041_60hz.csv",
+      "raw_rows": 12914,
+      "windows": 112,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_042_60hz.csv",
+      "raw_rows": 12970,
+      "windows": 113,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_043_60hz.csv",
+      "raw_rows": 13892,
+      "windows": 126,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_044_60hz.csv",
+      "raw_rows": 12374,
+      "windows": 125,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_045_60hz.csv",
+      "raw_rows": 11990,
+      "windows": 104,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_046_60hz.csv",
+      "raw_rows": 14264,
+      "windows": 121,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\tiers\\tier_naive_60hz.csv",
+      "raw_rows": 12106,
+      "windows": 120,
+      "afk_splits": 199,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_001_60hz.csv",
+      "raw_rows": 44970,
+      "windows": 489,
+      "afk_splits": 99,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_002_60hz.csv",
+      "raw_rows": 1529,
+      "windows": 8,
+      "afk_splits": 7,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_003_60hz.csv",
+      "raw_rows": 1347,
+      "windows": 15,
+      "afk_splits": 14,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_004_60hz.csv",
+      "raw_rows": 956,
+      "windows": 15,
+      "afk_splits": 14,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_005_60hz.csv",
+      "raw_rows": 3976,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_006_60hz.csv",
+      "raw_rows": 5479,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_007_60hz.csv",
+      "raw_rows": 5453,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_008_60hz.csv",
+      "raw_rows": 3727,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_009_60hz.csv",
+      "raw_rows": 5095,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_010_60hz.csv",
+      "raw_rows": 4056,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_011_60hz.csv",
+      "raw_rows": 5349,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_012_60hz.csv",
+      "raw_rows": 5034,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_013_60hz.csv",
+      "raw_rows": 4522,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_014_60hz.csv",
+      "raw_rows": 6256,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\evasion\\evasion_cycle_015_60hz.csv",
+      "raw_rows": 6396,
+      "windows": 48,
+      "afk_splits": 47,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families\\xmodel_families_60hz.csv",
+      "raw_rows": 53962,
+      "windows": 438,
+      "afk_splits": 437,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families\\xmodel_playwright_sim_60hz.csv",
+      "raw_rows": 13635,
+      "windows": 144,
+      "afk_splits": 143,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families\\xmodel_v01_families_60hz.csv",
+      "raw_rows": 52700,
+      "windows": 438,
+      "afk_splits": 437,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families\\xmodel_ymodel_v02_fitts_all_challenges_60hz.csv",
+      "raw_rows": 240315,
+      "windows": 2692,
+      "afk_splits": 529,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families\\xmodel_ymodel_v02_grids_60hz.csv",
+      "raw_rows": 34782,
+      "windows": 312,
+      "afk_splits": 311,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families\\xmodel_ymodel_v02_legacy_live_families_60hz.csv",
+      "raw_rows": 13961,
+      "windows": 152,
+      "afk_splits": 151,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\families\\xmodel_ymodel_v02_named_hops_60hz.csv",
+      "raw_rows": 88381,
+      "windows": 800,
+      "afk_splits": 799,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\legacy\\bot_bezier_bot_60hz.csv",
+      "raw_rows": 241,
+      "windows": 1,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\legacy\\bot_humanoid_fitts_bot_60hz.csv",
+      "raw_rows": 416,
+      "windows": 1,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\legacy\\bot_linear_bot_60hz.csv",
+      "raw_rows": 191,
+      "windows": 1,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\legacy\\bot_naive_bot_60hz.csv",
+      "raw_rows": 21,
+      "windows": 0,
+      "afk_splits": 0,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_bezier_fast_60hz.csv",
+      "raw_rows": 3270,
+      "windows": 34,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_dense_smooth_60hz.csv",
+      "raw_rows": 19257,
+      "windows": 184,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_fast_direct_60hz.csv",
+      "raw_rows": 2387,
+      "windows": 39,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_hop_60hz.csv",
+      "raw_rows": 3878,
+      "windows": 53,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_idle_correct_60hz.csv",
+      "raw_rows": 8638,
+      "windows": 77,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_mid_dense_60hz.csv",
+      "raw_rows": 3053,
+      "windows": 40,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_minjerk_60hz.csv",
+      "raw_rows": 7595,
+      "windows": 54,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_naive_60hz.csv",
+      "raw_rows": 3098,
+      "windows": 32,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_simulated_60hz.csv",
+      "raw_rows": 29913,
+      "windows": 390,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_wide_arc_60hz.csv",
+      "raw_rows": 10162,
+      "windows": 103,
+      "afk_splits": 39,
+      "truncated": false
+    },
+    {
+      "file": "D:\\Cursor\\Behavioral Captcha\\datasets\\bot_xmodel_60hz\\attack_winners\\attack_winner_wobble_mid_60hz.csv",
+      "raw_rows": 7510,
+      "windows": 71,
+      "afk_splits": 39,
+      "truncated": false
+    }
+  ]
+}

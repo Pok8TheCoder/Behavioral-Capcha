@@ -1,0 +1,135 @@
+{
+  "test_windows": 26702,
+  "human_windows": 17323,
+  "bot_windows": 101236,
+  "feature_names": [
+    "v_mean",
+    "v_max",
+    "v_std",
+    "a_mean",
+    "a_max",
+    "jerk_std",
+    "idle_time_ratio",
+    "micro_jitter_ratio",
+    "straightness_index",
+    "tremor_ratio",
+    "click_rate"
+  ],
+  "results": [
+    {
+      "name": "random_forest",
+      "auc": 0.5041850028592029,
+      "accuracy": 0.03467905025840761,
+      "flipped_labels": true,
+      "confusion": [
+        [
+          864,
+          8
+        ],
+        [
+          25768,
+          62
+        ]
+      ],
+      "human_as_bot_rate": 0.009174311926605505,
+      "bot_miss_rate": 0.9975996902826171,
+      "mean_bot_score_on_humans": 0.07047018348623854,
+      "mean_bot_score_on_bots": 0.07081881533101046,
+      "ml_human_on_humans": 0.9295298165137614,
+      "ml_human_on_bots": 0.9291811846689896,
+      "report": "              precision    recall  f1-score   support\n\n       Human       0.03      0.99      0.06       872\n         Bot       0.89      0.00      0.00     25830\n\n    accuracy                           0.03     26702\n   macro avg       0.46      0.50      0.03     26702\nweighted avg       0.86      0.03      0.01     26702\n"
+    },
+    {
+      "name": "random_forest + scaler",
+      "auc": 0.7960098802331405,
+      "accuracy": 0.9268594112800539,
+      "flipped_labels": false,
+      "confusion": [
+        [
+          3,
+          869
+        ],
+        [
+          1084,
+          24746
+        ]
+      ],
+      "human_as_bot_rate": 0.9965596330275229,
+      "bot_miss_rate": 0.04196670538133953,
+      "mean_bot_score_on_humans": 0.8626490825688075,
+      "mean_bot_score_on_bots": 0.8894804490902052,
+      "ml_human_on_humans": 0.13735091743119254,
+      "ml_human_on_bots": 0.11051955090979482,
+      "report": "              precision    recall  f1-score   support\n\n       Human       0.00      0.00      0.00       872\n         Bot       0.97      0.96      0.96     25830\n\n    accuracy                           0.93     26702\n   macro avg       0.48      0.48      0.48     26702\nweighted avg       0.93      0.93      0.93     26702\n"
+    },
+    {
+      "name": "svm_rbf + scaler",
+      "auc": 0.7808888036455726,
+      "accuracy": 0.9673432701670287,
+      "flipped_labels": false,
+      "confusion": [
+        [
+          0,
+          872
+        ],
+        [
+          0,
+          25830
+        ]
+      ],
+      "human_as_bot_rate": 1.0,
+      "bot_miss_rate": 0.0,
+      "mean_bot_score_on_humans": 0.9876308890253822,
+      "mean_bot_score_on_bots": 0.988450881548147,
+      "ml_human_on_humans": 0.012369110974617792,
+      "ml_human_on_bots": 0.011549118451853024,
+      "report": "              precision    recall  f1-score   support\n\n       Human       0.00      0.00      0.00       872\n         Bot       0.97      1.00      0.98     25830\n\n    accuracy                           0.97     26702\n   macro avg       0.48      0.50      0.49     26702\nweighted avg       0.94      0.97      0.95     26702\n"
+    },
+    {
+      "name": "xgboost",
+      "auc": 0.5163553953691569,
+      "accuracy": 0.07823384016178564,
+      "flipped_labels": true,
+      "confusion": [
+        [
+          859,
+          13
+        ],
+        [
+          24600,
+          1230
+        ]
+      ],
+      "human_as_bot_rate": 0.014908256880733946,
+      "bot_miss_rate": 0.9523809523809523,
+      "mean_bot_score_on_humans": 0.015566123649477959,
+      "mean_bot_score_on_bots": 0.04823783412575722,
+      "ml_human_on_humans": 0.9844338893890381,
+      "ml_human_on_bots": 0.9517621397972107,
+      "report": "              precision    recall  f1-score   support\n\n       Human       0.03      0.99      0.07       872\n         Bot       0.99      0.05      0.09     25830\n\n    accuracy                           0.08     26702\n   macro avg       0.51      0.52      0.08     26702\nweighted avg       0.96      0.08      0.09     26702\n"
+    },
+    {
+      "name": "xgboost + scaler",
+      "auc": 0.5167707789463216,
+      "accuracy": 0.0661748183656655,
+      "flipped_labels": true,
+      "confusion": [
+        [
+          871,
+          1
+        ],
+        [
+          24934,
+          896
+        ]
+      ],
+      "human_as_bot_rate": 0.0011467889908256881,
+      "bot_miss_rate": 0.9653116531165311,
+      "mean_bot_score_on_humans": 0.0018210971029475331,
+      "mean_bot_score_on_bots": 0.035322580486536026,
+      "ml_human_on_humans": 0.9981788992881775,
+      "ml_human_on_bots": 0.9646773934364319,
+      "report": "              precision    recall  f1-score   support\n\n       Human       0.03      1.00      0.07       872\n         Bot       1.00      0.03      0.07     25830\n\n    accuracy                           0.07     26702\n   macro avg       0.52      0.52      0.07     26702\nweighted avg       0.97      0.07      0.07     26702\n"
+    }
+  ]
+}
